@@ -1,5 +1,17 @@
-body {
+* {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Lato', sans-serif;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+a {
+  display: inherit;
+  color: inherit;
+  text-decoration: inherit;
+}
+
+body {
+  border-top: 4px solid #e44d95;
 }
