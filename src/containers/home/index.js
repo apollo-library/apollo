@@ -7,15 +7,20 @@ import './home.css';
 //Config import
 import {main} from './../../config.js';
 
-//Import font awesome
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+//Component imports
+import NavBar from './../../components/navbar';
+import Dashboard from './../../components/dashboard';
+import Sidebar from './../../components/sidebar';
 
 class Home extends Component {
   render() {
     return (
-        <div>
-            <h1>Home</h1>
-            <FontAwesomeIcon icon="home"/>
+        <div className="apollo">
+            <NavBar />
+            <div className="mainContentGrowContainer">
+                <Dashboard />
+            </div>
+            <Sidebar />
         </div>
     );
   }

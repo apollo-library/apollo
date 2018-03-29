@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 //Styles
-import './navbar.css';
+import './sidebar.css';
 
 //Config import
 import {main, colours} from './../../config.js';
@@ -10,14 +10,14 @@ import {main, colours} from './../../config.js';
 //Import font awesome
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
-class NavBar extends Component {
+class SideBar extends Component {
   render() {
     return (
-        <div className="navbar" style={{background: colours.lightGrey}}>
-            Navbar
+        <div className="sidebar">
+            Sidebar
         </div>
     );
   }
 }
 
-export default NavBar;
+export default SideBar;

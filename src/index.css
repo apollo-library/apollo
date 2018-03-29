@@ -15,3 +15,11 @@ a {
 body {
   border-top: 4px solid #e44d95;
 }
+
+.apollo {
+    display: flex;
+}
+
+.mainContentGrowContainer {
+    flex: 1 1 auto;
+}

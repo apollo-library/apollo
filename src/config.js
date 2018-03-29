@@ -56,17 +56,17 @@ let main = {
 };
 
 let colours = {
-	pink: "e44d95",
-	darkPink: "f160a6",
-	lightGrey: "f4f4f4",
-	darkGrey: "504f4f",
+	pink: "#e44d95",
+	darkPink: "#f160a6",
+	lightGrey: "#f4f4f4",
+	darkGrey: "#504f4f",
 
-	foxell: "fac800",
-	holman: "e97b1b",
-	newman: "d32b19",
-	pearson: "99c1e8",
-	rayner: "2a4597",
-	thorne: "267832"
+	foxell: "#fac800",
+	holman: "#e97b1b",
+	newman: "#d32b19",
+	pearson: "#99c1e8",
+	rayner: "#2a4597",
+	thorne: "#267832"
 };
 
 // Do the final export of every config object so it can be imported in other files

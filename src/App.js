@@ -28,18 +28,11 @@ import users from '@fortawesome/fontawesome-free-solid/faUsers';
 fontawesome.library.add(home, book, barcode, users)
 
 class App extends Component {
-    constructor() {
-        super();
-        this.state = {
-            pages: main.pages
-        };
-    }
-
     render() {
         return (
             <Router>
                 <Switch>
-                    {this.state.pages.map((page, index) =>
+                    {main.pages.map((page, index) =>
                         <Route exact path={page.path} component={page.componentName} key={index} />
                     )};
                 </Switch>
