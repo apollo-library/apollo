@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import './home.css';
 
 //Config import
-import {main} from './../../config.js';
+import config from './../../config.js';
 
 //Component imports
 import NavBar from './../../components/navbar';

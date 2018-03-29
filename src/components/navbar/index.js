@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import './navbar.css';
 
 //Config import
-import {main, colours} from './../../config.js';
+import config from './../../config.js';
 
 //Import font awesome
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -13,7 +13,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 class NavBar extends Component {
   render() {
     return (
-        <div className="navbar" style={{background: colours.lightGrey}}>
+        <div className="navbar" style={{background: config.colours.lightGrey}}>
             Navbar
         </div>
     );

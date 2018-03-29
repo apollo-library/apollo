@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import './scan.css';
 
 //Config import
-import {main} from './../../config.js';
+import config from './../../config.js';
 
 //Import font awesome
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';

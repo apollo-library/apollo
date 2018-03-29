@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import './sidebar.css';
 
 //Config import
-import {main, colours} from './../../config.js';
+import config from './../../config.js';
 
 //Import font awesome
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';

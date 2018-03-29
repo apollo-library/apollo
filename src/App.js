@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 //Config import
-import {main} from './config.js';
+import config from './config.js';
 
 //Container imports
 import Home from './containers/home';
@@ -32,7 +32,7 @@ class App extends Component {
         return (
             <Router>
                 <Switch>
-                    {main.pages.map((page, index) =>
+                    {config.main.pages.map((page, index) =>
                         <Route exact path={page.path} component={page.componentName} key={index} />
                     )};
                 </Switch>
