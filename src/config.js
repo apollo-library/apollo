@@ -11,29 +11,46 @@ The following objects are exported at the end
         - Since the config cannot be imported into a CSS file, any colours should be set inline
 */
 
+//Container imports
+import Home from './containers/home';
+import Catalogue from './containers/catalogue';
+import Scan from './containers/scan';
+import Students from './containers/students';
+
 let main = {
 	shortName: "Apollo",
 	longName: "Apollo | Library Management System",
 	pages: [
+		/*
+		name:			Text that is displayed on the navbar and on the page title
+		path:			The path that the router should re-direct to onClick in the navbar. Will also e displayed in the URL
+		icon:			The icon that is displayed next to the text in the navbar. Given as a Font Awesome 5 icon name
+		 				(For Reference) - Font Awesome Icons: https://fontawesome.com/icons?d=gallery
+		componentName:	The name of the component page that relates to the page listed
+		*/
 		{
 			name: 'Home',
-			url: '/',
-			icon: 'home'
+			path: '/',
+			icon: 'home',
+			componentName: Home
 		},
 		{
 			name: 'Catalogue',
-			url: '/catalogue',
-			icon: 'book'
+			path: '/catalogue',
+			icon: 'book',
+			componentName: Catalogue
         },
 		{
 			name: 'Scan',
-			url: '/scan',
-			icon: 'barcode'
+			path: '/scan',
+			icon: 'barcode',
+			componentName: Scan
         },
 		{
 			name: 'Students',
-			url: '/students',
-			icon: 'users'
+			path: '/students',
+			icon: 'users',
+			componentName: Students
         }
     ]
 };
