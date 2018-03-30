@@ -17,9 +17,10 @@ import book from '@fortawesome/fontawesome-free-solid/faBook';
 import barcode from '@fortawesome/fontawesome-free-solid/faBarcode';
 import users from '@fortawesome/fontawesome-free-solid/faUsers';
 import signOutAlt from '@fortawesome/fontawesome-free-solid/faSignOutAlt'
+import bug from '@fortawesome/fontawesome-free-solid/faBug'
 
 //Add every icon we import to a global library
-fontawesome.library.add(home, book, barcode, users, signOutAlt)
+fontawesome.library.add(home, book, barcode, users, signOutAlt, bug)
 
 class App extends Component {
     render() {
@@ -28,7 +29,6 @@ class App extends Component {
                 <Switch>
                     {config.main.pages.map((page, index) =>
                         <Route exact path={page.path} component={page.componentName} key={index} />
-                        //<Route exact path={page.path} render={(props)  => <page.componentName {...props}/>} key={index} />
                     )}
                 </Switch>
             </Router>

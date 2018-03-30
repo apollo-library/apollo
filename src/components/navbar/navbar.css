@@ -1,23 +1,28 @@
 .navbar {
     height: 100vh;
-    padding-top: 2vh;
-    position: relative;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
 }
 
 .navItem {
     display: flex;
     cursor: pointer;
-    padding: 1.5vh 1vw;
+    padding: 10px 20px;
+}
+
+.navGrow {
+    flex: 1;
 }
 
 .navIcon {
     font-size: 1.3em;
-    margin-right: 1vw;
+    margin-right: 20px;
 }
 
 .navBottomGroup {
-    position: absolute;
-    bottom: 0.5vh;
+    bottom: 3px;
     border-top: 2px solid;
     width: 100%;
 }
