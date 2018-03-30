@@ -11,20 +11,11 @@ import config from './../../config';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 class NavBar extends Component {
-    constructor() {
-        super()
-        this.redirect = this.redirect.bind(this);
-    }
-
-    redirect(path) {
-        this.props.history.push('/students');
-    }
-
   render() {
     return (
         <div className="navbar" style={{background: config.colours.lightGrey, color: config.colours.darkGrey}}>
             {config.main.pages.map((page, index) =>(
-                <div key={index} className="navItem" onClick={this.redirect.bind(this)}>
+                <div key={index} className="navItem" onClick={() => {this.props.history.push(page.path)}}>
                     <FontAwesomeIcon className="navIcon fa-fw" icon={page.icon} />
                     <p className="navLabel">{page.name}</p>
                 </div>)

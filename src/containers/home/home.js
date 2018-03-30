@@ -13,7 +13,7 @@ class Home extends Component {
   render() {
     return (
         <div className="apollo">
-            <NavBar />
+            <NavBar history={this.props.history} />
             <div className="mainContentGrowContainer">
                 <Dashboard />
             </div>

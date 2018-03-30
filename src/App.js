@@ -27,8 +27,8 @@ class App extends Component {
             <Router>
                 <Switch>
                     {config.main.pages.map((page, index) =>
-                        //<Route exact path={page.path} component={page.componentName} key={index} />
-                        <Route exact path={page.path} render={(props)  => <page.componentName {...props}/>} key={index} />
+                        <Route exact path={page.path} component={page.componentName} key={index} />
+                        //<Route exact path={page.path} render={(props)  => <page.componentName {...props}/>} key={index} />
                     )}
                 </Switch>
             </Router>
