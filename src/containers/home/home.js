@@ -8,9 +8,9 @@ import './home.css';
 import config from './../../config.js';
 
 //Component imports
-import NavBar from './../../components/navbar';
-import Dashboard from './../../components/dashboard';
-import Sidebar from './../../components/sidebar';
+import NavBar from './../../components/navbar/navbar.js';
+import Dashboard from './../../components/dashboard/dashboard.js';
+import Sidebar from './../../components/sidebar/sidebar.js';
 
 class Home extends Component {
   render() {

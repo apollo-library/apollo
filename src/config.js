@@ -13,10 +13,10 @@ The following objects are exported at the end under the config object
 */
 
 //Container imports
-import Home from './containers/home';
-import Catalogue from './containers/catalogue';
-import Scan from './containers/scan';
-import Students from './containers/students';
+import Home from './containers/home/home';
+import Catalogue from './containers/catalogue/catalogue';
+import Scan from './containers/scan/scan';
+import Students from './containers/students/students';
 
 let config = {
 	main: {
