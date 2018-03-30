@@ -1,4 +1,23 @@
 .navbar {
     height: 100vh;
-    width: 10vw;
+    padding-top: 2vh;
+    position: relative;
+}
+
+.navItem {
+    display: flex;
+    cursor: pointer;
+    padding: 1.5vh 1vw;
+}
+
+.navIcon {
+    font-size: 1.3em;
+    margin-right: 1vw;
+}
+
+.navBottomGroup {
+    position: absolute;
+    bottom: 0.5vh;
+    border-top: 2px solid;
+    width: 100%;
 }

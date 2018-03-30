@@ -4,13 +4,10 @@ import React, { Component } from 'react';
 //Styles
 import './home.css';
 
-//Config import
-import config from './../../config.js';
-
 //Component imports
-import NavBar from './../../components/navbar/navbar.js';
-import Dashboard from './../../components/dashboard/dashboard.js';
-import Sidebar from './../../components/sidebar/sidebar.js';
+import NavBar from './../../components/navbar/navbar';
+import Dashboard from './../../components/dashboard/dashboard';
+import Sidebar from './../../components/sidebar/sidebar';
 
 class Home extends Component {
   render() {

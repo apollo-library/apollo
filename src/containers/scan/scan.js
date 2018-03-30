@@ -4,9 +4,6 @@ import React, { Component } from 'react';
 //Styles
 import './scan.css';
 
-//Config import
-import config from './../../config.js';
-
 //Import font awesome
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
