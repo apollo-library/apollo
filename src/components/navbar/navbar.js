@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 
 //Styles
-import './navbar.css';
+import * as styles from './navbarStyles.js'
+import {styled, css} from 'styled-components';
 
 //Config import
 import config from './../../config';
@@ -13,57 +14,50 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 //Redux imports
 import { connect } from 'react-redux'
 
-
 const mapStateToProps = (state) => ({
     currentPage: state.data.currentPage
 })
 
 class NavBar extends Component {
-    constructor() {
-        super()
-        this.redirect = this.redirect.bind(this)
-    }
-    //Run when you click on an item in the navbar
-    redirect(path) {
-        //Switches page
-        this.props.history.push(path);
-    }
-
     render() {
         return (
-            <div className="navbar" style={{background: config.colours.lightGrey, color: config.colours.darkGrey}}>
+            <styles.Navbar>
                 {config.main.pages.map((page, index) =>
                     (
-                        <div
+                        <styles.NavItem
                             key={index}
-                            className={"navItem " + ((page.path === this.props.currentPage) ? 'navItemActive' : '')}
-                            onClick={() => {this.redirect(page.path)}}
+                            onClick={() => {this.props.history.push(page.path)}}
+                            navItemActive={page.path === this.props.currentPage}
                         >
-                            <FontAwesomeIcon className="navIcon fa-fw" icon={page.icon} />
+                            <styles.NavIcon>
+                                <FontAwesomeIcon className="fa-fw" icon={page.icon} />
+                            </styles.NavIcon>
                             <p className="navLabel">{page.text}</p>
-                        </div>
+                        </styles.NavItem>
                     )
                 )}
 
-                <div className="navGrow" />
+                <styles.NavGrow />
 
-                <div className="navBottomGroup" style={{borderColor: config.colours.pink}}>
-                    <div className="navItem">
-                        <FontAwesomeIcon className="navIcon fa-fw" icon="bug" />
+                <styles.NavBottomGroup>
+                    <styles.NavItem>
+                        <styles.NavIcon>
+                            <FontAwesomeIcon className="navIcon fa-fw" icon="bug" />
+                        </styles.NavIcon>
                         <a className="navLabel" href="https://goo.gl/forms/bbOBhb92BZjh7VTr2" target="_blank" rel="noopener noreferrer">Report Bug</a>
-                    </div>
+                    </styles.NavItem>
 
-                    <div className="navItem">
-                        <FontAwesomeIcon className="navIcon fa-fw" icon="sign-out-alt" />
+                    <styles.NavItem>
+                        <styles.NavIcon>
+                            <FontAwesomeIcon className="navIcon fa-fw" icon="sign-out-alt" />
+                        </styles.NavIcon>
                         <p className="navLabel">Logout</p>
-                    </div>
-                </div>
+                    </styles.NavItem>
+                </styles.NavBottomGroup>
 
-            </div>
+            </styles.Navbar>
         );
     }
 }
 
-export default  connect(mapStateToProps)(NavBar);
-
-//export default  NavBar;
+export default connect(mapStateToProps)(NavBar);

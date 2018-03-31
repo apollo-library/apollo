@@ -24,7 +24,7 @@ let config = {
 		longName: "Apollo | Library Management System",
 		pages: [
 			/*
-			name:			Text that is displayed on the navbar and on the page title
+			text:			Text that is displayed on the navbar and on the page title
 			path:			The path that the router should re-direct to onClick in the navbar. Will also e displayed in the URL
 			icon:			The icon that is displayed next to the text in the navbar. Given as a Font Awesome 5 icon name
 			 				(For Reference) - Font Awesome Icons: https://fontawesome.com/icons?d=gallery
@@ -58,8 +58,7 @@ let config = {
 	},
 
 	colours: {
-		pink: "#e44d95",
-		darkPink: "#f160a6",
+		themeColour: "#e44d95",
 		lightGrey: "#f4f4f4",
 		darkGrey: "#504f4f",
 

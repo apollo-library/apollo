@@ -3,9 +3,6 @@ import React, { Component } from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 
-//Styles
-import './App.css';
-
 //Config import
 import config from './config';
 
@@ -35,7 +32,8 @@ history.listen((location) => {
 
 class App extends Component {
 
-    componentDidMount() {
+    //Ensure the redux current page state is correct even after reloading
+    componentWillMount() {
         store.dispatch(actions.updateCurrentPage(history.location.pathname));
     }
 
