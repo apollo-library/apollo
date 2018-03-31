@@ -31,25 +31,25 @@ let config = {
 			componentName:	The name of the component page that relates to the page listed
 			*/
 			{
-				name: 'Home',
+				text: 'Home',
 				path: '/',
 				icon: 'home',
 				componentName: Home
 			},
 			{
-				name: 'Catalogue',
+				text: 'Catalogue',
 				path: '/catalogue',
 				icon: 'book',
 				componentName: Catalogue
 	        },
 			{
-				name: 'Scan',
+				text: 'Scan',
 				path: '/scan',
 				icon: 'barcode',
 				componentName: Scan
 	        },
 			{
-				name: 'Students',
+				text: 'Students',
 				path: '/students',
 				icon: 'users',
 				componentName: Students

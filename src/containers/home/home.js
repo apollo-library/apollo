@@ -10,17 +10,17 @@ import Dashboard from './../../components/dashboard/dashboard';
 import Sidebar from './../../components/sidebar/sidebar';
 
 class Home extends Component {
-  render() {
-    return (
-        <div className="apollo">
-            <NavBar history={this.props.history} />
-            <div className="mainContentGrowContainer">
-                <Dashboard />
+    render() {
+        return (
+            <div className="apollo">
+                <NavBar history={this.props.history} />
+                <div className="mainContentGrowContainer">
+                    <Dashboard />
+                </div>
+                <Sidebar />
             </div>
-            <Sidebar />
-        </div>
-    );
-  }
+        );
+    }
 }
 
 export default Home;

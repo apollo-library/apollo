@@ -12,6 +12,11 @@
     padding: 10px 20px;
 }
 
+.navItemActive {
+    color: #e44d95;
+    font-weight: 700;
+}
+
 .navGrow {
     flex: 1;
 }
