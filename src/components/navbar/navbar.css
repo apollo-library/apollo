@@ -9,7 +9,7 @@
 .navItem {
     display: flex;
     cursor: pointer;
-    padding: 10px 20px;
+    padding: 12px 20px;
 }
 
 .navItemActive {
@@ -27,7 +27,7 @@
 }
 
 .navBottomGroup {
-    bottom: 3px;
+    padding-bottom: 3px;
     border-top: 2px solid;
     width: 100%;
 }

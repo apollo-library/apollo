@@ -1,7 +1,7 @@
 import { TYPES } from './actions'
 
 const initialStates = {
-    currentPage: '/'
+    currentPage: ''
 }
 
 export const data = (state = initialStates, action) => {

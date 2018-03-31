@@ -18,7 +18,6 @@ const mapStateToProps = (state) => ({
     currentPage: state.data.currentPage
 })
 
-
 class NavBar extends Component {
     constructor() {
         super()
@@ -66,3 +65,5 @@ class NavBar extends Component {
 }
 
 export default  connect(mapStateToProps)(NavBar);
+
+//export default  NavBar;

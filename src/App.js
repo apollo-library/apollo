@@ -29,11 +29,16 @@ fontawesome.library.add(home, book, barcode, users, signOutAlt, bug)
 const history = createHistory();
 
 // Listen to URL changes and update the redux currentPage state
-const unlisten = history.listen((location) => {
+history.listen((location) => {
     store.dispatch(actions.updateCurrentPage(location.pathname));
 });
 
 class App extends Component {
+
+    componentDidMount() {
+        store.dispatch(actions.updateCurrentPage(history.location.pathname));
+    }
+
     render() {
         return (
             <Router history={history}>
