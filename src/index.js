@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
+//Pass in the theme provider for styled components so we can use the config
 import {ThemeProvider} from 'styled-components';
 
 //Config import
