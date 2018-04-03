@@ -6,7 +6,7 @@ import * as styles from './navbarStyles.js'
 import {Button} from './../../gloablStyles.js'
 
 //Images
-import buttonArrow from './../../assets/images/button-arrow.svg';
+import logo from './../../assets/images/logo-navbar.svg';
 
 //Config
 import config from '../../config'
@@ -19,26 +19,67 @@ const mapStateToProps = (state) => ({
 })
 
 class Navbar extends Component {
+    constructor() {
+        super()
+        this.state = {
+            notificationsActive: false
+        }
+        this.toggleNotifications = this.toggleNotifications.bind(this);
+    }
+
+    toggleNotifications() {
+        this.setState({notificationsActive: !this.state.notificationsActive})
+    }
+
     render() {
         return (
             <styles.Navbar>
-                <styles.NavRoot>
-                    <styles.NavLogo />
+                <styles.Root>
+                    <styles.Logo>
+                        <img src={logo} alt="Apollo Logo" />
+                    </styles.Logo>
                     {config.main.pages.map((page, index) =>
                         (
-                            <styles.NavItem
+                            <styles.Item
                                 key={index}
                                 onClick={() => {this.props.history.push(page.path)}}
-                                navItemActive={page.path === this.props.currentPage}
+                                itemActive={page.path === this.props.currentPage}
                             >
                                 {page.text}
-                            </styles.NavItem>
+                            </styles.Item>
                         )
                     )}
-                    <styles.NavGrow />
-                    <Button primary>Scan</Button>
-                    <styles.NavNotifications />
-                </styles.NavRoot>
+
+                    <styles.Grow />
+
+                    <Button primary>
+                        Scan
+                        <styles.InlineSVG xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.5 7.1">
+                            <path fill="#fff" d="M10.5,3.6c0,0.2-0.1,0.4-0.3,0.5l0,0L6,7C5.8,7.2,5.4,7.1,5.2,6.9C5.1,6.8,5.1,6.6,5.1,6.5
+                        	c0-0.2,0.1-0.4,0.3-0.5L8,4.2H0.6C0.3,4.2,0,3.9,0,3.6C0,3.2,0.3,3,0.6,3H8L5.3,1.1C5.1,0.9,5,0.5,5.2,0.3C5.3,0.1,5.5,0,5.7,0
+                        	C5.8,0,5.9,0,6,0.1l4.2,3h0v0C10.4,3.2,10.5,3.4,10.5,3.6z"/>
+                        </styles.InlineSVG>
+                    </Button>
+                    <styles.Notifications onClick={() => this.toggleNotifications()}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20.9 22.2">
+                        	<circle fill="#fff" stroke="#636363" strokeWidth="1.2" cx="10.1" cy="2.3" r="1.7"/>
+                        	<ellipse fill="#fff" stroke="#636363" strokeWidth="1.2" cx="10.1" cy="19.4" rx="1.9" ry="2.2"/>
+                        	<path fill="#fff" stroke="#636363" strokeWidth="1.2" d="M17.4,17.9H2.7c-0.5,0-0.7-0.5-0.5-0.9c1.8-2.7,2.6-8.5,2.6-8.5C5.2,5.9,7.4,4,10.1,4c2.6,0,4.9,2,5.2,4.6
+                        		c0,0,0.8,5.8,2.6,8.5C18.1,17.4,17.8,17.9,17.4,17.9z"/>
+                            <path fill="#fff" stroke="#636363" strokeWidth="1.2" d="M18.3,17H1.8c-0.7,0-1.2,0.5-1.2,1.2v0c0,0.7,0.5,1.2,1.2,1.2h16.5c0.7,0,1.2-0.5,1.2-1.2v0
+                        		C19.5,17.5,18.9,17,18.3,17z"/>
+                            <styles.NotificationDot active cx="16.5" cy="8" r="3.6"/>
+                        </svg>
+                        <styles.NotificationsWindow active={this.state.notificationsActive}>
+                        </styles.NotificationsWindow>
+                    </styles.Notifications>
+                    <styles.UserName>
+                        Joe Bloggs
+                        <styles.InlineSVG xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.7 6.3">
+                            <path fill="none" stroke="#636363" strokeWidth="2" strokeLinecap="round" d="M1,1l4.9,4.1c0.3,0.2,0.6,0.2,0.9,0L11.7,1"/>
+                        </styles.InlineSVG>
+                    </styles.UserName>
+                </styles.Root>
             </styles.Navbar>
         );
     }

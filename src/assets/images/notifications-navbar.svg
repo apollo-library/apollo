@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20.9 22.2">
 	<style type="text/css">
 		.st0{
-			fill: none;
+			fill: #fff;
 			stroke: #636363;
-			stroke-width: 1.5;
+			stroke-width: 1.2;
 			stroke-miterlimit: 10;
 		}
 		.st1{
@@ -19,5 +19,5 @@
 		c0,0,0.8,5.8,2.6,8.5C18.1,17.4,17.8,17.9,17.4,17.9z"/>
 	<path class="st0" d="M18.3,17H1.8c-0.7,0-1.2,0.5-1.2,1.2v0c0,0.7,0.5,1.2,1.2,1.2h16.5c0.7,0,1.2-0.5,1.2-1.2v0
 		C19.5,17.5,18.9,17,18.3,17z"/>
-	<circle style="fill:#E44D95;stroke:#FFFFFF;stroke-width:1.5;stroke-miterlimit:10;" cx="16.5" cy="8" r="3.6"/>
+	<circle class="st1" cx="16.5" cy="8" r="3.6"/>
 </svg>

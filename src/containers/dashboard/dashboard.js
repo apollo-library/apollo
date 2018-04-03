@@ -10,6 +10,7 @@ class Dashboard extends Component {
             <div>
                 <Navbar history={this.props.history} />
             </div>
+
         );
     }
 }
