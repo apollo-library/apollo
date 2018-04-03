@@ -2,13 +2,13 @@
 import React, { Component } from 'react';
 
 //Component imports
-import NavBar from './../../components/navbar/navbar';
+import {Navbar} from './../../components';
 
 class Dashboard extends Component {
     render() {
         return (
             <div>
-                <NavBar history={this.props.history} />
+                <Navbar history={this.props.history} />
             </div>
         );
     }

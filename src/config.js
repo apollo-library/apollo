@@ -20,51 +20,44 @@ let config = {
 		shortName: "Apollo",
 		longName: "Apollo | Library Management System",
 		pages: [
-			/*
-			text:			Text that is displayed on the navbar and on the page title
-			path:			The path that the router should re-direct to onClick in the navbar. Will also e displayed in the URL
-			icon:			The icon that is displayed next to the text in the navbar. Given as a Font Awesome 5 icon name
-			 				(For Reference) - Font Awesome Icons: https://fontawesome.com/icons?d=gallery
-			componentName:	The name of the component page that relates to the page listed
-			*/
 			{
-				text: 'Home',
+				text: 'Dashboard',
 				path: '/',
-				icon: 'home',
 				componentName: Dashboard
 			},
 			{
 				text: 'Catalogue',
 				path: '/catalogue',
-				icon: 'book',
 				componentName: 'Catalogue'
-	        },
+			},
 			{
 				text: 'Scan',
 				path: '/scan',
-				icon: 'barcode',
 				componentName: 'Scan'
-	        },
+			},
 			{
-				text: 'Students',
-				path: '/students',
-				icon: 'users',
-				componentName: 'Students'
-	        }
+				text: 'Users',
+				path: '/users',
+				componentName: 'Users'
+			}
 	    ]
 	},
 
 	colours: {
-		themeColour: "#e44d95",
-		lightGrey: "#f4f4f4",
-		darkGrey: "#504f4f",
+		primary: "#e44d95",
+		lightGrey: '#e8e8e8',
+		midGrey: '#9b9b9b',
+		darkGrey: '#636363',
 
-		foxell: "#fac800",
-		holman: "#e97b1b",
-		newman: "#d32b19",
-		pearson: "#99c1e8",
-		rayner: "#2a4597",
-		thorne: "#267832"
+		accent1: '#eabb45', //Yellow
+		accent2: '#ef8043', //Orange
+		accent3: '#782eed', //Purple
+		accent4: '#78dced', //Blue
+		accent5: '#63d1a1' //Green
+	},
+
+	styles: {
+		borderRadius: '3px'
 	}
 }
 

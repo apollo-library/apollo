@@ -11,7 +11,7 @@ import store from './store'
 
 
 //temporary - eventauly we will use the map and map through the config
-import {Navbar} from './components'
+import {Dashboard} from './containers'
 
 
 
@@ -39,7 +39,7 @@ class App extends Component {
                     {/*{config.main.pages.map((page, index) =>
                         <Route exact path={page.path} component={page.componentName} key={index} />
                     )} */}
-                    <Route exact path={'/'} component={Navbar} />
+                    <Route exact path={'/'} component={Dashboard} />
                 </Switch>
             </Router>
         );
