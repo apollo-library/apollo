@@ -67,13 +67,12 @@ const NotificationDot = styled.circle`
 `;
 
 const NotificationsWindow = styled.div`
-    display: ${props => props.active ? 'block' : 'none'};
+    height: ${props => props.active ? 'auto' : '0px'};
+    transition: height 300ms ease;
     position: absolute;
-    height: 100px;
-    width: 16%;
     background: #fff;
-    transform: translateX(-50%);
     top: 60px;
+    right: 15px;
     box-shadow: 0px 2px 7px rgba(73,73,73,0.25);
     cursor: auto;
 `;

@@ -70,9 +70,11 @@ class Navbar extends Component {
                         		C19.5,17.5,18.9,17,18.3,17z"/>
                             <styles.NotificationDot active cx="16.5" cy="8" r="3.6"/>
                         </svg>
-                        <styles.NotificationsWindow active={this.state.notificationsActive}>
-                        </styles.NotificationsWindow>
                     </styles.Notifications>
+                    <styles.NotificationsWindow active={this.state.notificationsActive}>
+                        hi
+                        Im a really long line of text to show that the box will automatically expand
+                    </styles.NotificationsWindow>
                     <styles.UserName>
                         Joe Bloggs
                         <styles.InlineSVG xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.7 6.3">
