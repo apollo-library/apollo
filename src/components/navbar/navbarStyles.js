@@ -7,6 +7,7 @@ const Navbar = styled.nav`
     border-bottom: 2px solid ${props => props.theme.colours.lightGrey};
     box-shadow: 0px -1px 6px rgba(73,73,73,0.30);
     padding: 0 5px;
+	user-select: none;
 `;
 
 const Root = styled.ul`
