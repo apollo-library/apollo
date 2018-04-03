@@ -13,10 +13,7 @@ The following objects are exported at the end under the config object
 */
 
 //Container imports
-import Home from './containers/home/home';
-import Catalogue from './containers/catalogue/catalogue';
-import Scan from './containers/scan/scan';
-import Students from './containers/students/students';
+import {Dashboard} from './containers'
 
 let config = {
 	main: {
@@ -34,25 +31,25 @@ let config = {
 				text: 'Home',
 				path: '/',
 				icon: 'home',
-				componentName: Home
+				componentName: Dashboard
 			},
 			{
 				text: 'Catalogue',
 				path: '/catalogue',
 				icon: 'book',
-				componentName: Catalogue
+				componentName: 'Catalogue'
 	        },
 			{
 				text: 'Scan',
 				path: '/scan',
 				icon: 'barcode',
-				componentName: Scan
+				componentName: 'Scan'
 	        },
 			{
 				text: 'Students',
 				path: '/students',
 				icon: 'users',
-				componentName: Students
+				componentName: 'Students'
 	        }
 	    ]
 	},

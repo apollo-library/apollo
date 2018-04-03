@@ -3,26 +3,21 @@ import React, { Component } from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 
-//Config import
-import config from './config';
-
+//Redux
 import { actions } from './store/actions'
 import store from './store'
 
-//Font Awesome main imports
-import fontawesome from '@fortawesome/fontawesome';
 
-//Individual icons global import
-import home from '@fortawesome/fontawesome-free-solid/faHome';
-import book from '@fortawesome/fontawesome-free-solid/faBook';
-import barcode from '@fortawesome/fontawesome-free-solid/faBarcode';
-import users from '@fortawesome/fontawesome-free-solid/faUsers';
-import signOutAlt from '@fortawesome/fontawesome-free-solid/faSignOutAlt'
-import bug from '@fortawesome/fontawesome-free-solid/faBug'
 
-//Add every icon we import to a global library
-fontawesome.library.add(home, book, barcode, users, signOutAlt, bug)
 
+//temporary - eventauly we will use the map and map through the config
+import {Navbar} from './components'
+
+
+
+
+
+//Store history of the router for updating the current page
 const history = createHistory();
 
 // Listen to URL changes and update the redux currentPage state
@@ -41,9 +36,10 @@ class App extends Component {
         return (
             <Router history={history}>
                 <Switch>
-                    {config.main.pages.map((page, index) =>
+                    {/*{config.main.pages.map((page, index) =>
                         <Route exact path={page.path} component={page.componentName} key={index} />
-                    )}
+                    )} */}
+                    <Route exact path={'/'} component={Navbar} />
                 </Switch>
             </Router>
         );
