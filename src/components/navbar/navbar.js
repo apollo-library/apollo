@@ -37,6 +37,7 @@ class Navbar extends Component {
                     )}
                     <styles.NavGrow />
                     <Button primary>Scan</Button>
+                    <styles.NavNotifications />
                 </styles.NavRoot>
             </styles.Navbar>
         );

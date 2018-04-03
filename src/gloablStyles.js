@@ -15,9 +15,10 @@ const Button = styled.div`
     font-weight: 600;
     box-shadow: 0px 1px 3px rgba(73,73,73,0.20);
     cursor: pointer;
+    transition: box-shadow, transform 150ms ease;
 
     &:hover {
-        box-shadow: 0px 2px 7px rgba(73,73,73,0.4);
+        box-shadow: 0px 1px 7px rgba(73,73,73,0.4);
         transform: translateY(-1px);
     }
 `;

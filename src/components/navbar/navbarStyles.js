@@ -2,6 +2,7 @@ import styled, {css} from 'styled-components';
 
 //Images
 import logo from './../../assets/images/logo-navbar.svg';
+import notificationBell from './../../assets/images/notification-navbar.svg'
 
 const Navbar = styled.nav`
     height: 50px;
@@ -44,5 +45,9 @@ const NavGrow = styled.li`
     flex: 1;
 `;
 
+const NavNotifications = styled.li`
 
-export {Navbar, NavItem, NavRoot, NavLogo, NavGrow};
+`;
+
+
+export {Navbar, NavItem, NavRoot, NavLogo, NavGrow, NavNotifications};
