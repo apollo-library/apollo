@@ -132,6 +132,7 @@ const viewAllNotifications = styled.p`
     tex-align: center;
     margin-bottom: calc(${props => props.theme.styles.boxSpacing} / 2);
     color: ${props => props.theme.colours.darkGrey};
+    cursor: pointer;
 
     &:hover {
         color: ${props => props.theme.colours.primary};

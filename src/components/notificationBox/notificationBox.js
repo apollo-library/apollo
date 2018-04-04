@@ -5,21 +5,17 @@ import React, { Component } from 'react';
 import * as styles from './notificationBoxStyles.js'
 import {Button} from './../../gloablStyles.js'
 
-//Config
-import config from '../../config'
-
-
 class NotificationBox extends Component {
     constructor(props) {
         super(props)
         this.getNotificationDateString = this.getNotificationDateString.bind(this);
     }
 
-    getNotificationDateString(notification) {
+    getNotificationDateString(date) {
         //Returns the date as a string that we can show in the notificaions
 
         let now = new Date();
-        let actionDate = new Date('April 3, 18 17:51:18 GMT+00:00'); // TODO: ******** Change to use notifications json data ***************
+        let actionDate = new Date(date); // TODO: ******** Change to use notifications json data ***************
 
         let utcNow = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
         let utcActionDate = Date.UTC(actionDate.getFullYear(), actionDate.getMonth(), actionDate.getDate());
@@ -59,21 +55,21 @@ class NotificationBox extends Component {
         }
     }
 
-    getNotificationDaysLeft(notification) {
+    getNotificationDaysLeft(date) {
         //Returns a string with the number of days left before your book is due. Limits to a lowest value of 0
-
         let now = new Date();
-        let actionDate = new Date('April 3, 18 17:51:18 GMT+00:00'); // TODO: ******** Change to use notifications json data ***************
+        let dueDate = new Date(date); // TODO: ******** Change to use notifications json data ***************
 
         let utcNow = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
-        let utcActionDate = Date.UTC(actionDate.getFullYear(), actionDate.getMonth(), actionDate.getDate());
-        let daysLeft = Math.floor((utcNow - utcActionDate) / 86400000);
+        let utcDueDate = Date.UTC(dueDate.getFullYear(), dueDate.getMonth(), dueDate.getDate());
+
+        let daysLeft = Math.floor((utcDueDate - utcNow) / 86400000);
 
         if (daysLeft < 0) {
             daysLeft = 0;
         }
 
-        return daysLeft;
+        return daysLeft.toString();
     }
 
     render() {
@@ -88,7 +84,7 @@ class NotificationBox extends Component {
                     </styles.NotificationInfo>
                     <styles.NotificationDaysLeft>
                         <styles.NotificationDaysLeftNumber colour={this.props.notificationColour}>
-                            {this.getNotificationDaysLeft(this.props.notification.actionDate)}
+                            {this.getNotificationDaysLeft(this.props.notification.dueDate)}
                         </styles.NotificationDaysLeftNumber>
                         <styles.NotificationDaysLeftText colour={this.props.notificationColour}>Days Left</styles.NotificationDaysLeftText>
                     </styles.NotificationDaysLeft>

@@ -29,22 +29,22 @@ class Navbar extends Component {
             accountActive: false,
             notifications: [
                 {
-                    actionDate: "Wed Apr 04 2018 16:12:27 GMT+0100 (GMT Summer Time)",
-                    dueDate: "Wed Apr 04 2018 16:12:27 GMT+0100 (GMT Summer Time)",
+                    actionDate: "2018-04-03T18:25:43.511Z",
+                    dueDate: "2018-04-06T18:25:43.511Z",
                     action: "renew",
                     title: "Rocket Propulsion Elements",
                     author: "George Paul Sutton"
                 },
                 {
-                    actionDate: "Wed Apr 04 2018 16:12:27 GMT+0100 (GMT Summer Time)",
-                    dueDate: "Wed Apr 04 2018 16:12:27 GMT+0100 (GMT Summer Time)",
+                    actionDate: "2018-04-03T18:25:43.511Z",
+                    dueDate: "2018-04-07T18:25:43.511Z",
                     action: "return",
                     title: "Rocket Propulsion Elements",
                     author: "George Paul Sutton"
                 },
                 {
-                    actionDate: "Wed Apr 04 2018 16:12:27 GMT+0100 (GMT Summer Time)",
-                    dueDate: "Wed Apr 04 2018 16:12:27 GMT+0100 (GMT Summer Time)",
+                    actionDate: "2018-04-03T18:25:43.511Z",
+                    dueDate: "2018-04-08T18:25:43.511Z",
                     action: "withdraw",
                     title: "Rocket Propulsion Elements",
                     author: "George Paul Sutton"
