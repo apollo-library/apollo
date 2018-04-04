@@ -11,7 +11,7 @@ const Button = styled.div`
         || (props.accent4 && props.theme.colours.accent4)
         || (props.accent5 && props.theme.colours.accent5)
     };
-    padding: 5px 15px;
+    padding: 0.32rem 0.9rem;
     border-radius: ${props => props.theme.styles.borderRadius};
     color: #fff;
     font-weight: 600;

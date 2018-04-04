@@ -6,7 +6,7 @@ const Navbar = styled.nav`
     background: #fff;
     border-bottom: 2px solid ${props => props.theme.colours.lightGrey};
     box-shadow: 0px -1px 6px rgba(73,73,73,0.30);
-    padding: 0 5px;
+    padding: 0 0.3rem;
 	user-select: none;
 `;
 
@@ -26,7 +26,7 @@ const Logo = styled.li`
 `;
 
 const Item = styled.li`
-    padding: 3px 10px;
+    padding: 0.2rem 0.625rem;
     cursor: pointer;
     color: ${props => props.itemActive ? props.theme.colours.primary : props.theme.colours.darkGrey};
     font-weight: 600;
@@ -82,17 +82,6 @@ const NotificationDot = styled.circle`
     stroke-width: 1.5;
 `;
 
-const NotificationsWindow = styled.div`
-    height: ${props => props.active ? 'auto' : '0px'};
-    transition: height 3000ms ease;
-    position: absolute;
-    background: #fff;
-    top: 60px;
-    right: 15px;
-    box-shadow: 0px 2px 7px rgba(73,73,73,0.25);
-    cursor: auto;
-`;
-
 const UserName = styled.div`
     display: flex;
     height: 70%;
@@ -100,7 +89,7 @@ const UserName = styled.div`
     color: ${props => props.theme.colours.darkGrey};
     font-weight: 600;
     border-left: 2px solid ${props => props.theme.colours.lightGrey};
-    padding: 0 10px;
+    padding: 0 0.625rem;
     cursor: pointer;
 
     &:hover {
@@ -117,5 +106,56 @@ const InlineSVG = styled.svg`
     margin-left: 10px;
 `;
 
+const DropdownWindow = styled.div`
+    transform: ${props => props.active ? 'scaleY(1)' : 'scaleY(0)'};
+    transform-origin: top center;
+    transition: transform 300ms ease;
+    position: absolute;
+    background: #fff;
+    top: 60px;
+    right: 15px;
+    box-shadow: 0px 2px 8px rgba(73,73,73,0.40);
+    cursor: auto;
+    border-radius: ${props => props.theme.styles.borderRadius};
+    padding: 1rem;
+`;
 
-export {Navbar, Item, Root, Logo, Grow, Notifications, NotificationDot, NotificationsWindow, UserName, InlineSVG};
+const Notification = styled.div`
+    width: 300px;
+    border-radius: ${props => props.theme.styles.borderRadius};
+    border: 2px solid ${props => props.theme.colours.lightGrey};
+    padding: 0.5rem;
+    color: ${props => props.theme.colours.darkGrey};
+
+    &:not(:last-child) {
+        margin-bottom: ${props => props.theme.styles.boxSpacing};
+    }
+`;
+
+const NotificationTime = styled.p`
+    margin-bottom: ${props => props.theme.styles.boxSpacing};
+`;
+
+const NotificationAction = styled.p`
+    margin-bottom: ${props => props.theme.styles.boxSpacing};
+    background: ${props =>
+        (props.return && props.theme.colours.primary)
+    };
+`;
+
+
+export {
+    Navbar,
+    Item,
+    Root,
+    Logo,
+    Grow,
+    Notifications,
+    NotificationDot,
+    UserName,
+    InlineSVG,
+    DropdownWindow,
+    Notification,
+    NotificationTime,
+    NotificationAction
+};

@@ -22,13 +22,81 @@ class Navbar extends Component {
     constructor() {
         super()
         this.state = {
-            notificationsActive: false
-        }
+            notificationsActive: false,
+            accountActive: false,
+            notifications: [
+                {
+                    actionDate: "Wed Apr 04 2018 16:12:27 GMT+0100 (GMT Summer Time)",
+                    dueDate: "Wed Apr 04 2018 16:12:27 GMT+0100 (GMT Summer Time)",
+                    action: "return",
+                    title: "Rocket Propulsion Elements",
+                    author: "George Paul Sutton"
+                },
+                {
+                    actionDate: "Wed Apr 04 2018 16:12:27 GMT+0100 (GMT Summer Time)",
+                    dueDate: "Wed Apr 04 2018 16:12:27 GMT+0100 (GMT Summer Time)",
+                    action: "return",
+                    title: "Rocket Propulsion Elements",
+                    author: "George Paul Sutton"
+                }
+            ]
+        };
         this.toggleNotifications = this.toggleNotifications.bind(this);
+        this.toggleAccount = this.toggleAccount.bind(this);
+        this.getNotificationDateString = this.getNotificationDateString.bind(this);
     }
 
     toggleNotifications() {
-        this.setState({notificationsActive: !this.state.notificationsActive})
+        //Toggle visibility of notifications dropdown
+
+        this.setState({notificationsActive: !this.state.notificationsActive});
+        this.setState({accountActive: false});
+    }
+
+    toggleAccount() {
+        //Toggle visibility of account dropdown
+
+        this.setState({accountActive: !this.state.accountActive});
+        this.setState({notificationsActive: false});
+    }
+
+    getNotificationDateString(notification) {
+        console.log("hi")
+        //Returns the date as a string that we can show in the notificaions
+
+        let now = new Date();
+        let actionDate = new Date('April 4, 18 17:51:18 GMT+00:00'); // TODO: ******** Change to use notifications json data ***************
+
+        //let daysDiff = -(Math.floor((now - actionDate) / 86400000));
+        let daysDiff = -(now.getDate() - actionDate.getDate());
+        /*
+            -VE = Past
+            0 = Today
+            +VE = Future
+        */
+
+        //Check if the event happened today
+        if (daysDiff === 0) {
+            //Today
+
+            let hoursDiff = (now.getHours() - actionDate.getHours()) + 1;
+
+            //Check if the event happened within the last hour
+            if (hoursDiff === 0) {
+                //Within the last hour
+                return "Just Now"
+            } else {
+                //More than an hour
+                return (hoursDiff + " hours ago")
+            }
+        } else if (daysDiff === -1) {
+            //Yesterday
+            return "Yesterday"
+        }
+    }
+
+    getNotificationDaysLeft(notification) {
+        //Returns a string with the number of days left before your book is due. Limits to a lowest value of 0
     }
 
     render() {
@@ -71,16 +139,28 @@ class Navbar extends Component {
                             <styles.NotificationDot active cx="16.5" cy="8" r="3.6"/>
                         </svg>
                     </styles.Notifications>
-                    <styles.NotificationsWindow active={this.state.notificationsActive}>
-                        hi
-                        Im a really long line of text to show that the box will automatically expand
-                    </styles.NotificationsWindow>
-                    <styles.UserName>
+                    <styles.UserName onClick={() => this.toggleAccount()}>
                         Joe Bloggs
                         <styles.InlineSVG xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.7 6.3">
                             <path fill="none" stroke="#636363" strokeWidth="2" strokeLinecap="round" d="M1,1l4.9,4.1c0.3,0.2,0.6,0.2,0.9,0L11.7,1"/>
                         </styles.InlineSVG>
                     </styles.UserName>
+
+                    <styles.DropdownWindow active={this.state.notificationsActive}>
+                        {this.state.notifications.map((notification, index) =>
+
+                            (
+                                <styles.Notification key={index}>
+                                    <styles.NotificationTime>{this.getNotificationDateString(notification.actionDate)}</styles.NotificationTime>
+                                    <styles.NotificationAction {...notification.action}>{notification.action}</styles.NotificationAction>
+                                </styles.Notification>
+                            )
+                        )}
+                    </styles.DropdownWindow>
+
+                    <styles.DropdownWindow active={this.state.accountActive}>
+                        Logout
+                    </styles.DropdownWindow>
                 </styles.Root>
             </styles.Navbar>
         );

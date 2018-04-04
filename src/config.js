@@ -57,7 +57,8 @@ let config = {
 	},
 
 	styles: {
-		borderRadius: '3px'
+		borderRadius: '3px',
+		boxSpacing: '20px'
 	}
 }
 
