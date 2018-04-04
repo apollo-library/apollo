@@ -120,25 +120,22 @@ const DropdownWindow = styled.div`
     padding: 1rem;
 `;
 
-const Notification = styled.div`
-    width: 300px;
-    border-radius: ${props => props.theme.styles.borderRadius};
-    border: 2px solid ${props => props.theme.colours.lightGrey};
-    padding: 0.5rem;
+const NotificationMainTitle = styled.p`
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: ${props => props.theme.colours.primary};
+    margin-bottom: calc(${props => props.theme.styles.boxSpacing} / 2);
+`;
+
+const viewAllNotifications = styled.p`
+    font-weight: 600;
+    tex-align: center;
+    margin-bottom: calc(${props => props.theme.styles.boxSpacing} / 2);
     color: ${props => props.theme.colours.darkGrey};
 
-    &:not(:last-child) {
-        margin-bottom: ${props => props.theme.styles.boxSpacing};
+    &:hover {
+        color: ${props => props.theme.colours.primary};
     }
-`;
-
-const NotificationTime = styled.p`
-    margin-bottom: ${props => props.theme.styles.boxSpacing};
-`;
-
-const NotificationAction = styled.p`
-    margin-bottom: ${props => props.theme.styles.boxSpacing};
-    background: ${props => props.action && props.theme.colours.primary};
 `;
 
 
@@ -153,7 +150,6 @@ export {
     UserName,
     InlineSVG,
     DropdownWindow,
-    Notification,
-    NotificationTime,
-    NotificationAction
+    NotificationMainTitle,
+    viewAllNotifications
 };

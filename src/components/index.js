@@ -10,7 +10,8 @@
 
 //Import all components
 import Navbar from './navbar/navbar'
+import NotificationBox from './notificationBox/notificationBox';
 
 
 //Export all components
-export { Navbar }
+export { Navbar, NotificationBox }

@@ -11,6 +11,9 @@ import logo from './../../assets/images/logo-navbar.svg';
 //Config
 import config from '../../config'
 
+//Components
+import {NotificationBox} from './../../components';
+
 //Redux
 import { connect } from 'react-redux'
 
@@ -28,7 +31,7 @@ class Navbar extends Component {
                 {
                     actionDate: "Wed Apr 04 2018 16:12:27 GMT+0100 (GMT Summer Time)",
                     dueDate: "Wed Apr 04 2018 16:12:27 GMT+0100 (GMT Summer Time)",
-                    action: "return",
+                    action: "renew",
                     title: "Rocket Propulsion Elements",
                     author: "George Paul Sutton"
                 },
@@ -38,12 +41,18 @@ class Navbar extends Component {
                     action: "return",
                     title: "Rocket Propulsion Elements",
                     author: "George Paul Sutton"
+                },
+                {
+                    actionDate: "Wed Apr 04 2018 16:12:27 GMT+0100 (GMT Summer Time)",
+                    dueDate: "Wed Apr 04 2018 16:12:27 GMT+0100 (GMT Summer Time)",
+                    action: "withdraw",
+                    title: "Rocket Propulsion Elements",
+                    author: "George Paul Sutton"
                 }
             ]
         };
         this.toggleNotifications = this.toggleNotifications.bind(this);
         this.toggleAccount = this.toggleAccount.bind(this);
-        this.getNotificationDateString = this.getNotificationDateString.bind(this);
     }
 
     toggleNotifications() {
@@ -58,45 +67,6 @@ class Navbar extends Component {
 
         this.setState({accountActive: !this.state.accountActive});
         this.setState({notificationsActive: false});
-    }
-
-    getNotificationDateString(notification) {
-        console.log("hi")
-        //Returns the date as a string that we can show in the notificaions
-
-        let now = new Date();
-        let actionDate = new Date('April 4, 18 17:51:18 GMT+00:00'); // TODO: ******** Change to use notifications json data ***************
-
-        //let daysDiff = -(Math.floor((now - actionDate) / 86400000));
-        let daysDiff = -(now.getDate() - actionDate.getDate());
-        /*
-            -VE = Past
-            0 = Today
-            +VE = Future
-        */
-
-        //Check if the event happened today
-        if (daysDiff === 0) {
-            //Today
-
-            let hoursDiff = (now.getHours() - actionDate.getHours()) + 1;
-
-            //Check if the event happened within the last hour
-            if (hoursDiff === 0) {
-                //Within the last hour
-                return "Just Now"
-            } else {
-                //More than an hour
-                return (hoursDiff + " hours ago")
-            }
-        } else if (daysDiff === -1) {
-            //Yesterday
-            return "Yesterday"
-        }
-    }
-
-    getNotificationDaysLeft(notification) {
-        //Returns a string with the number of days left before your book is due. Limits to a lowest value of 0
     }
 
     render() {
@@ -120,7 +90,7 @@ class Navbar extends Component {
 
                     <styles.Grow />
 
-                    <Button primary>
+                    <Button colour="primary">
                         Scan
                         <styles.InlineSVG xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.5 7.1">
                             <path fill="#fff" d="M10.5,3.6c0,0.2-0.1,0.4-0.3,0.5l0,0L6,7C5.8,7.2,5.4,7.1,5.2,6.9C5.1,6.8,5.1,6.6,5.1,6.5
@@ -147,15 +117,36 @@ class Navbar extends Component {
                     </styles.UserName>
 
                     <styles.DropdownWindow active={this.state.notificationsActive}>
-                        {this.state.notifications.map((notification, index) =>
+                        <styles.NotificationMainTitle>Notifications</styles.NotificationMainTitle>
+                        {this.state.notifications.map((notification, index) => {
+                            //Select the notification colour
+                            let notificationColour;
+                            let notificationButtonText;
+                            let notificationButtonFunction;
+                            if (notification.action === "withdraw") {
+                                notificationColour = "accent1";
+                                notificationButtonText = "Renew";
+                                notificationButtonFunction = "RUN THE RENEW FUNCTION HERE";
+                            } else if (notification.action === "renew") {
+                                notificationColour = "accent2";
+                                notificationButtonText = "Renew Again"
+                                notificationButtonFunction = "RUN THE RENEW FUNCTION HERE";
+                            } else if (notification.action === "return") {
+                                notificationColour = "accent3";
+                                notificationButtonText = "Rate";
+                                notificationButtonFunction = "RUN THE RETURN FUNCTION HERE. ADD THESE TO ONLCICK OF BUTTON";
+                            }
 
-                            (
-                                <styles.Notification key={index}>
-                                    <styles.NotificationTime>{this.getNotificationDateString(notification.actionDate)}</styles.NotificationTime>
-                                    <styles.NotificationAction {...notification}>{notification.action}</styles.NotificationAction>
-                                </styles.Notification>
+                            return(
+                                <NotificationBox
+                                    notification={notification}
+                                    notificationColour={notificationColour}
+                                    notificationButtonText={notificationButtonText}
+                                    key={index}
+                                />
                             )
-                        )}
+                        })}
+                        <styles.viewAllNotifications>View all notifications</styles.viewAllNotifications>
                     </styles.DropdownWindow>
 
                     <styles.DropdownWindow active={this.state.accountActive}>
