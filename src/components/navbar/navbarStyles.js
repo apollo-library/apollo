@@ -26,18 +26,33 @@ const Logo = styled.li`
 `;
 
 const Item = styled.li`
-    margin: 0 10px;
-    padding: 3px 0;
+    padding: 3px 10px;
     cursor: pointer;
     color: ${props => props.itemActive ? props.theme.colours.primary : props.theme.colours.darkGrey};
-    border-bottom: 2.5px solid ${props => props.itemActive ? props.theme.colours.primary : 'transparent'};
     font-weight: 600;
-    height: 70%;
+    height: 100%;
     display: flex;
     align-items: center;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        left: 5%;
+        height: 1em;
+        width: 90%;
+        border-bottom: 2.5px solid ${props => props.theme.colours.primary};
+        margin-top: 10px;
+        transform: ${props => props.itemActive ? 'scaleX(1)' : 'scaleX(0)'};
+        transition: transform 150ms ease 60ms;
+    }
 
     &:hover {
         color: ${props => props.theme.colours.primary};
+    }
+
+    &:hover:after {
+        transform: scaleX(1);
     }
 `;
 
@@ -69,7 +84,7 @@ const NotificationDot = styled.circle`
 
 const NotificationsWindow = styled.div`
     height: ${props => props.active ? 'auto' : '0px'};
-    transition: height 300ms ease;
+    transition: height 3000ms ease;
     position: absolute;
     background: #fff;
     top: 60px;
