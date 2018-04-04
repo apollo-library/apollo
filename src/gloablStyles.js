@@ -15,9 +15,6 @@ const Button = styled.div.attrs({
     border-color: ${props => darken(0.15, props.theme.colours[props.color])}
     cursor: pointer;
     transition: box-shadow, transform 150ms ease;
-    display: flex;
-    height: 70%;
-    align-items: center;
 
     &:hover {
         box-shadow: 0px 3px 7px rgba(73,73,73,0.4);

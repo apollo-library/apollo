@@ -146,6 +146,8 @@ const accountMenu = styled.div`
 `;
 
 const menuItem = styled.p`
+    cursor: pointer;
+
     &:not(:last-child) {
         margin-bottom: calc(${props => props.theme.styles.boxSpacing} / 2);
     }

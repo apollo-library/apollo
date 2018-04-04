@@ -37,7 +37,7 @@ class Navbar extends Component {
                 },
                 {
                     actionDate: "2018-04-03T18:25:43.511Z",
-                    dueDate: "2018-04-07T18:25:43.511Z",
+                    dueDate: "2018-04-03T18:25:43.511Z",
                     action: "return",
                     title: "Rocket Propulsion Elements",
                     author: "George Paul Sutton"
@@ -123,18 +123,22 @@ class Navbar extends Component {
                             let notificationColour;
                             let notificationButtonText;
                             let notificationButtonFunction;
+                            let notificationDaysLeftText;
                             if (notification.action === "withdraw") {
                                 notificationColour = "accent1";
                                 notificationButtonText = "Renew";
                                 notificationButtonFunction = "RUN THE RENEW FUNCTION HERE";
+                                notificationDaysLeftText = "Days Left";
                             } else if (notification.action === "renew") {
                                 notificationColour = "accent2";
                                 notificationButtonText = "Renew Again"
                                 notificationButtonFunction = "RUN THE RENEW FUNCTION HERE";
+                                notificationDaysLeftText = "Days Left";
                             } else if (notification.action === "return") {
                                 notificationColour = "accent3";
                                 notificationButtonText = "Rate";
                                 notificationButtonFunction = "RUN THE RETURN FUNCTION HERE. ADD THESE TO ONLCICK OF BUTTON";
+                                notificationDaysLeftText = "Days Ago";
                             }
 
                             return(
@@ -142,6 +146,7 @@ class Navbar extends Component {
                                     notification={notification}
                                     notificationColour={notificationColour}
                                     notificationButtonText={notificationButtonText}
+                                    notificationDaysLeftText={notificationDaysLeftText}
                                     key={index}
                                 />
                             )

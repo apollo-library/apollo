@@ -62,11 +62,14 @@ class NotificationBox extends Component {
 
         let utcNow = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
         let utcDueDate = Date.UTC(dueDate.getFullYear(), dueDate.getMonth(), dueDate.getDate());
-
         let daysLeft = Math.floor((utcDueDate - utcNow) / 86400000);
 
         if (daysLeft < 0) {
-            daysLeft = 0;
+            if (this.props.notificationDaysLeftText === "Days Ago") {
+                daysLeft = Math.abs(daysLeft);
+            } else {
+                daysLeft = 0;
+            }
         }
 
         return daysLeft.toString();
@@ -76,20 +79,23 @@ class NotificationBox extends Component {
         return (
             <styles.Notification>
                 <styles.NotificationWrapper>
+
                     <styles.NotificationInfo>
                         <styles.NotificationTime>{this.getNotificationDateString(this.props.notification.actionDate)}</styles.NotificationTime>
                         <styles.NotificationAction colour={this.props.notificationColour}>{this.props.notification.action}</styles.NotificationAction>
                         <p>{this.props.notification.title}</p>
                         <styles.NotificationAuthor>{this.props.notification.author}</styles.NotificationAuthor>
                     </styles.NotificationInfo>
+
                     <styles.NotificationDaysLeft>
                         <styles.NotificationDaysLeftNumber colour={this.props.notificationColour}>
                             {this.getNotificationDaysLeft(this.props.notification.dueDate)}
                         </styles.NotificationDaysLeftNumber>
-                        <styles.NotificationDaysLeftText colour={this.props.notificationColour}>Days Left</styles.NotificationDaysLeftText>
+                        <styles.NotificationDaysLeftText colour={this.props.notificationColour}>{this.props.notificationDaysLeftText}</styles.NotificationDaysLeftText>
+                        <Button colour={this.props.notificationColour}>{this.props.notificationButtonText}</Button>
                     </styles.NotificationDaysLeft>
                 </styles.NotificationWrapper>
-                <Button colour={this.props.notificationColour}>{this.props.notificationButtonText}</Button>
+
             </styles.Notification>
         );
     }

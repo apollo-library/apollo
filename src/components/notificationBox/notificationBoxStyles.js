@@ -41,7 +41,8 @@ const NotificationAuthor = styled.p`
 
 const NotificationDaysLeft = styled.div`
     text-align: center;
-    margin-right: 2rem;
+    margin-right: 0.5rem;
+    width: calc(100% / 3);
 `;
 
 const NotificationDaysLeftNumber = styled.p.attrs({
@@ -54,6 +55,7 @@ const NotificationDaysLeftNumber = styled.p.attrs({
 
 const NotificationDaysLeftText = styled.p`
     font-weight: 600;
+    margin-bottom: calc(${props => props.theme.styles.boxSpacing} / 2);
 `;
 
 
