@@ -114,7 +114,7 @@ const DropdownWindow = styled.div`
     background: #fff;
     top: 60px;
     right: 15px;
-    box-shadow: 0px 2px 8px rgba(73,73,73,0.40);
+    box-shadow: 0px 2px 12px rgba(73,73,73,0.30);
     cursor: auto;
     border-radius: ${props => props.theme.styles.borderRadius};
     padding: 1rem;
@@ -139,6 +139,22 @@ const viewAllNotifications = styled.p`
     }
 `;
 
+const accountMenu = styled.div`
+    padding: 0.1rem 0.5rem;
+    font-weight: 600;
+    color: ${props => props.theme.colours.darkGrey};
+`;
+
+const menuItem = styled.p`
+    &:not(:last-child) {
+        margin-bottom: calc(${props => props.theme.styles.boxSpacing} / 2);
+    }
+
+    &:hover {
+        color: ${props => props.theme.colours.primary};
+    }
+`;
+
 
 export {
     Navbar,
@@ -152,5 +168,7 @@ export {
     InlineSVG,
     DropdownWindow,
     NotificationMainTitle,
-    viewAllNotifications
+    viewAllNotifications,
+    accountMenu,
+    menuItem
 };

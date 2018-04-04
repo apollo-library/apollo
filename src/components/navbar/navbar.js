@@ -150,7 +150,11 @@ class Navbar extends Component {
                     </styles.DropdownWindow>
 
                     <styles.DropdownWindow active={this.state.accountActive}>
-                        Logout
+                        <styles.accountMenu>
+                            <styles.menuItem>Suggest a Book</styles.menuItem>
+                            <styles.menuItem>Check Reservations</styles.menuItem>
+                            <styles.menuItem>Logout</styles.menuItem>
+                        </styles.accountMenu>
                     </styles.DropdownWindow>
                 </styles.Root>
             </styles.Navbar>
