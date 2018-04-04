@@ -152,7 +152,7 @@ class Navbar extends Component {
                             (
                                 <styles.Notification key={index}>
                                     <styles.NotificationTime>{this.getNotificationDateString(notification.actionDate)}</styles.NotificationTime>
-                                    <styles.NotificationAction {...notification.action}>{notification.action}</styles.NotificationAction>
+                                    <styles.NotificationAction {...notification}>{notification.action}</styles.NotificationAction>
                                 </styles.Notification>
                             )
                         )}
