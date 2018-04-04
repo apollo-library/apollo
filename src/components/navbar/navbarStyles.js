@@ -138,9 +138,7 @@ const NotificationTime = styled.p`
 
 const NotificationAction = styled.p`
     margin-bottom: ${props => props.theme.styles.boxSpacing};
-    background: ${props =>
-        (props.return && props.theme.colours.primary)
-    };
+    background: ${props => props.action && props.theme.colours.primary};
 `;
 
 
