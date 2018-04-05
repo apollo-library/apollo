@@ -2,12 +2,13 @@ import styled from 'styled-components';
 
 
 const Notification = styled.div`
-    width: 400px;
+    width: 100%;
     border-radius: ${props => props.theme.styles.borderRadius};
     border: 2px solid ${props => props.theme.colours.lightGrey};
     padding: 0.5rem;
     color: ${props => props.theme.colours.darkGrey};
     position: relative;
+    transition: all 3000ms ease;
 
     &:not(:last-child) {
         margin-bottom: ${props => props.theme.styles.boxSpacing};
@@ -21,7 +22,7 @@ const NotificationDismiss = styled.p`
     color: ${props => props.theme.colours.darkGrey};
     cursor: pointer;
 
-    &:not(:last-child) {
+    &:hover {
         color: ${props => props.theme.colours.primary};
     }
 `;

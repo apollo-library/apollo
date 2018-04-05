@@ -39,8 +39,12 @@ function removeNotification(state, notificationToRemoveIndex) {
         return state.notifications.indexOf(notification) !== notificationToRemoveIndex
     });
     return Object.assign({}, state, { notifications: filteredArray })
+}
+
+function sortNotifications() {
 
 }
+
 
 export const data = (state = initialStates, action) => {
     switch (action.type) {
@@ -48,6 +52,8 @@ export const data = (state = initialStates, action) => {
             return Object.assign({}, state, { currentPage: action.newCurrentPage })
         case TYPES.REMOVE_NOTIFICATION:
             return removeNotification(state, action.notificationToRemoveIndex)
+        case TYPES.SORT_NOTIFICATIONS:
+            return sortNotifications(state, action.notificationToRemoveIndex)
         default:
             return state
     }

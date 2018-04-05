@@ -29,7 +29,7 @@ class NotificationBox extends Component {
             0 = Today
             +VE = Future
         */
-        
+
         //Check if the event happened today
         if (daysDiff === 0) {
             //Today
@@ -79,11 +79,14 @@ class NotificationBox extends Component {
         return daysLeft.toString();
     }
 
+    removeNotification(notification) {
+        store.dispatch(actions.removeNotification(notification));
+    }
+
     render() {
-//store.dispatch(actions.removeNotification(this.props.notificationIndex));
         return (
             <styles.Notification>
-                <styles.NotificationDismiss onClick={() => store.dispatch(actions.removeNotification(this.props.notificationIndex))}>X</styles.NotificationDismiss>
+                <styles.NotificationDismiss onClick={() => this.removeNotification(this.props.notificationIndex)}>X</styles.NotificationDismiss>
                 <styles.NotificationWrapper>
 
                     <styles.NotificationInfo>

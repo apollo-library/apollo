@@ -93,8 +93,10 @@ class Navbar extends Component {
                             <path fill="none" stroke="#636363" strokeWidth="2" strokeLinecap="round" d="M1,1l4.9,4.1c0.3,0.2,0.6,0.2,0.9,0L11.7,1"/>
                         </styles.InlineSVG>
                     </styles.UserName>
+                </styles.Root>
 
-                    <styles.DropdownWindow active={this.state.notificationsActive}>
+                <styles.DropdownWindow notifications active={this.state.notificationsActive}>
+                    <styles.DropdownBackground>
                         <styles.NotificationMainTitle>Notifications</styles.NotificationMainTitle>
                         {this.props.notifications.slice(0,config.main.maxNotificationSize).map((notification, index) => {
                             //Select the notification colour
@@ -136,16 +138,18 @@ class Navbar extends Component {
                             )
                         })}
                         <styles.viewAllNotifications>View all notifications</styles.viewAllNotifications>
-                    </styles.DropdownWindow>
+                    </styles.DropdownBackground>
+                </styles.DropdownWindow>
 
-                    <styles.DropdownWindow active={this.state.accountActive}>
+                <styles.DropdownWindow accountMenu active={this.state.accountActive}>
+                    <styles.DropdownBackground>
                         <styles.accountMenu>
                             <styles.menuItem>Suggest a Book</styles.menuItem>
                             <styles.menuItem>Check Reservations</styles.menuItem>
                             <styles.menuItem>Logout</styles.menuItem>
                         </styles.accountMenu>
-                    </styles.DropdownWindow>
-                </styles.Root>
+                    </styles.DropdownBackground>
+                </styles.DropdownWindow>
             </styles.Navbar>
         );
     }

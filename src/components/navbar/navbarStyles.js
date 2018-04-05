@@ -111,13 +111,52 @@ const DropdownWindow = styled.div`
     transform-origin: top center;
     transition: transform 300ms ease;
     position: absolute;
-    background: #fff;
-    top: 60px;
-    right: 15px;
-    box-shadow: 0px 2px 12px rgba(73,73,73,0.30);
+    top: 65px;
+    right: 1rem;
     cursor: auto;
-    border-radius: ${props => props.theme.styles.borderRadius};
+    overflow: visible;
+    width: ${props =>
+        (props.notifications && '400px')
+        || (props.accountMenu && '')
+    };
+
+    &::before {
+        content: '';
+        position: absolute;
+        display: inline-block;
+        right: ${props =>
+            (props.notifications && '35%')
+            || (props.accountMenu && '15%')
+        };
+        height: 1rem;
+        width: 1rem;
+        top: -0.5rem;
+        background: #fff;
+        transform: rotate(45deg);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        display: inline-block;
+        right: ${props =>
+            (props.notifications && '35%')
+            || (props.accountMenu && '15%')
+        };
+        height: 1rem;
+        width: 1rem;
+        top: -0.5rem;
+        z-index: -1;
+        transform: rotate(45deg);
+        box-shadow: 0px 2px 12px rgba(73,73,73,0.30);
+    }
+`;
+
+const DropdownBackground = styled.div`
     padding: 1rem;
+    box-shadow: 0px 2px 12px rgba(73,73,73,0.30);
+    background: #fff;
+    border-radius: ${props => props.theme.styles.borderRadius};
 `;
 
 const NotificationMainTitle = styled.p`
@@ -168,6 +207,7 @@ export {
     UserName,
     InlineSVG,
     DropdownWindow,
+    DropdownBackground,
     NotificationMainTitle,
     viewAllNotifications,
     accountMenu,
