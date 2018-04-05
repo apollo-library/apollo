@@ -5,12 +5,16 @@ import React, { Component } from 'react';
 import * as styles from './notificationBoxStyles.js'
 import {Button} from './../../gloablStyles.js'
 
-class NotificationBox extends Component {
-    constructor(props) {
-        super(props)
-        this.getNotificationDateString = this.getNotificationDateString.bind(this);
-    }
+//Redux
+import { connect } from 'react-redux'
+import { actions } from './../../store/actions.js'
+import store from './../../store'
 
+const mapStateToProps = (state) => ({
+    notifications: state.data.notifications
+})
+
+class NotificationBox extends Component {
     getNotificationDateString(date) {
         //Returns the date as a string that we can show in the notificaions
 
@@ -25,7 +29,7 @@ class NotificationBox extends Component {
             0 = Today
             +VE = Future
         */
-
+        
         //Check if the event happened today
         if (daysDiff === 0) {
             //Today
@@ -43,14 +47,14 @@ class NotificationBox extends Component {
         } else if (daysDiff === -1) {
             //Yesterday
             return "Yesterday"
-        } else if (daysDiff === -7) {
+        } else if (daysDiff > -14 && daysDiff <= -7) {
             //1 Week ago
             return "1 Week Ago"
-        } else if (daysDiff === -14) {
+        } else if (daysDiff > -21 && daysDiff <= -14) {
             //2 Weeks ago
             return "2 Weeks Ago"
-        } else if (daysDiff < -14) {
-            //2 Weeks ago
+        } else if (daysDiff <= -21) {
+            //Return a date
             return actionDate.toDateString()
         }
     }
@@ -76,8 +80,10 @@ class NotificationBox extends Component {
     }
 
     render() {
+//store.dispatch(actions.removeNotification(this.props.notificationIndex));
         return (
             <styles.Notification>
+                <styles.NotificationDismiss onClick={() => store.dispatch(actions.removeNotification(this.props.notificationIndex))}>X</styles.NotificationDismiss>
                 <styles.NotificationWrapper>
 
                     <styles.NotificationInfo>
@@ -94,6 +100,7 @@ class NotificationBox extends Component {
                         <styles.NotificationDaysLeftText colour={this.props.notificationColour}>{this.props.notificationDaysLeftText}</styles.NotificationDaysLeftText>
                         <Button colour={this.props.notificationColour}>{this.props.notificationButtonText}</Button>
                     </styles.NotificationDaysLeft>
+
                 </styles.NotificationWrapper>
 
             </styles.Notification>
@@ -101,4 +108,4 @@ class NotificationBox extends Component {
     }
 }
 
-export default NotificationBox;
+export default connect(mapStateToProps)(NotificationBox);

@@ -40,7 +40,8 @@ let config = {
 				path: '/users',
 				componentName: 'Users'
 			}
-	    ]
+	    ],
+		maxNotificationSize: 3
 	},
 
 	colours: {

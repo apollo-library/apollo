@@ -60,7 +60,7 @@ const Grow = styled.li`
     flex: 1;
 `;
 
-const Notifications = styled.li`
+const NotificationIcon = styled.li`
     margin: 0 20px;
     cursor: pointer;
     height: 25px;
@@ -130,7 +130,6 @@ const NotificationMainTitle = styled.p`
 const viewAllNotifications = styled.p`
     font-weight: 600;
     tex-align: center;
-    margin-bottom: calc(${props => props.theme.styles.boxSpacing} / 2);
     color: ${props => props.theme.colours.darkGrey};
     cursor: pointer;
 
@@ -164,7 +163,7 @@ export {
     Root,
     Logo,
     Grow,
-    Notifications,
+    NotificationIcon,
     NotificationDot,
     UserName,
     InlineSVG,

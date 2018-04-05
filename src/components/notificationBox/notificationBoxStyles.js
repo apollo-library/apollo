@@ -7,9 +7,22 @@ const Notification = styled.div`
     border: 2px solid ${props => props.theme.colours.lightGrey};
     padding: 0.5rem;
     color: ${props => props.theme.colours.darkGrey};
+    position: relative;
 
     &:not(:last-child) {
         margin-bottom: ${props => props.theme.styles.boxSpacing};
+    }
+`;
+
+const NotificationDismiss = styled.p`
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: ${props => props.theme.colours.darkGrey};
+    cursor: pointer;
+
+    &:not(:last-child) {
+        color: ${props => props.theme.colours.primary};
     }
 `;
 
@@ -61,6 +74,7 @@ const NotificationDaysLeftText = styled.p`
 
 export {
     Notification,
+    NotificationDismiss,
     NotificationWrapper,
     NotificationInfo,
     NotificationTime,

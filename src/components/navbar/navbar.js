@@ -18,7 +18,8 @@ import {NotificationBox} from './../../components';
 import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => ({
-    currentPage: state.data.currentPage
+    currentPage: state.data.currentPage,
+    notifications: state.data.notifications
 })
 
 class Navbar extends Component {
@@ -27,29 +28,6 @@ class Navbar extends Component {
         this.state = {
             notificationsActive: false,
             accountActive: false,
-            notifications: [
-                {
-                    actionDate: "2018-04-03T18:25:43.511Z",
-                    dueDate: "2018-04-06T18:25:43.511Z",
-                    action: "renew",
-                    title: "Rocket Propulsion Elements",
-                    author: "George Paul Sutton"
-                },
-                {
-                    actionDate: "2018-04-03T18:25:43.511Z",
-                    dueDate: "2018-04-03T18:25:43.511Z",
-                    action: "return",
-                    title: "Rocket Propulsion Elements",
-                    author: "George Paul Sutton"
-                },
-                {
-                    actionDate: "2018-04-03T18:25:43.511Z",
-                    dueDate: "2018-04-08T18:25:43.511Z",
-                    action: "withdraw",
-                    title: "Rocket Propulsion Elements",
-                    author: "George Paul Sutton"
-                }
-            ]
         };
         this.toggleNotifications = this.toggleNotifications.bind(this);
         this.toggleAccount = this.toggleAccount.bind(this);
@@ -98,7 +76,7 @@ class Navbar extends Component {
                         	C5.8,0,5.9,0,6,0.1l4.2,3h0v0C10.4,3.2,10.5,3.4,10.5,3.6z"/>
                         </styles.InlineSVG>
                     </Button>
-                    <styles.Notifications onClick={() => this.toggleNotifications()}>
+                    <styles.NotificationIcon onClick={() => this.toggleNotifications()}>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20.9 22.2">
                         	<circle fill="#fff" stroke="#636363" strokeWidth="1.2" cx="10.1" cy="2.3" r="1.7"/>
                         	<ellipse fill="#fff" stroke="#636363" strokeWidth="1.2" cx="10.1" cy="19.4" rx="1.9" ry="2.2"/>
@@ -106,9 +84,9 @@ class Navbar extends Component {
                         		c0,0,0.8,5.8,2.6,8.5C18.1,17.4,17.8,17.9,17.4,17.9z"/>
                             <path fill="#fff" stroke="#636363" strokeWidth="1.2" d="M18.3,17H1.8c-0.7,0-1.2,0.5-1.2,1.2v0c0,0.7,0.5,1.2,1.2,1.2h16.5c0.7,0,1.2-0.5,1.2-1.2v0
                         		C19.5,17.5,18.9,17,18.3,17z"/>
-                            <styles.NotificationDot active cx="16.5" cy="8" r="3.6"/>
+                            <styles.NotificationDot active={this.props.notifications.length !== 0} cx="16.5" cy="8" r="3.6"/>
                         </svg>
-                    </styles.Notifications>
+                    </styles.NotificationIcon>
                     <styles.UserName onClick={() => this.toggleAccount()}>
                         Joe Bloggs
                         <styles.InlineSVG xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.7 6.3">
@@ -118,14 +96,14 @@ class Navbar extends Component {
 
                     <styles.DropdownWindow active={this.state.notificationsActive}>
                         <styles.NotificationMainTitle>Notifications</styles.NotificationMainTitle>
-                        {this.state.notifications.map((notification, index) => {
+                        {this.props.notifications.slice(0,config.main.maxNotificationSize).map((notification, index) => {
                             //Select the notification colour
                             let notificationColour;
                             let notificationButtonText;
                             let notificationButtonFunction;
                             let notificationDaysLeftText;
                             if (notification.action === "withdraw") {
-                                notificationColour = "accent1";
+                                notificationColour = "accent5";
                                 notificationButtonText = "Renew";
                                 notificationButtonFunction = "RUN THE RENEW FUNCTION HERE";
                                 notificationDaysLeftText = "Days Left";
@@ -135,9 +113,14 @@ class Navbar extends Component {
                                 notificationButtonFunction = "RUN THE RENEW FUNCTION HERE";
                                 notificationDaysLeftText = "Days Left";
                             } else if (notification.action === "return") {
-                                notificationColour = "accent3";
+                                notificationColour = "accent1";
                                 notificationButtonText = "Rate";
                                 notificationButtonFunction = "RUN THE RETURN FUNCTION HERE. ADD THESE TO ONLCICK OF BUTTON";
+                                notificationDaysLeftText = "Days Ago";
+                            } else if (notification.action === "overdue") {
+                                notificationColour = "accent3";
+                                notificationButtonText = "Renew";
+                                notificationButtonFunction = "RUN THE RENEW FUNCTION HERE";
                                 notificationDaysLeftText = "Days Ago";
                             }
 
@@ -147,6 +130,7 @@ class Navbar extends Component {
                                     notificationColour={notificationColour}
                                     notificationButtonText={notificationButtonText}
                                     notificationDaysLeftText={notificationDaysLeftText}
+                                    notificationIndex={index}
                                     key={index}
                                 />
                             )
