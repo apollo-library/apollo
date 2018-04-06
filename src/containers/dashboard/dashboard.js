@@ -36,6 +36,7 @@ class Dashboard extends Component {
                         />
                     </LeftColumn>
                     <RightColumn>
+                        hi
                     </RightColumn>
                 </CenterColumn>
             </div>

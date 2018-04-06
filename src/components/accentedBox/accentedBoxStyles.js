@@ -6,7 +6,6 @@ const AccentedBox = styled.div`
     box-shadow: 0px 0px 0px 2px ${props => props.theme.colours.lightGrey} inset;
     border-radius: ${props => props.theme.styles.borderRadius};
     width: 100%;
-    height: 250px;
     margin-bottom: ${props => props.theme.styles.boxSpacing};
     display: flex;
     flex-direction: column;
@@ -29,20 +28,19 @@ const AccentBar = styled.div.attrs({
 const BoxContent = styled.div`
     width: 100%;
     height: 100%;
+    padding: 1.6rem;
+    text-align: center;
     position: relative;
 `;
 
 const SidebarButton = WhiteButton.extend`
     font-size: 1.5rem;
-    margin: auto;
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
+    margin-top: 2.5rem;
+    padding: 0.5rem 1.2rem;
+    box-shadow: inset 0 0 0 1px ${props => props.theme.colours.lightGrey}, 0px 2px 5px rgba(73,73,73,0.4);
 
     &:hover {
-        box-shadow: 0px 1px 9px rgba(73,73,73,0.4);
-        transform: translate(-50%, -1px);
+        box-shadow: inset 0 0 0 1px ${props => props.theme.colours.lightGrey}, 0px 3px 7px rgba(73,73,73,0.4);
     }
 `;
 
@@ -57,15 +55,62 @@ const BackImage = styled.img`
 const BookTitle = styled.p`
     font-size: 1.5rem;
     font-weight: 600;
-    margin-top: 3rem;
-    text-align: center;
     color: ${props => props.theme.colours.darkGrey};
 `;
 
 const BookAuthor = styled.p`
     margin-top: 0.2rem;
-    text-align: center;
     color: ${props => props.theme.colours.midGrey};
+`;
+
+const StudentFine = styled.p`
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: ${props => props.theme.colours.darkGrey};
+`;
+
+const FineDetails = styled.p`
+    color: ${props => props.theme.colours.midGrey};
+`;
+
+const RateTopBar = styled.div`
+    display: flex;
+    margin-bottom: 1rem;
+`;
+
+const RateIntroText = styled.p`
+    color: ${props => props.theme.colours.midGrey};
+    text-align: left;
+`;
+
+const RateBooksLeft = styled.div`
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: ${props => props.theme.colours.accent3};
+    display: flex;
+    align-items: center;
+    padding: 0.3rem 0.75rem;
+    border-radius: 100px;
+`;
+
+const Stars = styled.div`
+    margin-top: 1rem;
+`;
+
+const Star = styled.svg`
+    width: 2rem;
+    padding-right: 0.25rem;
+
+`;
+
+const StarPath = styled.path`
+    fill: ${props => props.filled ? props.theme.colours.accent3 : '#fff'};
+    stroke: ${props => props.filled ? props.theme.colours.accent3 : props.theme.colours.darkGrey};
+    stroke-width: 2px;
+    display: inline-block;
+
+    transition: fill
 `;
 
 
@@ -76,5 +121,13 @@ export {
     SidebarButton,
     BackImage,
     BookTitle,
-    BookAuthor
+    BookAuthor,
+    StudentFine,
+    FineDetails,
+    RateTopBar,
+    RateIntroText,
+    RateBooksLeft,
+    Stars,
+    Star,
+    StarPath
 };

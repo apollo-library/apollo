@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Navbar = styled.nav`
     height: 50px;
-    width: 100vw;
+    width: 100%;
     background: #fff;
     border-bottom: 2px solid ${props => props.theme.colours.lightGrey};
     box-shadow: 0px -1px 6px rgba(73,73,73,0.30);

@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 import { darken } from 'polished'
 
+const FlexGrow = styled.div`
+    flex: 1;
+`;
+
 const Button = styled.div.attrs({
     colour: props => props.colour
 })`
@@ -45,18 +49,17 @@ const CenterColumn = styled.div`
 
 const LeftColumn = styled.div`
     width: calc(100% * (1/3));
-    height: 100vh;
     margin-right: calc(${props => props.theme.styles.boxSpacing} / 2);
 `;
 
 const RightColumn = styled.div`
     width: calc(100% * (2/3));
-    height: 100vh;
     background: rgba(0,255,0,0.1);
     margin-left: calc(${props => props.theme.styles.boxSpacing} / 2);
 `;
 
 export {
+    FlexGrow,
     Button,
     WhiteButton,
     CenterColumn,

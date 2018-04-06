@@ -6,8 +6,6 @@
   overflow: hidden;
 }
 
-a {
-  display: inherit;
-  color: inherit;
-  text-decoration: inherit;
+html {
+    overflow-y: auto;
 }

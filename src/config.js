@@ -41,7 +41,8 @@ let config = {
 				componentName: 'Users'
 			}
 	    ],
-		maxNotificationSize: 3
+		maxNotificationSize: 3,
+		fineRate: "0.20" // = £0.20
 	},
 
 	colours: {

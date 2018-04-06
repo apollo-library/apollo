@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 //Styles
 import * as styles from './navbarStyles.js'
-import {Button} from './../../globalStyles.js'
+import {Button, FlexGrow} from './../../globalStyles.js'
 
 //Images
 import logo from './../../assets/images/logo-navbar.svg';
@@ -66,7 +66,7 @@ class Navbar extends Component {
                         )
                     )}
 
-                    <styles.Grow />
+                    <FlexGrow />
 
                     <Button colour="primary">
                         Scan
