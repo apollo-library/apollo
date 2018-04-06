@@ -7,7 +7,7 @@ const initialStates = {
             actionDate: "2018-04-05T10:25:43.511Z",
             dueDate: "2018-04-06T18:25:43.511Z",
             action: "overdue",
-            title: "Rocket Propulsion Elements",
+            title: "Rocket Propulsion Elements hjkhhk fjdkalfdljaksfj",
             author: "George Paul Sutton"
         },
         {
@@ -31,7 +31,12 @@ const initialStates = {
             title: "Rocket Propulsion Elements",
             author: "George Paul Sutton"
         }
-    ]
+    ],
+    studentDetails: {
+        concatName: "Joe Bloggs",
+        latestBookTitle: "Rocket Propulsion Elements",
+        latestBookAuthor: "George Paul Sutton"
+    }
 }
 
 function removeNotification(state, notificationToRemoveIndex) {
@@ -41,10 +46,6 @@ function removeNotification(state, notificationToRemoveIndex) {
     return Object.assign({}, state, { notifications: filteredArray })
 }
 
-function sortNotifications() {
-
-}
-
 
 export const data = (state = initialStates, action) => {
     switch (action.type) {
@@ -52,8 +53,6 @@ export const data = (state = initialStates, action) => {
             return Object.assign({}, state, { currentPage: action.newCurrentPage })
         case TYPES.REMOVE_NOTIFICATION:
             return removeNotification(state, action.notificationToRemoveIndex)
-        case TYPES.SORT_NOTIFICATIONS:
-            return sortNotifications(state, action.notificationToRemoveIndex)
         default:
             return state
     }

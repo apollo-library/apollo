@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 //Styles
 import * as styles from './navbarStyles.js'
-import {Button} from './../../gloablStyles.js'
+import {Button} from './../../globalStyles.js'
 
 //Images
 import logo from './../../assets/images/logo-navbar.svg';

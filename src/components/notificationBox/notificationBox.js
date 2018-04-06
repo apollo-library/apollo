@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 //Styles
 import * as styles from './notificationBoxStyles.js'
-import {Button} from './../../gloablStyles.js'
+import {Button} from './../../globalStyles.js'
 
 //Redux
 import { connect } from 'react-redux'

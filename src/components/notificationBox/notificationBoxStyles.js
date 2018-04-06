@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 const Notification = styled.div`
     width: 100%;
     border-radius: ${props => props.theme.styles.borderRadius};
@@ -41,9 +40,9 @@ const NotificationTime = styled.p`
 `;
 
 const NotificationAction = styled.p.attrs({
-    color: props => props.colour
+    color2: props => props.colour
 })`
-    color: ${props => props.theme.colours[props.color]};
+    color: ${props => props.theme.colours[props.color2]};
     text-transform: uppercase;
     font-weight: 600;
 `;
@@ -56,7 +55,7 @@ const NotificationAuthor = styled.p`
 const NotificationDaysLeft = styled.div`
     text-align: center;
     margin-right: 0.5rem;
-    width: calc(100% / 3);
+    width: 40%;
 `;
 
 const NotificationDaysLeftNumber = styled.p.attrs({

@@ -11,7 +11,8 @@
 //Import all components
 import Navbar from './navbar/navbar'
 import NotificationBox from './notificationBox/notificationBox';
+import AccentedBox from './accentedBox/accentedBox';
 
 
 //Export all components
-export { Navbar, NotificationBox }
+export { Navbar, NotificationBox, AccentedBox }
