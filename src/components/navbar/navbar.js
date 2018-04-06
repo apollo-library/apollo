@@ -132,7 +132,6 @@ class Navbar extends Component {
                                     notificationColour={notificationColour}
                                     notificationButtonText={notificationButtonText}
                                     notificationDaysLeftText={notificationDaysLeftText}
-                                    notificationIndex={index}
                                     key={index}
                                 />
                             )

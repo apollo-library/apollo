@@ -6,6 +6,6 @@ export const TYPES = {
 
 export const actions = {
     updateCurrentPage: (newCurrentPage) => ({ type: TYPES.UPDATE_CURRENT_PAGE, newCurrentPage }),
-    removeNotification: (notificationToRemoveIndex) => ({ type: TYPES.REMOVE_NOTIFICATION, notificationToRemoveIndex }),
+    removeNotification: (notificationToRemoveID) => ({ type: TYPES.REMOVE_NOTIFICATION, notificationToRemoveID }),
     removeBookToRate: () => ({ type: TYPES.REMOVE_BOOK_TO_RATE })
 }

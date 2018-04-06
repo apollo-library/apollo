@@ -79,14 +79,14 @@ class NotificationBox extends Component {
         return daysLeft.toString();
     }
 
-    removeNotification(notification) {
-        store.dispatch(actions.removeNotification(notification));
+    removeNotification(id) {
+        store.dispatch(actions.removeNotification(id));
     }
 
     render() {
         return (
             <styles.Notification>
-                <styles.NotificationDismiss onClick={() => this.removeNotification(this.props.notificationIndex)}>X</styles.NotificationDismiss>
+                <styles.NotificationDismiss onClick={() => this.removeNotification(this.props.notification._id)}>X</styles.NotificationDismiss>
                 <styles.NotificationWrapper>
 
                     <styles.NotificationInfo>

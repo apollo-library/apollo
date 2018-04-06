@@ -4,6 +4,7 @@ const initialStates = {
     currentPage: '',
     notifications: [
         {
+            _id: "fdkjasl",
             actionDate: "2018-04-05T10:25:43.511Z",
             dueDate: "2018-04-06T18:25:43.511Z",
             action: "overdue",
@@ -11,6 +12,7 @@ const initialStates = {
             author: "George Paul Sutton"
         },
         {
+            _id: "uriew2",
             actionDate: "2018-04-04T18:25:43.511Z",
             dueDate: "2018-04-06T18:25:43.511Z",
             action: "renew",
@@ -18,6 +20,7 @@ const initialStates = {
             author: "George Paul Sutton"
         },
         {
+            _id: "nvmcvb",
             actionDate: "2018-04-04T18:25:43.511Z",
             dueDate: "2018-04-03T18:25:43.511Z",
             action: "return",
@@ -25,6 +28,7 @@ const initialStates = {
             author: "George Paul Sutton"
         },
         {
+            _id: "hgsjfoi",
             actionDate: "2018-04-04T18:25:43.511Z",
             dueDate: "2018-04-08T18:25:43.511Z",
             action: "withdraw",
@@ -58,9 +62,9 @@ const initialStates = {
     }
 }
 
-function removeNotification(state, notificationToRemoveIndex) {
+function removeNotification(state, notificationToRemoveID) {
     let filteredArray = state.notifications.filter((notification) => {
-        return state.notifications.indexOf(notification) !== notificationToRemoveIndex
+        return notification._id !== notificationToRemoveID
     });
     return Object.assign({}, state, { notifications: filteredArray });
 }
@@ -76,7 +80,7 @@ export const data = (state = initialStates, action) => {
         case TYPES.UPDATE_CURRENT_PAGE:
             return Object.assign({}, state, { currentPage: action.newCurrentPage })
         case TYPES.REMOVE_NOTIFICATION:
-            return removeNotification(state, action.notificationToRemoveIndex)
+            return removeNotification(state, action.notificationToRemoveID)
         case TYPES.REMOVE_BOOK_TO_RATE:
             return removeBookToRate(state)
         default:
