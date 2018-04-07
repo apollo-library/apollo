@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 
 //Styles
 import * as styles from './notificationBoxStyles.js'
-import {Button} from './../../globalStyles.js'
+import {Button} from './../../../globalStyles.js'
 
 //Redux
 import { connect } from 'react-redux'
-import { actions } from './../../store/actions.js'
-import store from './../../store'
+import { actions } from './../../../store/actions.js'
+import store from './../../../store'
 
 const mapStateToProps = (state) => ({
     notifications: state.data.notifications

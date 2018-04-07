@@ -40,9 +40,9 @@ const NotificationTime = styled.p`
 `;
 
 const NotificationAction = styled.p.attrs({
-    color2: props => props.colour
+    color: props => props.colour
 })`
-    color: ${props => props.theme.colours[props.color2]};
+    color: ${props => props.theme.colours[props.color]};
     text-transform: uppercase;
     font-weight: 600;
 `;

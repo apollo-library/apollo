@@ -110,7 +110,7 @@ const StarPath = styled.path`
     stroke-width: 2px;
     display: inline-block;
 
-    transition: fill
+    transition: fill 150ms ease;
 `;
 
 

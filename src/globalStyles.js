@@ -45,6 +45,7 @@ const CenterColumn = styled.div`
     margin: 0 auto;
     max-width: 1300px;
     display: flex;
+    margin-top: 3rem;
 `;
 
 const LeftColumn = styled.div`
@@ -54,8 +55,14 @@ const LeftColumn = styled.div`
 
 const RightColumn = styled.div`
     width: calc(100% * (2/3));
-    background: rgba(0,255,0,0.1);
     margin-left: calc(${props => props.theme.styles.boxSpacing} / 2);
+`;
+
+const PageTitle = styled.p`
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: ${props => props.theme.colours.primary}
+    margin-bottom: calc(${props => props.theme.styles.boxSpacing} / 2);
 `;
 
 export {
@@ -64,5 +71,6 @@ export {
     WhiteButton,
     CenterColumn,
     LeftColumn,
-    RightColumn
+    RightColumn,
+    PageTitle
 };
