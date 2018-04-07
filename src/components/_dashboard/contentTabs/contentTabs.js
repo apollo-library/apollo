@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 
 import * as styles from './contentTabsStyles.js'
 
-import {DueSoon, Recommended, History} from './../..';
-
 class ContentTabs extends Component {
     constructor(props) {
         super(props)

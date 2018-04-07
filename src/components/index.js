@@ -13,7 +13,7 @@ import Navbar from './_navbar/navbar/navbar'
 import NotificationBox from './_navbar/notificationBox/notificationBox';
 import AccentedBox from './accentedBox/accentedBox';
 import ContentTabs from './_dashboard/contentTabs/contentTabs';
-import Table from './table/table';
+import BookTable from './_dashboard/bookTable/bookTable';
 import DueSoon from './_dashboard/dueSoon/dueSoon';
 import Recommended from './_dashboard/recommended/recommended';
 import History from './_dashboard/history/history';
@@ -25,7 +25,7 @@ export {
     NotificationBox,
     AccentedBox,
     ContentTabs,
-    Table,
+    BookTable,
     DueSoon,
     Recommended,
     History

@@ -11,7 +11,7 @@ import { actions } from './../../../store/actions.js'
 import store from './../../../store'
 
 const mapStateToProps = (state) => ({
-    notifications: state.data.notifications
+    notifications: state.data.studentDetails.notifications
 })
 
 class NotificationBox extends Component {
@@ -19,7 +19,7 @@ class NotificationBox extends Component {
         //Returns the date as a string that we can show in the notificaions
 
         let now = new Date();
-        let actionDate = new Date(date); // TODO: ******** Change to use notifications json data ***************
+        let actionDate = new Date(date);
 
         let utcNow = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
         let utcActionDate = Date.UTC(actionDate.getFullYear(), actionDate.getMonth(), actionDate.getDate());
@@ -62,7 +62,7 @@ class NotificationBox extends Component {
     getNotificationDaysLeft(date) {
         //Returns a string with the number of days left before your book is due. Limits to a lowest value of 0
         let now = new Date();
-        let dueDate = new Date(date); // TODO: ******** Change to use notifications json data ***************
+        let dueDate = new Date(date);
 
         let utcNow = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
         let utcDueDate = Date.UTC(dueDate.getFullYear(), dueDate.getMonth(), dueDate.getDate());

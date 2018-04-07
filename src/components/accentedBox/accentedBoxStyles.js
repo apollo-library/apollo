@@ -101,7 +101,6 @@ const Stars = styled.div`
 const Star = styled.svg`
     width: 2rem;
     padding-right: 0.25rem;
-
 `;
 
 const StarPath = styled.path`

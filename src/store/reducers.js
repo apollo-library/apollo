@@ -69,24 +69,21 @@ const initialStates = {
             _id: "rieuoqp",
             title: "Rocket Propulsion Elements 1",
             author: "George Paul Sutton 1",
+            rating: 3,
             dueDate: "2018-05-06T18:25:43.511Z"
         },
         {
             _id: "nvmcxb",
             title: "Rocket Propulsion Elements 2",
             author: "George Paul Sutton 2",
+            rating: 5,
             dueDate: "2018-05-06T18:25:43.511Z"
         },
         {
             _id: "fhjaop",
             title: "Rocket Propulsion Elements 3",
             author: "George Paul Sutton 3",
-            dueDate: "2018-05-06T18:25:43.511Z"
-        },
-        {
-            _id: "htjrwn",
-            title: "Rocket Propulsion Elements 4",
-            author: "George Paul Sutton 4",
+            rating: 2,
             dueDate: "2018-05-06T18:25:43.511Z"
         }
     ]

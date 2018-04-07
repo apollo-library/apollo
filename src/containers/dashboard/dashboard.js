@@ -1,11 +1,10 @@
 //React imports
 import React, { Component } from 'react';
 
-import {CenterColumn, LeftColumn, RightColumn, PageTitle} from './../../globalStyles.js'
-
-
 //Component imports
 import {Navbar, AccentedBox, ContentTabs, DueSoon, Recommended, History} from './../../components';
+
+import {CenterColumn, LeftColumn, RightColumn, PageTitle} from './../../globalStyles.js'
 
 //Redux
 import { connect } from 'react-redux'
@@ -14,9 +13,6 @@ const mapStateToProps = (state) => ({
     studentDetails: state.data.studentDetails
 })
 
-const DueSoonComponent = <DueSoon />
-const RecommendedComponent = <Recommended />
-const HistoryComponent = <History />
 
 class Dashboard extends Component {
     render() {
@@ -49,43 +45,31 @@ class Dashboard extends Component {
                             type="rate"
                         />
                     </LeftColumn>
+
                     <RightColumn>
                         <ContentTabs
                             data={this.props.studentDetails}
                             tabs={[
                                 {
                                     title: "Due Soon",
-                                    componentToShow: DueSoonComponent,
-                                    colour: "accent3",
+                                    componentToShow: <DueSoon colour="accent3"/>,
+                                colour: "accent3",
                                     active: true
                                 },
                                 {
                                     title: "Recommended",
-                                    componentToShow: RecommendedComponent,
+                                    componentToShow: <Recommended colour="accent2"/>,
                                     colour: "accent2",
                                     active: false
                                 },
                                 {
                                     title: "History",
-                                    componentToShow: HistoryComponent,
+                                    componentToShow: <History colour="accent1"/>,
                                     colour: "accent1",
                                     active: false
                                 }
                             ]}
                          />
-                        {/*<Table
-                            colour="accent3"
-                            data={this.props.studentDetails.booksDueSoon}
-                            titles={[
-                                "Title",
-                                "Author",
-                                "Rating",
-                                "Due Date",
-                            ]}
-                            buttonText="Renew"
-                            buttonFunction="RUN A FUNCTION HERE"
-                        /> */}
-
                     </RightColumn>
                 </CenterColumn>
             </div>
