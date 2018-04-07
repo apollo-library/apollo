@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 
 import * as styles from './contentTabsStyles.js'
 
+import {DueSoon, Recommended, History} from './../..';
+
 class ContentTabs extends Component {
     constructor(props) {
         super(props)
@@ -25,22 +27,37 @@ class ContentTabs extends Component {
     }
 
     render() {
-        return (
-            <styles.ConentTabs>
+        let componentToShow;
+        for (let i = 0; i < this.state.tabs.length; i++) {
+            if (this.state.tabs[i].active === true) {
+                componentToShow = this.state.tabs[i].componentToShow
+            }
+        }
 
-                {this.state.tabs.map((tab, index) =>
-                    (
-                        <styles.ContentTab
-                            key={index}
-                            itemActive={tab.active}
-                            colour={tab.colour}
-                            onClick={() => this.changeActiveTab(tab)}
-                        >
-                            {tab.title}
-                        </styles.ContentTab>
-                    )
-                )}
-            </styles.ConentTabs>
+        return (
+            <div>
+                <styles.ConentTabs>
+
+                    {this.state.tabs.map((tab, index) =>
+                        (
+                            <div key={index}>
+                                <styles.ContentTab
+                                    itemActive={tab.active}
+                                    colour={tab.colour}
+                                    onClick={() => this.changeActiveTab(tab)}
+                                >
+                                    {tab.title}
+                                </styles.ContentTab>
+                            </div>
+                        )
+                    )}
+                </styles.ConentTabs>
+
+                <styles.ContentTabContent>
+                    {componentToShow}
+                </styles.ContentTabContent>
+
+            </div>
         );
     }
 }

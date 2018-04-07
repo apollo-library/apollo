@@ -12,8 +12,11 @@
 import Navbar from './_navbar/navbar/navbar'
 import NotificationBox from './_navbar/notificationBox/notificationBox';
 import AccentedBox from './accentedBox/accentedBox';
-import ContentTab from './_dashboard/contentTab/contentTab';
 import ContentTabs from './_dashboard/contentTabs/contentTabs';
+import Table from './table/table';
+import DueSoon from './_dashboard/dueSoon/dueSoon';
+import Recommended from './_dashboard/recommended/recommended';
+import History from './_dashboard/history/history';
 
 
 //Export all components
@@ -21,6 +24,9 @@ export {
     Navbar,
     NotificationBox,
     AccentedBox,
-    ContentTab,
-    ContentTabs
+    ContentTabs,
+    Table,
+    DueSoon,
+    Recommended,
+    History
 }

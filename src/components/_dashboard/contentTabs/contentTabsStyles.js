@@ -7,6 +7,7 @@ const ConentTabs = styled.ul`
     align-items: center;
     list-style: none;
     position: relative;
+    margin-bottom: ${props => props.theme.styles.boxSpacing};
 
     &::after {
         border-bottom: 2px solid ${props => props.theme.colours.lightGrey};
@@ -25,7 +26,7 @@ const ContentTab = styled.li.attrs({
 })`
     padding: 0.2rem 0.625rem;
     cursor: pointer;
-    color: ${props => props.itemActive ? props.theme.colours[props.colour] : props.theme.colours.darkGrey};
+    color: ${props => props.itemActive ? props.theme.colours[props.colour] : props.theme.colours.midGrey};
     font-weight: 600;
     height: 100%;
     display: flex;
@@ -54,8 +55,15 @@ const ContentTab = styled.li.attrs({
     }
 `;
 
+const ContentTabContent = styled.div`
+    width: 100%;
+    box-shadow: 0px 0px 0px 2px ${props => props.theme.colours.lightGrey} inset;
+    border-radius: ${props => props.theme.styles.borderRadius};
+    padding: ${props => props.theme.styles.boxSpacing};
+`;
 
 export {
     ConentTabs,
-    ContentTab
+    ContentTab,
+    ContentTabContent
 };

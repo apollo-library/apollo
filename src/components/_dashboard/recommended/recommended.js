@@ -1,14 +1,15 @@
 //React imports
 import React, { Component } from 'react';
 
-class ContentTab extends Component {
+class Recommended extends Component {
+
     render() {
         return (
             <div>
-                
+                <p>Recommended page</p>
             </div>
         );
     }
 }
 
-export default ContentTab;
+export default Recommended;

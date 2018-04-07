@@ -68,7 +68,7 @@ class Navbar extends Component {
 
                     <FlexGrow />
 
-                    <Button colour="primary">
+                    <Button colour="primary" onClick={() => {this.props.history.push('/scan')}}>
                         Scan
                         <styles.InlineSVG xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.5 7.1">
                             <path fill="#fff" d="M10.5,3.6c0,0.2-0.1,0.4-0.3,0.5l0,0L6,7C5.8,7.2,5.4,7.1,5.2,6.9C5.1,6.8,5.1,6.6,5.1,6.5

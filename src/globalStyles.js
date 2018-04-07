@@ -62,7 +62,7 @@ const PageTitle = styled.p`
     font-size: 1.6rem;
     font-weight: 600;
     color: ${props => props.theme.colours.primary}
-    margin-bottom: calc(${props => props.theme.styles.boxSpacing} / 2);
+    margin-bottom: ${props => props.theme.styles.boxSpacing};
 `;
 
 export {

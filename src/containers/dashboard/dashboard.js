@@ -1,9 +1,11 @@
 //React imports
 import React, { Component } from 'react';
 
-//Component imports
-import {Navbar, AccentedBox, ContentTabs} from './../../components';
 import {CenterColumn, LeftColumn, RightColumn, PageTitle} from './../../globalStyles.js'
+
+
+//Component imports
+import {Navbar, AccentedBox, ContentTabs, DueSoon, Recommended, History} from './../../components';
 
 //Redux
 import { connect } from 'react-redux'
@@ -11,6 +13,10 @@ import { connect } from 'react-redux'
 const mapStateToProps = (state) => ({
     studentDetails: state.data.studentDetails
 })
+
+const DueSoonComponent = <DueSoon />
+const RecommendedComponent = <Recommended />
+const HistoryComponent = <History />
 
 class Dashboard extends Component {
     render() {
@@ -49,37 +55,36 @@ class Dashboard extends Component {
                             tabs={[
                                 {
                                     title: "Due Soon",
-                                    componentToShow: "test",
+                                    componentToShow: DueSoonComponent,
                                     colour: "accent3",
                                     active: true
                                 },
                                 {
                                     title: "Recommended",
-                                    componentToShow: "test",
+                                    componentToShow: RecommendedComponent,
                                     colour: "accent2",
                                     active: false
                                 },
                                 {
                                     title: "History",
-                                    componentToShow: "test",
+                                    componentToShow: HistoryComponent,
                                     colour: "accent1",
                                     active: false
                                 }
                             ]}
-                        />
-
-                                {/*<Table
-                                    colour="accent3"
-                                    data={this.props.studentDetails.booksDueSoon}
-                                    titles={[
-                                        "Title",
-                                        "Author",
-                                        "Rating",
-                                        "Due Date",
-                                    ]}
-                                    buttonText="Renew"
-                                    buttonFunction="RUN A FUNCTION HERE"
-                                /> */}
+                         />
+                        {/*<Table
+                            colour="accent3"
+                            data={this.props.studentDetails.booksDueSoon}
+                            titles={[
+                                "Title",
+                                "Author",
+                                "Rating",
+                                "Due Date",
+                            ]}
+                            buttonText="Renew"
+                            buttonFunction="RUN A FUNCTION HERE"
+                        /> */}
 
                     </RightColumn>
                 </CenterColumn>
