@@ -2,9 +2,11 @@
 import React, { Component } from 'react';
 
 //Component imports
-import {Navbar, AccentedBox, ContentTabs, DueSoon, Recommended, History} from './../../components';
+import {AccentedBox, ContentTabs, DueSoon, Recommended, History} from './../../components';
 
-import {CenterColumn, LeftColumn, RightColumn, PageTitle} from './../../globalStyles.js'
+import {CenterColumn, LeftColumn, RightColumn, BottomLogo, PageTitle} from './../../globalStyles.js'
+
+import logo from './../../assets/images/logo.svg'
 
 //Redux
 import { connect } from 'react-redux'
@@ -18,8 +20,6 @@ class Dashboard extends Component {
     render() {
         return (
             <div>
-                <Navbar history={this.props.history} />
-
                 <CenterColumn>
                     <LeftColumn>
                         <PageTitle>{this.props.studentDetails.concatName + "'s Dashboard"}</PageTitle>
@@ -53,7 +53,7 @@ class Dashboard extends Component {
                                 {
                                     title: "Due Soon",
                                     componentToShow: <DueSoon colour="accent3"/>,
-                                colour: "accent3",
+                                    colour: "accent3",
                                     active: true
                                 },
                                 {
@@ -70,6 +70,8 @@ class Dashboard extends Component {
                                 }
                             ]}
                          />
+
+                        <BottomLogo src={logo} />
                     </RightColumn>
                 </CenterColumn>
             </div>

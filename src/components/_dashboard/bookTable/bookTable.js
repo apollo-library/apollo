@@ -41,6 +41,45 @@ class BookTable extends Component {
     }
 
     render() {
+        let tableBody;
+
+        if (this.props.type === "dueSoon") {
+            tableBody = this.props.data.map((rowData, index) =>
+                (
+                    <styles.TableRow key={index} colour={this.props.colour}>
+                        <styles.TableText>{rowData.title}</styles.TableText>
+                        <styles.TableText>{rowData.author}</styles.TableText>
+                        <styles.TableText>{this.calculateStars(rowData.rating)}</styles.TableText>
+                        <styles.TableText>{this.formatDueDate(rowData.dueDate)}</styles.TableText>
+                        <styles.TableButton><Button colour={this.props.colour}>{this.props.buttonText}</Button></styles.TableButton>
+                    </styles.TableRow>
+                )
+            )
+        } else if (this.props.type === "recommended") {
+            tableBody = this.props.data.map((rowData, index) =>
+                (
+                    <styles.TableRow key={index} colour={this.props.colour}>
+                        <styles.TableText>{rowData.title}</styles.TableText>
+                        <styles.TableText>{rowData.author}</styles.TableText>
+                        <styles.TableText>{this.calculateStars(rowData.rating)}</styles.TableText>
+                        <styles.TableButton><Button colour={this.props.colour}>{this.props.buttonText}</Button></styles.TableButton>
+                    </styles.TableRow>
+                )
+            )
+        } else if (this.props.type === "history") {
+            tableBody = this.props.data.map((rowData, index) =>
+                (
+                    <styles.TableRow key={index} colour={this.props.colour}>
+                        <styles.TableText>{rowData.title}</styles.TableText>
+                        <styles.TableText>{rowData.author}</styles.TableText>
+                        <styles.TableText>{this.calculateStars(rowData.rating)}</styles.TableText>
+                        <styles.TableButton><Button colour={this.props.colour}>{this.props.buttonText}</Button></styles.TableButton>
+                    </styles.TableRow>
+                )
+            )
+        }
+
+
         return (
             <styles.Table>
                 <styles.TableHeader colour={this.props.colour}>
@@ -51,17 +90,7 @@ class BookTable extends Component {
                     )}
                 </styles.TableHeader>
 
-                {this.props.data.map((rowData, index) =>
-                    (
-                        <styles.TableRow key={index} colour={this.props.colour}>
-                            <styles.TableText>{rowData.title}</styles.TableText>
-                            <styles.TableText>{rowData.author}</styles.TableText>
-                            <styles.TableText>{this.calculateStars(rowData.rating)}</styles.TableText>
-                            <styles.TableText>{this.formatDueDate(rowData.dueDate)}</styles.TableText>
-                            <styles.TableButton><Button colour={this.props.colour}>{this.props.buttonText}</Button></styles.TableButton>
-                        </styles.TableRow>
-                    )
-                )}
+                {tableBody}
 
             </styles.Table>
         );

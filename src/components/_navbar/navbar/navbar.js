@@ -6,7 +6,7 @@ import * as styles from './navbarStyles.js'
 import {Button, FlexGrow} from './../../../globalStyles.js'
 
 //Images
-import logo from './../../../assets/images/logo-navbar.svg';
+import logo from './../../../assets/images/logo.svg';
 
 //Config
 import config from '../../../config'

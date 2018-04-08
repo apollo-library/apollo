@@ -58,6 +58,15 @@ const RightColumn = styled.div`
     margin-left: calc(${props => props.theme.styles.boxSpacing} / 2);
 `;
 
+const BottomLogo = styled.img`
+    height: 13rem;
+    width: 13rem;
+    margin: 0 auto;
+    display: block;
+    opacity: 0.5;
+    margin-top: 2rem;
+`;
+
 const PageTitle = styled.p`
     font-size: 1.6rem;
     font-weight: 600;
@@ -72,5 +81,6 @@ export {
     CenterColumn,
     LeftColumn,
     RightColumn,
+    BottomLogo,
     PageTitle
 };

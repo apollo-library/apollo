@@ -1,15 +1,35 @@
 //React imports
 import React, { Component } from 'react';
 
-class Recommended extends Component {
+import {BookTable} from './../../'
 
+//Redux
+import { connect } from 'react-redux'
+
+const mapStateToProps = (state) => ({
+    booksDueSoon: state.data.booksDueSoon
+})
+
+class Recommended extends Component {
     render() {
         return (
             <div>
-                <p>Recommended page</p>
+                <BookTable
+                    type="recommended"
+                    colour={this.props.colour}
+                    data={this.props.booksDueSoon}
+                    titles={[
+                        "Title",
+                        "Author",
+                        "Rating",
+                        "Action"
+                    ]}
+                    buttonText="Renew"
+                    buttonFunction="RUN A FUNCTION HERE"
+                />
             </div>
         );
     }
 }
 
-export default Recommended;
+export default connect(mapStateToProps)(Recommended);

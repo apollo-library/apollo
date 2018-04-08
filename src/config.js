@@ -1,5 +1,5 @@
 //Container imports
-import {Dashboard} from './containers'
+import {Dashboard, Catalogue, Scan, Users} from './containers'
 
 let config = {
 	main: {
@@ -14,17 +14,17 @@ let config = {
 			{
 				text: 'Catalogue',
 				path: '/catalogue',
-				componentName: 'Catalogue'
+				componentName: Catalogue
 			},
 			{
 				text: 'Scan',
 				path: '/scan',
-				componentName: 'Scan'
+				componentName: Scan
 			},
 			{
 				text: 'Users',
 				path: '/users',
-				componentName: 'Users'
+				componentName: Users
 			}
 	    ],
 		maxNotificationSize: 3,

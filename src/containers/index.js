@@ -10,7 +10,10 @@
 
 //Import all components
 import Dashboard from './dashboard/dashboard'
+import Catalogue from './catalogue/catalogue'
+import Scan from './scan/scan'
+import Users from './users/users'
 
 
 //Export all components
-export { Dashboard }
+export { Dashboard, Catalogue, Scan, Users }

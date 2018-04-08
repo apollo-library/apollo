@@ -7,14 +7,10 @@ import createHistory from 'history/createBrowserHistory';
 import { actions } from './store/actions'
 import store from './store'
 
+//Config
+import config from './config'
 
-
-
-//temporary - eventauly we will use the map and map through the config
-import {Dashboard} from './containers'
-
-
-
+import {Navbar} from './components';
 
 
 //Store history of the router for updating the current page
@@ -34,14 +30,16 @@ class App extends Component {
 
     render() {
         return (
+            <div>
+            <Navbar history={history} />
             <Router history={history}>
                 <Switch>
-                    {/*{config.main.pages.map((page, index) =>
+                    {config.main.pages.map((page, index) =>
                         <Route exact path={page.path} component={page.componentName} key={index} />
-                    )} */}
-                    <Route exact path={'/'} component={Dashboard} />
+                    )}
                 </Switch>
             </Router>
+            </div>
         );
     }
 }
