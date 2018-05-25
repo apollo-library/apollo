@@ -98,7 +98,7 @@ class AccentedBox extends Component {
                     <styles.RateTopBar>
                         <styles.RateIntroText>How would you rate:</styles.RateIntroText>
                         <FlexGrow />
-                        <styles.RateBooksLeft>{this.props.studentDetails.booksToRate.length} Books Left</styles.RateBooksLeft>
+                        <styles.RateBooksLeft>{this.props.studentDetails.booksToRate.length - 1} Books Left</styles.RateBooksLeft>
                     </styles.RateTopBar>
 
                     {this.props.studentDetails.booksToRate.slice(0,1).map((book, index) =>
