@@ -119,6 +119,7 @@ const DropdownWindow = styled.div`
         (props.notifications && '400px')
         || (props.accountMenu && '')
     };
+    z-index: 1;
 
     &::before {
         content: '';
