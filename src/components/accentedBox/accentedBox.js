@@ -79,8 +79,8 @@ class AccentedBox extends Component {
         if (typeOfBox === "latestBook") {
             boxContent =
                 <styles.BoxContent>
-                    <styles.BookTitle>{this.props.studentDetails.latestBookTitle}</styles.BookTitle>
-                    <styles.BookAuthor>{this.props.studentDetails.latestBookAuthor}</styles.BookAuthor>
+                    <styles.BookTitle>{this.props.studentDetails.latestBook.title}</styles.BookTitle>
+                    <styles.BookAuthor>{this.props.studentDetails.latestBook.author}</styles.BookAuthor>
                     <styles.SidebarButton colour={this.props.gradFrom}>View History</styles.SidebarButton>
                     <styles.BackImage src={openBook} />
                 </styles.BoxContent>
