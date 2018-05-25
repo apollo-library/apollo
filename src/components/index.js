@@ -28,5 +28,5 @@ export {
     BookTable,
     DueSoon,
     Recommended,
-    History
+    History,
 }

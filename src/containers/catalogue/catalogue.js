@@ -11,7 +11,7 @@ class Catalogue extends Component {
         return (
             <div>
                 <CenterColumn>
-                    <LeftColumn>
+                    <LeftColumn small>
                         <PageTitle>{"Catalogue"}</PageTitle>
                         <AccentedBox
                             title="Latest Book"

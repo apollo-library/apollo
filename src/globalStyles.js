@@ -50,11 +50,12 @@ const CenterColumn = styled.div`
 
 const LeftColumn = styled.div`
     width: calc(100% * (1/3));
+    width: calc(100% * (1/${props => props.small ?  '5' : '3'};));
     margin-right: calc(${props => props.theme.styles.boxSpacing} / 2);
 `;
 
 const RightColumn = styled.div`
-    width: calc(100% * (2/3));
+    flex: 1;
     margin-left: calc(${props => props.theme.styles.boxSpacing} / 2);
 `;
 

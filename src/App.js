@@ -32,13 +32,15 @@ class App extends Component {
         return (
             <div>
                 <Navbar history={history} />
-                <Router history={history}>
-                    <Switch>
-                        {config.main.pages.map((page, index) =>
-                            <Route exact path={page.path} component={page.componentName} key={index} />
-                        )}
-                    </Switch>
-                </Router>
+                <div onClick={() => {console.log("Find a way to run a function within the navbar to hide all the dropdowns")}}>
+                    <Router history={history}>
+                        <Switch>
+                            {config.main.pages.map((page, index) =>
+                                <Route exact path={page.path} component={page.componentName} key={index} />
+                            )}
+                        </Switch>
+                    </Router>
+                </div>
             </div>
         );
     }
