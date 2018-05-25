@@ -97,16 +97,24 @@ function removeNotification(state, notificationToRemoveID) {
     });
     return {
         ...state,
-            studentDetails: {
-                ...state.studentDetails,
-                notifications: filteredArray
-            },
-        };
+        studentDetails: {
+            ...state.studentDetails,
+            notifications: filteredArray
+        },
+    };
 }
 
 function removeBookToRate(state) {
     state.studentDetails.booksToRate.shift();
-    return state
+    let newRateBooks = state.studentDetails.booksToRate;
+    console.log(newRateBooks)
+    return {
+        ...state,
+        studentDetails: {
+            ...state.studentDetails,
+            booksToRate: newRateBooks
+        },
+    };
 }
 
 export const data = (state = initialStates, action) => {
