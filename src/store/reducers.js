@@ -51,7 +51,7 @@ const initialStates = {
             {
                 _id: "nvmcvb",
                 actionDate: "2018-04-04T18:25:43.511Z",
-                dueDate: "2018-05-03T18:25:43.511Z",
+                dueDate: "2018-04-04T18:25:43.511Z",
                 action: "return",
                 title: "Rocket Propulsion Elements",
                 author: "George Paul Sutton"
