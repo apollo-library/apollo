@@ -31,14 +31,14 @@ class App extends Component {
     render() {
         return (
             <div>
-            <Navbar history={history} />
-            <Router history={history}>
-                <Switch>
-                    {config.main.pages.map((page, index) =>
-                        <Route exact path={page.path} component={page.componentName} key={index} />
-                    )}
-                </Switch>
-            </Router>
+                <Navbar history={history} />
+                <Router history={history}>
+                    <Switch>
+                        {config.main.pages.map((page, index) =>
+                            <Route exact path={page.path} component={page.componentName} key={index} />
+                        )}
+                    </Switch>
+                </Router>
             </div>
         );
     }

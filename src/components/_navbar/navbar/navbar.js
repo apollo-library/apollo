@@ -48,6 +48,10 @@ class Navbar extends Component {
         this.setState({notificationsActive: false});
     }
 
+    test() {
+        console.log("hi")
+    }
+
     render() {
         return (
             <styles.Navbar>
@@ -96,7 +100,7 @@ class Navbar extends Component {
                     </styles.UserName>
                 </styles.Root>
 
-                <styles.DropdownWindow notifications active={this.state.notificationsActive}>
+                <styles.DropdownWindow notifications onFocus={(e) => {console.log("hi")}} active={this.state.notificationsActive}>
                     <styles.DropdownBackground>
                         <styles.NotificationMainTitle>Notifications</styles.NotificationMainTitle>
                         {this.props.notifications.slice(0,config.main.maxNotificationSize).map((notification, index) => {

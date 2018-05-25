@@ -102,6 +102,7 @@ class NotificationBox extends Component {
                         </styles.NotificationDaysLeftNumber>
                         <styles.NotificationDaysLeftText colour={this.props.notificationColour}>{this.props.notificationDaysLeftText}</styles.NotificationDaysLeftText>
                         <Button colour={this.props.notificationColour}>{this.props.notificationButtonText}</Button>
+                        {/* todo: Add button onClick to above line with the props from the navbar.js with the fucntion to run */}
                     </styles.NotificationDaysLeft>
 
                 </styles.NotificationWrapper>

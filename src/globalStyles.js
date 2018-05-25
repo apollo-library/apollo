@@ -65,6 +65,7 @@ const BottomLogo = styled.img`
     display: block;
     opacity: 0.5;
     margin-top: 2rem;
+    user-select: none;
 `;
 
 const PageTitle = styled.p`
