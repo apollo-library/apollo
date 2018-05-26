@@ -7,23 +7,32 @@ import * as styles from './filterItemStyles.js'
 //Config
 import config from '../../../config'
 
+//Redux
+import { actions } from './../../../store/actions.js'
+import store from './../../../store'
+
 class FilterItem extends Component {
     constructor() {
         super()
         this.state = {
-            checkmarkActive: false
+            active: false
         };
-        this.toggleCheckmark = this.toggleCheckmark.bind(this);
+        this.toggleFilterState = this.toggleFilterState.bind(this);
     }
 
-    toggleCheckmark() {
-        this.setState({checkmarkActive: !this.state.checkmarkActive});
+    toggleFilterState(id) {
+        this.setState({active: !this.state.active});
+        if (this.state.active) {
+            store.dispatch(actions.updateFilterList(id, "remove"));
+        } else {
+            store.dispatch(actions.updateFilterList(id, "add"));
+        }
     };
 
     render() {
         return (
-            <styles.FilterItem onClick={() => this.toggleCheckmark()} active={this.state.checkmarkActive}>
-                <styles.Checkmark active={this.state.checkmarkActive}/>
+            <styles.FilterItem onClick={() => this.toggleFilterState(this.props.id)} active={this.state.active}>
+                <styles.Checkmark active={this.state.active}/>
                 {this.props.text}
             </styles.FilterItem>
         );

@@ -14,19 +14,6 @@ const mapStateToProps = (state) => ({
 })
 
 class Catalogue extends Component {
-    constructor() {
-        super()
-        this.state = {
-            selectedFilters: []
-        };
-        this.updateSelectedFilters = this.updateSelectedFilters.bind(this);
-    }
-
-    updateSelectedFilters(id) {
-        this.setState({selectedFilters: this.state.selectedFilters.concat(id)});
-        console.log(this.state.selectedFilters)
-    };
-
     render() {
         return (
             <div>
@@ -35,9 +22,7 @@ class Catalogue extends Component {
                         <PageTitle>{"Catalogue"}</PageTitle>
                         {this.props.filterList.map((filter, index) =>
                             (
-                                <span key={index} onClick={() => this.updateSelectedFilters(filter.id)}>
-                                    <FilterItem text={filter.text} />
-                                </span>
+                                <FilterItem key={index} text={filter.text} id={filter.id}/>
                             )
                         )}
                     </LeftColumn>

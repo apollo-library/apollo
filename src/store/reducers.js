@@ -1,5 +1,12 @@
 import { TYPES } from './actions'
 
+/* THINGS I NEED TO GET FROM API:
+
+ - studentDetails
+ - catalogue
+
+*/
+
 const initialStates = {
     currentPage: '',
     studentDetails: {
@@ -254,6 +261,10 @@ const initialStates = {
                 text: "Filter 20"
             }
         ]
+    },
+    filterTerms: {
+        searchTerm: "",
+        selectedFilters: []
     }
 }
 
@@ -271,15 +282,33 @@ function removeNotification(state, notificationToRemoveID) {
 }
 
 function removeBookToRate(state) {
-    state.studentDetails.booksToRate.shift();
-    let newRateBooks = state.studentDetails.booksToRate;
-    console.log(newRateBooks)
+    let localState = state;
+    localState.studentDetails.booksToRate.shift();
+    let newRateBooks = localState.studentDetails.booksToRate;
     return {
         ...state,
         studentDetails: {
             ...state.studentDetails,
             booksToRate: newRateBooks
         },
+    };
+}
+
+function updateFilterList(state, data, action) {
+    let localState = state;
+    if (action === "add") {
+        localState.filterTerms.selectedFilters.push(data);
+    } else if (action === "remove") {
+        let filterIndex = state.filterTerms.selectedFilters.indexOf(data)
+        localState.filterTerms.selectedFilters.splice(filterIndex, 1);
+    } else if (action === "search") {
+        localState.filterTerms.searchTerm = data;
+    } else {
+        return state
+    }
+    return {
+        ...state,
+        filterTerms: localState.filterTerms
     };
 }
 
@@ -291,6 +320,8 @@ export const data = (state = initialStates, action) => {
             return removeNotification(state, action.notificationToRemoveID)
         case TYPES.REMOVE_BOOK_TO_RATE:
             return removeBookToRate(state)
+        case TYPES.UPDATE_FILTER_LIST:
+            return updateFilterList(state, action.id, action.action)
         default:
             return state
     }
