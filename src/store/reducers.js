@@ -88,6 +88,172 @@ const initialStates = {
                 dueDate: "2018-05-06T18:25:43.511Z"
             }
         ]
+    },
+    catalogue: {
+        books: [
+            {
+                title: "Rocket Propulsion Elements",
+                author: "George Paul Sutton"
+            },
+            {
+                title: "Rocket Propulsion Elements 2",
+                author: "George Paul Sutton"
+            },
+            {
+                title: "Rocket Propulsion Elements 3",
+                author: "George Paul Sutton"
+            },
+            {
+                title: "Rocket Propulsion Elements 4",
+                author: "George Paul Sutton"
+            },
+            {
+                title: "Rocket Propulsion Elements 5",
+                author: "George Paul Sutton"
+            },
+            {
+                title: "Rocket Propulsion Elements 6",
+                author: "George Paul Sutton"
+            },
+            {
+                title: "Rocket Propulsion Elements 7",
+                author: "George Paul Sutton"
+            },
+            {
+                title: "Rocket Propulsion Elements 8",
+                author: "George Paul Sutton"
+            },
+            {
+                title: "Rocket Propulsion Elements 9",
+                author: "George Paul Sutton"
+            },
+            {
+                title: "Rocket Propulsion Elements 10",
+                author: "George Paul Sutton"
+            },
+            {
+                title: "Rocket Propulsion Elements 11",
+                author: "George Paul Sutton"
+            },
+            {
+                title: "Rocket Propulsion Elements 12",
+                author: "George Paul Sutton"
+            },
+            {
+                title: "Rocket Propulsion Elements 13",
+                author: "George Paul Sutton"
+            },
+            {
+                title: "Rocket Propulsion Elements 14",
+                author: "George Paul Sutton"
+            },
+            {
+                title: "Rocket Propulsion Elements 15",
+                author: "George Paul Sutton"
+            },
+            {
+                title: "Rocket Propulsion Elements 16",
+                author: "George Paul Sutton"
+            },
+            {
+                title: "Rocket Propulsion Elements 17",
+                author: "George Paul Sutton"
+            },
+            {
+                title: "Rocket Propulsion Elements 18",
+                author: "George Paul Sutton"
+            },
+            {
+                title: "Rocket Propulsion Elements 19",
+                author: "George Paul Sutton"
+            },
+            {
+                title: "Rocket Propulsion Elements 20",
+                author: "George Paul Sutton"
+            }
+        ],
+        filterList: [
+            {
+                id: "id1",
+                text: "Filter 1"
+            },
+            {
+                id: "id2",
+                text: "Filter 2"
+            },
+            {
+                id: "id3",
+                text: "Filter 3"
+            },
+            {
+                id: "id4",
+                text: "Filter 4"
+            },
+            {
+                id: "id5",
+                text: "Filter 5"
+            },
+            {
+                id: "id6",
+                text: "Filter 6"
+            },
+            {
+                id: "id7",
+                text: "Filter 7"
+            },
+            {
+                id: "id8",
+                text: "Filter 8"
+            },
+            {
+                id: "id9",
+                text: "Filter 9"
+            },
+            {
+                id: "id10",
+                text: "Filter 10"
+            },
+            {
+                id: "id11",
+                text: "Filter 11"
+            },
+            {
+                id: "id12",
+                text: "Filter 12"
+            },
+            {
+                id: "id13",
+                text: "Filter 13"
+            },
+            {
+                id: "id14",
+                text: "Filter 14"
+            },
+            {
+                id: "id15",
+                text: "Filter 15"
+            },
+            {
+                id: "id16",
+                text: "Filter 16"
+            },
+            {
+                id: "id17",
+                text: "Filter 17"
+            },
+            {
+                id: "id18",
+                text: "Filter 18"
+            },
+            {
+                id: "id19",
+                text: "Filter 19"
+            },
+            {
+                id: "id20",
+                text: "Filter 20"
+            }
+        ]
     }
 }
 

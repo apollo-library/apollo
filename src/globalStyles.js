@@ -9,7 +9,7 @@ const FlexGrow = styled.div`
 const Button = styled.div.attrs({
     colour: props => props.colour
 })`
-    background: ${props => props.theme.colours[props.colour]}
+    background: ${props => props.theme.colours[props.colour]};
     padding: 0.32rem 0.9rem;
     border-radius: ${props => props.theme.styles.borderRadius};
     color: #fff;
