@@ -18,10 +18,9 @@ const SearchBox = styled.input`
     padding: 0.5rem 0.5rem;
 
     &:focus {
-        box-shadow: inset 0px 0px 0px 3px ${props => props.theme.colours.primary};
+        box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.primary};
     }
 `;
-
 
 export {
     SearchBar,
