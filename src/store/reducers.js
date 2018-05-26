@@ -306,6 +306,7 @@ function updateFilterList(state, data, action) {
     } else {
         return state
     }
+    console.log(localState.filterTerms.selectedFilters)
     return {
         ...state,
         filterTerms: localState.filterTerms

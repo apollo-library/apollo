@@ -10,6 +10,7 @@ const FilterItem = styled.div`
     display: flex;
     align-items: center;
     background: ${props => props.active ? props.theme.colours.lightGrey : "none"};
+    cursor: pointer;
 
     &:hover {
         color: ${props => props.theme.colours.primary};
