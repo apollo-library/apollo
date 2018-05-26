@@ -11,6 +11,7 @@ const FilterItem = styled.div`
     align-items: center;
     background: ${props => props.active ? props.theme.colours.lightGrey : "none"};
     cursor: pointer;
+    user-select: none;
 
     &:hover {
         background: ${props => props.theme.colours.lightGrey};
