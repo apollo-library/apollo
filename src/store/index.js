@@ -1,10 +1,10 @@
 import { createStore, combineReducers } from 'redux'
-import { globalData } from './reducers/globalReducer'
-import { catalogueData } from './reducers/catalogueReducer'
+import { data } from './reducers/dataReducer'
+import { ui } from './reducers/uiReducer'
 
 const rootReducer = combineReducers({
-    globalData,
-    catalogueData
+    data,
+    ui
 })
 
 export default createStore(rootReducer)

@@ -18,8 +18,8 @@ import {NotificationBox} from './../../../components';
 import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => ({
-    currentPage: state.globalData.currentPage,
-    notifications: state.globalData.studentDetails.notifications
+    currentPage: state.data.currentPage,
+    notifications: state.data.studentDetails.notifications
 })
 
 class Navbar extends Component {

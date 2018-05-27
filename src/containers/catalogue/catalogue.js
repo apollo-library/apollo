@@ -10,7 +10,7 @@ import {CenterColumn, LeftColumn, RightColumn, PageTitle} from './../../globalSt
 import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => ({
-    filterList: state.globalData.catalogue.filterList
+    filterList: state.data.catalogue.filterList
 })
 
 class Catalogue extends Component {

@@ -14,7 +14,7 @@ import { actions } from './../../../store/actions.js'
 import store from './../../../store'
 
 const mapStateToProps = (state) => ({
-    currentPage: state.globalData.currentPage
+    currentPage: state.data.currentPage
 })
 
 class Searchbar extends Component {

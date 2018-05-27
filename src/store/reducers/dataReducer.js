@@ -269,29 +269,20 @@ const initialStates = {
 }
 
 function removeNotification(state, notificationToRemoveID) {
-    let filteredArray = state.studentDetails.notifications.filter((notification) => {
+    let localState = state;
+    let filteredArray = localState.studentDetails.notifications.filter((notification) => {
         return notification._id !== notificationToRemoveID
     });
-    return {
-        ...state,
-        studentDetails: {
-            ...state.studentDetails,
-            notifications: filteredArray
-        },
-    };
+    localState.studentDetails.notifications = filteredArray;
+    
+    return {...state, localState}
 }
 
 function removeBookToRate(state) {
     let localState = state;
     localState.studentDetails.booksToRate.shift();
-    let newRateBooks = localState.studentDetails.booksToRate;
-    return {
-        ...state,
-        studentDetails: {
-            ...state.studentDetails,
-            booksToRate: newRateBooks
-        },
-    };
+
+    return {...state, localState}
 }
 
 function updateFilterList(state, data, action) {
@@ -299,24 +290,21 @@ function updateFilterList(state, data, action) {
     if (action === "add") {
         localState.filterTerms.selectedFilters.push(data);
     } else if (action === "remove") {
-        let filterIndex = state.filterTerms.selectedFilters.indexOf(data)
+        let filterIndex = localState.filterTerms.selectedFilters.indexOf(data)
         localState.filterTerms.selectedFilters.splice(filterIndex, 1);
     } else if (action === "search") {
         localState.filterTerms.searchTerm = data;
     } else {
-        return state
+        return {...state}
     }
     console.log(localState.filterTerms)
-    return {
-        ...state,
-        filterTerms: localState.filterTerms
-    };
+    return {...state, localState}
 }
 
-export const globalData = (state = initialStates, action) => {
+export const data = (state = initialStates, action) => {
     switch (action.type) {
         case TYPES.UPDATE_CURRENT_PAGE:
-            return Object.assign({}, state, { currentPage: action.newCurrentPage })
+            return{...state, currentPage: action.newCurrentPage }
         case TYPES.REMOVE_NOTIFICATION:
             return removeNotification(state, action.notificationToRemoveID)
         case TYPES.REMOVE_BOOK_TO_RATE:

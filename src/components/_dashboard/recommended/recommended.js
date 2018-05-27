@@ -7,7 +7,7 @@ import {BookTable} from './../../'
 import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => ({
-    booksDueSoon: state.globalData.studentDetails.booksDueSoon
+    booksDueSoon: state.data.studentDetails.booksDueSoon
 })
 
 class Recommended extends Component {

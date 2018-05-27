@@ -18,7 +18,7 @@ import { actions } from './../../store/actions.js'
 import store from './../../store'
 
 const mapStateToProps = (state) => ({
-    studentDetails: state.globalData.studentDetails
+    studentDetails: state.data.studentDetails
 })
 
 class AccentedBox extends Component {
@@ -65,6 +65,7 @@ class AccentedBox extends Component {
 
     addRating(starIndex) {
         store.dispatch(actions.removeBookToRate());
+        this.updateStarsFilled(starIndex);
         console.log("Rating added with " + (starIndex + 1) + " stars");
     }
 
