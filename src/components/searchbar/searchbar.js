@@ -3,15 +3,12 @@ import React, { Component } from 'react';
 
 //Styles
 import * as styles from './searchbarStyles.js'
-import {Button} from './../../../globalStyles.js'
-
-//Config
-import config from '../../../config'
+import {Button} from './../../globalStyles.js'
 
 //Redux
 import { connect } from 'react-redux'
-import { actions } from './../../../store/actions.js'
-import store from './../../../store'
+import { actions } from './../../store/actions.js'
+import store from './../../store'
 
 const mapStateToProps = (state) => ({
     currentPage: state.data.currentPage

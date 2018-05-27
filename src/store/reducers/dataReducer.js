@@ -181,83 +181,83 @@ const initialStates = {
         ],
         filterList: [
             {
-                id: "id1",
+                id: 1,
                 text: "Filter 1"
             },
             {
-                id: "id2",
+                id: 2,
                 text: "Filter 2"
             },
             {
-                id: "id3",
+                id: 3,
                 text: "Filter 3"
             },
             {
-                id: "id4",
+                id: 4,
                 text: "Filter 4"
             },
             {
-                id: "id5",
+                id: 5,
                 text: "Filter 5"
             },
             {
-                id: "id6",
+                id: 6,
                 text: "Filter 6"
             },
             {
-                id: "id7",
+                id: 7,
                 text: "Filter 7"
             },
             {
-                id: "id8",
+                id: 8,
                 text: "Filter 8"
             },
             {
-                id: "id9",
+                id: 9,
                 text: "Filter 9"
             },
             {
-                id: "id10",
+                id: 10,
                 text: "Filter 10"
             },
             {
-                id: "id11",
+                id: 11,
                 text: "Filter 11"
             },
             {
-                id: "id12",
+                id: 12,
                 text: "Filter 12"
             },
             {
-                id: "id13",
+                id: 13,
                 text: "Filter 13"
             },
             {
-                id: "id14",
+                id: 14,
                 text: "Filter 14"
             },
             {
-                id: "id15",
+                id: 15,
                 text: "Filter 15"
             },
             {
-                id: "id16",
+                id: 16,
                 text: "Filter 16"
             },
             {
-                id: "id17",
+                id: 17,
                 text: "Filter 17"
             },
             {
-                id: "id18",
+                id: 18,
                 text: "Filter 18"
             },
             {
-                id: "id19",
+                id: 19,
                 text: "Filter 19"
             },
             {
-                id: "id20",
+                id: 20,
                 text: "Filter 20"
             }
         ]

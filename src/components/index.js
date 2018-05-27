@@ -13,6 +13,7 @@ import Navbar from './_navbar/navbar/navbar'
 import NotificationBox from './_navbar/notificationBox/notificationBox';
 
 import AccentedBox from './accentedBox/accentedBox';
+import Searchbar from './searchbar/searchbar';
 
 import ContentTabs from './_dashboard/contentTabs/contentTabs';
 import BookTable from './_dashboard/bookTable/bookTable';
@@ -20,19 +21,21 @@ import DueSoon from './_dashboard/dueSoon/dueSoon';
 import Recommended from './_dashboard/recommended/recommended';
 import History from './_dashboard/history/history';
 
-import Searchbar from './_catalogue/searchbar/searchbar';
 import FilterItem from './_catalogue/filterItem/filterItem'
 
 //Export all components
 export {
     Navbar,
     NotificationBox,
+
     AccentedBox,
+    Searchbar,
+
     ContentTabs,
     BookTable,
     DueSoon,
     Recommended,
     History,
-    Searchbar,
+    
     FilterItem
 }

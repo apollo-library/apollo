@@ -4,9 +4,6 @@ import React, { Component } from 'react';
 //Styles
 import * as styles from './filterItemStyles.js'
 
-//Config
-import config from '../../../config'
-
 //Redux
 import { actions } from './../../../store/actions.js'
 import store from './../../../store'
