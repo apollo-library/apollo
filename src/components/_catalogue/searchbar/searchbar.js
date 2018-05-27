@@ -9,8 +9,13 @@ import {Button} from './../../../globalStyles.js'
 import config from '../../../config'
 
 //Redux
+import { connect } from 'react-redux'
 import { actions } from './../../../store/actions.js'
 import store from './../../../store'
+
+const mapStateToProps = (state) => ({
+    currentPage: state.globalData.currentPage
+})
 
 class Searchbar extends Component {
     constructor() {
@@ -19,20 +24,25 @@ class Searchbar extends Component {
             searchTerm: ""
         };
         this.updateSearchTerm = this.updateSearchTerm.bind(this);
-        this.setSearchFilterTerm = this.setSearchFilterTerm.bind(this);
+        this.submitSearchTerm = this.submitSearchTerm.bind(this);
     }
 
     updateSearchTerm(e) {
         if (e.keyCode === 13) {
             //We pressed enter
-            this.setSearchFilterTerm();
+            this.submitSearchTerm();
         }
         this.setState({searchTerm: e.target.value});
     }
 
-    setSearchFilterTerm() {
-        if (this.state.searchTerm !== "") {
-            store.dispatch(actions.updateFilterList(this.state.searchTerm, "search"));
+    submitSearchTerm() {
+        if (this.props.currentPage === "/catalogue") {
+            if (this.state.searchTerm !== "") {
+                store.dispatch(actions.updateFilterList(this.state.searchTerm, "search"));
+            }
+        } else if (this.props.currentPage === "/scan") {
+            console.log("enter in scan document")
+            console.log(this.state.searchTerm)
         }
     }
 
@@ -40,10 +50,10 @@ class Searchbar extends Component {
         return (
             <styles.SearchBar>
                 <styles.SearchBox onKeyUp={(e) => this.updateSearchTerm(e)} type="text" placeholder="Search"/>
-                <Button onClick={() => this.setSearchFilterTerm()} colour="primary">Search</Button>
+                <Button onClick={() => this.submitSearchTerm()} colour="primary">Search</Button>
             </styles.SearchBar>
         );
     }
 }
 
-export default Searchbar;
+export default connect(mapStateToProps)(Searchbar);

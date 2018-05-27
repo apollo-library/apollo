@@ -12,7 +12,7 @@ import logo from './../../assets/images/logo.svg'
 import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => ({
-    studentDetails: state.data.studentDetails
+    studentDetails: state.globalData.studentDetails
 })
 
 

@@ -18,7 +18,7 @@ import { actions } from './../../store/actions.js'
 import store from './../../store'
 
 const mapStateToProps = (state) => ({
-    studentDetails: state.data.studentDetails
+    studentDetails: state.globalData.studentDetails
 })
 
 class AccentedBox extends Component {

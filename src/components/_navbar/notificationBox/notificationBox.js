@@ -11,7 +11,7 @@ import { actions } from './../../../store/actions.js'
 import store from './../../../store'
 
 const mapStateToProps = (state) => ({
-    notifications: state.data.studentDetails.notifications
+    notifications: state.globalData.studentDetails.notifications
 })
 
 class NotificationBox extends Component {

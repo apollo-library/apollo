@@ -1,4 +1,4 @@
-import { TYPES } from './actions'
+import { TYPES } from '../actions'
 
 /* THINGS I NEED TO GET FROM API:
 
@@ -313,7 +313,7 @@ function updateFilterList(state, data, action) {
     };
 }
 
-export const data = (state = initialStates, action) => {
+export const globalData = (state = initialStates, action) => {
     switch (action.type) {
         case TYPES.UPDATE_CURRENT_PAGE:
             return Object.assign({}, state, { currentPage: action.newCurrentPage })

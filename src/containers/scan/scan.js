@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 //Component imports
-import {AccentedBox} from './../../components';
+import {Searchbar} from './../../components';
 
 import {CenterColumn, LeftColumn, RightColumn, PageTitle} from './../../globalStyles.js'
 
@@ -11,19 +11,13 @@ class Scan extends Component {
         return (
             <div>
                 <CenterColumn>
-                    <LeftColumn>
+                    <LeftColumn small>
                         <PageTitle>{"Scan"}</PageTitle>
-                        <AccentedBox
-                            title="Latest Book"
-                            gradFrom="accent5"
-                            gradTo="accent4"
-
-                            type="latestBook"
-                        />
+                        <p>Scan sidebar</p>
                     </LeftColumn>
 
                     <RightColumn>
-                        <p>This is the scan page</p>
+                        <Searchbar />
                     </RightColumn>
                 </CenterColumn>
             </div>
