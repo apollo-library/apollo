@@ -274,7 +274,7 @@ function removeNotification(state, notificationToRemoveID) {
         return notification._id !== notificationToRemoveID
     });
     localState.studentDetails.notifications = filteredArray;
-    
+
     return {...state, localState}
 }
 

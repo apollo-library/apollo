@@ -16,35 +16,33 @@ import {NotificationBox} from './../../../components';
 
 //Redux
 import { connect } from 'react-redux'
+import { actions } from './../../../store/actions.js'
+import store from './../../../store'
 
 const mapStateToProps = (state) => ({
     currentPage: state.data.currentPage,
-    notifications: state.data.studentDetails.notifications
+    notifications: state.data.studentDetails.notifications,
+    notificationsActive: state.ui.notificationPopupActive,
+    accountActive: state.ui.accountPopupActive
 })
 
 class Navbar extends Component {
     constructor() {
         super()
-        this.state = {
-            notificationsActive: false,
-            accountActive: false
-        };
         this.toggleNotifications = this.toggleNotifications.bind(this);
         this.toggleAccount = this.toggleAccount.bind(this);
     }
 
     toggleNotifications() {
         //Toggle visibility of notifications dropdown
-
-        this.setState({notificationsActive: !this.state.notificationsActive});
-        this.setState({accountActive: false});
+        store.dispatch(actions.toggleNotifications());
+        store.dispatch(actions.hideAccount());
     }
 
     toggleAccount() {
         //Toggle visibility of account dropdown
-
-        this.setState({accountActive: !this.state.accountActive});
-        this.setState({notificationsActive: false});
+        store.dispatch(actions.toggleAccount());
+        store.dispatch(actions.hideNotifications());
     }
 
 
@@ -96,7 +94,7 @@ class Navbar extends Component {
                     </styles.UserName>
                 </styles.Root>
 
-                <styles.DropdownWindow notifications active={this.state.notificationsActive}>
+                <styles.DropdownWindow notifications active={this.props.notificationsActive}>
                     <styles.DropdownBackground>
                         <styles.NotificationMainTitle>Notifications</styles.NotificationMainTitle>
                         {this.props.notifications.slice(0,config.main.maxNotificationSize).map((notification, index) => {
@@ -141,7 +139,7 @@ class Navbar extends Component {
                     </styles.DropdownBackground>
                 </styles.DropdownWindow>
 
-                <styles.DropdownWindow accountMenu active={this.state.accountActive}>
+                <styles.DropdownWindow accountMenu active={this.props.accountActive}>
                     <styles.DropdownBackground>
                         <styles.accountMenu>
                             <styles.menuItem>Suggest a Book</styles.menuItem>

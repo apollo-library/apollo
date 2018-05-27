@@ -12,7 +12,6 @@ import config from './config'
 
 import {Navbar} from './components';
 
-
 //Store history of the router for updating the current page
 const history = createHistory();
 
@@ -22,17 +21,26 @@ history.listen((location) => {
 });
 
 class App extends Component {
+    constructor() {
+        super()
+        this.hideAllPopups = this.hideAllPopups.bind(this);
+    }
 
     //Ensure the redux current page state is correct even after reloading
     componentWillMount() {
         store.dispatch(actions.updateCurrentPage(history.location.pathname));
     }
 
+    hideAllPopups() {
+        store.dispatch(actions.hideNotifications());
+        store.dispatch(actions.hideAccount());
+    }
+
     render() {
         return (
             <div>
                 <Navbar history={history} />
-                <div onClick={() => {console.log("Find a way to run a function within the navbar to hide all the dropdowns")}}>
+                <div onClick={() => {this.hideAllPopups()}}>
                     <Router history={history}>
                         <Switch>
                             {config.main.pages.map((page, index) =>
