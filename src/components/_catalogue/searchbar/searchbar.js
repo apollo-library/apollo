@@ -16,7 +16,7 @@ class Searchbar extends Component {
     constructor() {
         super()
         this.state = {
-            searchTerm: "false"
+            searchTerm: ""
         };
         this.updateSearchTerm = this.updateSearchTerm.bind(this);
         this.setSearchFilterTerm = this.setSearchFilterTerm.bind(this);
@@ -31,7 +31,9 @@ class Searchbar extends Component {
     }
 
     setSearchFilterTerm() {
-        store.dispatch(actions.updateFilterList(this.state.searchTerm, "search"));
+        if (this.state.searchTerm !== "") {
+            store.dispatch(actions.updateFilterList(this.state.searchTerm, "search"));
+        }
     }
 
     render() {
