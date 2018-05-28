@@ -6,6 +6,8 @@ import * as styles from './scanModulesStyles.js'
 
 import {Button} from './../../../globalStyles.js'
 
+import * as API from './../../../api';
+
 //Redux
 import { connect } from 'react-redux'
 import { actions } from './../../../store/actions.js'
@@ -13,6 +15,7 @@ import store from './../../../store'
 
 const mapStateToProps = (state) => ({
     scannedBook: state.data.scannedBook,
+    scanSearchTerm: state.ui.scanSearchTerm,
     scanState: state.ui.scanState,
     scanStatesToShow: state.ui.scanStatesToShow
 })
@@ -37,7 +40,7 @@ class ScanModules extends Component {
                         //Book IS on loan
                         buttonsToRender = <styles.OptionButtons>
                             <styles.OptionButton>
-                                <Button onClick={() => this.returnBook()} colour="accent5">Return</Button>
+                                <Button onClick={() => this.returnBook(this.props.scanSearchTerm)} colour="accent5">Return</Button>
                             </styles.OptionButton>
                             <styles.OptionButton>
                                 <Button onClick={() => this.showRenewBookOptions()} colour="accent4">Renew</Button>
@@ -88,9 +91,12 @@ class ScanModules extends Component {
         return combinedModules;
     }
 
-    returnBook() {
+    async returnBook(bookId) {
         console.log("Book returned")
-        store.dispatch(actions.setScanState(4));
+        let returnStatus = await API.Loans.returnBook(bookId);
+        if (returnStatus.status === 'success') {
+            store.dispatch(actions.setScanState(4));
+        }
     }
 
     showRenewBookOptions() {
