@@ -10,9 +10,9 @@
 
 //Import all API functions
 import * as Tags from './tags';
-
+import * as Books from './books';
 
 // import Users from './users';
 
 //Export
-export { Tags }
+export { Tags, Books }
