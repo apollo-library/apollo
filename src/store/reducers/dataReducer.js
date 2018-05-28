@@ -229,15 +229,11 @@ function updateFilterList(state, data, action) {
     return {...state, localState}
 }
 
-function getScannedBook(state, bookID) {
+function getScannedBook(state, scannedBook) {
     let localState = state;
-    localState.scannedBook = {
-        title: "Rocket Propulsion Elements",
-        author: "George Paul Sutton",
-        loanID: "7890"
-    }
+    localState.scannedBook = scannedBook
 
-    console.log("Looked up with with ID: " + bookID)
+    console.log("Looked up with with ID: " + scannedBook)
 
     return {...state, localState}
 }

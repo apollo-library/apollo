@@ -31,7 +31,7 @@ class ScanModules extends Component {
         let combinedModules = [];
 
         for (let i = 0; i < this.props.scanStatesToShow.length; i++) {
-            switch (i) {
+            switch (this.props.scanStatesToShow[i]) {
                 case 0: //Initial state, just the search bar at the top of the page
                     break;
                 case 1: //Scanned barcode, display book info. Show the next options for either withdraw or return / renew
@@ -69,10 +69,10 @@ class ScanModules extends Component {
 
                     break;
                 case 2: //WITHDRAW. Show options for selecting a student and the due date
-                    thirdModule = <p>Im state 1</p>
+                    thirdModule = <p>Im state 2</p>
                     break;
                 case 3: //RENEW. Show option for selecting how many weeks to renew book for
-                    fourthModule = <p>Im state 1</p>
+                    fourthModule = <p>Im state 3</p>
                     break;
                 case 4: //Thank you message before automatically moving on back to initial state
                     fifthModule = <p key={this.props.scanState}>Thank you!</p>
