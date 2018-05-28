@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 
+//Temp, Cameron will remove soon
+import Test from './tests/index.js';
+
 //Redux
 import { actions } from './store/actions'
 import store from './store'
@@ -19,6 +22,7 @@ const history = createHistory();
 history.listen((location) => {
     store.dispatch(actions.updateCurrentPage(location.pathname));
 });
+
 
 class App extends Component {
     constructor() {
@@ -46,6 +50,7 @@ class App extends Component {
                             {config.main.pages.map((page, index) =>
                                 <Route exact path={page.path} component={page.componentName} key={index} />
                             )}
+                            <Route exact path={'/testing'} component={Test}/>
                         </Switch>
                     </Router>
                 </div>
