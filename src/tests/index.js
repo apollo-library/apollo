@@ -4,7 +4,7 @@ import * as API from './../api/index.js';
 
 class Test extends Component {
     async componentDidMount() {
-        let fun = await API.Books.getScanBookInfo('bcd');
+        let fun = await API.Loans.returnBook('abc');
         console.log(fun);
     }
 
