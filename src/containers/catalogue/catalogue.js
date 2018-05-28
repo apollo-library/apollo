@@ -8,12 +8,21 @@ import {CenterColumn, LeftColumn, RightColumn, PageTitle} from './../../globalSt
 
 //Redux
 import { connect } from 'react-redux'
+import { actions } from './../../store/actions.js'
+import store from './../../store'
+
+import * as API from './../../api';
 
 const mapStateToProps = (state) => ({
     filterList: state.data.catalogue.filterList
 })
 
 class Catalogue extends Component {
+    async componentDidMount() {
+        let filterTags = await API.Tags.getAllTags();
+        store.dispatch(actions.getFilterList(filterTags));
+    }
+
     render() {
         return (
             <div>
