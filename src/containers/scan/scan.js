@@ -2,12 +2,15 @@
 import React, { Component } from 'react';
 
 //Component imports
-import {Searchbar} from './../../components';
+import {Searchbar, ScanModules} from './../../components';
 
 import {CenterColumn, LeftColumn, RightColumn, PageTitle} from './../../globalStyles.js'
 
 class Scan extends Component {
     render() {
+
+
+
         return (
             <div>
                 <CenterColumn>
@@ -18,6 +21,7 @@ class Scan extends Component {
 
                     <RightColumn>
                         <Searchbar />
+                        <ScanModules />
                     </RightColumn>
                 </CenterColumn>
             </div>

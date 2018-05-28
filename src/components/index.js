@@ -23,6 +23,8 @@ import History from './_dashboard/history/history';
 
 import FilterItem from './_catalogue/filterItem/filterItem'
 
+import ScanModules from './_scan/scanModules/scanModules';
+
 //Export all components
 export {
     Navbar,
@@ -36,6 +38,8 @@ export {
     DueSoon,
     Recommended,
     History,
-    
-    FilterItem
+
+    FilterItem,
+
+    ScanModules
 }

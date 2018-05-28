@@ -2,8 +2,6 @@ import styled from 'styled-components';
 
 const SearchBar = styled.div`
     display: flex;
-    padding: 0 10px;
-    align-items: flex-start;
     align-items: center;
 `;
 

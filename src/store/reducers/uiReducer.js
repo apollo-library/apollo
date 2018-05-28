@@ -8,7 +8,16 @@ import { TYPES } from '../actions'
 
 const initialStates = {
     notificationPopupActive: false,
-    accountPopupActive: false
+    accountPopupActive: false,
+
+    scanState: 0
+    /*
+        0 = Initial state, just the search bar at the top of the page
+        1 = Scanned barcode, display book info. Show the next options for either withdraw or return / renew
+        2 = WITHDRAW. Show options for selecting a student and the due date
+        3 = RENEW. Show option for selecting how many weeks to renew book for
+        4 = Thank you message before automatically moving on back to initial state
+    */
 }
 
 function toggleNotifications(state) {
@@ -39,6 +48,13 @@ function hideAccount(state) {
     return {...state, localState};
 }
 
+function setScanState(state, value) {
+    let localState = state;
+    localState.scanState = value;
+
+    return {...state, localState};
+}
+
 export const ui = (state = initialStates, action) => {
     switch (action.type) {
         case TYPES.TOGGLE_NOTIFICATIONS:
@@ -49,6 +65,8 @@ export const ui = (state = initialStates, action) => {
             return toggleAccount(state)
         case TYPES.HIDE_ACCOUNT:
             return hideAccount(state)
+        case TYPES.SET_SCAN_STATE:
+            return setScanState(state, action.value)
         default:
             return state
     }

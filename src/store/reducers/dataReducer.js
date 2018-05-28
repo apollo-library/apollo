@@ -265,7 +265,8 @@ const initialStates = {
     filterTerms: {
         searchTerm: "",
         selectedFilters: []
-    }
+    },
+    scannedBook: {}
 }
 
 function removeNotification(state, notificationToRemoveID) {
@@ -301,6 +302,19 @@ function updateFilterList(state, data, action) {
     return {...state, localState}
 }
 
+function getScannedBook(state, bookID) {
+    let localState = state;
+    localState.scannedBook = {
+        title: "Rocket Propulsion Elements",
+        author: "George Paul Sutton",
+        loanID: "7890"
+    }
+
+    console.log("Looked up with with ID: " + bookID)
+
+    return {...state, localState}
+}
+
 export const data = (state = initialStates, action) => {
     switch (action.type) {
         case TYPES.UPDATE_CURRENT_PAGE:
@@ -311,6 +325,8 @@ export const data = (state = initialStates, action) => {
             return removeBookToRate(state)
         case TYPES.UPDATE_FILTER_LIST:
             return updateFilterList(state, action.id, action.action)
+        case TYPES.GET_SCANNED_BOOK:
+            return getScannedBook(state, action.bookID)
         default:
             return state
     }

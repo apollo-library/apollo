@@ -38,15 +38,15 @@ class Searchbar extends Component {
                 store.dispatch(actions.updateFilterList(this.state.searchTerm, "search"));
             }
         } else if (this.props.currentPage === "/scan") {
-            console.log("enter in scan document")
-            console.log(this.state.searchTerm)
+            store.dispatch(actions.getScannedBook(this.state.searchTerm));
+            store.dispatch(actions.setScanState(1));
         }
     }
 
     render() {
         return (
             <styles.SearchBar>
-                <styles.SearchBox onKeyUp={(e) => this.updateSearchTerm(e)} type="text" placeholder="Search"/>
+                <styles.SearchBox onKeyUp={(e) => this.updateSearchTerm(e)} type="text" placeholder="Search" autoFocus/>
                 <Button onClick={() => this.submitSearchTerm()} colour="primary">Search</Button>
             </styles.SearchBar>
         );
