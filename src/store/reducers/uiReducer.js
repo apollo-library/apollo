@@ -10,7 +10,8 @@ const initialStates = {
     notificationPopupActive: false,
     accountPopupActive: false,
 
-    scanState: 0
+    scanState: 0,
+    scanStatesToShow: [0]
     /*
         0 = Initial state, just the search bar at the top of the page
         1 = Scanned barcode, display book info. Show the next options for either withdraw or return / renew
@@ -51,6 +52,7 @@ function hideAccount(state) {
 function setScanState(state, value) {
     let localState = state;
     localState.scanState = value;
+    localState.scanStatesToShow.push(value)
 
     return {...state, localState};
 }
