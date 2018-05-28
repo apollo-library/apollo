@@ -238,10 +238,6 @@ function getScannedBook(state, scannedBook) {
     return {...state, localState}
 }
 
-function returnBook(state) {
-    console.log("Book returned")
-    return state
-}
 
 export const data = (state = initialStates, action) => {
     switch (action.type) {
@@ -257,8 +253,6 @@ export const data = (state = initialStates, action) => {
             return updateFilterList(state, action.id, action.action)
         case TYPES.GET_SCANNED_BOOK:
             return getScannedBook(state, action.bookID)
-        case TYPES.RETURN_BOOK:
-            return returnBook(state)
         default:
             return state
     }
