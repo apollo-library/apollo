@@ -18,10 +18,6 @@ const mapStateToProps = (state) => ({
 })
 
 class ScanModules extends Component {
-    constructor() {
-        super()
-        this.returnBook = this.returnBook.bind(this);
-    }
 
     calculateScanModules() {
         let secondModule = null;
@@ -44,7 +40,7 @@ class ScanModules extends Component {
                                 <Button onClick={() => this.returnBook()} colour="accent5">Return</Button>
                             </styles.OptionButton>
                             <styles.OptionButton>
-                                <Button colour="accent4">Renew</Button>
+                                <Button onClick={() => this.showRenewBookOptions()} colour="accent4">Renew</Button>
                             </styles.OptionButton>
                         </styles.OptionButtons>
                     } else {
@@ -72,7 +68,9 @@ class ScanModules extends Component {
                     thirdModule = <p>Im state 2</p>
                     break;
                 case 3: //RENEW. Show option for selecting how many weeks to renew book for
-                    fourthModule = <p>Im state 3</p>
+                    fourthModule = <div>
+                        <input type="date" />
+                    </div>
                     break;
                 case 4: //Thank you message before automatically moving on back to initial state
                     fifthModule = <p key={this.props.scanState}>Thank you!</p>
@@ -91,8 +89,12 @@ class ScanModules extends Component {
     }
 
     returnBook() {
-        store.dispatch(actions.returnBook());
+        console.log("Book returned")
         store.dispatch(actions.setScanState(4));
+    }
+
+    showRenewBookOptions() {
+        store.dispatch(actions.setScanState(3));
     }
 
     render() {

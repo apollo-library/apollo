@@ -41,7 +41,6 @@ class Searchbar extends Component {
             }
         } else if (this.props.currentPage === "/scan") {
             let scannedBook = await API.Books.getScanBookInfo(this.state.searchTerm);
-            console.log(scannedBook)
             store.dispatch(actions.getScannedBook(scannedBook));
             store.dispatch(actions.setScanState(1));
         }
