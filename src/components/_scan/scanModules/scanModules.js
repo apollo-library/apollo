@@ -11,6 +11,8 @@ import config from '../../../config'
 
 //Redux
 import { connect } from 'react-redux'
+import { actions } from './../../../store/actions.js'
+import store from './../../../store'
 
 const mapStateToProps = (state) => ({
     scannedBook: state.data.scannedBook,
@@ -18,8 +20,16 @@ const mapStateToProps = (state) => ({
 })
 
 class ScanModules extends Component {
-    render() {
-        let scanModulesToRender = null;
+    constructor() {
+        super()
+        this.state = {
+            secondModule: []
+        };
+        this.returnBook = this.returnBook.bind(this);
+    }
+
+    calculateScanModules() {
+        let localScanModulesToRender = [];
 
         switch (this.props.scanState) {
             case 0: //Initial state, just the search bar at the top of the page
@@ -31,7 +41,7 @@ class ScanModules extends Component {
                     //Book IS on loan
                     buttonsToRender = <styles.OptionButtons>
                         <styles.OptionButton>
-                            <Button colour="accent5">Return</Button>
+                            <Button onClick={() => this.returnBook()} colour="accent5">Return</Button>
                         </styles.OptionButton>
                         <styles.OptionButton>
                             <Button colour="accent4">Renew</Button>
@@ -41,37 +51,53 @@ class ScanModules extends Component {
                     //Book IS NOT on loan
                     buttonsToRender = <styles.OptionButtons>
                         <styles.OptionButton>
-                            <Button colour="accent5">Select Student</Button>
+                            <Button colour="accent2">Select Student</Button>
                         </styles.OptionButton>
                         <styles.OptionButton>
-                            <Button colour="accent4">Date</Button>
+                            <Button colour="accent3">Date</Button>
                         </styles.OptionButton>
                     </styles.OptionButtons>
                 }
 
-                scanModulesToRender = <styles.SecondModule>
-                    <styles.BookDetails>
-                        <styles.BookTitle>{this.props.scannedBook.title}</styles.BookTitle>
-                        <styles.BookAuthor>{this.props.scannedBook.author}</styles.BookAuthor>
-                    </styles.BookDetails>
-                    {buttonsToRender}
-                </styles.SecondModule>
+                localScanModulesToRender.push(
+                    <styles.SecondModule key={this.props.scanState}>
+                        <styles.BookDetails>
+                            <styles.BookTitle>{this.props.scannedBook.title}</styles.BookTitle>
+                            <styles.BookAuthor>{this.props.scannedBook.author}</styles.BookAuthor>
+                        </styles.BookDetails>
+                        {buttonsToRender}
+                    </styles.SecondModule>
+                )
 
                 break;
             case 2: //WITHDRAW. Show options for selecting a student and the due date
-                scanModulesToRender = <p>Im state 1</p>
+                localScanModulesToRender = <p>Im state 1</p>
                 break;
             case 3: //RENEW. Show option for selecting how many weeks to renew book for
-                scanModulesToRender = <p>Im state 1</p>
+                localScanModulesToRender = <p>Im state 1</p>
                 break;
             case 4: //Thank you message before automatically moving on back to initial state
-                scanModulesToRender = <p>Im state 1</p>
+                localScanModulesToRender.push(<p key={this.props.scanState}>Thank you!</p>)
                 break;
             default: //Default case for switch statement
-                scanModulesToRender = <p>Please refresh the page</p>
+                localScanModulesToRender = <p>Please refresh the page</p>
         }
+        return localScanModulesToRender
+        //this.setState({scanModulesToRender: localScanModulesToRender})
+    }
+
+    returnBook() {
+        store.dispatch(actions.returnBook());
+        store.dispatch(actions.setScanState(4));
+    }
+
+    render() {
+
+        console.log(this.state.scanModulesToRender)
         return (
-            scanModulesToRender
+            <div>
+                {this.state.secondModule}
+            </div>
         );
     }
 }

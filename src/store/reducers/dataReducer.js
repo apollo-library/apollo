@@ -182,83 +182,83 @@ const initialStates = {
         filterList: [
             {
                 id: 1,
-                text: "Filter 1"
+                name: "Filter 1"
             },
             {
                 id: 2,
-                text: "Filter 2"
+                name: "Filter 2"
             },
             {
                 id: 3,
-                text: "Filter 3"
+                name: "Filter 3"
             },
             {
                 id: 4,
-                text: "Filter 4"
+                name: "Filter 4"
             },
             {
                 id: 5,
-                text: "Filter 5"
+                name: "Filter 5"
             },
             {
                 id: 6,
-                text: "Filter 6"
+                name: "Filter 6"
             },
             {
                 id: 7,
-                text: "Filter 7"
+                name: "Filter 7"
             },
             {
                 id: 8,
-                text: "Filter 8"
+                name: "Filter 8"
             },
             {
                 id: 9,
-                text: "Filter 9"
+                name: "Filter 9"
             },
             {
                 id: 10,
-                text: "Filter 10"
+                name: "Filter 10"
             },
             {
                 id: 11,
-                text: "Filter 11"
+                name: "Filter 11"
             },
             {
                 id: 12,
-                text: "Filter 12"
+                name: "Filter 12"
             },
             {
                 id: 13,
-                text: "Filter 13"
+                name: "Filter 13"
             },
             {
                 id: 14,
-                text: "Filter 14"
+                name: "Filter 14"
             },
             {
                 id: 15,
-                text: "Filter 15"
+                name: "Filter 15"
             },
             {
                 id: 16,
-                text: "Filter 16"
+                name: "Filter 16"
             },
             {
                 id: 17,
-                text: "Filter 17"
+                name: "Filter 17"
             },
             {
                 id: 18,
-                text: "Filter 18"
+                name: "Filter 18"
             },
             {
                 id: 19,
-                text: "Filter 19"
+                name: "Filter 19"
             },
             {
                 id: 20,
-                text: "Filter 20"
+                name: "Filter 20"
             }
         ]
     },
@@ -315,6 +315,11 @@ function getScannedBook(state, bookID) {
     return {...state, localState}
 }
 
+function returnBook(state) {
+    console.log("Book returned")
+    return state
+}
+
 export const data = (state = initialStates, action) => {
     switch (action.type) {
         case TYPES.UPDATE_CURRENT_PAGE:
@@ -327,6 +332,8 @@ export const data = (state = initialStates, action) => {
             return updateFilterList(state, action.id, action.action)
         case TYPES.GET_SCANNED_BOOK:
             return getScannedBook(state, action.bookID)
+        case TYPES.RETURN_BOOK:
+            return returnBook(state)
         default:
             return state
     }

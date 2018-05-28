@@ -40,7 +40,7 @@ class App extends Component {
         return (
             <div>
                 <Navbar history={history} />
-                <div onClick={() => {this.hideAllPopups()}}>
+                <div style={{minHeight: '100vh'}} onClick={() => {this.hideAllPopups()}}>
                     <Router history={history}>
                         <Switch>
                             {config.main.pages.map((page, index) =>
