@@ -179,88 +179,7 @@ const initialStates = {
                 author: "George Paul Sutton"
             }
         ],
-        filterList: [
-            {
-                id: 1,
-                name: "Filter 1"
-            },
-            {
-                id: 2,
-                name: "Filter 2"
-            },
-            {
-                id: 3,
-                name: "Filter 3"
-            },
-            {
-                id: 4,
-                name: "Filter 4"
-            },
-            {
-                id: 5,
-                name: "Filter 5"
-            },
-            {
-                id: 6,
-                name: "Filter 6"
-            },
-            {
-                id: 7,
-                name: "Filter 7"
-            },
-            {
-                id: 8,
-                name: "Filter 8"
-            },
-            {
-                id: 9,
-                name: "Filter 9"
-            },
-            {
-                id: 10,
-                name: "Filter 10"
-            },
-            {
-                id: 11,
-                name: "Filter 11"
-            },
-            {
-                id: 12,
-                name: "Filter 12"
-            },
-            {
-                id: 13,
-                name: "Filter 13"
-            },
-            {
-                id: 14,
-                name: "Filter 14"
-            },
-            {
-                id: 15,
-                name: "Filter 15"
-            },
-            {
-                id: 16,
-                name: "Filter 16"
-            },
-            {
-                id: 17,
-                name: "Filter 17"
-            },
-            {
-                id: 18,
-                name: "Filter 18"
-            },
-            {
-                id: 19,
-                name: "Filter 19"
-            },
-            {
-                id: 20,
-                name: "Filter 20"
-            }
-        ]
+        filterList: []
     },
     filterTerms: {
         searchTerm: "",
@@ -284,6 +203,14 @@ function removeBookToRate(state) {
     localState.studentDetails.booksToRate.shift();
 
     return {...state, localState}
+}
+
+function getFilterList(state, filterTags) {
+    let localState = state;
+
+    localState.catalogue.filterList = filterTags;
+
+    return {...state, localState};
 }
 
 function updateFilterList(state, data, action) {
@@ -328,6 +255,8 @@ export const data = (state = initialStates, action) => {
             return removeNotification(state, action.notificationToRemoveID)
         case TYPES.REMOVE_BOOK_TO_RATE:
             return removeBookToRate(state)
+        case TYPES.GET_FILTER_LIST:
+            return getFilterList(state, action.filterTags)
         case TYPES.UPDATE_FILTER_LIST:
             return updateFilterList(state, action.id, action.action)
         case TYPES.GET_SCANNED_BOOK:
