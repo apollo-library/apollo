@@ -11,8 +11,9 @@
 //Import all API functions
 import * as Tags from './tags';
 import * as Books from './books';
+import * as Loans from './loans';
 
 // import Users from './users';
 
 //Export
-export { Tags, Books }
+export { Tags, Books, Loans }
