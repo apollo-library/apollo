@@ -10,6 +10,7 @@ const initialStates = {
     notificationPopupActive: false,
     accountPopupActive: false,
 
+    scanSearchTerm: "",
     scanState: 0,
     scanStatesToShow: [0]
     /*
@@ -49,6 +50,13 @@ function hideAccount(state) {
     return {...state, localState};
 }
 
+function setScanSearchTerm(state, term) {
+    let localState = state;
+    localState.scanSearchTerm = term;
+
+    return {...state, localState}
+}
+
 function setScanState(state, value) {
     let localState = state;
     localState.scanState = value;
@@ -67,6 +75,8 @@ export const ui = (state = initialStates, action) => {
             return toggleAccount(state)
         case TYPES.HIDE_ACCOUNT:
             return hideAccount(state)
+        case TYPES.SET_SCAN_SEARCH_TERM:
+            return setScanSearchTerm(state, action.scanSearchTerm)
         case TYPES.SET_SCAN_STATE:
             return setScanState(state, action.value)
         default:

@@ -10,6 +10,7 @@ export const TYPES = {
     HIDE_NOTIFICATIONS: 'HIDE_NOTIFICATIONS',
     TOGGLE_ACCOUNT: 'TOGGLE_ACCOUNT',
     HIDE_ACCOUNT: 'HIDE_ACCOUNT',
+    SET_SCAN_SEARCH_TERM: 'SET_SCAN_SEARCH_TERM',
     SET_SCAN_STATE: 'SET_SCAN_STATE'
 }
 
@@ -18,12 +19,13 @@ export const actions = {
     removeNotification: (notificationToRemoveID) => ({ type: TYPES.REMOVE_NOTIFICATION, notificationToRemoveID }),
     removeBookToRate: () => ({ type: TYPES.REMOVE_BOOK_TO_RATE }),
     getFilterList: (filterTags) => ({type: TYPES.GET_FILTER_LIST, filterTags}),
-    updateFilterList: (id, action) => ({ type: TYPES.UPDATE_FILTER_LIST, id, action}),
+    updateFilterList: (id, action) => ({type: TYPES.UPDATE_FILTER_LIST, id, action}),
     getScannedBook: (bookID) => ({type: TYPES.GET_SCANNED_BOOK, bookID}),
 
     toggleNotifications: () => ({type: TYPES.TOGGLE_NOTIFICATIONS}),
     hideNotifications: () => ({type: TYPES.HIDE_NOTIFICATIONS}),
     toggleAccount: () => ({type: TYPES.TOGGLE_ACCOUNT}),
     hideAccount: () => ({type: TYPES.HIDE_ACCOUNT}),
+    setScanSearchTerm: (scanSearchTerm) => ({type: TYPES.SET_SCAN_SEARCH_TERM, scanSearchTerm}),
     setScanState: (value) => ({type: TYPES.SET_SCAN_STATE, value})
 }
