@@ -229,23 +229,15 @@ function updateFilterList(state, data, action) {
     return {...state, localState}
 }
 
-function getScannedBook(state, bookID) {
+function getScannedBook(state, scannedBook) {
     let localState = state;
-    localState.scannedBook = {
-        title: "Rocket Propulsion Elements",
-        author: "George Paul Sutton",
-        loanID: "7890"
-    }
+    localState.scannedBook = scannedBook
 
-    console.log("Looked up with with ID: " + bookID)
+    console.log("Looked up with with ID: " + scannedBook)
 
     return {...state, localState}
 }
 
-function returnBook(state) {
-    console.log("Book returned")
-    return state
-}
 
 export const data = (state = initialStates, action) => {
     switch (action.type) {
@@ -261,8 +253,6 @@ export const data = (state = initialStates, action) => {
             return updateFilterList(state, action.id, action.action)
         case TYPES.GET_SCANNED_BOOK:
             return getScannedBook(state, action.bookID)
-        case TYPES.RETURN_BOOK:
-            return returnBook(state)
         default:
             return state
     }

@@ -10,6 +10,8 @@ import { connect } from 'react-redux'
 import { actions } from './../../store/actions.js'
 import store from './../../store'
 
+import * as API from './../../api';
+
 const mapStateToProps = (state) => ({
     currentPage: state.data.currentPage
 })
@@ -32,13 +34,14 @@ class Searchbar extends Component {
         this.setState({searchTerm: e.target.value});
     }
 
-    submitSearchTerm() {
+    async submitSearchTerm() {
         if (this.props.currentPage === "/catalogue") {
             if (this.state.searchTerm !== "") {
                 store.dispatch(actions.updateFilterList(this.state.searchTerm, "search"));
             }
         } else if (this.props.currentPage === "/scan") {
-            store.dispatch(actions.getScannedBook(this.state.searchTerm));
+            let scannedBook = await API.Books.getScanBookInfo(this.state.searchTerm);
+            store.dispatch(actions.getScannedBook(scannedBook));
             store.dispatch(actions.setScanState(1));
         }
     }

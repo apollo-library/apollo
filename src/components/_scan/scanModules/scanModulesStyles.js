@@ -28,6 +28,7 @@ const OptionButtons = styled.div`
 const OptionButton = styled.div`
     flex: 1;
     text-align: center;
+    padding-top: calc(${props => props.theme.styles.boxSpacing} / 2);
 `;
 
 export {
