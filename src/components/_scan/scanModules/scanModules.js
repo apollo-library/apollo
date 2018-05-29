@@ -29,7 +29,7 @@ class ScanModules extends Component {
         this.updateRenewDate = this.updateRenewDate.bind(this);
     }
 
-    calculateScanModules() {
+    /* calculateScanModules() {
         let secondModule = null;
         let thirdModule = null;
         let fourthModule = null;
@@ -115,7 +115,7 @@ class ScanModules extends Component {
         combinedModules.push(sixthModule);
 
         return combinedModules;
-    }
+    }*/
 
     async returnBook(bookID) {
         console.log("Book returned")
