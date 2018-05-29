@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 const SecondModule = styled.div`
     margin-top: ${props => props.theme.styles.boxSpacing};
+    padding-bottom: calc(${props => props.theme.styles.boxSpacing} / 2);
+    border-bottom: 2px solid ${props => props.theme.colours.lightGrey};
 `;
 
 const BookDetails = styled.div`
@@ -31,11 +33,31 @@ const OptionButton = styled.div`
     padding-top: calc(${props => props.theme.styles.boxSpacing} / 2);
 `;
 
+const FourthModule = styled.div`
+    margin-top: ${props => props.theme.styles.boxSpacing};
+`;
+
+const RenewDatePicker = styled.input`
+    border: none;
+    box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.lightGrey};
+    border-radius: ${props => props.theme.styles.borderRadius};
+    margin-right: calc(${props => props.theme.styles.boxSpacing} / 2);
+    outline: none;
+    padding: 0.5rem 0.5rem;
+
+    &:focus {
+        box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.primary};
+    }
+`;
+
 export {
     SecondModule,
     BookDetails,
     BookTitle,
     BookAuthor,
     OptionButtons,
-    OptionButton
+    OptionButton,
+
+    FourthModule,
+    RenewDatePicker
 };
