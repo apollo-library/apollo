@@ -45,7 +45,7 @@ class ScanModules extends Component {
 
 
                     //todo: remove the ! below this line
-                    if (!this.props.scannedBook.loanID) {
+                    if (this.props.scannedBook.loanID) {
                         //Book IS on loan
                         buttonsToRender = <styles.OptionButtons>
                             <styles.OptionButton>
@@ -121,9 +121,12 @@ class ScanModules extends Component {
         this.setState({renewDate: e.target.value});
     }
 
-    renewBook(bookID, dueDate) {
-        console.log("Book '" + bookID + "' Renewed with a due date of: " + dueDate)
-        store.dispatch(actions.setScanState(4));
+    async renewBook(bookID, dueDate) {
+        console.log("Book returned")
+        let renewStatus = await API.Loans.renewBook(bookID, dueDate);
+        if (renewStatus.status === 'success') {
+            store.dispatch(actions.setScanState(4));
+        }
     }
 
     render() {
