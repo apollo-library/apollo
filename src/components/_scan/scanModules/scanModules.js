@@ -34,6 +34,7 @@ class ScanModules extends Component {
         let thirdModule = null;
         let fourthModule = null;
         let fifthModule = null;
+        let sixthModule = null;
         let combinedModules = [];
 
         for (let i = 0; i < this.props.scanStatesToShow.length; i++) {
@@ -43,6 +44,8 @@ class ScanModules extends Component {
                 case 1: //Scanned barcode, display book info. Show the next options for either withdraw or return / renew
                     let buttonsToRender = null;
 
+
+                    //todo: wrap this in a check to see if scanned book returns [] when no book is found
 
                     //todo: remove the ! below this line
                     if (this.props.scannedBook.loanID) {
@@ -59,10 +62,15 @@ class ScanModules extends Component {
                         //Book IS NOT on loan
                         buttonsToRender = <styles.OptionButtons>
                             <styles.OptionButton>
-                                <Button colour="accent2">Select Student</Button>
+                                <styles.StudentInput type="text" placeholder="Search" autoFocus></styles.StudentInput>
                             </styles.OptionButton>
                             <styles.OptionButton>
-                                <Button colour="accent3">Date</Button>
+                                <styles.WithdrawDatePicker
+                                    onChange={(e) => this.updateRenewDate(e)}
+                                    type="date"
+                                    min={new Date().toISOString().substring(0, new Date().toISOString().indexOf("T"))}
+                                />
+                            <Button colour="accent3">Submit</Button>
                             </styles.OptionButton>
                         </styles.OptionButtons>
                     }
@@ -92,6 +100,9 @@ class ScanModules extends Component {
                 case 4: //Thank you message before automatically moving on back to initial state
                     fifthModule = <p key={this.props.scanState}>Thank you!</p>
                     break;
+                case 5: //No book found after scanned
+                    sixthModule = <p>No book found</p>
+                    break;
                 default: //Default case for switch statement
                     combinedModules.push(<p>Please refresh the page</p>)
             }
@@ -101,6 +112,7 @@ class ScanModules extends Component {
         combinedModules.push(thirdModule);
         combinedModules.push(fourthModule);
         combinedModules.push(fifthModule);
+        combinedModules.push(sixthModule);
 
         return combinedModules;
     }
