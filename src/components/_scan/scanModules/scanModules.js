@@ -81,7 +81,11 @@ class ScanModules extends Component {
                     break;
                 case 3: //RENEW. Show option for selecting how many weeks to renew book for
                     fourthModule = <styles.FourthModule>
-                        <styles.RenewDatePicker onChange={(e) => this.updateRenewDate(e)} type="date" min={new Date().toISOString().substring(0, new Date().toISOString().indexOf("T"))} />
+                        <styles.RenewDatePicker
+                            onChange={(e) => this.updateRenewDate(e)}
+                            type="date"
+                            min={new Date().toISOString().substring(0, new Date().toISOString().indexOf("T"))}
+                        />
                         <Button onClick={() => this.renewBook(this.props.scanSearchTerm, this.state.renewDate)} colour="accent4">Submit</Button>
                     </styles.FourthModule>
                     break;
@@ -106,8 +110,6 @@ class ScanModules extends Component {
         let returnStatus = await API.Loans.returnBook(bookID);
         if (returnStatus.status === 'success') {
             store.dispatch(actions.setScanState(4));
-        } else {
-            //todo: Look up book here node isbn
         }
     }
 
@@ -120,7 +122,7 @@ class ScanModules extends Component {
     }
 
     renewBook(bookID, dueDate) {
-        console.log("Book '" + bookID + "' Renewd with a due date of: " + dueDate)
+        console.log("Book '" + bookID + "' Renewed with a due date of: " + dueDate)
         store.dispatch(actions.setScanState(4));
     }
 
