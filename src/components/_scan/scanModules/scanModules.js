@@ -16,8 +16,8 @@ import store from './../../../store'
 const mapStateToProps = (state) => ({
     scannedBook: state.data.scannedBook,
     scanSearchTerm: state.ui.scanSearchTerm,
-    scanState: state.ui.scanState,
-    scanStatesToShow: state.ui.scanStatesToShow
+    //scanState: state.ui.scanState,
+    //scanStatesToShow: state.ui.scanStatesToShow
 })
 
 class ScanModules extends Component {
@@ -144,11 +144,11 @@ class ScanModules extends Component {
     render() {
         return (
             <div>
-                {this.calculateScanModules().map((module, index) =>
+                /* {this.calculateScanModules().map((module, index) =>
                     (
                         <div key={index}>{module}</div>
                     )
-                )}
+                )} */
             </div>
         );
     }
