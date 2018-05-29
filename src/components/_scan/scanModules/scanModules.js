@@ -21,6 +21,13 @@ const mapStateToProps = (state) => ({
 })
 
 class ScanModules extends Component {
+    constructor() {
+        super()
+        this.state = {
+            renewDate: ""
+        };
+        this.updateRenewDate = this.updateRenewDate.bind(this);
+    }
 
     calculateScanModules() {
         let secondModule = null;
@@ -36,7 +43,9 @@ class ScanModules extends Component {
                 case 1: //Scanned barcode, display book info. Show the next options for either withdraw or return / renew
                     let buttonsToRender = null;
 
-                    if (this.props.scannedBook.loanID) {
+
+                    //todo: remove the ! below this line
+                    if (!this.props.scannedBook.loanID) {
                         //Book IS on loan
                         buttonsToRender = <styles.OptionButtons>
                             <styles.OptionButton>
@@ -71,9 +80,10 @@ class ScanModules extends Component {
                     thirdModule = <p>Im state 2</p>
                     break;
                 case 3: //RENEW. Show option for selecting how many weeks to renew book for
-                    fourthModule = <div>
-                        <input type="date" />
-                    </div>
+                    fourthModule = <styles.FourthModule>
+                        <styles.RenewDatePicker onChange={(e) => this.updateRenewDate(e)} type="date" />
+                        <Button onClick={() => this.renewBook(this.props.scanSearchTerm, this.state.renewDate)} colour="accent4">Submit</Button>
+                    </styles.FourthModule>
                     break;
                 case 4: //Thank you message before automatically moving on back to initial state
                     fifthModule = <p key={this.props.scanState}>Thank you!</p>
@@ -91,11 +101,13 @@ class ScanModules extends Component {
         return combinedModules;
     }
 
-    async returnBook(bookId) {
+    async returnBook(bookID) {
         console.log("Book returned")
-        let returnStatus = await API.Loans.returnBook(bookId);
+        let returnStatus = await API.Loans.returnBook(bookID);
         if (returnStatus.status === 'success') {
             store.dispatch(actions.setScanState(4));
+        } else {
+            //todo: Look up book here node isbn
         }
     }
 
@@ -103,9 +115,16 @@ class ScanModules extends Component {
         store.dispatch(actions.setScanState(3));
     }
 
+    updateRenewDate(e) {
+        this.setState({renewDate: e.target.value});
+    }
+
+    renewBook(bookID, dueDate) {
+        console.log("Book '" + bookID + "' Renewd with a due date of: " + dueDate)
+        store.dispatch(actions.setScanState(4));
+    }
+
     render() {
-
-
         return (
             <div>
                 {this.calculateScanModules().map((module, index) =>

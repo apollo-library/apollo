@@ -233,8 +233,6 @@ function getScannedBook(state, scannedBook) {
     let localState = state;
     localState.scannedBook = scannedBook
 
-    console.log("Looked up with with ID: " + scannedBook)
-
     return {...state, localState}
 }
 
