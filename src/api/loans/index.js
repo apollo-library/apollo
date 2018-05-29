@@ -11,6 +11,23 @@ async function returnBook(id) {
     return {status: json.message}
 }
 
+async function renewBook(id,date) {
+    /* Construct data into correct syntax for POST */
+    let data = "due=" + date;
+
+    let response = await fetch(serverPath + '/book/' + id + '/renew', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: data
+    });
+    let json = await response.json();
+    if (json.code === "000") { return {status: 'success'}; }
+    return {status: json.message};
+}
+
 export {
-    returnBook
+    returnBook,
+    renewBook
 }
