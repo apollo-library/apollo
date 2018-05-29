@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 const SecondModule = styled.div`
     margin-top: ${props => props.theme.styles.boxSpacing};
-    padding-bottom: calc(${props => props.theme.styles.boxSpacing} / 2);
+    padding-bottom: ${props => props.theme.styles.boxSpacing};
     border-bottom: 2px solid ${props => props.theme.colours.lightGrey};
 `;
 
 const BookDetails = styled.div`
-    padding-bottom: calc(${props => props.theme.styles.boxSpacing} / 2);
+    padding-bottom: ${props => props.theme.styles.boxSpacing};
     border-bottom: 2px solid ${props => props.theme.colours.lightGrey};
 `;
 
@@ -30,11 +30,16 @@ const OptionButtons = styled.div`
 const OptionButton = styled.div`
     flex: 1;
     text-align: center;
-    padding-top: calc(${props => props.theme.styles.boxSpacing} / 2);
+    padding-top: ${props => props.theme.styles.boxSpacing};
 `;
 
 const FourthModule = styled.div`
     margin-top: ${props => props.theme.styles.boxSpacing};
+    border-bottom: 2px solid ${props => props.theme.colours.lightGrey};
+    padding-bottom: ${props => props.theme.styles.boxSpacing};
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 const RenewDatePicker = styled.input`
