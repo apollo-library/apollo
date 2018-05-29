@@ -81,7 +81,7 @@ class ScanModules extends Component {
                     break;
                 case 3: //RENEW. Show option for selecting how many weeks to renew book for
                     fourthModule = <styles.FourthModule>
-                        <styles.RenewDatePicker onChange={(e) => this.updateRenewDate(e)} type="date" />
+                        <styles.RenewDatePicker onChange={(e) => this.updateRenewDate(e)} type="date" min={new Date().toISOString().substring(0, new Date().toISOString().indexOf("T"))} />
                         <Button onClick={() => this.renewBook(this.props.scanSearchTerm, this.state.renewDate)} colour="accent4">Submit</Button>
                     </styles.FourthModule>
                     break;
