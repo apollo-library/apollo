@@ -14,8 +14,8 @@ import NotificationBox from './_navbar/notificationBox/notificationBox';
 
 import AccentedBox from './accentedBox/accentedBox';
 import Searchbar from './searchbar/searchbar';
+import ContentTabs from './contentTabs/contentTabs';
 
-import ContentTabs from './_dashboard/contentTabs/contentTabs';
 import BookTable from './_dashboard/bookTable/bookTable';
 import DueSoon from './_dashboard/dueSoon/dueSoon';
 import Recommended from './_dashboard/recommended/recommended';

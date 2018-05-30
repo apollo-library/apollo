@@ -11,8 +11,19 @@ class ContentTabs extends Component {
         };
     }
 
-    changeActiveTab(tab) {
 
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (prevState.tabs !== nextProps.tabs) {
+            //console.log(nextProps.tabs)
+            return {
+                tabs: nextProps.tabs
+            }
+        }
+        return null;
+    }
+
+
+    changeActiveTab(tab) {
         let tabIndex = this.state.tabs.indexOf(tab);
         let updatedTabs = this.state.tabs;
 
@@ -35,7 +46,6 @@ class ContentTabs extends Component {
         return (
             <div>
                 <styles.ConentTabs>
-
                     {this.state.tabs.map((tab, index) =>
                         (
                             <div key={index}>
@@ -54,7 +64,6 @@ class ContentTabs extends Component {
                 <styles.ContentTabContent>
                     {componentToShow}
                 </styles.ContentTabContent>
-
             </div>
         );
     }

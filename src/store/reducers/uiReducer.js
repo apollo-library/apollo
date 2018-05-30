@@ -1,5 +1,8 @@
 import { TYPES } from '../actions'
 
+//React imports
+import React from 'react';
+
 /*
     These states are mainly for handling UI states that are global
     across the whole appliaction or are specific to an individual
@@ -11,8 +14,6 @@ const initialStates = {
     accountPopupActive: false,
 
     scanSearchTerm: "",
-    scanState: 0,
-    scanStatesToShow: [0]
     /*
         0 = Initial state, just the search bar at the top of the page
         1 = Scanned barcode, display book info. Show the next options for either withdraw or return / renew
@@ -21,6 +22,7 @@ const initialStates = {
         4 = Thank you message before automatically moving on back to initial state
         5 = No book found after scan
     */
+    scanStatesToShow: [0]
 }
 
 function toggleNotifications(state) {
@@ -51,19 +53,19 @@ function hideAccount(state) {
     return {...state, localState};
 }
 
+
+//todo: LOOK AT ME FOR AN EXAMPLE.
 function setScanSearchTerm(state, term) {
-    let localState = state;
-    localState.scanState = 0;
-    localState.scanStatesToShow = [0];
+    let localState = JSON.parse(JSON.stringify(state));
     localState.scanSearchTerm = term;
 
-    return {...state, localState}
+    return {...state, scanSearchTerm: localState.scanSearchTerm}
 }
 
-function setScanState(state, value) {
+function addScanTab(state, tabToAdd) {
     let localState = state;
-    localState.scanState = value;
-    localState.scanStatesToShow.push(value)
+
+    localState.scanStatesToShow.push(tabToAdd)
 
     return {...state, localState};
 }
@@ -80,8 +82,8 @@ export const ui = (state = initialStates, action) => {
             return hideAccount(state)
         case TYPES.SET_SCAN_SEARCH_TERM:
             return setScanSearchTerm(state, action.scanSearchTerm)
-        case TYPES.SET_SCAN_STATE:
-            return setScanState(state, action.value)
+        case TYPES.ADD_SCAN_TAB:
+            return addScanTab(state, action.tabToAdd)
         default:
             return state
     }

@@ -43,20 +43,22 @@ class Searchbar extends Component {
             let scannedBook = await API.Books.getScanBookInfo(this.state.searchTerm);
             store.dispatch(actions.setScanSearchTerm(this.state.searchTerm));
 
-            if (scannedBook.message !== "Book not found") {
+            store.dispatch(actions.addScanTab(1));
+
+            /* if (scannedBook.message !== "Book not found") {
                 store.dispatch(actions.setScannedBook(scannedBook));
-                store.dispatch(actions.setScanState(1));
+                //store.dispatch(actions.setScanState(1));
             } else {
-                store.dispatch(actions.setScanState(5));
-            }
+                //store.dispatch(actions.setScanState(5));
+            } */
         }
     }
 
     render() {
         return (
             <styles.SearchBar>
-                <styles.SearchBox onKeyUp={(e) => this.updateSearchTerm(e)} type="text" placeholder="Search" autoFocus/>
-                <Button onClick={() => this.submitSearchTerm()} colour="primary">Search</Button>
+                <styles.SearchBox onKeyUp={(e) => this.updateSearchTerm(e)} type="text" placeholder={this.props.currentPage === "/catalogue" ? "Search" : "Scan"} autoFocus/>
+                <Button onClick={() => this.submitSearchTerm()} colour="primary">{this.props.currentPage === "/catalogue" ? "Search" : "Scan"}</Button>
             </styles.SearchBar>
         );
     }
