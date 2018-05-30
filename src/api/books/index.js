@@ -37,4 +37,12 @@ async function getBookHistory(id) {
 
 }
 
-export { getScanBookInfo }
+export {
+    getScanBookInfo,
+    searchBooks,
+    getBookInfo,
+    addBook,
+    editBook,
+    deleteBook,
+    getBookHistory
+}
