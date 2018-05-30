@@ -14,23 +14,28 @@ async function getScanBookInfo(id) {
 }
 
 async function searchBooks(query) {
-
+    // <- query given: search term string, selected filters as ints
+    // <- list of books
 }
 
 async function getBookInfo(id) {
-
+    // <- book id given
+    // <- all information about book
 }
 
 async function addBook(data) {
-
+    // <- give object
+    // <- ?
 }
 
 async function editBook(data) {
-
+    // <- ?
+    // <- ?
 }
 
 async function deleteBook(id) {
-
+    // <- id
+    // <- ?
 }
 
 async function getBookHistory(id) {

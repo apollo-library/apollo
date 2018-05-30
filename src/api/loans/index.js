@@ -26,15 +26,18 @@ async function renewBook(id,date) {
 }
 
 async function withdrawBook(id, date) {
-
+    // <- id + date
+    // <- success / not
 }
 
 async function getLoans() {
-
+    // <- nothing
+    // <- ?
 }
 
 async function getOverdueLoans() {
-
+    // <- nothing
+    // <- ?
 }
 
 async function reserveBook(id) {
