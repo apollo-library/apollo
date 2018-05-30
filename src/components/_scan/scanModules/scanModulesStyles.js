@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 const SecondModule = styled.div`
     margin-top: ${props => props.theme.styles.boxSpacing};
-    padding-bottom: ${props => props.theme.styles.boxSpacing};
     border-bottom: 2px solid ${props => props.theme.colours.lightGrey};
 `;
 
@@ -24,19 +23,46 @@ const BookAuthor = styled.p`
 
 const OptionButtons = styled.div`
     display: flex;
-    margin-top: calc(${props => props.theme.styles.boxSpacing} / 2);
 `;
 
 const OptionButton = styled.div`
     flex: 1;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding-top: ${props => props.theme.styles.boxSpacing};
+    padding-bottom: ${props => props.theme.styles.boxSpacing};
 `;
+
+const StudentInput = styled.input`
+    border: none;
+    box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.lightGrey};
+    border-radius: ${props => props.theme.styles.borderRadius};
+    margin-right: calc(${props => props.theme.styles.boxSpacing} / 2);
+    outline: none;
+    padding: 0.5rem 0.5rem;
+
+    &:focus {
+        box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.accent2};
+    }
+`;
+
+const WithdrawDatePicker = styled.input`
+    border: none;
+    box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.lightGrey};
+    border-radius: ${props => props.theme.styles.borderRadius};
+    margin-right: calc(${props => props.theme.styles.boxSpacing} / 2);
+    outline: none;
+    padding: 0.5rem 0.5rem;
+
+    &:focus {
+        box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.accent3};
+    }
+`
 
 const FourthModule = styled.div`
     margin-top: ${props => props.theme.styles.boxSpacing};
     border-bottom: 2px solid ${props => props.theme.colours.lightGrey};
-    padding-bottom: ${props => props.theme.styles.boxSpacing};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -51,7 +77,7 @@ const RenewDatePicker = styled.input`
     padding: 0.5rem 0.5rem;
 
     &:focus {
-        box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.primary};
+        box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.accent4};
     }
 `;
 
@@ -62,6 +88,9 @@ export {
     BookAuthor,
     OptionButtons,
     OptionButton,
+
+    StudentInput,
+    WithdrawDatePicker,
 
     FourthModule,
     RenewDatePicker

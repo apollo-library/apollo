@@ -19,6 +19,7 @@ const initialStates = {
         2 = WITHDRAW. Show options for selecting a student and the due date
         3 = RENEW. Show option for selecting how many weeks to renew book for
         4 = Thank you message before automatically moving on back to initial state
+        5 = No book found after scan
     */
 }
 
@@ -52,6 +53,8 @@ function hideAccount(state) {
 
 function setScanSearchTerm(state, term) {
     let localState = state;
+    localState.scanState = 0;
+    localState.scanStatesToShow = [0];
     localState.scanSearchTerm = term;
 
     return {...state, localState}
