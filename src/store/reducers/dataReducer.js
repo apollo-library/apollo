@@ -229,7 +229,7 @@ function updateFilterList(state, data, action) {
     return {...state, localState}
 }
 
-function getScannedBook(state, scannedBook) {
+function setScannedBook(state, scannedBook) {
     let localState = state;
     localState.scannedBook = scannedBook
 
@@ -249,8 +249,8 @@ export const data = (state = initialStates, action) => {
             return getFilterList(state, action.filterTags)
         case TYPES.UPDATE_FILTER_LIST:
             return updateFilterList(state, action.id, action.action)
-        case TYPES.GET_SCANNED_BOOK:
-            return getScannedBook(state, action.bookID)
+        case TYPES.SET_SCANNED_BOOK:
+            return setScannedBook(state, action.bookID)
         default:
             return state
     }

@@ -13,5 +13,36 @@ async function getScanBookInfo(id) {
     return response; // <- return an object with all the tags
 }
 
+async function searchBooks(query) {
+
+}
+
+async function getBookInfo(id) {
+
+}
+
+async function addBook(data) {
+
+}
+
+async function editBook(data) {
+
+}
+
+async function deleteBook(id) {
+
+}
+
+async function getBookHistory(id) {
+
+}
+
+async function getBookHistoryUsers(id) {
+
+}
+
+async function getBookCurrentLoan(id) {
+
+}
 
 export { getScanBookInfo }
