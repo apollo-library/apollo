@@ -10,7 +10,6 @@ const Button = styled.div.attrs({
     colour: props => props.colour
 })`
     background: ${props => props.theme.colours[props.colour]};
-    padding: 0.32rem 0.9rem;
     border-radius: ${props => props.theme.styles.borderRadius};
     color: #fff;
     font-weight: 600;
@@ -20,6 +19,8 @@ const Button = styled.div.attrs({
     display: inline-block;
     transition: box-shadow, transform 150ms ease;
     text-align: center;
+    padding: ${props => props.large ?  '0.5rem 1.2rem' : '0.32rem 0.9rem'}
+    font-size: ${props => props.large ?  '1.2rem' : '1rem'}
 
     &:hover {
         box-shadow: 0px 3px 7px rgba(73,73,73,0.4);
