@@ -40,10 +40,19 @@ class Searchbar extends Component {
                 store.dispatch(actions.updateFilterList(this.state.searchTerm, "search"));
             }
         } else if (this.props.currentPage === "/scan") {
+            store.dispatch(actions.resetScanTab(0));
+
             let scannedBook = await API.Books.getScanBookInfo(this.state.searchTerm);
             store.dispatch(actions.setScanSearchTerm(this.state.searchTerm));
 
-            store.dispatch(actions.addScanTab(1));
+
+            if (scannedBook.loanID) {
+                store.dispatch(actions.addScanTab(1)); //Withdraw
+            } else {
+                store.dispatch(actions.addScanTab(2)); //Renew / Return
+            }
+
+
 
             /* if (scannedBook.message !== "Book not found") {
                 store.dispatch(actions.setScannedBook(scannedBook));

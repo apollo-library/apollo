@@ -11,6 +11,7 @@ export const TYPES = {
     TOGGLE_ACCOUNT: 'TOGGLE_ACCOUNT',
     HIDE_ACCOUNT: 'HIDE_ACCOUNT',
     SET_SCAN_SEARCH_TERM: 'SET_SCAN_SEARCH_TERM',
+    RESET_SCAN_TAB: 'RESET_SCAN_TAB',
     ADD_SCAN_TAB: 'ADD_SCAN_TAB'
 }
 
@@ -27,5 +28,6 @@ export const actions = {
     toggleAccount: () => ({type: TYPES.TOGGLE_ACCOUNT}),
     hideAccount: () => ({type: TYPES.HIDE_ACCOUNT}),
     setScanSearchTerm: (scanSearchTerm) => ({type: TYPES.SET_SCAN_SEARCH_TERM, scanSearchTerm}),
+    resetScanTab: () => ({type: TYPES.RESET_SCAN_TAB}),
     addScanTab: (tabToAdd) => ({type: TYPES.ADD_SCAN_TAB, tabToAdd})
 }
