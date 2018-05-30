@@ -51,5 +51,11 @@ async function deleteReservation(id) {
 
 export {
     returnBook,
-    renewBook
+    renewBook,
+    withdrawBook,
+    getLoans,
+    getOverdueLoans,
+    reserveBook,
+    getBookReservation,
+    deleteReservation
 }
