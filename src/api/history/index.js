@@ -16,8 +16,22 @@ async function getBookCurrentLoan(id) {
 
 }
 
+async function getUserHistory(id) {
+
+}
+
+async function getUserHistoryLoans(id) {
+
+}
+
+async function getUserHistoryFines(id) {
+
+}
+
 export {
     getHistory,
     getBookHistoryUsers,
-    getBookCurrentLoan
+    getBookCurrentLoan,
+    getUserHistoryLoans,
+    getUserHistoryFines
 }
