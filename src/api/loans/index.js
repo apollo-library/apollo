@@ -27,6 +27,14 @@ async function renewBook(id,date) {
     return {status: json.message};
 }
 
+async function getLoans() {
+
+}
+
+async function getOverdueLoans() {
+    
+}
+
 export {
     returnBook,
     renewBook
