@@ -37,12 +37,4 @@ async function getBookHistory(id) {
 
 }
 
-async function getBookHistoryUsers(id) {
-
-}
-
-async function getBookCurrentLoan(id) {
-
-}
-
 export { getScanBookInfo }
