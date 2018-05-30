@@ -155,102 +155,28 @@ class ScanModules extends Component {
 
 
     render() {
-
-        /* let temp = []
-        {this.props.scanStatesToShow.map((test, index) => {
-            console.log(test)
-            switch (test) {
-                case 0:
-                    temp = []
-                    temp.push(
-                        {
-                            title: "Book Scan",
-                            componentToShow: <Searchbar />,
-                            colour: "accent3",
-                            active: true
-                        }
-                    )
-
-                    break;
-                case 1:
-                    temp.push(
-                        {
-                            title: "Test",
-                            componentToShow: <DueSoon colour="accent3"/>,
-                            colour: "accent2",
-                            active: false
-                        }
-                    )
-
-
-                    /* localState.scanStatesToShow = [
-                        {
-                            title: "Book Scan",
-                            componentToShow: <Searchbar />,
-                            colour: "accent3",
-                            active: true
-                        },
-                        {
-                            title: "Test",
-                            componentToShow: <DueSoon colour="accent3"/>,
-                            colour: "accent2",
-                            active: false
-                        }
-                    ]
-
-                    //console.log(localState.scanStatesToShow)
-
-                    break;
-                default:
-                    console.log("Error. Hit default state in tab switch")
-            }
-        })} */
-
-
-
-
-
-
-
-
-
-
+		let tabReturns = [
+			{
+				title: "Book Scan",
+				componentToShow: <Searchbar />,
+				colour: "accent3",
+				active: true
+			},
+			{
+				title: "Test",
+				componentToShow: <DueSoon colour="accent3"/>,
+				colour: "accent2",
+				active: false
+			}
+		];
 
         return (
             <div>
-                {/* {temp.map((module, index) => {
-                    //console.log(this.props.scanStatesToShow)
-                    return (
-                        <p key={index}>{module.title}</p>
-                    )
-                    }
-                )} */}
                 <ContentTabs tabs={
-
                     this.props.scanStatesToShow.map((test, index) => {
-                        console.log(test)
-                        switch (test) {
-                            case 0:
-                                return {
-                                        title: "Book Scan",
-                                        componentToShow: <Searchbar />,
-                                        colour: "accent3",
-                                        active: true
-                                    }
-
-                            case 1:
-                                return {
-                                        title: "Test",
-                                        componentToShow: <DueSoon colour="accent3"/>,
-                                        colour: "accent2",
-                                        active: false
-                                    }
-
-                            default:
-                                console.log("Error. Hit default state in tab switch")
-                        }
+						if (test < tabReturns.length) return tabReturns[test]
+						else console.log("ERROR")
                     })
-
                 } />
             </div>
         );
