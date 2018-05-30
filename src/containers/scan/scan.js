@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 //Component imports
-import {Searchbar, ScanModules} from './../../components';
+import {ScanModules} from './../../components';
 
 import {CenterColumn, LeftColumn, RightColumn, PageTitle} from './../../globalStyles.js'
 
@@ -20,7 +20,6 @@ class Scan extends Component {
                     </LeftColumn>
 
                     <RightColumn>
-                        <Searchbar />
                         <ScanModules />
                     </RightColumn>
                 </CenterColumn>

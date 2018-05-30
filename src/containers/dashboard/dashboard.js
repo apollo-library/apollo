@@ -48,7 +48,6 @@ class Dashboard extends Component {
 
                     <RightColumn>
                         <ContentTabs
-                            data={this.props.studentDetails}
                             tabs={[
                                 {
                                     title: "Due Soon",

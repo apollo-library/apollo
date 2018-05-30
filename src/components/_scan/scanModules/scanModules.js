@@ -4,6 +4,9 @@ import React, { Component } from 'react';
 //Styles
 import * as styles from './scanModulesStyles.js'
 
+//Component imports
+import {ContentTabs, Searchbar, DueSoon} from './../..';
+
 import {Button} from './../../../globalStyles.js'
 
 import * as API from './../../../api';
@@ -17,16 +20,25 @@ const mapStateToProps = (state) => ({
     scannedBook: state.data.scannedBook,
     scanSearchTerm: state.ui.scanSearchTerm,
     //scanState: state.ui.scanState,
-    //scanStatesToShow: state.ui.scanStatesToShow
+    scanStatesToShow: state.ui.scanStatesToShow
 })
 
 class ScanModules extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
-            renewDate: ""
+            renewDate: "",
+            tabsToShow: [
+                {
+                    title: "Book Scan",
+                    componentToShow: <Searchbar />,
+                    colour: "accent3",
+                    active: true
+                }
+            ],
+            test: this.props.scanStatesToShow
         };
-        this.updateRenewDate = this.updateRenewDate.bind(this);
+        //this.updateRenewDate = this.updateRenewDate.bind(this);
     }
 
     /* calculateScanModules() {
@@ -117,7 +129,7 @@ class ScanModules extends Component {
         return combinedModules;
     }*/
 
-    async returnBook(bookID) {
+    /* async returnBook(bookID) {
         console.log("Book returned")
         let returnStatus = await API.Loans.returnBook(bookID);
         if (returnStatus.status === 'success') {
@@ -139,16 +151,107 @@ class ScanModules extends Component {
         if (renewStatus.status === 'success') {
             store.dispatch(actions.setScanState(4));
         }
-    }
+    } */
+
 
     render() {
+
+        /* let temp = []
+        {this.props.scanStatesToShow.map((test, index) => {
+            console.log(test)
+            switch (test) {
+                case 0:
+                    temp = []
+                    temp.push(
+                        {
+                            title: "Book Scan",
+                            componentToShow: <Searchbar />,
+                            colour: "accent3",
+                            active: true
+                        }
+                    )
+
+                    break;
+                case 1:
+                    temp.push(
+                        {
+                            title: "Test",
+                            componentToShow: <DueSoon colour="accent3"/>,
+                            colour: "accent2",
+                            active: false
+                        }
+                    )
+
+
+                    /* localState.scanStatesToShow = [
+                        {
+                            title: "Book Scan",
+                            componentToShow: <Searchbar />,
+                            colour: "accent3",
+                            active: true
+                        },
+                        {
+                            title: "Test",
+                            componentToShow: <DueSoon colour="accent3"/>,
+                            colour: "accent2",
+                            active: false
+                        }
+                    ]
+
+                    //console.log(localState.scanStatesToShow)
+
+                    break;
+                default:
+                    console.log("Error. Hit default state in tab switch")
+            }
+        })} */
+
+
+
+
+
+
+
+
+
+
+
         return (
             <div>
-                /* {this.calculateScanModules().map((module, index) =>
-                    (
-                        <div key={index}>{module}</div>
+                {/* {temp.map((module, index) => {
+                    //console.log(this.props.scanStatesToShow)
+                    return (
+                        <p key={index}>{module.title}</p>
                     )
-                )} */
+                    }
+                )} */}
+                <ContentTabs tabs={
+
+                    this.props.scanStatesToShow.map((test, index) => {
+                        console.log(test)
+                        switch (test) {
+                            case 0:
+                                return {
+                                        title: "Book Scan",
+                                        componentToShow: <Searchbar />,
+                                        colour: "accent3",
+                                        active: true
+                                    }
+
+                            case 1:
+                                return {
+                                        title: "Test",
+                                        componentToShow: <DueSoon colour="accent3"/>,
+                                        colour: "accent2",
+                                        active: false
+                                    }
+
+                            default:
+                                console.log("Error. Hit default state in tab switch")
+                        }
+                    })
+
+                } />
             </div>
         );
     }
