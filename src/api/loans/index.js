@@ -32,7 +32,19 @@ async function getLoans() {
 }
 
 async function getOverdueLoans() {
+
+}
+
+async function reserveBook() {
+
+}
+
+async function getBookReservation() {
     
+}
+
+async function deleteReservation() {
+
 }
 
 export {
