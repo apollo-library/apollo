@@ -1,19 +1,21 @@
 /*
 
-    This file is where we import all the components we have
-    We then export them again at the end
-
-    This means that in any file you can type:
-        import {Component1, Component2 ... ComponentN} from 'components/
+Export all functions from API
+    - access functions by calling API.Sublevel.Function()
+    - e.g. API.Tags.getAllTags()
 
 */
 
 //Import all API functions
-import * as Tags from './tags';
 import * as Books from './books';
+import * as History from './history';
 import * as Loans from './loans';
-
-// import Users from './users';
+import * as Tags from './tags';
 
 //Export
-export { Tags, Books, Loans }
+export {
+    Books,
+    History,
+    Loans,
+    Tags
+}
