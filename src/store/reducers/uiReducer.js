@@ -63,11 +63,10 @@ function setScanSearchTerm(state, term) {
 }
 
 function addScanTab(state, tabToAdd) {
-    let localState = state;
+	let localState = JSON.parse(JSON.stringify(state));
 
     localState.scanStatesToShow.push(tabToAdd)
-
-    return {...state, localState};
+    return {...state, scanStatesToShow:localState.scanStatesToShow};
 }
 
 export const ui = (state = initialStates, action) => {
