@@ -1,20 +1,11 @@
 //React imports
 import React, { Component } from 'react';
 
-//Styles
-import * as styles from './scanModulesStyles.js'
-
 //Component imports
-import {ContentTabs, Searchbar, DueSoon} from './../..';
-
-import {Button} from './../../../globalStyles.js'
-
-import * as API from './../../../api';
+import {ContentTabs, Searchbar, ReturnRenew} from './../..';
 
 //Redux
 import { connect } from 'react-redux'
-import { actions } from './../../../store/actions.js'
-import store from './../../../store'
 
 const mapStateToProps = (state) => ({
     scannedBook: state.data.scannedBook,
@@ -24,23 +15,6 @@ const mapStateToProps = (state) => ({
 })
 
 class ScanModules extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            renewDate: "",
-            tabsToShow: [
-                {
-                    title: "Book Scan",
-                    componentToShow: <Searchbar />,
-                    colour: "accent3",
-                    active: true
-                }
-            ],
-            test: this.props.scanStatesToShow
-        };
-        //this.updateRenewDate = this.updateRenewDate.bind(this);
-    }
-
     /* calculateScanModules() {
         let secondModule = null;
         let thirdModule = null;
@@ -157,15 +131,21 @@ class ScanModules extends Component {
     render() {
 		let tabReturns = [
 			{
-				title: "Book Scan",
+				title: "Scan",
 				componentToShow: <Searchbar />,
-				colour: "accent3",
+                colour: "primary",
 				active: true
 			},
 			{
-				title: "Test",
-				componentToShow: <DueSoon colour="accent3"/>,
+				title: "Withdraw",
+				componentToShow: <Searchbar />,
 				colour: "accent2",
+				active: false
+			},
+            {
+				title: "Return / Renew",
+				componentToShow: <ReturnRenew colour="accent5"/>,
+                colour: "accent5",
 				active: false
 			}
 		];
@@ -173,9 +153,11 @@ class ScanModules extends Component {
         return (
             <div>
                 <ContentTabs tabs={
-                    this.props.scanStatesToShow.map((test, index) => {
-						if (test < tabReturns.length) return tabReturns[test]
+                    this.props.scanStatesToShow.map((tab, index) => {
+						if (tab < tabReturns.length) return tabReturns[tab]
 						else console.log("ERROR")
+
+                        return null;
                     })
                 } />
             </div>
