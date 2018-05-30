@@ -12,9 +12,7 @@ async function returnBook(id) {
 }
 
 async function renewBook(id,date) {
-    /* Construct data into correct syntax for POST */
-    let data = "due=" + date;
-
+    let data = "due=" + date;   // <- construct data into POST format
     let response = await fetch(serverPath + '/book/' + id + '/renew', {
         method: "POST",
         headers: {
@@ -27,7 +25,37 @@ async function renewBook(id,date) {
     return {status: json.message};
 }
 
+async function withdrawBook(id, date) {
+
+}
+
+async function getLoans() {
+
+}
+
+async function getOverdueLoans() {
+
+}
+
+async function reserveBook(id) {
+
+}
+
+async function getBookReservation(id) {
+
+}
+
+async function deleteReservation(id) {
+
+}
+
 export {
     returnBook,
-    renewBook
+    renewBook,
+    withdrawBook,
+    getLoans,
+    getOverdueLoans,
+    reserveBook,
+    getBookReservation,
+    deleteReservation
 }

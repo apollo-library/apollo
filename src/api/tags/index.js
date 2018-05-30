@@ -12,5 +12,12 @@ async function getAllTags() {
     return response; // <- return an object with all the tags
 }
 
+async function addTag(data) {
 
-export { getAllTags }
+}
+
+
+export {
+    getAllTags,
+    addTag
+}
