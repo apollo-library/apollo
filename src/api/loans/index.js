@@ -12,9 +12,7 @@ async function returnBook(id) {
 }
 
 async function renewBook(id,date) {
-    /* Construct data into correct syntax for POST */
-    let data = "due=" + date;
-
+    let data = "due=" + date;   // <- construct data into POST format
     let response = await fetch(serverPath + '/book/' + id + '/renew', {
         method: "POST",
         headers: {
