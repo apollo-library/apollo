@@ -13,8 +13,11 @@ async function getAllTags() {
 }
 
 async function addTag(data) {
-    
+
 }
 
 
-export { getAllTags }
+export {
+    getAllTags,
+    addTag
+}
