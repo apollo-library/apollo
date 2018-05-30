@@ -27,6 +27,10 @@ async function renewBook(id,date) {
     return {status: json.message};
 }
 
+async function withdrawBook(id, date) {
+
+}
+
 async function getLoans() {
 
 }
@@ -35,15 +39,15 @@ async function getOverdueLoans() {
 
 }
 
-async function reserveBook() {
+async function reserveBook(id) {
 
 }
 
-async function getBookReservation() {
-    
+async function getBookReservation(id) {
+
 }
 
-async function deleteReservation() {
+async function deleteReservation(id) {
 
 }
 
