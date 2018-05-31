@@ -25,9 +25,18 @@ async function renewBook(id,date) {
     return {status: json.message};
 }
 
-async function withdrawBook(id, date) {
-    // <- id + date
-    // <- success / not
+async function withdrawBook(id, userID, date) {
+    let data = "due=" + date + "&userID=" + userID;   // <- construct data into POST format
+    let response = await fetch(serverPath + '/book/' + id + '/withdraw', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: data
+    });
+    let json = await response.json();
+    if (json.code === "000") { return {status: 'success'}; }
+    return {status: json.message};
 }
 
 async function getLoans() {
