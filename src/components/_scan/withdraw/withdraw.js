@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 //Styles
-import * as styles from './return-renewStyles.js'
+import * as styles from './withdrawStyles.js'
 import {Button, CenterColumn, RightColumn, LeftColumn, PageTitle} from './../../../globalStyles.js'
 
 import * as API from './../../../api';
@@ -19,33 +19,28 @@ const mapStateToProps = (state) => ({
     scanSearchTerm: state.ui.scanSearchTerm
 })
 
-class ReturnRenew extends Component {
+class Withdraw extends Component {
     constructor() {
         super()
         this.state = {
-            renewDate: ""
+            studentID: "",
+            dueDate: ""
         };
     }
 
-    updateRenewDate(e) {
-        this.setState({renewDate: e.target.value});
+    updateStudentID(e) {
+        this.setState({studentID: e.target.value});
     }
 
-    async returnBook() {
-        let returnResponse = await API.Loans.returnBook(this.props.scanSearchTerm);
-
-        if (returnResponse.status === 'success') {
-            store.dispatch(actions.addScanTab(3)); //Thank you
-        } else {
-            store.dispatch(actions.addScanTab(6)); //Error when returning
-        }
+    updateDueDate(e) {
+        this.setState({dueDate: e.target.value});
     }
 
-    async renewBook() {
+    async withdrawBook() {
         if (this.state.renewDate !== "") {
-            let renewResponse = await API.Loans.renewBook(this.props.scanSearchTerm, this.state.renewDate);
+            let withdrawResponse = await API.Loans.withdrawBook(this.props.scanSearchTerm, this.props.studentID, this.state.dueDate);
 
-            if (renewResponse.status === 'success') {
+            if (withdrawResponse.status === 'success') {
                 store.dispatch(actions.addScanTab(3)); //Thank you
             } else {
                 store.dispatch(actions.addScanTab(5)); //No renew date set
@@ -59,17 +54,21 @@ class ReturnRenew extends Component {
                 <CenterColumn>
                     <LeftColumn>
                         <styles.OptionButton>
-                            <Button large onClick={() => this.returnBook()} colour="accent5">Return</Button>
+                            <styles.StudentIDInput
+                            onChange={(e) => this.updateStudentID(e)}
+                            type="text"
+                            placeholder="Student ID"
+                        />
                         </styles.OptionButton>
                         <styles.OptionBorder />
                         <styles.OptionButton>
-                            <styles.RenewDatePicker
-                                onChange={(e) => this.updateRenewDate(e)}
+                            <styles.DueDatePicker
+                                onChange={(e) => this.updateDueDate(e)}
                                 type="date"
                                 min={new Date().toISOString().substring(0, new Date().toISOString().indexOf("T"))}
                             />
                             <br />
-                            <Button large onClick={() => this.renewBook()} colour="accent4">Renew</Button>
+                            <Button large onClick={() => this.withdrawBook()} colour="accent2">Withdraw</Button>
                         </styles.OptionButton>
                     </LeftColumn>
 
@@ -82,4 +81,4 @@ class ReturnRenew extends Component {
     }
 }
 
-export default connect(mapStateToProps)(ReturnRenew);
+export default connect(mapStateToProps)(Withdraw);

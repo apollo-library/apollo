@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const RenewDatePicker = styled.input`
+const StudentIDInput = styled.input`
     border: none;
     box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.lightGrey};
     border-radius: ${props => props.theme.styles.borderRadius};
@@ -10,7 +10,21 @@ const RenewDatePicker = styled.input`
     font-size: 1.1rem;
 
     &:focus {
-        box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.accent4};
+        box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.accent1};
+    }
+`;
+
+const DueDatePicker = styled.input`
+    border: none;
+    box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.lightGrey};
+    border-radius: ${props => props.theme.styles.borderRadius};
+    margin-bottom: ${props => props.theme.styles.boxSpacing};
+    outline: none;
+    padding: 0.5rem 0.5rem;
+    font-size: 1.1rem;
+
+    &:focus {
+        box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.accent2};
     }
 `;
 
@@ -27,7 +41,8 @@ const OptionBorder = styled.div`
 `;
 
 export {
-    RenewDatePicker,
+    StudentIDInput,
+    DueDatePicker,
     OptionButton,
     OptionBorder
 };
