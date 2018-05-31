@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 //Component imports
-import {ContentTabs, Searchbar, ReturnRenew} from './../..';
+import {ContentTabs, Searchbar, ReturnRenew, Withdraw} from './../..';
 
 import {CenterColumn} from './../../../globalStyles.js'
 
@@ -137,14 +137,32 @@ class ScanModules extends Component {
 			},
 			{
 				title: "Withdraw",
-				componentToShow: <Searchbar />,
+				componentToShow: <Withdraw />,
 				colour: "accent2",
 				active: false
 			},
             {
 				title: "Return / Renew",
-				componentToShow: <ReturnRenew colour="accent5"/>,
+				componentToShow: <ReturnRenew />,
                 colour: "accent5",
+				active: false
+			},
+            {
+				title: "Error", //No book found after scan
+				componentToShow: <ReturnRenew />,
+                colour: "accent2",
+				active: false
+			},
+            {
+				title: "Error", //No renew date set
+				componentToShow: <ReturnRenew />,
+                colour: "accent2",
+				active: false
+			},
+            {
+				title: "Error", //Error when returning
+				componentToShow: <ReturnRenew />,
+                colour: "accent2",
 				active: false
 			}
 		];
