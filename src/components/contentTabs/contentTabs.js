@@ -44,7 +44,7 @@ class ContentTabs extends Component {
         }
 
         return (
-            <div>
+            <styles.ContentTabsContainer>
                 <styles.ConentTabs>
                     {this.state.tabs.map((tab, index) =>
                         (
@@ -64,7 +64,7 @@ class ContentTabs extends Component {
                 <styles.ContentTabContent>
                     {componentToShow}
                 </styles.ContentTabContent>
-            </div>
+            </styles.ContentTabsContainer>
         );
     }
 }

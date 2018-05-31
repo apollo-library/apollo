@@ -4,13 +4,12 @@ import React, { Component } from 'react';
 //Component imports
 import {ContentTabs, Searchbar, ReturnRenew} from './../..';
 
+import {CenterColumn} from './../../../globalStyles.js'
+
 //Redux
 import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => ({
-    scannedBook: state.data.scannedBook,
-    scanSearchTerm: state.ui.scanSearchTerm,
-    //scanState: state.ui.scanState,
     scanStatesToShow: state.ui.scanStatesToShow
 })
 
@@ -151,16 +150,20 @@ class ScanModules extends Component {
 		];
 
         return (
-            <div>
-                <ContentTabs tabs={
-                    this.props.scanStatesToShow.map((tab, index) => {
-						if (tab < tabReturns.length) return tabReturns[tab]
-						else console.log("ERROR")
+            <ContentTabs tabs={
+                this.props.scanStatesToShow.map((tab, index) => {
+                    if (index === this.props.scanStatesToShow.length - 1) {
+                        tabReturns[tab].active = true;
+                    } else {
+                        tabReturns[tab].active = false;
+                    }
 
-                        return null;
-                    })
-                } />
-            </div>
+                    if (tab < tabReturns.length) return tabReturns[tab]
+                    else console.log("Scan tab does not exist")
+
+                    return null;
+                })
+            } />
         );
     }
 }
