@@ -36,17 +36,9 @@ class Withdraw extends Component {
         this.setState({dueDate: e.target.value});
     }
 
-    async returnBook() {
-        let returnResponse = await API.Loans.returnBook(this.props.scanSearchTerm);
-
-        if (returnResponse.status === 'success') {
-            store.dispatch(actions.addScanTab(3)); //Thank you
-        }
-    }
-
     async withdrawBook() {
         if (this.state.renewDate !== "") {
-            let withdrawResponse = await API.Loans.withdrawBook(this.props.studentID, this.state.dueDate);
+            let withdrawResponse = await API.Loans.withdrawBook(this.props.scanSearchTerm, this.props.studentID, this.state.dueDate);
 
             if (withdrawResponse.status === 'success') {
                 store.dispatch(actions.addScanTab(3)); //Thank you
