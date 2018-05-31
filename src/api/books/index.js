@@ -8,7 +8,7 @@ async function getScanBookInfo(id) {
     let data = await fetch(serverPath + '/book/' + id);
     let json = await data.json();
     if (json.code === "002") { return {message: "Book not found"}; }
-    let response = await {author: json.data.author, title: json.data.title}
+    let response = await {author: json.data.author, title: json.data.title, publisher: json.data.publisher, tags: json.data.tags}
     if (json.data.loanID) { response['loanID'] = json.data.loanID; }
     return response; // <- return an object with all the tags
 }
