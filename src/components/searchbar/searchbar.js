@@ -44,12 +44,12 @@ class Searchbar extends Component {
 
             let scannedBook = await API.Books.getScanBookInfo(this.state.searchTerm);
             store.dispatch(actions.setScanSearchTerm(this.state.searchTerm));
-
+            store.dispatch(actions.setScannedBook(scannedBook));
 
             if (scannedBook.loanID) {
-                store.dispatch(actions.addScanTab(1)); //Withdraw
-            } else {
                 store.dispatch(actions.addScanTab(2)); //Renew / Return
+            } else {
+                store.dispatch(actions.addScanTab(1)); //Withdraw
             }
 
 

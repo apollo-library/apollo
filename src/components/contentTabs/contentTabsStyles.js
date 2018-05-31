@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+const ContentTabsContainer = styled.div`
+    width: 100%;
+`;
+
 const ConentTabs = styled.ul`
     width: 100%;
     padding: 0 0.3rem;
@@ -63,6 +67,7 @@ const ContentTabContent = styled.div`
 `;
 
 export {
+    ContentTabsContainer,
     ConentTabs,
     ContentTab,
     ContentTabContent

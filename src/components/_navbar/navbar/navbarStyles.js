@@ -8,6 +8,7 @@ const Navbar = styled.nav`
     box-shadow: 0px -1px 6px rgba(73,73,73,0.30);
     padding: 0 0.3rem;
 	user-select: none;
+    margin-bottom: 3rem;
 `;
 
 const Root = styled.ul`
