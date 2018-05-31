@@ -21,7 +21,7 @@ const OptionButton = styled.div`
 `;
 
 const OptionBorder = styled.div`
-    width: 80%;
+    width: 70%;
     margin: calc(${props => props.theme.styles.boxSpacing} / 2) auto;
     border-bottom: 2px solid ${props => props.theme.colours.lightGrey};
 `;

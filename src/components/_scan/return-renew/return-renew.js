@@ -7,11 +7,15 @@ import {Button, CenterColumn, RightColumn, LeftColumn, PageTitle} from './../../
 
 import * as API from './../../../api';
 
+//Components
+import {BookDetails} from './../..';
+
 //Redux
 import { connect } from 'react-redux'
+import { actions } from './../../../store/actions.js'
+import store from './../../../store'
 
 const mapStateToProps = (state) => ({
-    scannedBook: state.data.scannedBook,
     scanSearchTerm: state.ui.scanSearchTerm
 })
 
@@ -29,11 +33,23 @@ class ReturnRenew extends Component {
     }
 
     async returnBook() {
-        await API.Loans.returnBook(this.props.scanSearchTerm);
+        let returnResponse = await API.Loans.returnBook(this.props.scanSearchTerm);
+
+        if (returnResponse.status === 'success') {
+            store.dispatch(actions.addScanTab(3)); //Thank you
+        }
     }
 
     async renewBook() {
-         await API.Loans.renewBook(this.props.scanSearchTerm, this.state.renewDate);
+        if (this.state.renewDate !== "") {
+            let renewResponse = await API.Loans.renewBook(this.props.scanSearchTerm, this.state.renewDate);
+
+            if (renewResponse.status === 'success') {
+                store.dispatch(actions.addScanTab(3)); //Thank you
+            } else {
+                store.dispatch(actions.addScanTab(5)); //No renew date set
+            }
+        }
     }
 
     render() {
@@ -55,10 +71,9 @@ class ReturnRenew extends Component {
                             <Button large onClick={() => this.renewBook()} colour="accent4">Renew</Button>
                         </styles.OptionButton>
                     </LeftColumn>
-                    
-                    <RightColumn>
 
-                        <p>{this.props.scannedBook.title}</p>
+                    <RightColumn>
+                        <BookDetails />
                     </RightColumn>
                 </CenterColumn>
             </div>

@@ -143,8 +143,20 @@ class ScanModules extends Component {
 			},
             {
 				title: "Return / Renew",
-				componentToShow: <ReturnRenew colour="accent5"/>,
+				componentToShow: <ReturnRenew />,
                 colour: "accent5",
+				active: false
+			},
+            {
+				title: "Error", //No book found after scan
+				componentToShow: <ReturnRenew />,
+                colour: "accent2",
+				active: false
+			},
+            {
+				title: "Error", //No renew date set
+				componentToShow: <ReturnRenew />,
+                colour: "accent2",
 				active: false
 			}
 		];
