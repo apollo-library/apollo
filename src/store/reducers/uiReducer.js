@@ -18,6 +18,7 @@ const initialStates = {
         3 = Thank you message before automatically moving on back to initial state
         4 = No book found after scan
         5 = No renew date set
+        6 = Error when returning
     */
     scanStatesToShow: [0]
 }
