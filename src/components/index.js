@@ -25,7 +25,8 @@ import FilterItem from './_catalogue/filterItem/filterItem'
 
 import ScanModules from './_scan/scanModules/scanModules';
 import ReturnRenew from './_scan/return-renew/return-renew';
-import BookDetails from './_scan/bookDetails/bookDetails'
+import BookDetails from './_scan/bookDetails/bookDetails';
+import Withdraw from './_scan/withdraw/withdraw';
 
 //Export all components
 export {
@@ -45,5 +46,6 @@ export {
 
     ScanModules,
     ReturnRenew,
-    BookDetails
+    BookDetails,
+    Withdraw
 }

@@ -23,7 +23,7 @@ class BookDetails extends Component {
                 <img src="http://via.placeholder.com/150x200" />
                 <p>{this.props.scannedBook.title}</p>
                 <p>{this.props.scannedBook.author}</p>
-                <p>{this.props.scannedBook.title}</p>
+                <p>{this.props.scannedBook.publisher}</p>
             </styles.BookInfo>
         );
     }
