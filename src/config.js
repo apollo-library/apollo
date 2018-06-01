@@ -41,7 +41,8 @@ let config = {
 		accent2: '#ef8043', //Orange
 		accent3: '#782eed', //Purple
 		accent4: '#78dced', //Blue
-		accent5: '#63d1a1' //Green
+		accent5: '#63d1a1', //Green
+		accent6: '#eb5949' //Red
 	},
 
 	styles: {

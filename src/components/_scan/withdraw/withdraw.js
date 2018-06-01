@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 //Styles
 import * as styles from './withdrawStyles.js'
-import {Button, CenterColumn, RightColumn, LeftColumn, PageTitle} from './../../../globalStyles.js'
+import {Button, CenterColumn, RightColumn, LeftColumn} from './../../../globalStyles.js'
 
 import * as API from './../../../api';
 
@@ -37,15 +37,13 @@ class Withdraw extends Component {
     }
 
     async withdrawBook() {
-        if ((this.state.dueDate !== "") && (this.state.studentID !== "")) {
-            let withdrawResponse = await API.Loans.withdrawBook(this.props.scanSearchTerm, this.state.studentID, this.state.dueDate);
-            console.log(withdrawResponse)
-            if (withdrawResponse.status === 'success') {
-                console.log("hi")
-                store.dispatch(actions.addScanTab(3)); //Thank you
-            } else {
-                store.dispatch(actions.addScanTab(5)); //No renew date set
-            }
+        let withdrawResponse = await API.Loans.withdrawBook(this.props.scanSearchTerm, this.state.studentID, this.state.dueDate);
+
+        if (withdrawResponse.status === 'success') {
+            store.dispatch(actions.addScanTab(3)); //Thank you
+        } else {
+            store.dispatch(actions.addScanTab(4)); //No due date set
+            store.dispatch(actions.setScanError(withdrawResponse.status));
         }
     }
 

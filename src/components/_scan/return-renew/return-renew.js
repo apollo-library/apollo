@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 //Styles
 import * as styles from './return-renewStyles.js'
-import {Button, CenterColumn, RightColumn, LeftColumn, PageTitle} from './../../../globalStyles.js'
+import {Button, CenterColumn, RightColumn, LeftColumn} from './../../../globalStyles.js'
 
 import * as API from './../../../api';
 
@@ -37,19 +37,19 @@ class ReturnRenew extends Component {
         if (returnResponse.status === 'success') {
             store.dispatch(actions.addScanTab(3)); //Thank you
         } else {
-            store.dispatch(actions.addScanTab(6)); //Error when returning
+            store.dispatch(actions.addScanTab(4)); //Error when returning
+            store.dispatch(actions.setScanError(returnResponse.status));
         }
     }
 
     async renewBook() {
-        if (this.state.renewDate !== "") {
-            let renewResponse = await API.Loans.renewBook(this.props.scanSearchTerm, this.state.renewDate);
+        let renewResponse = await API.Loans.renewBook(this.props.scanSearchTerm, this.state.renewDate);
 
-            if (renewResponse.status === 'success') {
-                store.dispatch(actions.addScanTab(3)); //Thank you
-            } else {
-                store.dispatch(actions.addScanTab(5)); //No renew date set
-            }
+        if (renewResponse.status === 'success') {
+            store.dispatch(actions.addScanTab(3)); //Thank you
+        } else {
+            store.dispatch(actions.addScanTab(4)); //No renew date set
+            store.dispatch(actions.setScanError(renewResponse.status));
         }
     }
 

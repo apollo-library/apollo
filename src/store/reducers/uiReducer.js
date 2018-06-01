@@ -16,11 +16,10 @@ const initialStates = {
         1 = WITHDRAW. Show options for selecting a student and the due date
         2 = RENEW. Show option for selecting how many weeks to renew book for
         3 = Thank you message before automatically moving on back to initial state
-        4 = No book found after scan
-        5 = No renew date set
-        6 = Error when returning
+        4 = Error
     */
-    scanStatesToShow: [0]
+    scanStatesToShow: [0],
+    scanError: ""
 }
 
 function toggleNotifications(state) {
@@ -69,9 +68,26 @@ function resetScanTab(state) {
 
 function addScanTab(state, tabToAdd) {
 	let localState = JSON.parse(JSON.stringify(state));
+    let canAddTab = true;
 
-    localState.scanStatesToShow.push(tabToAdd)
+    for (let i = 0; i < localState.scanStatesToShow.length; i++) {
+        if (localState.scanStatesToShow[i] === tabToAdd) {
+            canAddTab = false;
+        }
+    }
+
+    if (canAddTab) {
+        localState.scanStatesToShow.push(tabToAdd)
+    }
+
     return {...state, scanStatesToShow:localState.scanStatesToShow};
+}
+
+function setScanError(state, scanError) {
+    let localState = JSON.parse(JSON.stringify(state));
+    localState.scanError = scanError;
+
+    return {...state, scanError: localState.scanError}
 }
 
 export const ui = (state = initialStates, action) => {
@@ -90,6 +106,8 @@ export const ui = (state = initialStates, action) => {
             return resetScanTab(state)
         case TYPES.ADD_SCAN_TAB:
             return addScanTab(state, action.tabToAdd)
+        case TYPES.SET_SCAN_ERROR:
+            return setScanError(state, action.scanError)
         default:
             return state
     }
