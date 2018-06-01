@@ -4,7 +4,7 @@ import config from './../config.js';
 //Not have to refer to config everytime
 const serverPath = config.serverPath;
 
-async function getScanBookInfo(id) {
+export async function getScanBookInfo(id) {
     let data = await fetch(serverPath + '/book/' + id);
     let json = await data.json();
     if (json.code === "002") { return {message: "Book not found"}; }
@@ -13,7 +13,12 @@ async function getScanBookInfo(id) {
     return response; // <- return an object with all the tags
 }
 
-async function searchBooks(query) {
+export async function searchBooks(query) {
+    console.log(query)
+    if (query.searchTerm === "") {
+        return {message: "Search term not given"};
+    }
+
     let filters = "";
 
     query.selectedFilters.forEach((tag, index) => {
@@ -33,30 +38,31 @@ async function searchBooks(query) {
     return json;
 }
 
-async function getBookInfo(id) {
+export async function getBookInfo(id) {
     // <- book id given
     // <- all information about book
 }
 
-async function addBook(data) {
+export async function addBook(data) {
     // <- give object
     // <- ?
 }
 
-async function editBook(data) {
+export async function editBook(data) {
     // <- ?
     // <- ?
 }
 
-async function deleteBook(id) {
+ export async function deleteBook(id) {
     // <- id
     // <- ?
 }
 
-async function getBookHistory(id) {
+export async function getBookHistory(id) {
 
 }
 
+/*
 export {
     getScanBookInfo,
     searchBooks,
@@ -65,4 +71,4 @@ export {
     editBook,
     deleteBook,
     getBookHistory
-}
+}*/
