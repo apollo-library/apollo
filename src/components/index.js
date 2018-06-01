@@ -27,6 +27,8 @@ import ScanModules from './_scan/scanModules/scanModules';
 import ReturnRenew from './_scan/return-renew/return-renew';
 import BookDetails from './_scan/bookDetails/bookDetails';
 import Withdraw from './_scan/withdraw/withdraw';
+import Success from './_scan/success/success';
+import Error from './_scan/error/error';
 
 //Export all components
 export {
@@ -47,5 +49,7 @@ export {
     ScanModules,
     ReturnRenew,
     BookDetails,
-    Withdraw
+    Withdraw,
+    Success,
+    Error
 }
