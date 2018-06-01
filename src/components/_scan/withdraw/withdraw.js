@@ -37,10 +37,11 @@ class Withdraw extends Component {
     }
 
     async withdrawBook() {
-        if (this.state.renewDate !== "") {
-            let withdrawResponse = await API.Loans.withdrawBook(this.props.scanSearchTerm, this.props.studentID, this.state.dueDate);
-
+        if ((this.state.dueDate !== "") && (this.state.studentID !== "")) {
+            let withdrawResponse = await API.Loans.withdrawBook(this.props.scanSearchTerm, this.state.studentID, this.state.dueDate);
+            console.log(withdrawResponse)
             if (withdrawResponse.status === 'success') {
+                console.log("hi")
                 store.dispatch(actions.addScanTab(3)); //Thank you
             } else {
                 store.dispatch(actions.addScanTab(5)); //No renew date set
