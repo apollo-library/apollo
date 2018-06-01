@@ -14,8 +14,23 @@ async function getScanBookInfo(id) {
 }
 
 async function searchBooks(query) {
-    // <- query given: search term string, selected filters as ints
-    // <- list of books
+    let filters = "";
+
+    query.selectedFilters.forEach((tag, index) => {
+        filters += '&filters[' + index + ']=' + tag;
+    });
+
+    let data = "query=" + query.searchTerm + filters;   // <- construct data into POST format
+
+    let response = await fetch(serverPath + '/books/search', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: data
+    });
+    let json = await response.json();
+    return json;
 }
 
 async function getBookInfo(id) {
