@@ -4,7 +4,9 @@ import React, { Component } from 'react';
 //Component imports
 import {ContentTabs, Searchbar, ReturnRenew, Withdraw} from './../..';
 
-import {CenterColumn} from './../../../globalStyles.js'
+import {CenterColumn, RightColumn, BottomLogo} from './../../../globalStyles.js'
+
+import logo from './../../../assets/images/logo.svg'
 
 //Redux
 import { connect } from 'react-redux'
@@ -148,6 +150,12 @@ class ScanModules extends Component {
 				active: false
 			},
             {
+				title: "Thank You",
+				componentToShow: <ReturnRenew />,
+                colour: "accent3",
+				active: false
+			},
+            {
 				title: "Error", //No book found after scan
 				componentToShow: <ReturnRenew />,
                 colour: "accent2",
@@ -168,20 +176,25 @@ class ScanModules extends Component {
 		];
 
         return (
-            <ContentTabs tabs={
-                this.props.scanStatesToShow.map((tab, index) => {
-                    if (index === this.props.scanStatesToShow.length - 1) {
-                        tabReturns[tab].active = true;
-                    } else {
-                        tabReturns[tab].active = false;
-                    }
+            <CenterColumn>
+                <RightColumn style={{flex: 1}}>
+                    <ContentTabs tabs={
+                        this.props.scanStatesToShow.map((tab, index) => {
+                            if (index === this.props.scanStatesToShow.length - 1) {
+                                tabReturns[tab].active = true;
+                            } else {
+                                tabReturns[tab].active = false;
+                            }
 
-                    if (tab < tabReturns.length) return tabReturns[tab]
-                    else console.log("Scan tab does not exist")
+                            if (tab < tabReturns.length) return tabReturns[tab]
+                            else console.log("Scan tab does not exist")
 
-                    return null;
-                })
-            } />
+                            return null;
+                        })
+                    } />
+                    <BottomLogo src={logo} />
+                </RightColumn>
+            </CenterColumn>
         );
     }
 }
