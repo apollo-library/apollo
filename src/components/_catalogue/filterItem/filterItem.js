@@ -7,8 +7,13 @@ import * as styles from './filterItemStyles.js'
 import * as API from './../../../api';
 
 //Redux
+import { connect } from 'react-redux'
 import { actions } from './../../../store/actions.js'
 import store from './../../../store'
+
+const mapStateToProps = (state) => ({
+    filterTerms: state.data.filterTerms
+})
 
 class FilterItem extends Component {
     constructor() {
@@ -42,4 +47,4 @@ class FilterItem extends Component {
     }
 }
 
-export default FilterItem;
+export default connect(mapStateToProps)(FilterItem);
