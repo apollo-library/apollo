@@ -14,11 +14,6 @@ export async function getScanBookInfo(id) {
 }
 
 export async function searchBooks(query) {
-    console.log(query)
-    if (query.searchTerm === "") {
-        return {message: "Search term not given"};
-    }
-
     let filters = "";
 
     query.selectedFilters.forEach((tag, index) => {
