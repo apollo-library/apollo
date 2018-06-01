@@ -13,14 +13,15 @@ import store from './../../store'
 import * as API from './../../api';
 
 const mapStateToProps = (state) => ({
-    currentPage: state.data.currentPage
+    currentPage: state.data.currentPage,
+    filterTerms: state.data.filterTerms
 })
 
 class Searchbar extends Component {
     constructor() {
         super()
         this.state = {
-            searchTerm: ""
+            scanSearchTerm: ""
         };
         this.updateSearchTerm = this.updateSearchTerm.bind(this);
         this.submitSearchTerm = this.submitSearchTerm.bind(this);
@@ -31,19 +32,21 @@ class Searchbar extends Component {
             //We pressed enter
             this.submitSearchTerm();
         }
-        this.setState({searchTerm: e.target.value});
+        this.setState({scanSearchTerm: e.target.value});
     }
 
     async submitSearchTerm() {
         if (this.props.currentPage === "/catalogue") {
-            if (this.state.searchTerm !== "") {
-                store.dispatch(actions.updateFilterList(this.state.searchTerm, "search"));
+            if (this.state.scanSearchTerm !== "") {
+                store.dispatch(actions.updateFilterList(this.state.scanSearchTerm, "search"));
+                let searchResponse = await API.Books.searchBooks(this.props.filterTerms);
+                console.log(searchResponse)
             }
         } else if (this.props.currentPage === "/scan") {
             store.dispatch(actions.resetScanTab(0));
 
-            let scannedBook = await API.Books.getScanBookInfo(this.state.searchTerm);
-            store.dispatch(actions.setScanSearchTerm(this.state.searchTerm));
+            let scannedBook = await API.Books.getScanBookInfo(this.state.scanSearchTerm);
+            store.dispatch(actions.setScanSearchTerm(this.state.scanSearchTerm));
             store.dispatch(actions.setScannedBook(scannedBook));
 
             if (scannedBook.loanID) {
