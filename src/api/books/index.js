@@ -1,3 +1,6 @@
+//Import functions
+import * as Functions from './../_functions/';
+
 //Config
 import config from './../config.js';
 
@@ -5,12 +8,12 @@ import config from './../config.js';
 const serverPath = config.serverPath;
 
 export async function getScanBookInfo(id) {
-    let data = await fetch(serverPath + '/book/' + id);
-    let json = await data.json();
+    let response = await fetch(serverPath + '/book/' + id);
+    let json = await Functions.Data.parseJSON(response);
     if (json.code === "002") { return {message: "Book not found"}; }
-    let response = await {author: json.data.author, title: json.data.title, publisher: json.data.publisher, tags: json.data.tags}
-    if (json.data.loanID) { response['loanID'] = json.data.loanID; }
-    return response; // <- return an object with all the tags
+    let parse = await {author: json.data.author, title: json.data.title, publisher: json.data.publisher, tags: json.data.tags}
+    if (json.data.loanID) { parse['loanID'] = json.data.loanID; }
+    return parse; // <- return an object with all the tags
 }
 
 export async function searchBooks(query) {
@@ -29,7 +32,7 @@ export async function searchBooks(query) {
         },
         body: data
     });
-    let json = await response.json();
+    let json = await Functions.Data.parseJSON(response);
     return json;
 }
 

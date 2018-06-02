@@ -1,3 +1,6 @@
+//Import functions
+import * as Functions from './../_functions/';
+
 //Config
 import config from './../config.js';
 
@@ -5,8 +8,8 @@ import config from './../config.js';
 const serverPath = config.serverPath;
 
 async function returnBook(id) {
-    let data = await fetch(serverPath + '/book/' + id + '/deposit');
-    let json = await data.json();
+    let response = await fetch(serverPath + '/book/' + id + '/deposit');
+    let json = await Functions.Data.parseJSON(response);
     if (json.code === "000") { return {status: 'success'}; }
     return {status: json.message}
 }
@@ -20,7 +23,7 @@ async function renewBook(id,date) {
         },
         body: data
     });
-    let json = await response.json();
+    let json = await Functions.Data.parseJSON(response);
     if (json.code === "000") { return {status: 'success'}; }
     return {status: json.message};
 }
@@ -34,7 +37,7 @@ async function withdrawBook(id, userID, date) {
         },
         body: data
     });
-    let json = await response.json();
+    let json = await Functions.Data.parseJSON(response);
     if (json.code === "000") { return {status: 'success'}; }
     return {status: json.message};
 }

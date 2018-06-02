@@ -1,3 +1,6 @@
+//Import functions
+import * as Functions from './../_functions/';
+
 //Config
 import config from './../config.js';
 
@@ -5,11 +8,11 @@ import config from './../config.js';
 const serverPath = config.serverPath;
 
 async function getAllTags() {
-    let data = await fetch(serverPath + '/tags');
-    let json = await data.json();
+    let response = await fetch(serverPath + '/tags');
+    let json = await Functions.Data.parseJSON(response);
     if (json.code === "001") { return []; }
-    let response = await json.data.map(tag => ({id:tag._id,name:tag.name}));
-    return response; // <- return an object with all the tags
+    let parse = await json.data.map(tag => ({id:tag._id,name:tag.name}));
+    return parse; // <- return an object with all the tags
 }
 
 async function addTag(data) {
