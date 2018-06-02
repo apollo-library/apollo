@@ -39,7 +39,7 @@ class ScanModules extends Component {
             {
 				title: "Thank You",
 				componentToShow: <Success />,
-            colour: "accent5",
+                colour: "accent5",
 				active: false
 			},
             {
