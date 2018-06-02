@@ -31,7 +31,7 @@ class Catalogue extends Component {
                         <PageTitle>{"Catalogue"}</PageTitle>
                         {this.props.filterList.map((filter, index) =>
                             (
-                                <FilterItem key={index} text={filter.name} id={filter.id}/>
+                                <FilterItem key={index} text={filter.name}/>
                             )
                         )}
                     </LeftColumn>

@@ -39,7 +39,7 @@ class FilterItem extends Component {
 
     render() {
         return (
-            <styles.FilterItem onClick={() => this.toggleFilterState(this.props.id)} active={this.state.active}>
+            <styles.FilterItem onClick={() => this.toggleFilterState(this.props.text)} active={this.state.active}>
                 <styles.Checkmark active={this.state.active}/>
                 {this.props.text}
             </styles.FilterItem>
