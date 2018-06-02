@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 import * as styles from './bookTableStyles.js'
-import {Button} from './../../../globalStyles.js'
+import {Button} from './../../globalStyles.js'
 
 class BookTable extends Component {
 
