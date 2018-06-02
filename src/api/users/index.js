@@ -1,3 +1,6 @@
+//Import functions
+import * as Functions from './../_functions/';
+
 //Config
 import config from './../config.js';
 
