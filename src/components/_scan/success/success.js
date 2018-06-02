@@ -22,10 +22,11 @@ class Success extends Component {
 
     render() {
         return (
-            <div>
-                <styles.SuccessMessage>Thank you</styles.SuccessMessage>
+            <styles.SuccessMessage>
+                <styles.SuccessTitle>Thank you</styles.SuccessTitle>
+                <br />
                 <Button large onClick={() => this.resetScanTab()} colour="accent3">Reset</Button>
-            </div>
+            </styles.SuccessMessage>
         );
     }
 }
