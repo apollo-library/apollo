@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 //Styles
 import * as styles from './errorStyles.js'
-import {Button, CenterColumn, RightColumn, LeftColumn, PageTitle} from './../../../globalStyles.js'
+import {Button} from './../../../globalStyles.js'
 
 //Redux
 import { connect } from 'react-redux'

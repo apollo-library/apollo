@@ -97,88 +97,7 @@ const initialStates = {
         ]
     },
     catalogue: {
-        books: [
-            {
-                title: "Rocket Propulsion Elements",
-                author: "George Paul Sutton"
-            },
-            {
-                title: "Rocket Propulsion Elements 2",
-                author: "George Paul Sutton"
-            },
-            {
-                title: "Rocket Propulsion Elements 3",
-                author: "George Paul Sutton"
-            },
-            {
-                title: "Rocket Propulsion Elements 4",
-                author: "George Paul Sutton"
-            },
-            {
-                title: "Rocket Propulsion Elements 5",
-                author: "George Paul Sutton"
-            },
-            {
-                title: "Rocket Propulsion Elements 6",
-                author: "George Paul Sutton"
-            },
-            {
-                title: "Rocket Propulsion Elements 7",
-                author: "George Paul Sutton"
-            },
-            {
-                title: "Rocket Propulsion Elements 8",
-                author: "George Paul Sutton"
-            },
-            {
-                title: "Rocket Propulsion Elements 9",
-                author: "George Paul Sutton"
-            },
-            {
-                title: "Rocket Propulsion Elements 10",
-                author: "George Paul Sutton"
-            },
-            {
-                title: "Rocket Propulsion Elements 11",
-                author: "George Paul Sutton"
-            },
-            {
-                title: "Rocket Propulsion Elements 12",
-                author: "George Paul Sutton"
-            },
-            {
-                title: "Rocket Propulsion Elements 13",
-                author: "George Paul Sutton"
-            },
-            {
-                title: "Rocket Propulsion Elements 14",
-                author: "George Paul Sutton"
-            },
-            {
-                title: "Rocket Propulsion Elements 15",
-                author: "George Paul Sutton"
-            },
-            {
-                title: "Rocket Propulsion Elements 16",
-                author: "George Paul Sutton"
-            },
-            {
-                title: "Rocket Propulsion Elements 17",
-                author: "George Paul Sutton"
-            },
-            {
-                title: "Rocket Propulsion Elements 18",
-                author: "George Paul Sutton"
-            },
-            {
-                title: "Rocket Propulsion Elements 19",
-                author: "George Paul Sutton"
-            },
-            {
-                title: "Rocket Propulsion Elements 20",
-                author: "George Paul Sutton"
-            }
-        ],
+        books: [],
         filterList: []
     },
     filterTerms: {
@@ -225,7 +144,7 @@ function updateFilterList(state, data, action) {
     } else {
         return {...state}
     }
-    
+
     return {...state, localState}
 }
 
@@ -234,6 +153,13 @@ function setScannedBook(state, scannedBook) {
     localState.scannedBook = scannedBook
 
     return {...state, localState}
+}
+
+function setCatalogueBooks(state, books) {
+    let localState = JSON.parse(JSON.stringify(state));
+    localState.catalogue.books = books;
+    
+    return {...state, catalogue: {books: localState.catalogue.books}}
 }
 
 
@@ -251,6 +177,8 @@ export const data = (state = initialStates, action) => {
             return updateFilterList(state, action.id, action.action)
         case TYPES.SET_SCANNED_BOOK:
             return setScannedBook(state, action.bookID)
+        case TYPES.SET_CATALOGUE_BOOKS:
+            return setCatalogueBooks(state, action.books)
         default:
             return state
     }

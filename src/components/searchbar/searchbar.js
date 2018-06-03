@@ -37,11 +37,13 @@ class Searchbar extends Component {
 
     async submitSearchTerm() {
         if (this.props.currentPage === "/catalogue") {
-            if (this.state.scanSearchTerm !== "") {
-                store.dispatch(actions.updateFilterList(this.state.scanSearchTerm, "search"));
-                let searchResponse = await API.Books.searchBooks(this.props.filterTerms);
-                console.log(searchResponse)
+            store.dispatch(actions.updateFilterList(this.state.scanSearchTerm, "search"));
+            let searchResponse = await API.Books.searchBooks(this.props.filterTerms);
+
+            if (searchResponse.message === "Success") {
+                store.dispatch(actions.setCatalogueBooks(searchResponse.data));
             }
+
         } else if (this.props.currentPage === "/scan") {
             store.dispatch(actions.resetScanTab(0));
 
@@ -54,15 +56,6 @@ class Searchbar extends Component {
             } else {
                 store.dispatch(actions.addScanTab(1)); //Withdraw
             }
-
-
-
-            /* if (scannedBook.message !== "Book not found") {
-                store.dispatch(actions.setScannedBook(scannedBook));
-                //store.dispatch(actions.setScanState(1));
-            } else {
-                //store.dispatch(actions.setScanState(5));
-            } */
         }
     }
 
