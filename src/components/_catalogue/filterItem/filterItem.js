@@ -30,11 +30,12 @@ class FilterItem extends Component {
         if (this.state.active) {
             store.dispatch(actions.updateFilterList(id, "remove"));
             searchResponse = await API.Books.searchBooks(this.props.filterTerms);
+            store.dispatch(actions.setCatalogueBooks([]));
         } else {
             store.dispatch(actions.updateFilterList(id, "add"));
             searchResponse = await API.Books.searchBooks(this.props.filterTerms);
         }
-
+        
         if (searchResponse.message === "Success") {
             store.dispatch(actions.setCatalogueBooks(searchResponse.data));
         }
