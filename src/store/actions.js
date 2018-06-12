@@ -6,6 +6,7 @@ export const TYPES = {
     UPDATE_FILTER_LIST: 'UPDATE_FILTER_LIST',
     SET_SCANNED_BOOK: 'SET_SCANNED_BOOK',
     SET_CATALOGUE_BOOKS: 'SET_CATALOGUE_BOOKS',
+    FILTER_FILTER_LIST: 'FILTER_FILTER_LIST',
 
     TOGGLE_NOTIFICATIONS: 'TOGGLE_NOTIFICATIONS',
     HIDE_NOTIFICATIONS: 'HIDE_NOTIFICATIONS',
@@ -25,6 +26,7 @@ export const actions = {
     updateFilterList: (id, action) => ({type: TYPES.UPDATE_FILTER_LIST, id, action}),
     setScannedBook: (bookID) => ({type: TYPES.SET_SCANNED_BOOK, bookID}),
     setCatalogueBooks: (books) => ({type: TYPES.SET_CATALOGUE_BOOKS, books}),
+    filterFilterList: (filterListTerm) => ({type: TYPES.FILTER_FILTER_LIST, filterListTerm}),
 
     toggleNotifications: () => ({type: TYPES.TOGGLE_NOTIFICATIONS}),
     hideNotifications: () => ({type: TYPES.HIDE_NOTIFICATIONS}),

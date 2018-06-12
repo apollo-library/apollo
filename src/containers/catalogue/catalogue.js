@@ -8,6 +8,9 @@ import {CenterColumn, LeftColumn, RightColumn, PageTitle} from './../../globalSt
 
 //Redux
 import { connect } from 'react-redux'
+import { actions } from './../../store/actions.js'
+import store from './../../store'
+
 
 import * as API from './../../api';
 
@@ -15,22 +18,14 @@ import * as API from './../../api';
 import config from './../../config'
 
 const mapStateToProps = (state) => ({
-    filterList: state.data.catalogue.filterList,
+    filterFilterList: state.data.filterTerms.filteredFilters,
     catalogueBooks: state.data.catalogue.books
 })
 
 class Catalogue extends Component {
-    constructor() {
-        super()
-        this.state = {
-            filterList: []
-        };
-    }
-
     async componentDidMount() {
         let filterTags = await API.Tags.getAllTags();
-        this.setState({filterList: filterTags});
-        //store.dispatch(actions.getFilterList(filterTags));
+        store.dispatch(actions.getFilterList(filterTags));
     }
 
     render() {
@@ -39,7 +34,8 @@ class Catalogue extends Component {
                 <CenterColumn>
                     <LeftColumn small>
                         <PageTitle>{"Catalogue"}</PageTitle>
-                        {this.state.filterList.map((filter, index) =>
+                        <Searchbar noButton={true} filterList={true} />
+                        {this.props.filterFilterList.map((filter, index) =>
                             (
                                 <FilterItem key={index} text={filter.name}/>
                             )
