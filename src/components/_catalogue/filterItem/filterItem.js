@@ -24,18 +24,19 @@ class FilterItem extends Component {
         this.toggleFilterState = this.toggleFilterState.bind(this);
     }
 
-    async toggleFilterState(id) {
+    async toggleFilterState(text) {
         let searchResponse;
         this.setState({active: !this.state.active});
         if (this.state.active) {
-            store.dispatch(actions.updateFilterList(id, "remove"));
+            store.dispatch(actions.updateFilterList(text, "remove"));
             searchResponse = await API.Books.searchBooks(this.props.filterTerms);
-            store.dispatch(actions.setCatalogueBooks([]));
         } else {
-            store.dispatch(actions.updateFilterList(id, "add"));
+            store.dispatch(actions.updateFilterList(text, "add"));
             searchResponse = await API.Books.searchBooks(this.props.filterTerms);
+            console.log(searchResponse)
         }
-        
+
+
         if (searchResponse.message === "Success") {
             store.dispatch(actions.setCatalogueBooks(searchResponse.data));
         }

@@ -1,5 +1,8 @@
 import { TYPES } from '../actions'
 
+import update from 'immutability-helper';
+
+
 /*
     These states are mainly for handling UI states that are global
     across the whole appliaction or are specific to an individual
@@ -22,92 +25,55 @@ const initialStates = {
     scanError: ""
 }
 
-function toggleNotifications(state) {
-    let localState = state;
-    localState.notificationPopupActive = !localState.notificationPopupActive;
-
-    return {...state, localState};
-}
-
-function hideNotifications(state) {
-    let localState = state;
-    localState.notificationPopupActive = false;
-
-    return {...state, localState};
-}
-
-function toggleAccount(state) {
-    let localState = state;
-    localState.accountPopupActive = !localState.accountPopupActive;
-
-    return {...state, localState};
-}
-
-function hideAccount(state) {
-    let localState = state;
-    localState.accountPopupActive = false;
-
-    return {...state, localState};
-}
-
-
-//todo: LOOK AT ME FOR AN EXAMPLE.
-function setScanSearchTerm(state, term) {
-    let localState = JSON.parse(JSON.stringify(state));
-    localState.scanSearchTerm = term;
-
-    return {...state, scanSearchTerm: localState.scanSearchTerm}
-}
-
-function resetScanTab(state) {
-    let localState = JSON.parse(JSON.stringify(state));
-
-    localState.scanStatesToShow = [0]
-    return {...state, scanStatesToShow:localState.scanStatesToShow};
-}
 
 function addScanTab(state, tabToAdd) {
-	let localState = JSON.parse(JSON.stringify(state));
     let canAddTab = true;
 
-    for (let i = 0; i < localState.scanStatesToShow.length; i++) {
-        if (localState.scanStatesToShow[i] === tabToAdd) {
+    for (let i = 0; i < state.scanStatesToShow.length; i++) {
+        if (state.scanStatesToShow[i] === tabToAdd) {
             canAddTab = false;
         }
     }
 
     if (canAddTab) {
-        localState.scanStatesToShow.push(tabToAdd)
+        return update(state, {
+         scanStatesToShow: {$push: [tabToAdd]}
+      })
     }
-
-    return {...state, scanStatesToShow:localState.scanStatesToShow};
-}
-
-function setScanError(state, scanError) {
-    let localState = JSON.parse(JSON.stringify(state));
-    localState.scanError = scanError;
-
-    return {...state, scanError: localState.scanError}
 }
 
 export const ui = (state = initialStates, action) => {
     switch (action.type) {
         case TYPES.TOGGLE_NOTIFICATIONS:
-            return toggleNotifications(state)
+            return update(state, {
+                notificationPopupActive: {$set: !state.notificationPopupActive}
+            })
         case TYPES.HIDE_NOTIFICATIONS:
-            return hideNotifications(state)
+            return update(state, {
+                notificationPopupActive: {$set: false}
+            })
         case TYPES.TOGGLE_ACCOUNT:
-            return toggleAccount(state)
+            return update(state, {
+                accountPopupActive: {$set: !state.accountPopupActive}
+            })
         case TYPES.HIDE_ACCOUNT:
-            return hideAccount(state)
+            return update(state, {
+                accountPopupActive: {$set: false}
+            })
         case TYPES.SET_SCAN_SEARCH_TERM:
-            return setScanSearchTerm(state, action.scanSearchTerm)
+            return update(state, {
+                scanSearchTerm: {$set: action.scanSearchTerm}
+            })
         case TYPES.RESET_SCAN_TAB:
-            return resetScanTab(state)
+            return update(state, {
+                scanStatesToShow: {$set: [0]}
+            })
         case TYPES.ADD_SCAN_TAB:
             return addScanTab(state, action.tabToAdd)
         case TYPES.SET_SCAN_ERROR:
-            return setScanError(state, action.scanError)
+            return update(state, {
+                scanError: {$set: action.scanError}
+            })
         default:
             return state
     }

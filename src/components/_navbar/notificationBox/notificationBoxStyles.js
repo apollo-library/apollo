@@ -31,7 +31,6 @@ const NotificationWrapper = styled.div`
 `;
 
 const NotificationInfo = styled.div`
-    flex: 1;
 `;
 
 const NotificationTime = styled.p`
@@ -54,7 +53,6 @@ const NotificationAuthor = styled.p`
 
 const NotificationDaysLeft = styled.div`
     text-align: center;
-    margin-right: 0.5rem;
     width: 40%;
 `;
 

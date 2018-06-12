@@ -1,5 +1,5 @@
 let config = {
-    serverPath: 'http://51.254.142.181'
+    serverPath: 'https://sigma.cameronrobey.co.uk'
 }
 
 export default config;

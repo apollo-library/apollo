@@ -28,18 +28,25 @@ class Searchbar extends Component {
     }
 
     updateSearchTerm(e) {
-        if (e.keyCode === 13) {
-            //We pressed enter
-            this.submitSearchTerm();
+        if (this.props.filterList) {
+            store.dispatch(actions.filterFilterList(e.target.value));
+        } else {
+            if (e.keyCode === 13) {
+                //We pressed enter
+                this.submitSearchTerm();
+            }
+            this.setState({scanSearchTerm: e.target.value});
         }
-        this.setState({scanSearchTerm: e.target.value});
     }
 
     async submitSearchTerm() {
         if (this.props.currentPage === "/catalogue") {
             store.dispatch(actions.updateFilterList(this.state.scanSearchTerm, "search"));
+
+            console.log(this.props.filterTerms)
             let searchResponse = await API.Books.searchBooks(this.props.filterTerms);
 
+            console.log(searchResponse)
             if (searchResponse.message === "Success") {
                 store.dispatch(actions.setCatalogueBooks(searchResponse.data));
             }
@@ -60,12 +67,21 @@ class Searchbar extends Component {
     }
 
     render() {
-        return (
-            <styles.SearchBar>
-                <styles.SearchBox onKeyUp={(e) => this.updateSearchTerm(e)} type="text" placeholder={this.props.currentPage === "/catalogue" ? "Search" : "Scan"} autoFocus/>
-                <Button onClick={() => this.submitSearchTerm()} colour="primary">{this.props.currentPage === "/catalogue" ? "Search" : "Scan"}</Button>
-            </styles.SearchBar>
-        );
+        if (this.props.noButton) {
+            return (
+                <styles.SearchBar>
+                    <styles.SearchBox onKeyUp={(e) => this.updateSearchTerm(e)} type="text" placeholder={this.props.currentPage === "/catalogue" ? "Search" : "Scan"} autoFocus/>
+                </styles.SearchBar>
+            );
+        } else {
+            return (
+                <styles.SearchBar>
+                    <styles.SearchBox onKeyUp={(e) => this.updateSearchTerm(e)} type="text" placeholder={this.props.currentPage === "/catalogue" ? "Search" : "Scan"} autoFocus/>
+                    <Button onClick={() => this.submitSearchTerm()} colour="primary">{this.props.currentPage === "/catalogue" ? "Search" : "Scan"}</Button>
+                </styles.SearchBar>
+            );
+        }
+
     }
 }
 
