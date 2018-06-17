@@ -53,11 +53,12 @@ class Navbar extends Component {
                     <styles.Logo>
                         <img src={logo} alt="Apollo Logo" />
                     </styles.Logo>
+                    
                     {config.main.pages.map((page, index) =>
                         (
                             <styles.Item
+                                to={page.path}
                                 key={index}
-                                onClick={() => {this.props.history.push(page.path)}}
                                 itemActive={page.path === this.props.currentPage}
                             >
                                 {page.text}

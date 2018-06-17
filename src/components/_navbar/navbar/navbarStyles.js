@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Navbar = styled.nav`
     height: 50px;
@@ -26,7 +27,7 @@ const Logo = styled.li`
     overflow: visible;
 `;
 
-const Item = styled.li`
+const Item = styled(Link)`
     padding: 0.2rem 0.625rem;
     cursor: pointer;
     color: ${props => props.itemActive ? props.theme.colours.primary : props.theme.colours.darkGrey};
@@ -43,7 +44,7 @@ const Item = styled.li`
         height: 1em;
         width: 90%;
         border-bottom: 2.5px solid ${props => props.theme.colours.primary};
-        margin-top: 10px;
+        margin-top: 7px;
         transform: ${props => props.itemActive ? 'scaleX(1)' : 'scaleX(0)'};
         transition: transform 150ms ease 60ms;
     }
