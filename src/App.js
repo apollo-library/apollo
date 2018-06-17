@@ -42,19 +42,21 @@ class App extends Component {
 
     render() {
         return (
-            <div>
-                <Navbar history={history} />
-                <div style={{minHeight: '100vh'}} onClick={() => {this.hideAllPopups()}}>
-                    <Router history={history}>
-                        <Switch>
-                            {config.main.pages.map((page, index) =>
-                                <Route exact path={page.path} component={page.componentName} key={index} />
-                            )}
-                            <Route exact path={'/testing'} component={Test}/>
-                        </Switch>
-                    </Router>
+            <Router history={history}>
+                <div>
+                    <Navbar history={history} />
+                    <div style={{minHeight: '100vh'}} onClick={() => {this.hideAllPopups()}}>
+
+                            <Switch>
+                                {config.main.pages.map((page, index) =>
+                                    <Route exact path={page.path} component={page.componentName} key={index} />
+                                )}
+                                <Route exact path={'/testing'} component={Test}/>
+                            </Switch>
+
+                    </div>
                 </div>
-            </div>
+            </Router>
         );
     }
 }
