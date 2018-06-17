@@ -5,6 +5,7 @@ let config = {
 	main: {
 		shortName: "Apollo",
 		longName: "Apollo | Library Management System",
+		googleAnalyicsTrackingID: "UA-120966777-1",
 		pages: [
 			{
 				text: 'Dashboard',
