@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 //Component imports
-import {Searchbar, FilterItem, BookTable} from './../../components';
+import {CatalogueSearch, TagItem, BookTable} from './../../components';
 
 import {CenterColumn, LeftColumn, RightColumn, PageTitle} from './../../globalStyles.js'
 
@@ -18,48 +18,38 @@ import * as API from './../../api';
 import config from './../../config'
 
 const mapStateToProps = (state) => ({
-    filterFilterList: state.data.filterTerms.filteredFilters,
-    catalogueBooks: state.data.catalogue.books
+    filteredTags: state.data.filteredTags
 })
 
 class Catalogue extends Component {
     async componentDidMount() {
-        let filterTags = await API.Tags.getAllTags();
-        store.dispatch(actions.getFilterList(filterTags));
+        //When component loads, get the list of filterTerms
+        let tags = await API.Tags.getAllTags();
+        store.dispatch(actions.pushAllTags(tags));
+
+        //Update filteredTags so list isn't empty
+        store.dispatch(actions.pushFilteredTags(tags));
     }
+
 
     render() {
         return (
             <div>
                 <CenterColumn>
                     <LeftColumn small>
-                        <PageTitle>{"Catalogue"}</PageTitle>
-                        <Searchbar noButton={true} filterList={true} />
-                        {this.props.filterFilterList.map((filter, index) =>
+                        <PageTitle>Catalogue</PageTitle>
+
+                        <CatalogueSearch />
+
+                        {this.props.filteredTags.slice(0,15).map((filter, index) =>
                             (
-                                <FilterItem key={index} text={filter.name}/>
+                                <TagItem key={index} text={filter.name} />
                             )
                         )}
                     </LeftColumn>
 
                     <RightColumn>
-                        <Searchbar />
-
-                        <div style={{marginTop: config.styles.boxSpacing}}>
-                            <BookTable
-                                type="catalogue"
-                                colour="accent5"
-                                data={this.props.catalogueBooks}
-                                titles={[
-                                    "Title",
-                                    "Author",
-                                    "Status",
-                                    "Action"
-                                ]}
-                                buttonText="Details"
-                                buttonFunction="RUN A FUNCTION HERE"
-                            />
-                        </div>
+                        Right
                     </RightColumn>
                 </CenterColumn>
             </div>
