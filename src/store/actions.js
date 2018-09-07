@@ -2,11 +2,9 @@ export const TYPES = {
     UPDATE_CURRENT_PAGE: 'UPDATE_CURRENT_PAGE',
     REMOVE_NOTIFICATION: 'REMOVE_NOTIFICATION',
     REMOVE_BOOK_TO_RATE: 'REMOVE_BOOK_TO_RATE',
-    GET_FILTER_LIST: 'GET_FILTER_LIST',
-    UPDATE_FILTER_LIST: 'UPDATE_FILTER_LIST',
     SET_SCANNED_BOOK: 'SET_SCANNED_BOOK',
-    SET_CATALOGUE_BOOKS: 'SET_CATALOGUE_BOOKS',
-    FILTER_FILTER_LIST: 'FILTER_FILTER_LIST',
+    PUSH_ALL_TAGS: 'PUSH_ALL_TAGS',
+    PUSH_FILTERED_TAGS: 'PUSH_FILTERED_TAGS',
 
     TOGGLE_NOTIFICATIONS: 'TOGGLE_NOTIFICATIONS',
     HIDE_NOTIFICATIONS: 'HIDE_NOTIFICATIONS',
@@ -22,11 +20,10 @@ export const actions = {
     updateCurrentPage: (newCurrentPage) => ({ type: TYPES.UPDATE_CURRENT_PAGE, newCurrentPage }),
     removeNotification: (notificationToRemoveID) => ({ type: TYPES.REMOVE_NOTIFICATION, notificationToRemoveID }),
     removeBookToRate: () => ({ type: TYPES.REMOVE_BOOK_TO_RATE }),
-    getFilterList: (filterTags) => ({type: TYPES.GET_FILTER_LIST, filterTags}),
-    updateFilterList: (id, action) => ({type: TYPES.UPDATE_FILTER_LIST, id, action}),
     setScannedBook: (bookID) => ({type: TYPES.SET_SCANNED_BOOK, bookID}),
-    setCatalogueBooks: (books) => ({type: TYPES.SET_CATALOGUE_BOOKS, books}),
-    filterFilterList: (filterListTerm) => ({type: TYPES.FILTER_FILTER_LIST, filterListTerm}),
+    pushAllTags: (tags) => ({type: TYPES.PUSH_ALL_TAGS, tags}),
+    pushFilteredTags:(filteredTags) => ({type: TYPES.PUSH_FILTERED_TAGS, filteredTags}),
+
 
     toggleNotifications: () => ({type: TYPES.TOGGLE_NOTIFICATIONS}),
     hideNotifications: () => ({type: TYPES.HIDE_NOTIFICATIONS}),

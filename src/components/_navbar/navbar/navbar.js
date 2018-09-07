@@ -1,6 +1,7 @@
 //React imports
 import React, { Component } from 'react';
 
+
 //Styles
 import * as styles from './navbarStyles.js'
 import {Button, FlexGrow} from './../../../globalStyles.js'
@@ -45,7 +46,7 @@ class Navbar extends Component {
         store.dispatch(actions.hideNotifications());
     }
 
-
+//page.path === this.props.currentPage
     render() {
         return (
             <styles.Navbar>
@@ -53,13 +54,14 @@ class Navbar extends Component {
                     <styles.Logo>
                         <img src={logo} alt="Apollo Logo" />
                     </styles.Logo>
-                    
+
                     {config.main.pages.map((page, index) =>
                         (
                             <styles.Item
                                 to={page.path}
                                 key={index}
-                                itemActive={page.path === this.props.currentPage}
+                                itemActive={true}
+
                             >
                                 {page.text}
                             </styles.Item>
