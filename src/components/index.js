@@ -21,7 +21,8 @@ import DueSoon from './_dashboard/dueSoon/dueSoon';
 import Recommended from './_dashboard/recommended/recommended';
 import History from './_dashboard/history/history';
 
-import FilterItem from './_catalogue/filterItem/filterItem'
+import TagItem from './_catalogue/tagItem/tagItem'
+import CatalogueSearch from './_catalogue/catalogueSearch/catalogueSearch'
 
 import ScanModules from './_scan/scanModules/scanModules';
 import ReturnRenew from './_scan/return-renew/return-renew';
@@ -44,7 +45,8 @@ export {
     Recommended,
     History,
 
-    FilterItem,
+    TagItem,
+    CatalogueSearch,
 
     ScanModules,
     ReturnRenew,
