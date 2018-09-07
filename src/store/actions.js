@@ -5,6 +5,7 @@ export const TYPES = {
     SET_SCANNED_BOOK: 'SET_SCANNED_BOOK',
     PUSH_ALL_TAGS: 'PUSH_ALL_TAGS',
     PUSH_FILTERED_TAGS: 'PUSH_FILTERED_TAGS',
+    UPDATE_FILTER_TAGS: 'UPDATE_FILTER_TAGS',
 
     TOGGLE_NOTIFICATIONS: 'TOGGLE_NOTIFICATIONS',
     HIDE_NOTIFICATIONS: 'HIDE_NOTIFICATIONS',
@@ -22,8 +23,8 @@ export const actions = {
     removeBookToRate: () => ({ type: TYPES.REMOVE_BOOK_TO_RATE }),
     setScannedBook: (bookID) => ({type: TYPES.SET_SCANNED_BOOK, bookID}),
     pushAllTags: (tags) => ({type: TYPES.PUSH_ALL_TAGS, tags}),
-    pushFilteredTags:(filteredTags) => ({type: TYPES.PUSH_FILTERED_TAGS, filteredTags}),
-
+    pushFilteredTags: (filteredTags) => ({type: TYPES.PUSH_FILTERED_TAGS, filteredTags}),
+    updateFilterTags: (tagName) => ({type: TYPES.UPDATE_FILTER_TAGS, tagName}),
 
     toggleNotifications: () => ({type: TYPES.TOGGLE_NOTIFICATIONS}),
     hideNotifications: () => ({type: TYPES.HIDE_NOTIFICATIONS}),

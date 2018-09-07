@@ -12,7 +12,7 @@ import { actions } from './../../../store/actions.js'
 import store from './../../../store'
 
 const mapStateToProps = (state) => ({
-    filterTerms: state.data.filterTerms
+    searchQuery: state.data.searchQuery
 })
 
 class TagItem extends Component {
@@ -21,12 +21,21 @@ class TagItem extends Component {
         this.state = {
             active: false
         };
-        this.toggleFilterState = this.toggleFilterState.bind(this);
+        this.toggleTagState = this.toggleTagState.bind(this);
     }
 
-    async toggleFilterState(text) {
+    async toggleTagState(tagName) {
         let searchResponse;
         this.setState({active: !this.state.active});
+
+
+        //Write this function in the reducer
+        store.dispatch(actions.updateFilterTags(tagName));
+
+        //SEARCH HERE
+
+        //THIS IS OLD CODE JUST HREE FOR REFERENCE
+        /*
         if (this.state.active) {
             store.dispatch(actions.updateFilterList(text, "remove"));
             searchResponse = await API.Books.searchBooks(this.props.filterTerms);
@@ -36,21 +45,16 @@ class TagItem extends Component {
             console.log(searchResponse)
         }
 
-
         if (searchResponse.message === "Success") {
             store.dispatch(actions.setCatalogueBooks(searchResponse.data));
         }
+        */
     };
 
 
     /*
 
-    Add search bar to tag list so that these can be searhed.
 
-    - * Push new tags list to redux as filteredTags. then map through these values on the list in the catalogue component 
-
-    Ok, the next thing I need to do is move the filter list on the side to a separate component.
-    After that, update this file so that when you click on a filter it updates a redux 'searchQuery' state.
     Once updated we can send off an API request for the books that match that search query
         The searchbar also needs to update this same query and once that is done, do an API call
 
@@ -62,10 +66,11 @@ class TagItem extends Component {
     */
 
     render() {
+        console.log(this.props.searchQuery)
         return (
-            <styles.FilterItem onClick={() => this.toggleFilterState(this.props.text)} active={this.state.active}>
+            <styles.FilterItem onClick={() => this.toggleTagState(this.props.tagName)} active={this.state.active}>
                 <styles.Checkmark active={this.state.active}/>
-                {this.props.text}
+                {this.props.tagName}
             </styles.FilterItem>
         );
     }
