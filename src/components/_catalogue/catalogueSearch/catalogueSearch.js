@@ -30,9 +30,10 @@ class CatalogueSearch extends Component {
             //console.log(tag.name.toLowerCase().indexOf(filterTerm) > -1)
             return (tag.name.toLowerCase().indexOf(filterTerm) > -1);
         });
-        console.log(filteredTags)
+
         store.dispatch(actions.pushFilteredTags(filteredTags));
 
+        //SEARCH HERE
     }
 
     render() {

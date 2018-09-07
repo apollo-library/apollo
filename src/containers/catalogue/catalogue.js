@@ -41,9 +41,9 @@ class Catalogue extends Component {
 
                         <CatalogueSearch />
 
-                        {this.props.filteredTags.slice(0,15).map((filter, index) =>
+                        {this.props.filteredTags.slice(0,15).map((tag, index) =>
                             (
-                                <TagItem key={index} text={filter.name} />
+                                <TagItem key={index} tagName={tag.name} />
                             )
                         )}
                     </LeftColumn>

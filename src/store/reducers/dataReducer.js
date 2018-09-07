@@ -4,10 +4,8 @@ import update from 'immutability-helper';
 
 
 /* THINGS I NEED TO GET FROM API:
-
  - studentDetails
  - catalogue
-
 */
 
 const initialStates = {
@@ -131,7 +129,27 @@ function removeBookToRate(state) {
     return {...state, studentDetails: {booksToRate: localState.studentDetails.booksToRate}}
 }
 
+//Toggles the tags being in the serach query or not
+function updateFilterTags(state, tagName) {
+    //Check if the active filters contains the one we've clicked
+    if (state.searchQuery.filters.includes(tagName)) { //For IE support in the future *.includes() can be changed to *.indexOf()
+        //Remove tag from query
+        let index = state.searchQuery.filters.indexOf(tagName);
 
+        return update(state, {
+            searchQuery: {
+                filters: {$splice: [[index, 1]]}
+            }
+        })
+    } else {
+        //Add the tag to the query
+        return update(state, {
+            searchQuery: {
+                filters: {$push: [tagName]}
+            }
+        })
+    }
+}
 
 
 export const data = (state = initialStates, action) => {
@@ -158,6 +176,8 @@ export const data = (state = initialStates, action) => {
             return update(state, {
                 filteredTags: {$set: action.filteredTags}
             })
+        case TYPES.UPDATE_FILTER_TAGS:
+            return updateFilterTags(state, action.tagName)
         default:
             return state
     }
