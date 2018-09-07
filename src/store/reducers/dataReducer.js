@@ -99,15 +99,14 @@ const initialStates = {
             }
         ]
     },
-    catalogue: {
-        books: [],
-        filterList: []
-    },
-    filterTerms: {
+    searchQuery: {
         searchTerm: "",
-        selectedFilters: [],
-        filteredFilters: []
+        filters: []
     },
+    catalogue: {
+        tags: []
+    },
+    filteredTags: [],
     scannedBook: {}
 }
 
@@ -134,50 +133,6 @@ function removeBookToRate(state) {
 
 
 
-function updateFilterList(state, data, action) {
-    if (action === "add") {
-        console.log(state.filterTerms)
-        return update(state, {filterTerms:
-            {
-                selectedFilters: {$push: [data]}
-            }
-        })
-
-    } else if (action === "remove") {
-        let filterIndex = state.filterTerms.selectedFilters.indexOf(data)
-        console.log(state.filterTerms)
-        return update(state, {filterTerms:
-            {
-                selectedFilters: {$splice: [[filterIndex, 1]]}
-            }
-        })
-
-    } else if (action === "search") {
-        console.log("setting redux state to: " + data)
-        console.log(state.filterTerms)
-        return update(state, {filterTerms:
-            {
-                searchTerm: {$set: data}
-            }
-        })
-    } else {
-        return {...state}
-    }
-}
-
-function filterFilterList(state, filterListTerm) {
-    let filteredFilters = []
-    filteredFilters = state.catalogue.filterList.filter((filter) => {
-        return filter.name.toLowerCase().indexOf(filterListTerm.toLowerCase()) > -1
-    });
-
-    return update(state, {filterTerms:
-        {
-            filteredFilters: {$set: filteredFilters}
-        }
-    })
-}
-
 
 export const data = (state = initialStates, action) => {
     switch (action.type) {
@@ -189,27 +144,20 @@ export const data = (state = initialStates, action) => {
             return removeNotification(state, action.notificationToRemoveID)
         case TYPES.REMOVE_BOOK_TO_RATE:
             return removeBookToRate(state)
-        case TYPES.GET_FILTER_LIST:
-            return update(state, {catalogue:
-                {
-                    filterList: {$set: action.filterTags}
-                }
-            })
-        case TYPES.UPDATE_FILTER_LIST:
-            return updateFilterList(state, action.id, action.action)
         case TYPES.SET_SCANNED_BOOK:
             return update(state, {
                 scannedBook: {$set: action.bookID}
             })
-        case TYPES.SET_CATALOGUE_BOOKS:
-        let test = [{title: "First title"}, {title: "Second title"}]
+        case TYPES.PUSH_ALL_TAGS:
             return update(state, {catalogue:
                 {
-                    books: {$set: action.books}
+                    tags: {$set: action.tags}
                 }
             })
-        case TYPES.FILTER_FILTER_LIST:
-            return filterFilterList(state, action.filterListTerm)
+        case TYPES.PUSH_FILTERED_TAGS:
+            return update(state, {
+                filteredTags: {$set: action.filteredTags}
+            })
         default:
             return state
     }
