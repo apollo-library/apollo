@@ -12,7 +12,8 @@ import { actions } from './../../../store/actions.js'
 import store from './../../../store'
 
 const mapStateToProps = (state) => ({
-    tags: state.data.catalogue.tags
+    tags: state.data.catalogue.tags,
+    searchQuery: state.data.searchQuery
 })
 
 class BookSearch extends Component {
@@ -37,7 +38,10 @@ class BookSearch extends Component {
     }
 
     async bookSearch() {
-        store.dispatch(actions.updateSearchTerm(this.state.searchTerm));
+        await store.dispatch(actions.updateSearchTerm(this.state.searchTerm));
+
+        let searchResponse = await API.Books.searchBooks(this.props.searchQuery);
+        console.log(searchResponse)
     }
 
     render() {

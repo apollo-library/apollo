@@ -19,11 +19,13 @@ export async function getScanBookInfo(id) {
 export async function searchBooks(query) {
     let filters = "";
 
-    query.selectedFilters.forEach((tag, index) => {
+    query.filters.forEach((tag, index) => {
         filters += '&filters[' + index + ']=' + tag;
     });
 
     let data = "query=" + query.searchTerm + filters;   // <- construct data into POST format
+    console.log(query)
+    console.log("a")
 
     let response = await fetch(serverPath + '/books/search', {
         method: "POST",
