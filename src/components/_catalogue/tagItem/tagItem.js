@@ -28,8 +28,6 @@ class TagItem extends Component {
         let searchResponse;
         this.setState({active: !this.state.active});
 
-
-        //Write this function in the reducer
         store.dispatch(actions.updateFilterTags(tagName));
 
         //SEARCH HERE
@@ -55,8 +53,13 @@ class TagItem extends Component {
     /*
 
 
-    Once updated we can send off an API request for the books that match that search query
-        The searchbar also needs to update this same query and once that is done, do an API call
+    Fix API for new query data
+    Send search request to API
+    present book data in table
+
+
+    when you select a tag, it should appear above the serach bar or below the main search bar and give you the ability to click
+    remove on that tag to deselect it and stop it from doing any filtering
 
     Once we get data back, we need to update a redux state which is a list of the books we want to show on the catalogue page.
     The catalogue then needs to get this new data from redux and then update the book table with the new books.
@@ -66,7 +69,6 @@ class TagItem extends Component {
     */
 
     render() {
-        console.log(this.props.searchQuery)
         return (
             <styles.FilterItem onClick={() => this.toggleTagState(this.props.tagName)} active={this.state.active}>
                 <styles.Checkmark active={this.state.active}/>

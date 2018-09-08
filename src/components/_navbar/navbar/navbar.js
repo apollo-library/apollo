@@ -46,7 +46,6 @@ class Navbar extends Component {
         store.dispatch(actions.hideNotifications());
     }
 
-//page.path === this.props.currentPage
     render() {
         return (
             <styles.Navbar>
@@ -60,7 +59,7 @@ class Navbar extends Component {
                             <styles.Item
                                 to={page.path}
                                 key={index}
-                                itemActive={true}
+                                itemActive={page.path === this.props.currentPage}
 
                             >
                                 {page.text}
@@ -70,6 +69,9 @@ class Navbar extends Component {
 
                     <FlexGrow />
 
+
+                {/*The following section is commented. If we want to add these parts on the right back in, uncomment this code.*/}
+                {/*
                     <Button colour="primary" onClick={() => {this.props.history.push('/scan')}}>
                         Scan
                         <styles.InlineSVG xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.5 7.1">
@@ -95,6 +97,8 @@ class Navbar extends Component {
                             <path fill="none" stroke="#636363" strokeWidth="2" strokeLinecap="round" d="M1,1l4.9,4.1c0.3,0.2,0.6,0.2,0.9,0L11.7,1"/>
                         </styles.InlineSVG>
                     </styles.UserName>
+                */}
+            
                 </styles.Root>
 
                 <styles.DropdownWindow notifications active={this.props.notificationsActive}>

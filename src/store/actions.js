@@ -6,6 +6,7 @@ export const TYPES = {
     PUSH_ALL_TAGS: 'PUSH_ALL_TAGS',
     PUSH_FILTERED_TAGS: 'PUSH_FILTERED_TAGS',
     UPDATE_FILTER_TAGS: 'UPDATE_FILTER_TAGS',
+    UPDATE_SEARCH_TERM: 'UPDATE_SEARCH_TERM',
 
     TOGGLE_NOTIFICATIONS: 'TOGGLE_NOTIFICATIONS',
     HIDE_NOTIFICATIONS: 'HIDE_NOTIFICATIONS',
@@ -25,6 +26,7 @@ export const actions = {
     pushAllTags: (tags) => ({type: TYPES.PUSH_ALL_TAGS, tags}),
     pushFilteredTags: (filteredTags) => ({type: TYPES.PUSH_FILTERED_TAGS, filteredTags}),
     updateFilterTags: (tagName) => ({type: TYPES.UPDATE_FILTER_TAGS, tagName}),
+    updateSearchTerm: (searchTerm) => ({type: TYPES.UPDATE_SEARCH_TERM, searchTerm}),
 
     toggleNotifications: () => ({type: TYPES.TOGGLE_NOTIFICATIONS}),
     hideNotifications: () => ({type: TYPES.HIDE_NOTIFICATIONS}),
