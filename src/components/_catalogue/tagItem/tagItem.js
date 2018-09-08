@@ -25,10 +25,14 @@ class TagItem extends Component {
     }
 
     async toggleTagState(tagName) {
-        let searchResponse;
         this.setState({active: !this.state.active});
 
-        store.dispatch(actions.updateFilterTags(tagName));
+        await store.dispatch(actions.updateFilterTags(tagName));
+
+
+        let searchResponse = await API.Books.searchBooks(this.props.searchQuery);
+        console.log(searchResponse)
+
 
         //SEARCH HERE
 
@@ -51,7 +55,6 @@ class TagItem extends Component {
 
 
     /*
-
 
     Fix API for new query data
     Send search request to API
