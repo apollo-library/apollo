@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 //Styles
-import * as styles from './catalogueSearchStyles.js'
+import * as styles from './tagSearchStyles.js'
 
 import * as API from './../../../api';
 
@@ -15,7 +15,7 @@ const mapStateToProps = (state) => ({
     tags: state.data.catalogue.tags
 })
 
-class CatalogueSearch extends Component {
+class TagSearch extends Component {
     constructor() {
         super()
 
@@ -27,7 +27,6 @@ class CatalogueSearch extends Component {
 
         let filteredTags = []
         filteredTags = this.props.tags.filter((tag) => {
-            //console.log(tag.name.toLowerCase().indexOf(filterTerm) > -1)
             return (tag.name.toLowerCase().indexOf(filterTerm) > -1);
         });
 
@@ -43,4 +42,4 @@ class CatalogueSearch extends Component {
     }
 }
 
-export default connect(mapStateToProps)(CatalogueSearch);
+export default connect(mapStateToProps)(TagSearch);

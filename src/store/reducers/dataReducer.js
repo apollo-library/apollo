@@ -151,6 +151,17 @@ function updateFilterTags(state, tagName) {
     }
 }
 
+//Updates the value of the searchTerm in the search query
+function updateSearchTerm(state, searchTerm) {
+    console.log(searchTerm)
+
+    return update(state, {
+        searchQuery: {
+            searchTerm: {$set: searchTerm}
+        }
+    })
+}
+
 
 export const data = (state = initialStates, action) => {
     switch (action.type) {
@@ -178,6 +189,8 @@ export const data = (state = initialStates, action) => {
             })
         case TYPES.UPDATE_FILTER_TAGS:
             return updateFilterTags(state, action.tagName)
+        case TYPES.UPDATE_SEARCH_TERM:
+            return updateSearchTerm(state, action.searchTerm)
         default:
             return state
     }

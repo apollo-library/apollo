@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 //Component imports
-import {CatalogueSearch, TagItem, BookTable} from './../../components';
+import {TagSearch, TagItem, BookSearch, BookTable} from './../../components';
 
 import {CenterColumn, LeftColumn, RightColumn, PageTitle} from './../../globalStyles.js'
 
@@ -39,7 +39,7 @@ class Catalogue extends Component {
                     <LeftColumn small>
                         <PageTitle>Catalogue</PageTitle>
 
-                        <CatalogueSearch />
+                        <TagSearch />
 
                         {this.props.filteredTags.slice(0,15).map((tag, index) =>
                             (
@@ -49,7 +49,7 @@ class Catalogue extends Component {
                     </LeftColumn>
 
                     <RightColumn>
-                        Right
+                        <BookSearch />
                     </RightColumn>
                 </CenterColumn>
             </div>

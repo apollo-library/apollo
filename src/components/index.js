@@ -9,7 +9,7 @@
 */
 
 //Import all components
-import Navbar from './_navbar/navbar/navbar'
+import Navbar from './_navbar/navbar/navbar';
 import NotificationBox from './_navbar/notificationBox/notificationBox';
 
 import AccentedBox from './accentedBox/accentedBox';
@@ -21,8 +21,9 @@ import DueSoon from './_dashboard/dueSoon/dueSoon';
 import Recommended from './_dashboard/recommended/recommended';
 import History from './_dashboard/history/history';
 
-import TagItem from './_catalogue/tagItem/tagItem'
-import CatalogueSearch from './_catalogue/catalogueSearch/catalogueSearch'
+import TagItem from './_catalogue/tagItem/tagItem';
+import TagSearch from './_catalogue/tagSearch/tagSearch';
+import BookSearch from './_catalogue/bookSearch/bookSearch'
 
 import ScanModules from './_scan/scanModules/scanModules';
 import ReturnRenew from './_scan/return-renew/return-renew';
@@ -46,7 +47,8 @@ export {
     History,
 
     TagItem,
-    CatalogueSearch,
+    TagSearch,
+    BookSearch,
 
     ScanModules,
     ReturnRenew,
