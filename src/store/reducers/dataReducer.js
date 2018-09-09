@@ -129,6 +129,21 @@ function removeBookToRate(state) {
     return {...state, studentDetails: {booksToRate: localState.studentDetails.booksToRate}}
 }
 
+//Updates the tags to show in the sidebar based on searchresults
+function pushFilteredTags(state, filteredTags) {
+    //Sorts the list alphabetically by name
+    filteredTags.sort( function( a, b ) {
+        a = a.name.toLowerCase();
+        b = b.name.toLowerCase();
+
+        return a < b ? -1 : a > b ? 1 : 0;
+    });
+
+    return update(state, {
+        filteredTags: {$set: filteredTags}
+    })
+}
+
 //Toggles the tags being in the serach query or not
 function updateFilterTags(state, tagName) {
     //Check if the active filters contains the one we've clicked
@@ -182,9 +197,7 @@ export const data = (state = initialStates, action) => {
                 }
             })
         case TYPES.PUSH_FILTERED_TAGS:
-            return update(state, {
-                filteredTags: {$set: action.filteredTags}
-            })
+            return pushFilteredTags(state, action.filteredTags)
         case TYPES.UPDATE_FILTER_TAGS:
             return updateFilterTags(state, action.tagName)
         case TYPES.UPDATE_SEARCH_TERM:

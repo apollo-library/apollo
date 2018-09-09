@@ -32,7 +32,6 @@ class TagSearch extends Component {
 
         store.dispatch(actions.pushFilteredTags(filteredTags));
 
-        //SEARCH HERE
     }
 
     render() {
