@@ -18,7 +18,8 @@ import * as API from './../../api';
 import config from './../../config'
 
 const mapStateToProps = (state) => ({
-    filteredTags: state.data.filteredTags
+    filteredTags: state.data.filteredTags,
+    catalogueBooks: state.data.catalogue.books
 })
 
 class Catalogue extends Component {
@@ -50,6 +51,23 @@ class Catalogue extends Component {
 
                     <RightColumn>
                         <BookSearch />
+
+
+                        <div style={{marginTop: config.styles.boxSpacing}} />
+
+                        <BookTable
+                               type="catalogue"
+                               colour="accent5"
+                               data={this.props.catalogueBooks}
+                               titles={[
+                                   "Title",
+                                   "Author",
+                                   "Status",
+                                   "Action"
+                               ]}
+                               buttonText="Details"
+                               buttonFunction="RUN A FUNCTION HERE"
+                           />
                     </RightColumn>
                 </CenterColumn>
             </div>
