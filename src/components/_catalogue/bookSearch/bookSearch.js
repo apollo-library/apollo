@@ -41,7 +41,10 @@ class BookSearch extends Component {
         await store.dispatch(actions.updateSearchTerm(this.state.searchTerm));
 
         let searchResponse = await API.Books.searchBooks(this.props.searchQuery);
-        console.log(searchResponse)
+        if (searchResponse.message = "Success") {
+            //Update redux state with new books
+            store.dispatch(actions.pushCatalogueBooks(searchResponse.data));
+        }
     }
 
     render() {
