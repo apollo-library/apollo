@@ -102,7 +102,8 @@ const initialStates = {
         filters: []
     },
     catalogue: {
-        tags: []
+        tags: [],
+        books: []
     },
     filteredTags: [],
     scannedBook: {}
@@ -202,6 +203,13 @@ export const data = (state = initialStates, action) => {
             return updateFilterTags(state, action.tagName)
         case TYPES.UPDATE_SEARCH_TERM:
             return updateSearchTerm(state, action.searchTerm)
+        case TYPES.PUSH_CATALOGUE_BOOKS:
+            console.log(action.books)
+            return update(state, {catalogue:
+                {
+                    books: {$set: action.books}
+                }
+            })
         default:
             return state
     }

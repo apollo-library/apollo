@@ -24,8 +24,6 @@ export async function searchBooks(query) {
     });
 
     let data = "query=" + query.searchTerm + filters;   // <- construct data into POST format
-    console.log(query)
-    console.log("a")
 
     let response = await fetch(serverPath + '/books/search', {
         method: "POST",
