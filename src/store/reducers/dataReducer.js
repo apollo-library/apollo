@@ -133,12 +133,13 @@ function removeBookToRate(state) {
 //Updates the tags to show in the sidebar based on searchresults
 function pushFilteredTags(state, filteredTags) {
     //Sorts the list alphabetically by name
-    filteredTags.sort( function( a, b ) {
+    //TOD0, undo comment but fix to sort array by object key
+    /*filteredTags.sort( function( a, b ) {
         a = a.name.toLowerCase();
         b = b.name.toLowerCase();
 
         return a < b ? -1 : a > b ? 1 : 0;
-    });
+    }); */
 
     return update(state, {
         filteredTags: {$set: filteredTags}
@@ -148,22 +149,50 @@ function pushFilteredTags(state, filteredTags) {
 //Toggles the tags being in the serach query or not
 function updateFilterTags(state, tagName) {
     //Check if the active filters contains the one we've clicked
+
     if (state.searchQuery.filters.includes(tagName)) { //For IE support in the future *.includes() can be changed to *.indexOf()
         //Remove tag from query
-        let index = state.searchQuery.filters.indexOf(tagName);
+        let index = state.catalogue.tags.findIndex(tag => tag.name == tagName)
+        let queryIndex = state.searchQuery.filters.indexOf(tagName);
 
-        return update(state, {
+        let newState = update(state, {
             searchQuery: {
-                filters: {$splice: [[index, 1]]}
+                filters: {$splice: [[queryIndex, 1]]}
             }
         })
+
+        newState = update(newState, {
+            catalogue: {
+                tags: {
+                    [index]: {
+                        selected: {$set: false}
+                    }
+                }
+            }
+        })
+
+        return newState
     } else {
         //Add the tag to the query
-        return update(state, {
+        let index = state.catalogue.tags.findIndex(tag => tag.name == tagName)
+
+        let newState = update(state, {
             searchQuery: {
                 filters: {$push: [tagName]}
             }
         })
+
+        newState = update(newState, {
+            catalogue: {
+                tags: {
+                    [index]: {
+                        selected: {$set: true}
+                    }
+                }
+            }
+        })
+
+        return newState
     }
 }
 
@@ -204,7 +233,6 @@ export const data = (state = initialStates, action) => {
         case TYPES.UPDATE_SEARCH_TERM:
             return updateSearchTerm(state, action.searchTerm)
         case TYPES.PUSH_CATALOGUE_BOOKS:
-            console.log(action.books)
             return update(state, {catalogue:
                 {
                     books: {$set: action.books}

@@ -19,17 +19,45 @@ import config from './../../config'
 
 const mapStateToProps = (state) => ({
     filteredTags: state.data.filteredTags,
+    catalogueTags: state.data.catalogue.tags,
     catalogueBooks: state.data.catalogue.books
 })
 
 class Catalogue extends Component {
+    constructor() {
+        super()
+        this.tagActive = this.tagActive.bind(this);
+    }
+
     async componentDidMount() {
         //When component loads, get the list of filterTerms
-        let tags = await API.Tags.getAllTags();
+        let rawTags = await API.Tags.getAllTags();
+        let tags = [];
+
+        {rawTags.map(function(tag, i){
+            let tagObj = {
+                name: tag.name,
+                selected: false
+            }
+
+            tags.push(tagObj)
+
+        })}
+
         store.dispatch(actions.pushAllTags(tags));
 
         //Update filteredTags so list isn't empty
         store.dispatch(actions.pushFilteredTags(tags));
+    }
+
+    tagActive(tagName) {
+        let index = this.props.catalogueTags.findIndex(tag => tag.name == tagName)
+
+        if (this.props.catalogueTags[index].selected) {
+            return true;
+        } else if (this.props.catalogueTags[index].selected === false) {
+            return false;
+        }
     }
 
 
@@ -44,7 +72,7 @@ class Catalogue extends Component {
 
                         {this.props.filteredTags.slice(0,15).map((tag, index) =>
                             (
-                                <TagItem key={index} tagName={tag.name} />
+                                <TagItem key={index} tagName={tag.name} active={this.tagActive(tag.name)} />
                             )
                         )}
                     </LeftColumn>
