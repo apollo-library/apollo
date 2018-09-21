@@ -13,7 +13,6 @@ import Navbar from './_navbar/navbar/navbar';
 import NotificationBox from './_navbar/notificationBox/notificationBox';
 
 import AccentedBox from './accentedBox/accentedBox';
-import Searchbar from './searchbar/searchbar';
 import ContentTabs from './contentTabs/contentTabs';
 import BookTable from './bookTable/bookTable';
 
@@ -25,35 +24,20 @@ import TagItem from './_catalogue/tagItem/tagItem';
 import TagSearch from './_catalogue/tagSearch/tagSearch';
 import BookSearch from './_catalogue/bookSearch/bookSearch'
 
-import ScanModules from './_scan/scanModules/scanModules';
-import ReturnRenew from './_scan/return-renew/return-renew';
-import BookDetails from './_scan/bookDetails/bookDetails';
-import Withdraw from './_scan/withdraw/withdraw';
-import Success from './_scan/success/success';
-import Error from './_scan/error/error';
-
 //Export all components
 export {
     Navbar,
     NotificationBox,
 
     AccentedBox,
-    Searchbar,
-
     ContentTabs,
     BookTable,
+
     DueSoon,
     Recommended,
     History,
 
     TagItem,
     TagSearch,
-    BookSearch,
-
-    ScanModules,
-    ReturnRenew,
-    BookDetails,
-    Withdraw,
-    Success,
-    Error
+    BookSearch
 }

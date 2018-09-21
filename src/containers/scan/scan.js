@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 //Component imports
-import {ScanModules} from './../../components';
+
 
 import {CenterColumn, PageTitle} from './../../globalStyles.js'
 
@@ -14,7 +14,7 @@ class Scan extends Component {
                     <PageTitle>Scan</PageTitle>
                 </CenterColumn>
                 <CenterColumn>
-                    <ScanModules />
+                    <p>Hi there</p>
                 </CenterColumn>
             </div>
         );
