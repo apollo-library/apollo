@@ -12,11 +12,7 @@ export const TYPES = {
     TOGGLE_NOTIFICATIONS: 'TOGGLE_NOTIFICATIONS',
     HIDE_NOTIFICATIONS: 'HIDE_NOTIFICATIONS',
     TOGGLE_ACCOUNT: 'TOGGLE_ACCOUNT',
-    HIDE_ACCOUNT: 'HIDE_ACCOUNT',
-    SET_SCAN_SEARCH_TERM: 'SET_SCAN_SEARCH_TERM',
-    RESET_SCAN_TAB: 'RESET_SCAN_TAB',
-    ADD_SCAN_TAB: 'ADD_SCAN_TAB',
-    SET_SCAN_ERROR: 'SET_SCAN_ERROR'
+    HIDE_ACCOUNT: 'HIDE_ACCOUNT'
 }
 
 export const actions = {
@@ -33,9 +29,5 @@ export const actions = {
     toggleNotifications: () => ({type: TYPES.TOGGLE_NOTIFICATIONS}),
     hideNotifications: () => ({type: TYPES.HIDE_NOTIFICATIONS}),
     toggleAccount: () => ({type: TYPES.TOGGLE_ACCOUNT}),
-    hideAccount: () => ({type: TYPES.HIDE_ACCOUNT}),
-    setScanSearchTerm: (scanSearchTerm) => ({type: TYPES.SET_SCAN_SEARCH_TERM, scanSearchTerm}),
-    resetScanTab: () => ({type: TYPES.RESET_SCAN_TAB}),
-    addScanTab: (tabToAdd) => ({type: TYPES.ADD_SCAN_TAB, tabToAdd}),
-    setScanError: (scanError) => ({type: TYPES.SET_SCAN_ERROR, scanError})
+    hideAccount: () => ({type: TYPES.HIDE_ACCOUNT})
 }
