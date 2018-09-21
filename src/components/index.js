@@ -22,7 +22,9 @@ import History from './_dashboard/history/history';
 
 import TagItem from './_catalogue/tagItem/tagItem';
 import TagSearch from './_catalogue/tagSearch/tagSearch';
-import BookSearch from './_catalogue/bookSearch/bookSearch'
+import BookSearch from './_catalogue/bookSearch/bookSearch';
+
+import Scan from './_scan/scan/scan';
 
 //Export all components
 export {
@@ -39,5 +41,7 @@ export {
 
     TagItem,
     TagSearch,
-    BookSearch
+    BookSearch,
+
+    Scan
 }

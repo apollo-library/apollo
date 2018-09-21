@@ -14,9 +14,7 @@ import store from './store'
 //Config
 import config from './config'
 
-import {Navbar} from './components';
-
-import Scan from './components/_scan/scan/scan'
+import {Navbar, Scan} from './components';
 
 //Store history of the router for updating the current page
 const history = createHistory();
@@ -57,15 +55,14 @@ class App extends Component {
                         }
                     } />
                     <Navbar history={history} />
+                    <Scan />
                     <div style={{minHeight: '100vh'}} onClick={() => {this.hideAllPopups()}}>
-                        <Scan />
-                            <Switch>
-                                {config.main.pages.map((page, index) =>
-                                    <Route exact path={page.path} component={page.componentName} key={index} />
-                                )}
-                                <Route exact path={'/testing'} component={Test}/>
-                            </Switch>
-
+                        <Switch>
+                            {config.main.pages.map((page, index) =>
+                                <Route exact path={page.path} component={page.componentName} key={index} />
+                            )}
+                            <Route exact path={'/testing'} component={Test}/>
+                        </Switch>
                     </div>
                 </div>
             </Router>
