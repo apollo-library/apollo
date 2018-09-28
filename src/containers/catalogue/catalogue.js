@@ -34,15 +34,15 @@ class Catalogue extends Component {
         let rawTags = await API.Tags.getAllTags();
         let tags = [];
 
-        {rawTags.map(function(tag, i){
+        rawTags.map(function(tag, i){
             let tagObj = {
                 name: tag.name,
                 selected: false
             }
 
-            tags.push(tagObj)
-
-        })}
+            tags.push(tagObj);
+            return tags;
+        })
 
         store.dispatch(actions.pushAllTags(tags));
 
@@ -51,7 +51,7 @@ class Catalogue extends Component {
     }
 
     tagActive(tagName) {
-        let index = this.props.catalogueTags.findIndex(tag => tag.name == tagName)
+        let index = this.props.catalogueTags.findIndex(tag => tag.name === tagName)
 
         if (this.props.catalogueTags[index].selected) {
             return true;

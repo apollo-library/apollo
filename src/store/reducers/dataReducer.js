@@ -152,7 +152,7 @@ function updateFilterTags(state, tagName) {
 
     if (state.searchQuery.filters.includes(tagName)) { //For IE support in the future *.includes() can be changed to *.indexOf()
         //Remove tag from query
-        let index = state.catalogue.tags.findIndex(tag => tag.name == tagName)
+        let index = state.catalogue.tags.findIndex(tag => tag.name === tagName)
         let queryIndex = state.searchQuery.filters.indexOf(tagName);
 
         let newState = update(state, {
@@ -174,7 +174,7 @@ function updateFilterTags(state, tagName) {
         return newState
     } else {
         //Add the tag to the query
-        let index = state.catalogue.tags.findIndex(tag => tag.name == tagName)
+        let index = state.catalogue.tags.findIndex(tag => tag.name === tagName)
 
         let newState = update(state, {
             searchQuery: {
