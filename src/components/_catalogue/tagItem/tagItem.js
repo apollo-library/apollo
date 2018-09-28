@@ -26,7 +26,7 @@ class TagItem extends Component {
         await store.dispatch(actions.updateFilterTags(tagName));
 
         let searchResponse = await API.Books.searchBooks(this.props.searchQuery);
-        if (searchResponse.message = "Success") {
+        if (searchResponse.message === "Success") {
             //Update redux state with new books
             store.dispatch(actions.pushCatalogueBooks(searchResponse.data));
         }

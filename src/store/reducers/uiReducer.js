@@ -15,22 +15,6 @@ const initialStates = {
 }
 
 
-function addScanTab(state, tabToAdd) {
-    let canAddTab = true;
-
-    for (let i = 0; i < state.scanStatesToShow.length; i++) {
-        if (state.scanStatesToShow[i] === tabToAdd) {
-            canAddTab = false;
-        }
-    }
-
-    if (canAddTab) {
-        return update(state, {
-         scanStatesToShow: {$push: [tabToAdd]}
-      })
-    }
-}
-
 export const ui = (state = initialStates, action) => {
     switch (action.type) {
         case TYPES.TOGGLE_NOTIFICATIONS:
