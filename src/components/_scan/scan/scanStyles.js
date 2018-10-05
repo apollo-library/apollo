@@ -22,6 +22,7 @@ const ScanPopup = styled.div`
     transform: ${props => props.active ? 'scaleY(1)' : 'scaleY(0)'};
     transform-origin: bottom right;
     transition: transform 300ms ease;
+    pointer-events: auto;
 `;
 
 const ScanButton = styled.div`
@@ -41,9 +42,27 @@ const BookInfo = styled.div`
     left: 0;
 `;
 
+const SearchBar = styled.input`
+    border: none;
+    box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.lightGrey};
+    border-radius: ${props => props.theme.styles.borderRadius};
+    width: 100%;
+    outline: none;
+    flex: 1;
+    font-size: 1.1rem;
+    padding: 0.4rem 0.4rem;
+
+    &:focus {
+        box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.primary};
+    }
+`;
+
+
+
 export {
     ScanContainer,
     ScanPopup,
     ScanButton,
-    BookInfo
+    BookInfo,
+    SearchBar
 };

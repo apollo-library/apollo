@@ -25,6 +25,7 @@ import TagSearch from './_catalogue/tagSearch/tagSearch';
 import BookSearch from './_catalogue/bookSearch/bookSearch';
 
 import Scan from './_scan/scan/scan';
+import Withdraw from './_scan/withdraw/withdraw';
 
 //Export all components
 export {
@@ -43,5 +44,6 @@ export {
     TagSearch,
     BookSearch,
 
-    Scan
+    Scan,
+    Withdraw
 }
