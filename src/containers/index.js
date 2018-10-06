@@ -12,7 +12,8 @@
 import Dashboard from './dashboard/dashboard'
 import Catalogue from './catalogue/catalogue'
 import Users from './users/users'
+import Reports from './reports/reports'
 
 
 //Export all components
-export { Dashboard, Catalogue, Users }
+export { Dashboard, Catalogue, Users, Reports }

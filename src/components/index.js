@@ -26,6 +26,9 @@ import BookSearch from './_catalogue/bookSearch/bookSearch';
 
 import Scan from './_scan/scan/scan';
 import Withdraw from './_scan/withdraw/withdraw';
+import ReturnRenew from './_scan/return-renew/return-return';
+
+import Books from './_reports/books/books';
 
 //Export all components
 export {
@@ -45,5 +48,8 @@ export {
     BookSearch,
 
     Scan,
-    Withdraw
+    Withdraw,
+    ReturnRenew,
+
+    Books
 }
