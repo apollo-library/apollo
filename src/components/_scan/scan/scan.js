@@ -11,7 +11,7 @@ import * as API from './../../../api';
 import config from './../../../config.js'
 
 //Components
-import {Withdraw} from './../../';
+import {Withdraw, ReturnRenew} from './../../';
 
 //Redux
 import { connect } from 'react-redux'
@@ -24,7 +24,7 @@ class Scan extends Component {
         super()
 
         this.state = {
-            showPopup: true,
+            showPopup: false,
             scannedBookData: {},
             scanOptions: null,
             scanInput: ""
@@ -45,7 +45,7 @@ class Scan extends Component {
 
                 if (scannedBookData.loanID) {
                     //Renew / Return
-
+                    this.setState({scanOptions: <ReturnRenew scanInput={this.state.scanInput} />})
                 } else {
                     //Withdraw
                     this.setState({scanOptions: <Withdraw scanInput={this.state.scanInput} />})
@@ -61,7 +61,7 @@ class Scan extends Component {
                     <styles.SearchBar onKeyUp={(e) => this.handleScanInput(e)} autoFocus />
                     {this.state.scanOptions}
                     <styles.BookInfo>
-                        Bok title
+                        {this.state.scannedBookData.title}
                     </styles.BookInfo>
                 </styles.ScanPopup>
 

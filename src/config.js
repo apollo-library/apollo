@@ -1,5 +1,5 @@
 //Container imports
-import {Dashboard, Catalogue, Users} from './containers'
+import {Dashboard, Catalogue, Users, Reports} from './containers'
 
 let config = {
 	main: {
@@ -21,6 +21,11 @@ let config = {
 				text: 'Users',
 				path: '/users',
 				componentName: Users
+			},
+			{
+				text: 'Reports',
+				path: '/reports',
+				componentName: Reports
 			}
 	    ],
 		maxNotificationSize: 3,

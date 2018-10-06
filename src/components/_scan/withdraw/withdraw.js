@@ -47,7 +47,7 @@ class Withdraw extends Component {
                     type="date"
                     min={new Date().toISOString().substring(0, new Date().toISOString().indexOf("T"))}
                 />
-            <Button colour="primary" onClick={() => this.withdrawBook()}>Withdraw</Button>
+                <Button colour="primary" onClick={() => this.withdrawBook()}>Withdraw</Button>
             </styles.WithdrawContainer>
         );
     }

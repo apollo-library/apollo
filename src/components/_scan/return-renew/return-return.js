@@ -21,34 +21,45 @@ class ReturnRenew extends Component {
         super()
 
         this.state = {
-            studentId: 0,
-            dueDate: 0
+            renewDate: 0
         };
     }
 
-    async withdrawBook() {
-        let withdrawResponse = await API.Loans.withdrawBook(this.props.scanInput, this.state.studentId, this.state.dueDate);
+    async returnBook() {
+        let returnResponse = await API.Loans.returnBook(this.props.scanInput);
 
-        console.log(withdrawResponse)
-        /* if (withdrawResponse.status === 'success') {
+        /* if (returnResponse.status === 'success') {
             store.dispatch(actions.addScanTab(3)); //Thank you
         } else {
-            store.dispatch(actions.addScanTab(4)); //No due date set
-            store.dispatch(actions.setScanError(withdrawResponse.status));
+            store.dispatch(actions.addScanTab(4)); //Error when returning
+            store.dispatch(actions.setScanError(returnResponse.status));
         } */
+        console.log(returnResponse)
+    }
+
+    async renewBook() {
+        let renewResponse = await API.Loans.renewBook(this.props.scanInput, this.state.renewDate);
+
+        /* if (renewResponse.status === 'success') {
+            store.dispatch(actions.addScanTab(3)); //Thank you
+        } else {
+            store.dispatch(actions.addScanTab(4)); //No renew date set
+            store.dispatch(actions.setScanError(renewResponse.status));
+        } */
+        console.log(renewResponse)
     }
 
     render() {
         return (
-            <styles.WithdrawContainer>
-                <styles.UserIdBar placeholder="Candidate Number" autoFocus onKeyUp={(e) => this.setState({studentId: e.target.value})} />
-                <styles.DueDatePicker
-                    onChange={(e) => this.setState({dueDate: e.target.value})}
+            <styles.ReturnRenewContainer>
+                <Button colour="primary" onClick={() => this.returnBook()}>Return</Button>
+                <styles.RenewDatePicker
+                    onChange={(e) => this.setState({renewDate: e.target.value})}
                     type="date"
                     min={new Date().toISOString().substring(0, new Date().toISOString().indexOf("T"))}
                 />
-            <Button colour="primary" onClick={() => this.withdrawBook()}>Withdraw</Button>
-            </styles.WithdrawContainer>
+            <Button colour="primary" onClick={() => this.renewBook()}>Renew</Button>
+            </styles.ReturnRenewContainer>
         );
     }
 }
