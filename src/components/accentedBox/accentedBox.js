@@ -1,5 +1,6 @@
 //React imports
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
 //Styles
 import * as styles from './accentedBoxStyles.js';
@@ -77,7 +78,14 @@ class AccentedBox extends Component {
         //Store of the content that we want to show inside the box
         let boxContent;
 
-        if (typeOfBox === "latestBook") {
+        if (typeOfBox === "custom") {
+            boxContent =
+                <styles.BoxContent>
+                    <styles.BookTitle>{this.props.data.title}</styles.BookTitle>
+                    <styles.BookAuthor>{this.props.data.subtitle}</styles.BookAuthor>
+                    <Link to={this.props.data.url}><styles.SidebarButton colour={this.props.gradFrom}>{this.props.data.buttonText}</styles.SidebarButton></Link>
+                </styles.BoxContent>
+        } else if (typeOfBox === "latestBook") {
             boxContent =
                 <styles.BoxContent>
                     <styles.BookTitle>{this.props.studentDetails.latestBook.title}</styles.BookTitle>
