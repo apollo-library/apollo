@@ -12,7 +12,9 @@ export const TYPES = {
     TOGGLE_NOTIFICATIONS: 'TOGGLE_NOTIFICATIONS',
     HIDE_NOTIFICATIONS: 'HIDE_NOTIFICATIONS',
     TOGGLE_ACCOUNT: 'TOGGLE_ACCOUNT',
-    HIDE_ACCOUNT: 'HIDE_ACCOUNT'
+    HIDE_ACCOUNT: 'HIDE_ACCOUNT',
+    TOGGLE_SUCCESS_SCREEN: 'TOGGLE_SUCCESS_SCREEN',
+    SET_SCAN_RESET: 'SET_SCAN_RESET'
 }
 
 export const actions = {
@@ -29,5 +31,7 @@ export const actions = {
     toggleNotifications: () => ({type: TYPES.TOGGLE_NOTIFICATIONS}),
     hideNotifications: () => ({type: TYPES.HIDE_NOTIFICATIONS}),
     toggleAccount: () => ({type: TYPES.TOGGLE_ACCOUNT}),
-    hideAccount: () => ({type: TYPES.HIDE_ACCOUNT})
+    hideAccount: () => ({type: TYPES.HIDE_ACCOUNT}),
+    toggleSuccessScreen: () => ({type: TYPES.TOGGLE_SUCCESS_SCREEN}),
+    setScanReset: () => ({type: TYPES.SET_SCAN_RESET})
 }

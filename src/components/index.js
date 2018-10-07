@@ -27,6 +27,7 @@ import BookSearch from './_catalogue/bookSearch/bookSearch';
 import Scan from './_scan/scan/scan';
 import Withdraw from './_scan/withdraw/withdraw';
 import ReturnRenew from './_scan/return-renew/return-return';
+import Success from './_scan/success/success'
 
 import Books from './_reports/books/books';
 
@@ -50,6 +51,7 @@ export {
     Scan,
     Withdraw,
     ReturnRenew,
+    Success,
 
     Books
 }

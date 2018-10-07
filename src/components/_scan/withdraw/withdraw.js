@@ -29,13 +29,12 @@ class Withdraw extends Component {
     async withdrawBook() {
         let withdrawResponse = await API.Loans.withdrawBook(this.props.scanInput, this.state.studentId, this.state.dueDate);
 
-        console.log(withdrawResponse)
-        /* if (withdrawResponse.status === 'success') {
-            store.dispatch(actions.addScanTab(3)); //Thank you
+        if (withdrawResponse.status === 'success') {
+            store.dispatch(actions.toggleSuccessScreen());
         } else {
-            store.dispatch(actions.addScanTab(4)); //No due date set
-            store.dispatch(actions.setScanError(withdrawResponse.status));
-        } */
+            //store.dispatch(actions.addScanTab(4)); //No due date set
+            //store.dispatch(actions.setScanError(withdrawResponse.status));
+        }
     }
 
     render() {
