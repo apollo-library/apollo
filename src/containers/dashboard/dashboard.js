@@ -24,25 +24,30 @@ class Dashboard extends Component {
                     <LeftColumn>
                         <PageTitle>{this.props.studentDetails.concatName + "'s Dashboard"}</PageTitle>
                         <AccentedBox
-                            title="Latest Book"
+                            title="Generate Report"
                             gradFrom="accent5"
                             gradTo="accent4"
+                            data={ {
+                                title: 'Create Loan Report',
+                                subtitle: 'Report of all books on loan',
+                                url: '/report/loans',
+                                buttonText: 'Generate'
+                            } }
 
-                            type="latestBook"
+                            type="custom"
                         />
                         <AccentedBox
-                            title="Fines"
+                            title="Generate Report"
                             gradFrom="accent2"
                             gradTo="accent1"
+                            data={ {
+                                title: 'Create Overdue Loan Report',
+                                subtitle: 'Report of all overdue books',
+                                url: '/report/overdue',
+                                buttonText: 'Generate'
+                            } }
 
-                            type="fines"
-                        />
-                        <AccentedBox
-                            title="Rate"
-                            gradFrom="accent3"
-                            gradTo="accent4"
-
-                            type="rate"
+                            type="custom"
                         />
                     </LeftColumn>
 
@@ -79,3 +84,31 @@ class Dashboard extends Component {
 }
 
 export default connect(mapStateToProps)(Dashboard);
+
+
+/*
+Old dashboard elements:
+
+<AccentedBox
+    title="Latest Book"
+    gradFrom="accent5"
+    gradTo="accent4"
+
+    type="latestBook"
+/>
+<AccentedBox
+    title="Fines"
+    gradFrom="accent2"
+    gradTo="accent1"
+
+    type="fines"
+/>
+<AccentedBox
+    title="Rate"
+    gradFrom="accent3"
+    gradTo="accent4"
+
+    type="rate"
+/>
+
+*/
