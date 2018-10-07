@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 //Styles
-import * as styles from './reportTableStyles.js'
+import * as styles from './../../bookTable/bookTableStyles.js'
 
 import * as API from './../../../api';
 
