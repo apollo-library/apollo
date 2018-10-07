@@ -4,9 +4,6 @@ import { Router, Route, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import ReactGA from 'react-ga';
 
-//Temp, Cameron will remove soon
-import Test from './tests/index.js';
-
 //Redux
 import { actions } from './store/actions'
 import store from './store'
@@ -15,6 +12,7 @@ import store from './store'
 import config from './config'
 
 import {Navbar, Scan} from './components';
+import {Report} from './containers';
 
 //Store history of the router for updating the current page
 const history = createHistory();
@@ -61,7 +59,7 @@ class App extends Component {
                             {config.main.pages.map((page, index) =>
                                 <Route exact path={page.path} component={page.componentName} key={index} />
                             )}
-                            <Route exact path={'/testing'} component={Test}/>
+                            <Route exact path={'/report/:report'} component={Report}/>
                         </Switch>
                     </div>
                 </div>

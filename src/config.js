@@ -1,5 +1,6 @@
 //Container imports
-import {Dashboard, Catalogue, Users, Reports} from './containers'
+import {Dashboard, Catalogue, Users} from './containers';
+import * as API from './api';
 
 let config = {
 	main: {
@@ -21,16 +22,52 @@ let config = {
 				text: 'Users',
 				path: '/users',
 				componentName: Users
-			},
-			{
-				text: 'Reports',
-				path: '/reports',
-				componentName: Reports
 			}
 	    ],
 		maxNotificationSize: 3,
 		fineRate: "0.20" // = £0.20
 	},
+
+	reports: {
+			loans: {
+				name: 'Books on Loan',
+				function: API.Loans.getLoans(),
+				path: 'loans',
+				table: [
+					{
+						key: 'title',
+						display: 'Title'
+					},
+					{
+						key: 'author',
+						display: 'Author'
+					},
+					{
+						key: 'name',
+						display: 'Loaned to'
+					}
+				]
+			},
+			overdue: {
+				name: 'Overdue Loans',
+				function: API.Loans.getOverdueLoans(),
+				path: 'overdue',
+				table: [
+					{
+						key: 'title',
+						display: 'Title'
+					},
+					{
+						key: 'author',
+						display: 'Author'
+					},
+					{
+						key: 'name',
+						display: 'Loaned to'
+					}
+				]
+			}
+		},
 
 	colours: {
 		primary: "#e44d95",

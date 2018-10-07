@@ -28,7 +28,8 @@ import Scan from './_scan/scan/scan';
 import Withdraw from './_scan/withdraw/withdraw';
 import ReturnRenew from './_scan/return-renew/return-return';
 
-import Books from './_reports/books/books';
+import Books from './_report/books/books';
+import ReportTable from './_report/reportTable/reportTable';
 
 //Export all components
 export {
@@ -51,5 +52,6 @@ export {
     Withdraw,
     ReturnRenew,
 
-    Books
+    Books,
+    ReportTable
 }
