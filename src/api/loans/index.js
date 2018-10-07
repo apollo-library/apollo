@@ -43,13 +43,42 @@ async function withdrawBook(id, userID, date) {
 }
 
 async function getLoans() {
-    // <- nothing
-    // <- ?
+    let response = await fetch(serverPath + '/loans');
+    let json = await Functions.Data.parseJSON(response);
+    if (json.code !== "000") return {status: json.message, code: json.code};
+    let rtn = {
+        count: json.count,
+        data: json.data.map((loan) => {
+            return {
+                display: {
+                    title: loan.book.title,
+                    author: loan.book.author,
+                    name: loan.user.forname + ' ' + loan.user.surname
+                },
+                raw: loan
+            }
+        })
+    }
+    return rtn;
 }
 
 async function getOverdueLoans() {
-    // <- nothing
-    // <- ?
+    let response = await fetch(serverPath + '/loans/overdue');
+    let json = await Functions.Data.parseJSON(response);
+    let rtn = {
+        count: json.count,
+        data: json.data.map((loan) => {
+            return {
+                display: {
+                    title: loan.book.title,
+                    author: loan.book.author,
+                    name: loan.user.forname + ' ' + loan.user.surname
+                },
+                raw: loan
+            }
+        })
+    }
+    return rtn;
 }
 
 async function reserveBook(id) {
