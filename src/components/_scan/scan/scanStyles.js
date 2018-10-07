@@ -38,8 +38,16 @@ const BookInfo = styled.div`
     position: absolute;
     bottom: 0;
     right: 0;
-    height: 10%;
     left: 0;
+    padding: calc(${props => props.theme.styles.boxSpacing} / 2) ${props => props.theme.styles.boxSpacing};
+`;
+
+const BookInfoTitle = styled.p`
+    font-weight: 600;
+`;
+
+const BookInfoAuthor = styled.p`
+
 `;
 
 const SearchBar = styled.input`
@@ -64,5 +72,7 @@ export {
     ScanPopup,
     ScanButton,
     BookInfo,
+    BookInfoTitle,
+    BookInfoAuthor,
     SearchBar
 };

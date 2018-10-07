@@ -11,26 +11,31 @@ import * as API from './../../../api';
 import config from './../../../config.js'
 
 //Components
-import {Withdraw, ReturnRenew} from './../../';
+import {Withdraw, ReturnRenew, Success} from './../../';
 
 //Redux
 import { connect } from 'react-redux'
 import { actions } from './../../../store/actions.js'
 import store from './../../../store'
 
+const mapStateToProps = (state) => ({
+    successScreenState: state.ui.successScreenState,
+    scanReset: state.ui.scanReset
+})
 
 class Scan extends Component {
     constructor() {
         super()
 
         this.state = {
-            showPopup: false,
+            showPopup: true,
             scannedBookData: {},
             scanOptions: null,
             scanInput: ""
         };
 
-        this.handleScanInput = this.handleScanInput.bind(this)
+        this.handleScanInput = this.handleScanInput.bind(this);
+        this.resetScan = this.resetScan.bind(this);
     }
 
     async handleScanInput(e) {
@@ -54,14 +59,36 @@ class Scan extends Component {
         }
     }
 
+    resetScan() {
+        console.log("hi")
+        store.dispatch(actions.toggleSuccessScreen());
+
+        this.setState({scanInput: ""});
+        this.setState({scannedBookData: {}});
+        this.setState({scanOptions: null});
+    }
+
     render() {
+        if (this.props.successScreenState) {
+            this.resetScan();
+            //store.dispatch(actions.setScanReset());
+        }
+
         return (
             <styles.ScanContainer>
                 <styles.ScanPopup active={this.state.showPopup}>
                     <styles.SearchBar onKeyUp={(e) => this.handleScanInput(e)} autoFocus />
-                    {this.state.scanOptions}
+
+                    {this.props.successScreenState ? <Success /> : this.state.scanOptions}
+
                     <styles.BookInfo>
-                        {this.state.scannedBookData.title}
+                        <styles.BookInfoTitle>
+                            {this.state.scannedBookData.title}
+                        </styles.BookInfoTitle>
+
+                        <styles.BookInfoAuthor>
+                            {this.state.scannedBookData.author}
+                        </styles.BookInfoAuthor>
                     </styles.BookInfo>
                 </styles.ScanPopup>
 
@@ -73,4 +100,4 @@ class Scan extends Component {
     }
 }
 
-export default Scan;
+export default connect(mapStateToProps)(Scan);
