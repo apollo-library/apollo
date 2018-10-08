@@ -16,6 +16,16 @@ class ReportTable extends Component {
         this.state = {
             accent: 'accent3'
         };
+
+        this.formatDueDate = this.formatDueDate.bind(this);
+    }
+
+    formatDueDate(date) {
+        let dueDate = new Date(date);
+
+        dueDate = dueDate.getDate() + "/" + dueDate.getMonth() + "/" + dueDate.getFullYear();
+
+        return dueDate;
     }
 
     render() {
@@ -27,7 +37,8 @@ class ReportTable extends Component {
                 <styles.TableRow key={index} colour={this.state.accent}>
                     <styles.TableText>{rowData.display.title}</styles.TableText>
                     <styles.TableText>{rowData.display.author}</styles.TableText>
-                    <styles.TableText>{rowData.display.name}</styles.TableText>
+                    <styles.TableText><b>{rowData.display.reg}</b> {': ' + rowData.display.name}</styles.TableText>
+                    <styles.TableText>{this.formatDueDate(rowData.display.due)}</styles.TableText>
                 </styles.TableRow>
             )
         )
