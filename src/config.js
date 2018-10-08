@@ -45,6 +45,10 @@ let config = {
 					{
 						key: 'name',
 						display: 'Loaned to'
+					},
+					{
+						key: 'due',
+						display: 'Due date'
 					}
 				]
 			},
@@ -64,6 +68,10 @@ let config = {
 					{
 						key: 'name',
 						display: 'Loaned to'
+					},
+					{
+						key: 'due',
+						display: 'Due date'
 					}
 				]
 			}
