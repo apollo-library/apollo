@@ -12,8 +12,7 @@ import update from 'immutability-helper';
 const initialStates = {
     notificationPopupActive: false,
     accountPopupActive: false,
-    successScreenState: false,
-    scanReset: true
+    successScreenState: false
 }
 
 
@@ -35,20 +34,13 @@ export const ui = (state = initialStates, action) => {
             return update(state, {
                 accountPopupActive: {$set: false}
             })
-        case TYPES.TOGGLE_SUCCESS_SCREEN:
-            /* let newState = update(state, {
-                successScreenState: {$set: !state.successScreenState}
-            })
-
-            return newState = update(newState, {
-                scanReset: {$set: false}
-            }) */
+        case TYPES.SET_SUCCESS_SCREEN:
             return update(state, {
-                successScreenState: {$set: !state.successScreenState}
+                successScreenState: {$set: true}
             })
-        case TYPES.SET_SCAN_RESET:
+        case TYPES.UNSET_SUCCESS_SCREEN:
             return update(state, {
-                scanReset: {$set: true}
+                successScreenState: {$set: false}
             })
         default:
             return state

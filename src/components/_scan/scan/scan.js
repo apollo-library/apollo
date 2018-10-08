@@ -19,8 +19,7 @@ import { actions } from './../../../store/actions.js'
 import store from './../../../store'
 
 const mapStateToProps = (state) => ({
-    successScreenState: state.ui.successScreenState,
-    scanReset: state.ui.scanReset
+    successScreenState: state.ui.successScreenState
 })
 
 class Scan extends Component {
@@ -60,17 +59,18 @@ class Scan extends Component {
     }
 
     resetScan() {
-        console.log("hi")
-        store.dispatch(actions.toggleSuccessScreen());
+        //console.log("hi")
 
         this.setState({scanInput: ""});
-        this.setState({scannedBookData: {}});
-        this.setState({scanOptions: null});
+        //await this.setState({scannedBookData: {}});
+        //await this.setState({scanOptions: null});
     }
 
     render() {
         if (this.props.successScreenState) {
             this.resetScan();
+            store.dispatch(actions.unsetSuccessScreen());
+            console.log(this.props.successScreenState)
             //store.dispatch(actions.setScanReset());
         }
 

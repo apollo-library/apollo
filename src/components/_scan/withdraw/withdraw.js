@@ -30,7 +30,7 @@ class Withdraw extends Component {
         let withdrawResponse = await API.Loans.withdrawBook(this.props.scanInput, this.state.studentId, this.state.dueDate);
 
         if (withdrawResponse.status === 'success') {
-            store.dispatch(actions.toggleSuccessScreen());
+            store.dispatch(actions.setSuccessScreen());
         } else {
             //store.dispatch(actions.addScanTab(4)); //No due date set
             //store.dispatch(actions.setScanError(withdrawResponse.status));
