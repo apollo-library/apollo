@@ -13,7 +13,7 @@ class Success extends Component {
 
     componentDidMount() {
         setTimeout(function(){
-            store.dispatch(actions.toggleSuccessScreen());
+            store.dispatch(actions.unsetSuccessScreen());
         }, 2000);
     }
 
