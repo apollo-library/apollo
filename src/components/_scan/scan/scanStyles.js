@@ -65,6 +65,19 @@ const SearchBar = styled.input`
     }
 `;
 
+const ItemContainer = styled.div`
+    display: flex;
+    width: 70%;
+    margin: 0 auto;
+    padding: 0.5rem;
+    flex: 1;
+    flex-direction: column;
+    margin-top: ${props => props.theme.styles.boxSpacing};
+    & * {
+        margin-bottom: 1rem;
+    }
+`;
+
 
 
 export {
@@ -74,5 +87,6 @@ export {
     BookInfo,
     BookInfoTitle,
     BookInfoAuthor,
-    SearchBar
+    SearchBar,
+    ItemContainer
 };

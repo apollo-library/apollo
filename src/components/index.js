@@ -25,9 +25,10 @@ import TagSearch from './_catalogue/tagSearch/tagSearch';
 import BookSearch from './_catalogue/bookSearch/bookSearch';
 
 import Scan from './_scan/scan/scan';
-import Withdraw from './_scan/withdraw/withdraw';
-import ReturnRenew from './_scan/return-renew/return-return';
-import Success from './_scan/success/success'
+import ReturnRenew from './_scan/returnRenew/returnRenew';
+import DatePicker from './_scan/datePicker/datePicker';
+import Success from './_scan/success/success';
+import Input from './_scan/input/input';
 
 import Books from './_report/books/books';
 import ReportTable from './_report/reportTable/reportTable';
@@ -50,9 +51,10 @@ export {
     BookSearch,
 
     Scan,
-    Withdraw,
     ReturnRenew,
+    DatePicker,
     Success,
+    Input,
 
     Books,
     ReportTable
