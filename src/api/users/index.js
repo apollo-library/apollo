@@ -17,8 +17,10 @@ async function addUser(data) {
 
 }
 
-async function getUser() {
-
+async function getUser(id) {
+    let response = await fetch(serverPath + '/user/' + String(id));
+    let json = await Functions.Data.parseJSON(response);
+    return json;
 }
 
 async function deleteUser() {

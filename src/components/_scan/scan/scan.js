@@ -11,16 +11,12 @@ import * as API from './../../../api';
 import config from './../../../config.js'
 
 //Components
-import {Withdraw, ReturnRenew, Success} from './../../';
+import {DatePicker, Success, Input} from './../../';
 
 //Redux
 import { connect } from 'react-redux'
 import { actions } from './../../../store/actions.js'
 import store from './../../../store'
-
-const mapStateToProps = (state) => ({
-    successScreenState: state.ui.successScreenState
-})
 
 class Scan extends Component {
     constructor() {
@@ -30,56 +26,157 @@ class Scan extends Component {
             showPopup: true,
             scannedBookData: {},
             scanOptions: null,
-            scanInput: ""
+            scanInput: "",
+            scanStage: 'start',
+            scanBox: []
         };
 
-        this.handleScanInput = this.handleScanInput.bind(this);
         this.resetScan = this.resetScan.bind(this);
+        this.enterBookID = this.enterBookID.bind(this);
+        this.enterCandidateNumber = this.enterCandidateNumber.bind(this);
+        this.withdrawBook = this.withdrawBook.bind(this);
+        this.renewBook = this.renewBook.bind(this);
+        this.returnBook = this.returnBook.bind(this);
     }
 
-    async handleScanInput(e) {
-        this.setState({scanInput: e.target.value})
+    componentDidMount() {
+        this.switchDisplay();
+    }
 
+
+    async enterBookID(e) {
+        this.setState({scanInput: e.target.value})
+        // e.persist();
         //Check for enter
         if (e.keyCode === 13) {
             //Run a reg-ex to check if the input to the scan box mathes the format of the Challoners barcodes on the books
             if (this.state.scanInput.match(/[R|r]\d{4,5}[a-z|A-Z](0577|057)/g)) {
-                let scannedBookData = await API.Books.getScanBookInfo(this.state.scanInput);
-                this.setState({scannedBookData: scannedBookData});
+                let data = await API.Books.getScanBookInfo(this.state.scanInput);
+                this.setState({scannedBookData: data});
 
-                if (scannedBookData.loanID) {
+                if (data.loanID) {
                     //Renew / Return
-                    this.setState({scanOptions: <ReturnRenew scanInput={this.state.scanInput} />})
+                    // e.target.value = "";
+                    this.setState({scanStage: 'return-renew'});
+                    this.switchDisplay()
+                    
                 } else {
                     //Withdraw
-                    this.setState({scanOptions: <Withdraw scanInput={this.state.scanInput} />})
+                    // e.target.value = "";
+                    this.setState({scanStage: 'withdraw-id'});
+                    this.switchDisplay()
+                    
                 }
             }
+        }
+        console.log(this.state.scannedBookData);
+    }
+
+    async enterCandidateNumber(e) {
+        this.setState({candidateNumber: e.target.value})
+        // e.persist();
+
+        //Check for enter
+        if (e.keyCode === 13) {
+            //Run a reg-ex to check if the input to the scan box mathes the format of the Challoners barcodes on the books
+            
+            let data = await API.Users.getUser(this.state.candidateNumber);
+            
+            if (data.code === "003") { // Some error
+                console.log('error');
+            } else { // Success
+                console.log(data);
+                // e.target.value = "";
+                this.setState({userData: data.data, studentId: data.data._id});
+                this.setState({scanStage: 'withdraw-date'});
+                this.switchDisplay()
+            }
+            
+        }
+        console.log(this.state.candidateNumber);
+    }
+
+    async withdrawBook(dueDate) {
+        const withdrawResponse = await API.Loans.withdrawBook(this.state.scanInput, this.state.studentId, dueDate);
+        if (withdrawResponse.status === 'success') {
+           this.setState({scanStage: 'success', successMessage: 'Book successfully withdrawn'});
+           this.switchDisplay()
+        } else {
+            //Error
+        }
+    }
+
+    async renewBook(renewDate) {
+        const renewResponse = await API.Loans.renewBook(this.state.scanInput, renewDate);
+        if (renewResponse.status === "success") {
+            this.setState({scanStage: 'success', successMessage: 'Book successfully renewed'});
+            this.switchDisplay()
+        } else {
+            //error
+        }
+        
+    }
+
+    async returnBook() {
+        const returnResponse = await API.Loans.returnBook(this.state.scanInput);
+        if (returnResponse.status === "success") {
+            this.setState({scanStage: 'success', successMessage: 'Book successfully returned'});
+            this.switchDisplay()
+        } else {
+            //error
         }
     }
 
     resetScan() {
-        //console.log("hi")
+        this.setState({scanStage: 'start'})
+        this.setState({scannedBookData: {}, successMessage: '', candidateNumber: '', userData: {}})
+        this.switchDisplay(true)
+    }
 
-        this.setState({scanInput: ""});
-        //await this.setState({scannedBookData: {}});
-        //await this.setState({scanOptions: null});
+    switchDisplay(override) {
+        if (override) {
+            this.setState({scanBox: <Input callback={this.enterBookID} />});
+            return;
+        }
+
+        switch(this.state.scanStage) {
+            case 'start':
+                this.setState({scanBox: <Input callback={this.enterBookID} />})
+                break;
+            case 'withdraw-id':
+                this.setState({scanBox: <Input callback={this.enterCandidateNumber} />})
+                break;
+            case 'withdraw-date':
+                this.setState({scanBox: <DatePicker callback={this.withdrawBook} buttonText={"Withdraw"} />})
+                break;
+            case 'return-renew':
+                this.setState({scanBox: [<Button colour="primary" onClick={() => this.returnBook()}>Return</Button>,<DatePicker callback={this.renewBook} buttonText={"Renew"} />]})
+                break;
+            case 'success':
+                this.setState({scanBox: <h1>{this.state.successMessage}</h1>})
+                break;
+            case 'error':
+                this.setState({scanBox: <h1>{this.state.errorMessage}</h1>})
+            default:
+                break;
+        }
+        
     }
 
     render() {
-        if (this.props.successScreenState) {
-            this.resetScan();
-            store.dispatch(actions.unsetSuccessScreen());
-            console.log(this.props.successScreenState)
-            //store.dispatch(actions.setScanReset());
-        }
 
+        // Decide what to display
+        
+        
         return (
             <styles.ScanContainer>
                 <styles.ScanPopup active={this.state.showPopup}>
-                    <styles.SearchBar onKeyUp={(e) => this.handleScanInput(e)} autoFocus />
+                    <h2>{this.state.scanStage}</h2>
+                    <styles.ItemContainer>
+                        {this.state.scanBox}
+                    </styles.ItemContainer>
+                        
 
-                    {this.props.successScreenState ? <Success /> : this.state.scanOptions}
 
                     <styles.BookInfo>
                         <styles.BookInfoTitle>
@@ -90,6 +187,7 @@ class Scan extends Component {
                             {this.state.scannedBookData.author}
                         </styles.BookInfoAuthor>
                     </styles.BookInfo>
+                    <Button colour="primary" onClick={() => this.resetScan()}>Reset</Button>
                 </styles.ScanPopup>
 
                 <styles.ScanButton>
@@ -97,7 +195,9 @@ class Scan extends Component {
                 </styles.ScanButton>
             </styles.ScanContainer>
         );
+        
     }
 }
 
-export default connect(mapStateToProps)(Scan);
+export default Scan;
+
