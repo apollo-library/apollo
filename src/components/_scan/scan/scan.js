@@ -11,7 +11,7 @@ import * as API from './../../../api';
 import config from './../../../config.js'
 
 //Components
-import {DatePicker, Success, Input} from './../../';
+import {DatePicker, Success, Input, Error} from './../../';
 
 //Redux
 import { connect } from 'react-redux'
@@ -153,10 +153,10 @@ class Scan extends Component {
                 this.setState({scanBox: [<Button colour="primary" onClick={() => this.returnBook()}>Return</Button>,<DatePicker callback={this.renewBook} buttonText={"Renew"} />]})
                 break;
             case 'success':
-                this.setState({scanBox: <h1>{this.state.successMessage}</h1>})
+                this.setState({scanBox: <Success message={this.state.successMessage} />})
                 break;
             case 'error':
-                this.setState({scanBox: <h1>{this.state.errorMessage}</h1>})
+                this.setState({scanBox: <Error message={this.state.errorMessage}/> })
             default:
                 break;
         }
