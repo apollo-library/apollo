@@ -10,17 +10,10 @@ import store from './../../../store'
 
 
 class Success extends Component {
-
-    componentDidMount() {
-        setTimeout(function(){
-            store.dispatch(actions.unsetSuccessScreen());
-        }, 2000);
-    }
-
     render() {
         return (
             <styles.SuccessMessage>
-                <styles.SuccessTitle>Thank you</styles.SuccessTitle>
+                <styles.SuccessTitle>{this.props.message}</styles.SuccessTitle>
             </styles.SuccessMessage>
         );
     }

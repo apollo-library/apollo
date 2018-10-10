@@ -25,7 +25,7 @@ import TagSearch from './_catalogue/tagSearch/tagSearch';
 import BookSearch from './_catalogue/bookSearch/bookSearch';
 
 import Scan from './_scan/scan/scan';
-import ReturnRenew from './_scan/returnRenew/returnRenew';
+import Error from './_scan/error/error';
 import DatePicker from './_scan/datePicker/datePicker';
 import Success from './_scan/success/success';
 import Input from './_scan/input/input';
@@ -51,7 +51,7 @@ export {
     BookSearch,
 
     Scan,
-    ReturnRenew,
+    Error,
     DatePicker,
     Success,
     Input,
