@@ -44,7 +44,6 @@ class BookHistoryTable extends Component {
         }
 
 
-        console.log(this.props.data)
         return (
             <styles.Table>
                 <styles.TableHeader colour={this.state.accent}>
@@ -53,8 +52,8 @@ class BookHistoryTable extends Component {
                     <styles.TableHeading colour={this.state.accent}>User</styles.TableHeading>
                     <styles.TableHeading colour={this.state.accent}>ID</styles.TableHeading>
                 </styles.TableHeader>
-                
-                
+
+
                 {TableContent}
 
             </styles.Table>
