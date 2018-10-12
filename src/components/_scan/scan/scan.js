@@ -28,24 +28,17 @@ class Scan extends Component {
             error: [],
             userData: []
         };
-
-        this.resetScan = this.resetScan.bind(this);
-        this.enterBookID = this.enterBookID.bind(this);
-        this.enterCandidateNumber = this.enterCandidateNumber.bind(this);
-        this.withdrawBook = this.withdrawBook.bind(this);
-        this.renewBook = this.renewBook.bind(this);
-        this.returnBook = this.returnBook.bind(this);
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         this.switchDisplay();
     }
 
-    componentDidUnmount() {
+    componentDidUnmount = () => {
         if (this.resetTimer) this.resetTimer.clearTimeout();
     }
 
-    async enterBookID(e) {
+    enterBookID = async (e) => {
         this.setState({scanInput: e.target.value})
         if (e.keyCode === 13) {  //Check for enter
             // Run a reg-ex to check if the input to the scan box mathes the format of the Challoner's barcodes on the books
@@ -71,7 +64,7 @@ class Scan extends Component {
         }
     }
 
-    async enterCandidateNumber(e) {
+    enterCandidateNumber = async (e) => {
         this.setState({candidateNumber: e.target.value})
         if (e.keyCode === 13) {  //Check for enter
             const data = await API.Users.getUser(this.state.candidateNumber);
@@ -90,7 +83,7 @@ class Scan extends Component {
         }
     }
 
-    async withdrawBook(dueDate) {
+    withdrawBook = async (dueDate) => {
         const withdrawResponse = await API.Loans.withdrawBook(this.state.scanInput, this.state.studentId, dueDate);
         if (withdrawResponse.status === 'success') {
            this.setState({scanStage: 'success', successMessage: 'Book successfully withdrawn'});
@@ -98,7 +91,7 @@ class Scan extends Component {
         } else this.setError('Error withdrawing book');
     }
 
-    async renewBook(renewDate) {
+    renewBook = async(renewDate) => {
         const renewResponse = await API.Loans.renewBook(this.state.scanInput, renewDate);
         if (renewResponse.status === "success") {
             this.setState({scanStage: 'success', successMessage: 'Book successfully renewed'});
@@ -106,7 +99,7 @@ class Scan extends Component {
         } else this.setError('Error renewing book');
     }
 
-    async returnBook() {
+    returnBook = async () => {
         const returnResponse = await API.Loans.returnBook(this.state.scanInput);
         if (returnResponse.status === "success") {
             this.setState({scanStage: 'success', successMessage: 'Book successfully returned'});
@@ -114,22 +107,22 @@ class Scan extends Component {
         } else this.setError('Error returning book');
     }
 
-    resetScan() {
+    resetScan = () => {
         // Clear data and reset scan box
         this.setState({scanStage: 'start', scannedBookData: {}, successMessage: '', candidateNumber: '', userData: []});
         this.switchDisplay(true);
     }
 
-    setError(message) {
+    setError = (message) => {
         this.setState({error: <Error message={message} />});
     }
 
-    resetError() {
+    resetError = () => {
         // Reset all error messages
         this.setState({error: []});
     }
 
-    switchDisplay(override) {
+    switchDisplay = (override) => {
         this.resetError(); // Presuming no errors are carried over
 
         if (override) {
@@ -180,7 +173,7 @@ class Scan extends Component {
         }
     }
 
-    render() {
+    render = () => {
             return (
             <styles.ScanContainer>
                 <styles.ScanPopup active={this.state.showPopup}>
