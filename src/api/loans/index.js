@@ -85,6 +85,27 @@ async function getOverdueLoans() {
     return rtn;
 }
 
+async function getDueSoonLoans() {
+    let response = await fetch(serverPath + '/loans/due');
+    let json = await Functions.Data.parseJSON(response);
+    let rtn = {
+        count: json.count,
+        data: json.data.map((loan) => {
+            return {
+                display: {
+                    title: loan.book.title,
+                    author: loan.book.author,
+                    name: loan.user.forname + ' ' + loan.user.surname,
+                    reg: loan.user.year + '-' + loan.user.reg,
+                    due: loan.loan.dueDate
+                },
+                raw: loan
+            }
+        })
+    }
+    return rtn;
+}
+
 async function getLoanInformation(id) {
     let response = await fetch(serverPath + '/loan/' +id);
     let json = await Functions.Data.parseJSON(response);
@@ -109,6 +130,7 @@ export {
     withdrawBook,
     getLoans,
     getOverdueLoans,
+    getDueSoonLoans,
     getLoanInformation,
     reserveBook,
     getBookReservation,
