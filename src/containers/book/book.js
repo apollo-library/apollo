@@ -49,7 +49,6 @@ class Report extends Component {
 
             this.setState({history: historyParse});
 
-            console.log(historyParse);
         }
 
         this.setState({ path: param});
@@ -64,7 +63,7 @@ class Report extends Component {
                         <PageTitle>{"Book Details"}</PageTitle>
                         <BookInfo data={this.state.bookData.data}></BookInfo>
                     </LeftColumn>
-                        
+
                     <RightColumn>
                         <PageTitle>{"History"}</PageTitle>
                         <BookHistoryTable data={this.state.history}></BookHistoryTable>

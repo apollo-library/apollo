@@ -49,7 +49,7 @@ class BookSearch extends Component {
 
     render() {
         return (
-            <styles.Searchbar autoFocus onKeyUp={(e) => this.searchBarEvent(e)} placeholder="Search Books"/>
+            <styles.Searchbar autoFocus onKeyUp={(e) => this.searchBarEvent(e)} placeholder="Search Books" defaultValue={this.props.searchQuery.searchTerm}/>
         );
     }
 }

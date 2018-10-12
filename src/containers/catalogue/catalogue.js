@@ -92,7 +92,6 @@ class Catalogue extends Component {
                     <RightColumn>
                         <BookSearch />
 
-
                         <div style={{marginTop: config.styles.boxSpacing}} />
 
                         <BookTable
@@ -106,7 +105,6 @@ class Catalogue extends Component {
                                    "Action"
                                ]}
                                buttonText="Details"
-                               buttonFunction="RUN A FUNCTION HERE"
                            />
                     </RightColumn>
                 </CenterColumn>
