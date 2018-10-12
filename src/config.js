@@ -25,7 +25,8 @@ let config = {
 			}
 	    ],
 		maxNotificationSize: 3,
-		fineRate: "0.20" // = £0.20
+		fineRate: "0.20", // = £0.20,
+		defaultLoanLength: 14 // = 14 days
 	},
 
 	reports: {

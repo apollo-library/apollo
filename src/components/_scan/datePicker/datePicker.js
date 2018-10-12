@@ -8,21 +8,15 @@ import {Button} from './../../../globalStyles.js'
 import * as API from './../../../api';
 
 //Config
-import config from './../../../config.js'
-
-//Redux
-import { connect } from 'react-redux'
-import { actions } from './../../../store/actions.js'
-import store from './../../../store'
-
+import config from './../../../config.js';
 
 class DatePicker extends Component {
     constructor() {
-        super()
+        super();
 
         this.state = {
             studentId: 0,
-            dueDate: 0
+            dueDate: new Date(new Date().getTime()+86400000*config.main.defaultLoanLength).toISOString().substring(0, new Date(new Date().getTime()+86400000*config.main.defaultLoanLength).toISOString().indexOf("T"))
         };
     }
 
@@ -32,7 +26,8 @@ class DatePicker extends Component {
                 <styles.DueDatePicker
                     onChange={(e) => this.setState({dueDate: e.target.value})}
                     type="date"
-                    min={new Date().toISOString().substring(0, new Date().toISOString().indexOf("T"))}
+                    min={new Date(new Date().getTime()+86400000).toISOString().substring(0, new Date(new Date().getTime()+86400000).toISOString().indexOf("T"))}
+                    defaultValue={new Date(new Date().getTime()+86400000*config.main.defaultLoanLength).toISOString().substring(0, new Date(new Date().getTime()+86400000*config.main.defaultLoanLength).toISOString().indexOf("T"))}
                 />,
                 <Button colour="primary" onClick={() => this.props.callback(this.state.dueDate)}>{this.props.buttonText}</Button>
             ]
