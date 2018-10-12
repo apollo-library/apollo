@@ -62,6 +62,7 @@ class Catalogue extends Component {
 
 
     render() {
+        let tagsDisplayed = 0;
         return (
             <div>
                 <CenterColumn>
@@ -70,10 +71,21 @@ class Catalogue extends Component {
 
                         <TagSearch />
 
-                        {this.props.filteredTags.slice(0,15).map((tag, index) =>
-                            (
-                                <TagItem key={index} tagName={tag.name} active={this.tagActive(tag.name)} />
-                            )
+                        {this.props.catalogueTags.map((tag, index) =>
+                            {
+                                if (this.tagActive(tag.name)) {
+                                    return <TagItem key={index} tagName={tag.name} active={true} />
+                                }
+                            }
+                        )}
+
+                        {this.props.filteredTags.map((tag, index) =>
+                            {
+                                if (!this.tagActive(tag.name) && tagsDisplayed < 15) {
+                                    tagsDisplayed++;
+                                    return <TagItem key={index} tagName={tag.name} active={false} />
+                                }
+                            }
                         )}
                     </LeftColumn>
 
