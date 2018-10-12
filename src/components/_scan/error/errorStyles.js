@@ -7,7 +7,7 @@ const ErrorMessage = styled.div`
 const ErrorTitle = styled.p`
     font-size: 1.3rem;
     font-weight: 600;
-    color: ${props => props.theme.colours.accent4};
+    color: ${props => props.theme.colours.accent6};
     display: inline;
 `;
 

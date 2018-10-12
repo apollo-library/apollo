@@ -85,6 +85,12 @@ async function getOverdueLoans() {
     return rtn;
 }
 
+async function getLoanInformation(id) {
+    let response = await fetch(serverPath + '/loan/' +id);
+    let json = await Functions.Data.parseJSON(response);
+    return json;
+}
+
 async function reserveBook(id) {
 
 }
@@ -103,6 +109,7 @@ export {
     withdrawBook,
     getLoans,
     getOverdueLoans,
+    getLoanInformation,
     reserveBook,
     getBookReservation,
     deleteReservation

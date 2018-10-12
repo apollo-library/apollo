@@ -33,12 +33,21 @@ const ScanButton = styled.div`
     bottom: ${props => props.theme.styles.boxSpacing};
 `;
 
-const BookInfo = styled.div`
-    background: ${props => props.theme.colours.lightGrey};
+const ResetButton = styled.div`
+    margin: ${props => props.theme.styles.boxSpacing};
+    float: right;
+`;
+
+const BottomInfo = styled.div`
     position: absolute;
     bottom: 0;
     right: 0;
     left: 0;
+`;
+
+const BookInfo = styled.div`
+    background: ${props => props.theme.colours.lightGrey};
+    width: 100%;
     padding: calc(${props => props.theme.styles.boxSpacing} / 2) ${props => props.theme.styles.boxSpacing};
 `;
 
@@ -84,6 +93,8 @@ export {
     ScanContainer,
     ScanPopup,
     ScanButton,
+    BottomInfo,
+    ResetButton,
     BookInfo,
     BookInfoTitle,
     BookInfoAuthor,
