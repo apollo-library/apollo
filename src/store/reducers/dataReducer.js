@@ -133,13 +133,12 @@ function removeBookToRate(state) {
 //Updates the tags to show in the sidebar based on searchresults
 function pushFilteredTags(state, filteredTags) {
     //Sorts the list alphabetically by name
-    //TOD0, undo comment but fix to sort array by object key
-    /*filteredTags.sort( function( a, b ) {
+    filteredTags.sort( function( a, b ) {
         a = a.name.toLowerCase();
         b = b.name.toLowerCase();
 
         return a < b ? -1 : a > b ? 1 : 0;
-    }); */
+    });
 
     return update(state, {
         filteredTags: {$set: filteredTags}
@@ -149,40 +148,31 @@ function pushFilteredTags(state, filteredTags) {
 //Toggles the tags being in the serach query or not
 function updateFilterTags(state, tagName) {
     //Check if the active filters contains the one we've clicked
-
     if (state.searchQuery.filters.includes(tagName)) { //For IE support in the future *.includes() can be changed to *.indexOf()
         //Remove tag from query
-        let index = state.catalogue.tags.findIndex(tag => tag.name === tagName)
         let queryIndex = state.searchQuery.filters.indexOf(tagName);
 
-        let newState = update(state, {
+        return update(state, {
             searchQuery: {
                 filters: {$splice: [[queryIndex, 1]]}
             }
         })
-
-        newState = update(newState, {
-            catalogue: {
-                tags: {
-                    [index]: {
-                        selected: {$set: false}
-                    }
-                }
-            }
-        })
-
-        return newState
     } else {
-        //Add the tag to the query
-        let index = state.catalogue.tags.findIndex(tag => tag.name === tagName)
-
-        let newState = update(state, {
+        return update(state, {
             searchQuery: {
                 filters: {$push: [tagName]}
             }
-        })
+        });
+    }
+}
 
-        newState = update(newState, {
+function updateFilterTagsState(state, tagName) {
+    //Check if the active filters contains the one we've clicked
+    if (state.searchQuery.filters.includes(tagName)) { //For IE support in the future *.includes() can be changed to *.indexOf()
+        //Remove tag from query
+        let index = state.catalogue.tags.findIndex(tag => tag.name === tagName)
+
+        return update(state, {
             catalogue: {
                 tags: {
                     [index]: {
@@ -191,10 +181,22 @@ function updateFilterTags(state, tagName) {
                 }
             }
         })
+    } else {
+        //Add the tag to the query
+        let index = state.catalogue.tags.findIndex(tag => tag.name === tagName)
 
-        return newState
+        return update(state, {
+            catalogue: {
+                tags: {
+                    [index]: {
+                        selected: {$set: false}
+                    }
+                }
+            }
+        })
     }
 }
+
 
 //Updates the value of the searchTerm in the search query
 function updateSearchTerm(state, searchTerm) {
@@ -230,6 +232,8 @@ export const data = (state = initialStates, action) => {
             return pushFilteredTags(state, action.filteredTags)
         case TYPES.UPDATE_FILTER_TAGS:
             return updateFilterTags(state, action.tagName)
+        case TYPES.UPDATE_FILTER_TAGS_STATE:
+            return updateFilterTagsState(state, action.tagName)
         case TYPES.UPDATE_SEARCH_TERM:
             return updateSearchTerm(state, action.searchTerm)
         case TYPES.PUSH_CATALOGUE_BOOKS:
