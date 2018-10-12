@@ -12,7 +12,7 @@ import store from './store'
 import config from './config'
 
 import {Navbar, Scan} from './components';
-import {Report} from './containers';
+import {Book, Report} from './containers';
 
 //Store history of the router for updating the current page
 const history = createHistory();
@@ -60,6 +60,7 @@ class App extends Component {
                                 <Route exact path={page.path} component={page.componentName} key={index} />
                             )}
                             <Route exact path={'/report/:report'} component={Report}/>
+                            <Route exact path={'/book/:book'} component={Book}/>
                         </Switch>
                     </div>
                 </div>
