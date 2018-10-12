@@ -9,12 +9,15 @@ import config from './../config.js';
 // eslint-disable-next-line
 const serverPath = config.serverPath;
 
-async function getHistory() {
-
+async function getBookHistory(id) {
+    let response = await fetch(serverPath + '/book/' + id + '/history');
+    let json = await Functions.Data.parseJSON(response);
+    if (json.code === "002") { return {message: "Book not found"}; }
+    return json;
 }
 
 async function getBookHistoryUsers(id) {
-
+    
 }
 
 async function getBookCurrentLoan(id) {
@@ -34,7 +37,7 @@ async function getUserHistoryFines(id) {
 }
 
 export {
-    getHistory,
+    getBookHistory,
     getBookHistoryUsers,
     getBookCurrentLoan,
     getUserHistory,

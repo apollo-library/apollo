@@ -112,6 +112,16 @@ const StarPath = styled.path`
     transition: fill 150ms ease;
 `;
 
+const BookInformation = styled.p`
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+    color: ${props => props.theme.colours.darkGrey};
+`;
+
+const Tag = styled.p`
+    display: inline-block;
+    padding: calc(${props => props.theme.styles.boxSpacing} / 2);
+`;
 
 export {
     AccentedBox,
@@ -128,5 +138,7 @@ export {
     RateBooksLeft,
     Stars,
     Star,
-    StarPath
+    StarPath,
+    BookInformation,
+    Tag
 };

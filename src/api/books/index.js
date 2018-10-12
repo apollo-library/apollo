@@ -37,8 +37,10 @@ export async function searchBooks(query) {
 }
 
 export async function getBookInfo(id) {
-    // <- book id given
-    // <- all information about book
+    let response = await fetch(serverPath + '/book/' + id);
+    let json = await Functions.Data.parseJSON(response);
+    if (json.code === "002") { return {message: "Book not found"}; }
+    return json;
 }
 
 export async function addBook(data) {

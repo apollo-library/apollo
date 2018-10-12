@@ -6,12 +6,10 @@ import * as API from './../../api';
 //Config
 import config from './../../config.js'
 
-// Styles
-import {CenterColumn, BottomLogo, PageTitle, FlexGrow} from './../../globalStyles.js'
-import logo from './../../assets/images/logo.svg'
-
 //Component imports
-import {ReportTable} from './../../components';
+import {BookHistoryTable, BookInfo} from './../../components';
+
+import {CenterColumn, LeftColumn, RightColumn, PageTitle} from './../../globalStyles.js'
 
 class Report extends Component {
     constructor() {
@@ -19,42 +17,60 @@ class Report extends Component {
 
         this.state = {
             path: '',
-            title: '',
-            report: {},
-            table: [],
-            data: {}
+            bookData: {
+                data: {
+                    tags: []
+                }
+            },
+            history: null
         };
     }
 
-    async componentDidMount() {
-        const param = this.props.match.params.report;
+    componentDidMount = async () => {
+        const param = this.props.match.params.book;
+
+        const data = await API.Books.getBookInfo(param);
+
+        if (data.message === "Book not found") {
+            //throw a temper tantrum
+        } else {
+            this.setState({bookData: data});
+            const history = await API.History.getBookHistory(param);
+            // console.log(history.data)
+
+            let historyParse = history.data.map((item , index) => {
+                return {
+                    date: item.date,
+                    action: item.action,
+                    user: item.user.forename + ' ' + item.user.surname + ' | ' + item.user.year + '-' + item.user.reg,
+                    id: item.user._id
+                };
+            });
+
+            this.setState({history: historyParse});
+
+            console.log(historyParse);
+        }
 
         this.setState({ path: param});
-
-        if (!config.reports[param]) {
-            this.setState({ report: {page: '404'} });
-        } else {
-            const data = await config.reports[param].function;
-            this.setState({ 
-                data: data,
-                table: config.reports[param].table,
-                title: config.reports[param].name
-            });
-            console.log(data);
-        }
-        
     }
 
 
-    render() {
+    render = () => {
         return (
-            <CenterColumn>
-                <FlexGrow>
-                    <PageTitle>{this.state.title}</PageTitle>
-                    <ReportTable data={this.state.data} table={this.state.table}  />
-                    <BottomLogo src={logo} />
-                </FlexGrow>
-            </CenterColumn>
+            <div>
+                <CenterColumn>
+                    <LeftColumn>
+                        <PageTitle>{"Book Details"}</PageTitle>
+                        <BookInfo data={this.state.bookData.data}></BookInfo>
+                    </LeftColumn>
+                        
+                    <RightColumn>
+                        <PageTitle>{"History"}</PageTitle>
+                        <BookHistoryTable data={this.state.history}></BookHistoryTable>
+                    </RightColumn>
+                </CenterColumn>
+            </div>
         );
     }
 }

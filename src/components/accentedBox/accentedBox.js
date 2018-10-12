@@ -85,6 +85,29 @@ class AccentedBox extends Component {
                     <styles.BookAuthor>{this.props.data.subtitle}</styles.BookAuthor>
                     <Link to={this.props.data.url}><styles.SidebarButton colour={this.props.gradFrom}>{this.props.data.buttonText}</styles.SidebarButton></Link>
                 </styles.BoxContent>
+        } else if (typeOfBox === "customText") {
+            boxContent =
+                <styles.BoxContent>
+                    <styles.BookTitle>{this.props.data.title}</styles.BookTitle>
+                    <styles.BookInformation>{this.props.data.data1}</styles.BookInformation>
+                    <styles.BookInformation>{this.props.data.data2}</styles.BookInformation>
+                    
+                </styles.BoxContent>
+        } else if (typeOfBox === "customTextNoTitle") {
+            boxContent =
+                <styles.BoxContent>
+                    <styles.BookInformation>{this.props.data.data1}</styles.BookInformation>
+                    <styles.BookInformation>{this.props.data.data2}</styles.BookInformation>
+                    <styles.BookInformation>{this.props.data.data3}</styles.BookInformation>
+                    
+                </styles.BoxContent>
+        } else if (typeOfBox === "tags") {
+            boxContent =
+                <styles.BoxContent>
+                    {this.props.data.tags.map((tag, index) => {
+                        return <styles.Tag key={index}>{tag}</styles.Tag>
+                    })}
+                </styles.BoxContent>
         } else if (typeOfBox === "latestBook") {
             boxContent =
                 <styles.BoxContent>

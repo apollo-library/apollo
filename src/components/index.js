@@ -33,6 +33,9 @@ import Input from './_scan/input/input';
 import Books from './_report/books/books';
 import ReportTable from './_report/reportTable/reportTable';
 
+import BookHistoryTable from './_book/bookHistoryTable/bookHistoryTable';
+import BookInfo from './_book/bookInfo/bookInfo';
+
 //Export all components
 export {
     Navbar,
@@ -57,5 +60,8 @@ export {
     Input,
 
     Books,
-    ReportTable
+    ReportTable,
+
+    BookHistoryTable,
+    BookInfo
 }
