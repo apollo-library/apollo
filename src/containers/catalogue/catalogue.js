@@ -60,9 +60,14 @@ class Catalogue extends Component {
         }
     }
 
-
     render() {
+        const extraBookNum = {
+            'text-align': 'center',
+            'color': config.colours.midGrey
+        }
+
         let tagsDisplayed = 0;
+        let activeTags = 0;
         return (
             <div>
                 <CenterColumn>
@@ -74,6 +79,7 @@ class Catalogue extends Component {
                         {this.props.catalogueTags.map((tag, index) =>
                             {
                                 if (this.tagActive(tag.name)) {
+                                    activeTags++;
                                     return <TagItem key={index} tagName={tag.name} active={true} />
                                 }
                             }
@@ -87,6 +93,9 @@ class Catalogue extends Component {
                                 }
                             }
                         )}
+
+                        <p style={extraBookNum}>+ {this.props.filteredTags.length - activeTags - tagsDisplayed} more</p>
+
                     </LeftColumn>
 
                     <RightColumn>
