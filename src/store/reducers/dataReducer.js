@@ -248,11 +248,12 @@ export const data = (state = initialStates, action) => {
                     books: {$set: []}
                 }
             })
-        case TYPES.RESET_SEARCH_TERM:
+        case TYPES.RESET_SEARCH_QUERY:
             return update(state, {
-                searchQuery: {
-                    searchTerm: {$set: ""}
-                }
+                searchQuery: {$set: {
+                    searchTerm: "",
+                    filters: []
+                }}
             })
         default:
             return state
