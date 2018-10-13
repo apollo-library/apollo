@@ -10,7 +10,7 @@ export const TYPES = {
     UPDATE_SEARCH_TERM: 'UPDATE_SEARCH_TERM',
     PUSH_CATALOGUE_BOOKS: 'PUSH_CATALOGUE_BOOKS',
     RESET_CATALOGUE_BOOKS: 'RESET_CATALOGUE_BOOKS',
-    RESET_SEARCH_TERM: 'RESET_SEARCH_TERM',
+    RESET_SEARCH_QUERY: 'RESET_SEARCH_QUERY',
 
     TOGGLE_NOTIFICATIONS: 'TOGGLE_NOTIFICATIONS',
     HIDE_NOTIFICATIONS: 'HIDE_NOTIFICATIONS',
@@ -32,7 +32,7 @@ export const actions = {
     updateSearchTerm: (searchTerm) => ({type: TYPES.UPDATE_SEARCH_TERM, searchTerm}),
     pushCatalogueBooks: (books) => ({type: TYPES.PUSH_CATALOGUE_BOOKS, books}),
     resetCatalogueBooks: () => ({type: TYPES.RESET_CATALOGUE_BOOKS}),
-    resetSearchTerm: () => ({type: TYPES.RESET_SEARCH_TERM}),
+    resetSearchQuery: () => ({type: TYPES.RESET_SEARCH_QUERY}),
 
     toggleNotifications: () => ({type: TYPES.TOGGLE_NOTIFICATIONS}),
     hideNotifications: () => ({type: TYPES.HIDE_NOTIFICATIONS}),

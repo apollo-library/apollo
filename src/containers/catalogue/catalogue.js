@@ -32,6 +32,7 @@ class Catalogue extends Component {
     async componentDidMount() {
         //When component loads, get the list of filterTerms
         let rawTags = await API.Tags.getAllTags();
+        console.log(rawTags)
         let tags = [];
 
         rawTags.map(function(tag, i){
@@ -53,8 +54,7 @@ class Catalogue extends Component {
     componentWillUnmount() {
         //Reset books books being displayed
         store.dispatch(actions.resetCatalogueBooks());
-        store.dispatch(actions.resetSearchTerm());
-
+        store.dispatch(actions.resetSearchQuery());
     }
 
     tagActive(tagName) {
@@ -75,7 +75,11 @@ class Catalogue extends Component {
 
         let tagsDisplayed = 0;
         let activeTags = 0;
+
+        //<p style={extraBookNum}>+ {this.props.filteredTags.length - activeTags - tagsDisplayed} more</p>
+        console.log(this.props.catalogueTags)
         return (
+
             <div>
                 <CenterColumn>
                     <LeftColumn small>
@@ -101,7 +105,11 @@ class Catalogue extends Component {
                             }
                         )}
 
-                        <p style={extraBookNum}>+ {this.props.filteredTags.length - activeTags - tagsDisplayed} more</p>
+                        <p style={extraBookNum}>+ {
+                                tagsDisplayed < 15
+                                ? 0
+                                : this.props.filteredTags.length - tagsDisplayed - activeTags
+                            } more</p>
 
                     </LeftColumn>
 
