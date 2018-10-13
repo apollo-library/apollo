@@ -85,21 +85,21 @@ class AccentedBox extends Component {
                     <styles.BookAuthor>{this.props.data.subtitle}</styles.BookAuthor>
                     <Link to={this.props.data.url}><styles.SidebarButton colour={this.props.gradFrom}>{this.props.data.buttonText}</styles.SidebarButton></Link>
                 </styles.BoxContent>
-        } else if (typeOfBox === "customText") {
+        } else if (typeOfBox === "bookTitleAuthorPublisher") {
             boxContent =
                 <styles.BoxContent>
                     <styles.BookTitle>{this.props.data.title}</styles.BookTitle>
                     <styles.BookInformation>{this.props.data.data1}</styles.BookInformation>
                     <styles.BookInformation>{this.props.data.data2}</styles.BookInformation>
-                    
+                    <styles.EditButton onClick={() => this.props.callback()} colour={this.props.gradFrom}>Edit</styles.EditButton>
                 </styles.BoxContent>
-        } else if (typeOfBox === "customTextNoTitle") {
+        } else if (typeOfBox === "bookIDs") {
             boxContent =
                 <styles.BoxContent>
                     <styles.BookInformation>{this.props.data.data1}</styles.BookInformation>
                     <styles.BookInformation>{this.props.data.data2}</styles.BookInformation>
                     <styles.BookInformation>{this.props.data.data3}</styles.BookInformation>
-                    
+                    <styles.EditButton onClick={() => this.props.callback()} colour={this.props.gradFrom}>Edit</styles.EditButton>
                 </styles.BoxContent>
         } else if (typeOfBox === "tags") {
             boxContent =
@@ -107,6 +107,12 @@ class AccentedBox extends Component {
                     {this.props.data.tags.map((tag, index) => {
                         return <styles.Tag key={index}>{tag}</styles.Tag>
                     })}
+                    <styles.EditButton onClick={() => this.props.callback()} colour={this.props.gradFrom}>Edit</styles.EditButton>
+                </styles.BoxContent>
+        } else if (typeOfBox === "noTags") {
+            boxContent = <styles.BoxContent>
+                    <styles.Tag>No Tags</styles.Tag>
+                    <styles.EditButton onClick={() => this.props.callback()} colour={this.props.gradFrom}>Edit</styles.EditButton>
                 </styles.BoxContent>
         } else if (typeOfBox === "latestBook") {
             boxContent =
