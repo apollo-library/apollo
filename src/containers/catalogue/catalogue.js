@@ -50,6 +50,13 @@ class Catalogue extends Component {
         store.dispatch(actions.pushFilteredTags(tags));
     }
 
+    componentWillUnmount() {
+        //Reset books books being displayed
+        store.dispatch(actions.resetCatalogueBooks());
+        store.dispatch(actions.resetSearchTerm());
+
+    }
+
     tagActive(tagName) {
         let index = this.props.catalogueTags.findIndex(tag => tag.name === tagName)
 
@@ -62,7 +69,7 @@ class Catalogue extends Component {
 
     render() {
         const extraBookNum = {
-            'text-align': 'center',
+            'textAlign': 'center',
             'color': config.colours.midGrey
         }
 

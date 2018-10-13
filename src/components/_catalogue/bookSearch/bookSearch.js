@@ -44,12 +44,14 @@ class BookSearch extends Component {
         if (searchResponse.message === "Success") {
             //Update redux state with new books
             store.dispatch(actions.pushCatalogueBooks(searchResponse.data));
+        } else {
+            store.dispatch(actions.pushCatalogueBooks([]));
         }
     }
 
     render() {
         return (
-            <styles.Searchbar autoFocus onKeyUp={(e) => this.searchBarEvent(e)} placeholder="Search Books" defaultValue={this.props.searchQuery.searchTerm}/>
+            <styles.Searchbar autoFocus onKeyUp={(e) => this.searchBarEvent(e)} placeholder="Search Books"/>
         );
     }
 }

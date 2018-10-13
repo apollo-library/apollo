@@ -197,7 +197,6 @@ function updateFilterTagsState(state, tagName) {
     }
 }
 
-
 //Updates the value of the searchTerm in the search query
 function updateSearchTerm(state, searchTerm) {
     return update(state, {
@@ -206,6 +205,7 @@ function updateSearchTerm(state, searchTerm) {
         }
     })
 }
+
 
 
 export const data = (state = initialStates, action) => {
@@ -240,6 +240,18 @@ export const data = (state = initialStates, action) => {
             return update(state, {catalogue:
                 {
                     books: {$set: action.books}
+                }
+            })
+        case TYPES.RESET_CATALOGUE_BOOKS:
+            return update(state, {
+                catalogue: {
+                    books: {$set: []}
+                }
+            })
+        case TYPES.RESET_SEARCH_TERM:
+            return update(state, {
+                searchQuery: {
+                    searchTerm: {$set: ""}
                 }
             })
         default:
