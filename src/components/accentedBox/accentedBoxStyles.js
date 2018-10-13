@@ -123,6 +123,13 @@ const Tag = styled.p`
     padding: calc(${props => props.theme.styles.boxSpacing} / 2);
 `;
 
+const EditButton = WhiteButton.extend`
+    font-size: 1rem;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+`;
+
 export {
     AccentedBox,
     AccentBar,
@@ -140,5 +147,6 @@ export {
     Star,
     StarPath,
     BookInformation,
-    Tag
+    Tag,
+    EditButton
 };

@@ -48,9 +48,18 @@ export async function addBook(data) {
     // <- ?
 }
 
-export async function editBook(data) {
-    // <- ?
-    // <- ?
+export async function editBook(book, type, val) {
+    let data = type + '=' + val;
+
+    let response = await fetch(serverPath + '/book/' + book, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: data
+    });
+    let json = await Functions.Data.parseJSON(response);
+    return json;
 }
 
  export async function deleteBook(id) {

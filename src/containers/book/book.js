@@ -27,6 +27,10 @@ class Report extends Component {
     }
 
     componentDidMount = async () => {
+        this.updateData();
+    }
+
+    updateData = async () => {
         const param = this.props.match.params.book;
 
         const data = await API.Books.getBookInfo(param);
@@ -61,7 +65,7 @@ class Report extends Component {
                 <CenterColumn>
                     <LeftColumn>
                         <PageTitle>{"Book Details"}</PageTitle>
-                        <BookInfo data={this.state.bookData.data}></BookInfo>
+                        <BookInfo data={this.state.bookData.data} updateData={this.updateData}></BookInfo>
                     </LeftColumn>
 
                     <RightColumn>
