@@ -31,6 +31,8 @@ class TagItem extends Component {
         if (searchResponse.message === "Success") {
             //Update redux state with new books
             store.dispatch(actions.pushCatalogueBooks(searchResponse.data));
+        } else {
+            store.dispatch(actions.pushCatalogueBooks([]));
         }
 
     };
