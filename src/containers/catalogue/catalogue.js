@@ -75,10 +75,6 @@ class Catalogue extends Component {
             'textAlign': 'center',
             'color': config.colours.midGrey,
             'cursor': 'pointer',
-
-            '&:hover': {
-                'text-decoration': 'underline'
-            }
         }
 
         let tagsDisplayed = 0;
