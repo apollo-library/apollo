@@ -26,6 +26,9 @@ const mapStateToProps = (state) => ({
 class Catalogue extends Component {
     constructor() {
         super()
+        this.state = {
+            tagsToDisplay: 15,
+        };
         this.tagActive = this.tagActive.bind(this);
     }
 
@@ -70,14 +73,17 @@ class Catalogue extends Component {
     render() {
         const extraBookNum = {
             'textAlign': 'center',
-            'color': config.colours.midGrey
+            'color': config.colours.midGrey,
+            'cursor': 'pointer',
+
+            '&:hover': {
+                'text-decoration': 'underline'
+            }
         }
 
         let tagsDisplayed = 0;
         let activeTags = 0;
 
-        //<p style={extraBookNum}>+ {this.props.filteredTags.length - activeTags - tagsDisplayed} more</p>
-        console.log(this.props.catalogueTags)
         return (
 
             <div>
@@ -98,15 +104,15 @@ class Catalogue extends Component {
 
                         {this.props.filteredTags.map((tag, index) =>
                             {
-                                if (!this.tagActive(tag.name) && tagsDisplayed < 15) {
+                                if (!this.tagActive(tag.name) && tagsDisplayed < this.state.tagsToDisplay) {
                                     tagsDisplayed++;
                                     return <TagItem key={index} tagName={tag.name} active={false} />
                                 }
                             }
                         )}
 
-                        <p style={extraBookNum}>+ {
-                                tagsDisplayed < 15
+                        <p style={extraBookNum} onClick={() => this.setState({tagsToDisplay: this.state.tagsToDisplay + 15})}>+ {
+                                tagsDisplayed < this.state.tagsToDisplay
                                 ? 0
                                 : this.props.filteredTags.length - tagsDisplayed - activeTags
                             } more</p>
@@ -132,6 +138,7 @@ class Catalogue extends Component {
                            />
                     </RightColumn>
                 </CenterColumn>
+                <div style={{marginTop: config.styles.boxSpacing}} />
             </div>
         );
     }
