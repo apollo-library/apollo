@@ -68,7 +68,6 @@ const StarPath = styled.path.attrs({
 
 const TableButton = styled.div`
     flex: 1;
-    padding-right: 0.25rem;
     display: flex;
     align-items: center;
     padding: 0.25rem;

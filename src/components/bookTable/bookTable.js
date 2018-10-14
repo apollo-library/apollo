@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
 import * as styles from './bookTableStyles.js'
-import {Button} from './../../globalStyles.js'
+import {Button, FlexGrow} from './../../globalStyles.js'
 
 class BookTable extends Component {
 
@@ -101,7 +101,13 @@ class BookTable extends Component {
                             <styles.TableText>{rowData.title}</styles.TableText>
                             <styles.TableText>{rowData.author}</styles.TableText>
                             <styles.TableText>{rowData.loanID ? "On Loan" : "Available"}</styles.TableText>
-                            <styles.TableButton><Link to={'/book/' + rowData._id}><Button colour={this.props.colour}>{this.props.buttonText}</Button></Link></styles.TableButton>
+                                <FlexGrow>
+                                    <Link to={'/book/' + rowData._id}>
+                                        <styles.TableButton>
+                                            <Button colour={this.props.colour}>{this.props.buttonText}</Button>
+                                        </styles.TableButton>
+                                    </Link>
+                                </FlexGrow>
                         </styles.TableRow>
                     )
                 )
