@@ -35,7 +35,6 @@ class Catalogue extends Component {
     async componentDidMount() {
         //When component loads, get the list of filterTerms
         let rawTags = await API.Tags.getAllTags();
-        console.log(rawTags)
         let tags = [];
 
         rawTags.map(function(tag, i){
