@@ -1,15 +1,9 @@
 //React imports
 import React, { Component } from 'react';
 
-
 //Styles
 import * as styles from './../../bookTable/bookTableStyles.js'
 import * as reportStyles from './reportTableStyles.js'
-
-import * as API from './../../../api';
-
-//Config
-import config from './../../../config.js'
 
 class ReportTable extends Component {
     constructor() {
@@ -46,8 +40,6 @@ class ReportTable extends Component {
         )
         }
 
-
-        console.log(this.props.data)
         return (
             <styles.Table>
                 <styles.TableHeader colour={this.state.accent}>
@@ -57,8 +49,8 @@ class ReportTable extends Component {
                         )
                     )}
                 </styles.TableHeader>
-                
-                
+
+
                 {TableContent}
 
             </styles.Table>

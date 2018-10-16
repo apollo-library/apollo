@@ -4,11 +4,6 @@ import React, { Component } from 'react';
 //Styles
 import * as styles from './../../bookTable/bookTableStyles.js'
 
-import * as API from './../../../api';
-
-//Config
-import config from './../../../config.js'
-
 class BookHistoryTable extends Component {
     constructor() {
         super()

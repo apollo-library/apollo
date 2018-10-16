@@ -1,8 +1,6 @@
 //React imports
 import React, { Component } from 'react';
 
-import * as API from './../../api';
-
 //Config
 import config from './../../config.js'
 
@@ -35,14 +33,14 @@ class Report extends Component {
             this.setState({ report: {page: '404'} });
         } else {
             const data = await config.reports[param].function;
-            this.setState({ 
+            this.setState({
                 data: data,
                 table: config.reports[param].table,
                 title: config.reports[param].name
             });
             console.log(data);
         }
-        
+
     }
 
     render() {

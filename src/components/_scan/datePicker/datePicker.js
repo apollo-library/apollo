@@ -5,8 +5,6 @@ import React, { Component } from 'react';
 import * as styles from './datePickerStyles.js'
 import {Button} from './../../../globalStyles.js'
 
-import * as API from './../../../api';
-
 //Config
 import config from './../../../config.js';
 

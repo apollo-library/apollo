@@ -30,7 +30,6 @@ import DatePicker from './_scan/datePicker/datePicker';
 import Success from './_scan/success/success';
 import Input from './_scan/input/input';
 
-import Books from './_report/books/books';
 import ReportTable from './_report/reportTable/reportTable';
 
 import BookHistoryTable from './_book/bookHistoryTable/bookHistoryTable';
@@ -59,7 +58,6 @@ export {
     Success,
     Input,
 
-    Books,
     ReportTable,
 
     BookHistoryTable,

@@ -6,9 +6,6 @@ import * as styles from './bookInfoStyles.js'
 
 import * as API from './../../../api';
 
-//Config
-import config from './../../../config.js'
-
 //Componenets
 import {AccentedBox} from './../../';
 
@@ -130,7 +127,7 @@ class BookInfo extends Component {
                     ]
                 }
                 {
-                    (this.state.idBox) ? 
+                    (this.state.idBox) ?
                     <AccentedBox
                         title="ISBN and ID"
                         gradFrom="accent1"

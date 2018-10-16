@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-const SuccessMessage = styled.div`
-    text-align: center;
-`;
-
 const SearchBar = styled.input`
     border: none;
     box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.lightGrey};

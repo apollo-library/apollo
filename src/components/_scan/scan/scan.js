@@ -7,9 +7,6 @@ import {Button} from './../../../globalStyles.js';
 
 import * as API from './../../../api';
 
-//Config
-import config from './../../../config.js'
-
 //Components
 import {DatePicker, Success, Input, Error} from './../../';
 
@@ -204,9 +201,8 @@ class Scan extends Component {
                 </styles.ScanButton>
             </styles.ScanContainer>
         );
-        
+
     }
 }
 
 export default Scan;
-
