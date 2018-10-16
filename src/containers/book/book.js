@@ -3,9 +3,6 @@ import React, { Component } from 'react';
 
 import * as API from './../../api';
 
-//Config
-import config from './../../config.js'
-
 //Component imports
 import {BookHistoryTable, BookInfo} from './../../components';
 

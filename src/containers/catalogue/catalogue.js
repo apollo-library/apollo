@@ -88,23 +88,19 @@ class Catalogue extends Component {
 
                         <TagSearch />
 
-                        {this.props.catalogueTags.map((tag, index) =>
-                            {
-                                if (this.tagActive(tag.name)) {
-                                    activeTags++;
-                                    return <TagItem key={index} tagName={tag.name} active={true} />
-                                }
+                        {this.props.catalogueTags.map((tag, index) => {
+                            if (this.tagActive(tag.name)) {
+                                activeTags++;
+                                return <TagItem key={index} tagName={tag.name} active={true} />
                             }
-                        )}
+                        })}
 
-                        {this.props.filteredTags.map((tag, index) =>
-                            {
-                                if (!this.tagActive(tag.name) && tagsDisplayed < this.state.tagsToDisplay) {
-                                    tagsDisplayed++;
-                                    return <TagItem key={index} tagName={tag.name} active={false} />
-                                }
+                        {this.props.filteredTags.map((tag, index) => {
+                            if (!this.tagActive(tag.name) && tagsDisplayed < this.state.tagsToDisplay) {
+                                tagsDisplayed++;
+                                return <TagItem key={index} tagName={tag.name} active={false} />
                             }
-                        )}
+                        })}
 
                         <p
                             style={extraBookNum}

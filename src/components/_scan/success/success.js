@@ -4,11 +4,6 @@ import React, { Component } from 'react';
 //Styles
 import * as styles from './successStyles.js';
 
-//Redux
-import { actions } from './../../../store/actions.js'
-import store from './../../../store'
-
-
 class Success extends Component {
     render() {
         return (
