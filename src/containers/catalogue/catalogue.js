@@ -107,7 +107,12 @@ class Catalogue extends Component {
                             }
                         )}
 
-                        <p style={extraBookNum} onClick={() => this.setState({tagsToDisplay: this.state.tagsToDisplay + 15})}>+ {
+                        <p
+                            style={extraBookNum}
+                            onClick={() => this.setState({tagsToDisplay: this.state.tagsToDisplay + 15})}
+                            onMouseOver={(e) => e.target.style.textDecoration = "underline"}
+                            onMouseLeave={(e) => e.target.style.textDecoration = "none"}
+                            >+ {
                                 tagsDisplayed < this.state.tagsToDisplay
                                 ? 0
                                 : this.props.filteredTags.length - tagsDisplayed - activeTags
