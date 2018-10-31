@@ -7,7 +7,6 @@ import * as styles from './bookTableStyles.js'
 import {Button, FlexGrow} from './../../globalStyles.js'
 
 class BookTable extends Component {
-
     calculateStars(rating) {
         let starsToRender = [];
 
@@ -49,7 +48,6 @@ class BookTable extends Component {
         if (bookData === undefined) {
             bookData = []
         }
-
         switch (this.props.type) {
             case "dueSoon":
                 tableBody = bookData.map((rowData, index) =>
@@ -101,6 +99,27 @@ class BookTable extends Component {
                             <styles.TableText>{rowData.title}</styles.TableText>
                             <styles.TableText>{rowData.author}</styles.TableText>
                             <styles.TableText>{rowData.loanID ? "On Loan" : "Available"}</styles.TableText>
+                                <FlexGrow>
+                                    <Link to={'/book/' + rowData._id}>
+                                        <styles.TableButton>
+                                            <Button colour={this.props.colour}>{this.props.buttonText}</Button>
+                                        </styles.TableButton>
+                                    </Link>
+                                </FlexGrow>
+                        </styles.TableRow>
+                    )
+                )
+
+                break;
+
+            case "users":
+                tableBody = bookData.slice(0,20).map((rowData, index) =>
+                    (
+                        <styles.TableRow key={index} colour={this.props.colour}>
+                            <styles.TableText>{rowData.forename + " " + rowData.surname}</styles.TableText>
+                            <styles.TableText>{rowData.year + "-" + rowData.reg}</styles.TableText>
+                            <styles.TableText>{rowData._id}</styles.TableText>
+                            <styles.TableText>{rowData.loanIDs.length}</styles.TableText>
                                 <FlexGrow>
                                     <Link to={'/book/' + rowData._id}>
                                         <styles.TableButton>

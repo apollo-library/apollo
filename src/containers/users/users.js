@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 //Component imports
-import {TagSearch, TagItem, UserSearch, BookTable} from './../../components';
+import {TagItem, UserSearch, BookTable} from './../../components';
 
 import {CenterColumn, LeftColumn, RightColumn, PageTitle} from './../../globalStyles.js'
 
@@ -18,9 +18,7 @@ import * as API from './../../api';
 import config from './../../config'
 
 const mapStateToProps = (state) => ({
-    filteredTags: state.data.filteredTags,
-    catalogueTags: state.data.catalogue.tags,
-    catalogueBooks: state.data.catalogue.books
+
 })
 
 class Users extends Component {
@@ -28,82 +26,35 @@ class Users extends Component {
         super()
         this.state = {
             tagsToDisplay: 15,
+            users: undefined
         };
-        this.tagActive = this.tagActive.bind(this);
     }
 
     async componentDidMount() {
-        //When component loads, get the list of filterTerms
-        let users = await API.Users.getAllUsers();
-        console.log(users)
-        let tags = [];
+        let rawUsers = await API.Users.getAllUsers();
 
-
-        store.dispatch(actions.pushAllTags(tags));
-
-        //Update filteredTags so list isn't empty
-        store.dispatch(actions.pushFilteredTags(tags));
-    }
-
-    componentWillUnmount() {
-        //Reset books books being displayed
-        store.dispatch(actions.resetCatalogueBooks());
-        store.dispatch(actions.resetSearchQuery());
-    }
-
-    tagActive(tagName) {
-        let index = this.props.catalogueTags.findIndex(tag => tag.name === tagName)
-
-        if (this.props.catalogueTags[index].selected) {
-            return true;
-        } else if (this.props.catalogueTags[index].selected === false) {
-            return false;
-        }
+        this.setState({users: rawUsers.data})
     }
 
     render() {
-        const extraBookNum = {
-            'textAlign': 'center',
-            'color': config.colours.midGrey,
-            'cursor': 'pointer',
-        }
-
         let tagsDisplayed = 0;
         let activeTags = 0;
 
         return (
-
             <div>
                 <CenterColumn>
                     <LeftColumn small>
                         <PageTitle>Users</PageTitle>
 
-                        <TagSearch />
 
-                        {this.props.catalogueTags.map((tag, index) => {
-                            if (this.tagActive(tag.name)) {
-                                activeTags++;
-                                return <TagItem key={index} tagName={tag.name} active={true} />
-                            }
-                        })}
 
-                        {this.props.filteredTags.map((tag, index) => {
-                            if (!this.tagActive(tag.name) && tagsDisplayed < this.state.tagsToDisplay) {
-                                tagsDisplayed++;
-                                return <TagItem key={index} tagName={tag.name} active={false} />
-                            }
-                        })}
-
-                        <p
-                            style={extraBookNum}
-                            onClick={() => this.setState({tagsToDisplay: this.state.tagsToDisplay + 15})}
-                            onMouseOver={(e) => e.target.style.textDecoration = "underline"}
-                            onMouseLeave={(e) => e.target.style.textDecoration = "none"}
-                            >+ {
-                                tagsDisplayed < this.state.tagsToDisplay
-                                ? 0
-                                : this.props.filteredTags.length - tagsDisplayed - activeTags
-                            } more</p>
+                        <TagItem tagName={"Year 7"} active={false} />
+                        <TagItem tagName={"Year 8"} active={false} />
+                        <TagItem tagName={"Year 9"} active={false} />
+                        <TagItem tagName={"Year 10"} active={false} />
+                        <TagItem tagName={"Year 11"} active={false} />
+                        <TagItem tagName={"Year 12"} active={false} />
+                        <TagItem tagName={"Year 13"} active={false} />
 
                     </LeftColumn>
 
@@ -113,14 +64,15 @@ class Users extends Component {
                         <div style={{marginTop: config.styles.boxSpacing}} />
 
                         <BookTable
-                               type="catalogue"
-                               colour="accent5"
-                               data={this.props.catalogueBooks}
+                               type="users"
+                               colour="accent1"
+                               data={this.state.users}
                                titles={[
-                                   "Title",
-                                   "Author",
-                                   "Status",
-                                   "Action"
+                                   "Name",
+                                   "Year",
+                                   "ID",
+                                   "Number of Loans",
+                                   "Details"
                                ]}
                                buttonText="Details"
                            />
