@@ -5,12 +5,12 @@ import * as Functions from './../_functions/';
 //Config
 import config from './../config.js';
 
-//Not have to refer to config everytime
-// eslint-disable-next-line
 const serverPath = config.serverPath;
 
 async function getAllUsers() {
-
+    let response = await fetch(serverPath + '/users');
+    let json = await Functions.Data.parseJSON(response);
+    return json;
 }
 
 async function addUser(data) {

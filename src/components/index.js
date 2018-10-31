@@ -35,6 +35,8 @@ import ReportTable from './_report/reportTable/reportTable';
 import BookHistoryTable from './_book/bookHistoryTable/bookHistoryTable';
 import BookInfo from './_book/bookInfo/bookInfo';
 
+import UserSearch from './_users/userSearch/userSearch';
+
 //Export all components
 export {
     Navbar,
@@ -61,5 +63,7 @@ export {
     ReportTable,
 
     BookHistoryTable,
-    BookInfo
+    BookInfo,
+
+    UserSearch
 }
