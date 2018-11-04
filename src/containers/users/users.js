@@ -74,8 +74,8 @@ class Users extends Component {
                             />
                             <AccentedBox
                                 title="History"
-                                gradFrom="accent1"
-                                gradTo="accent2"
+                                gradFrom="accent2"
+                                gradTo="accent1"
                                 data={this.state.userHistory}
 
                                 type="userHistory"

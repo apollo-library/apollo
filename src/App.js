@@ -54,7 +54,7 @@ class App extends Component {
                     } />
                     <Navbar history={history} />
                     <Scan />
-                    <div style={{minHeight: '100vh'}} onClick={() => {this.hideAllPopups()}}>
+                    <div onClick={() => {this.hideAllPopups()}}>
                         <Switch>
                             {config.main.pages.map((page, index) =>
                                 <Route exact path={page.path} component={page.componentName} key={index} />
