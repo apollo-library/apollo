@@ -31,7 +31,7 @@ class Scan extends Component {
         this.switchDisplay();
     }
 
-    componentDidUnmount = () => {
+    componentWillUnmount = () => {
         if (this.resetTimer) this.resetTimer.clearTimeout();
     }
 

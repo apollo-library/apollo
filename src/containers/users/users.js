@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 //Component imports
-import {AccentedBox, TagItem, UserSearch, BookTable} from './../../components';
+import {AccentedBox, UserSearch, BookTable} from './../../components';
 
 import {CenterColumn, LeftColumn, RightColumn, PageTitle} from './../../globalStyles.js'
 
@@ -57,9 +57,6 @@ class Users extends Component {
     }
 
     render() {
-        let tagsDisplayed = 0;
-        let activeTags = 0;
-
         return (
             <div>
                 <CenterColumn>
