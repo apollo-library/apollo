@@ -36,6 +36,7 @@ import BookHistoryTable from './_book/bookHistoryTable/bookHistoryTable';
 import BookInfo from './_book/bookInfo/bookInfo';
 
 import UserSearch from './_users/userSearch/userSearch';
+import UserItem from './_users/userItem/userItem';
 
 //Export all components
 export {
@@ -65,5 +66,6 @@ export {
     BookHistoryTable,
     BookInfo,
 
-    UserSearch
+    UserSearch,
+    UserItem
 }

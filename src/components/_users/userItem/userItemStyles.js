@@ -12,7 +12,8 @@ const FilterItem = styled.div`
     background: ${props => props.active ? props.theme.colours.lightGrey : "none"};
     cursor: pointer;
     user-select: none;
-
+    text-align: left;
+    
     &:hover {
         background: ${props => props.theme.colours.lightGrey};
     }
@@ -25,6 +26,7 @@ const Checkmark = styled.div`
     height: ${props => props.active ? "18px" : "6px"};
     background: ${props => props.active ? props.theme.colours.primary : props.theme.colours.darkGrey};
     border-radius: 100px;
+    flex: none;
 `;
 
 export {

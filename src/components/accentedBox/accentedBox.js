@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
+//Component imports
+import {UserItem} from './../';
+
 //Styles
 import * as styles from './accentedBoxStyles.js';
 import {FlexGrow} from './../../globalStyles.js'
@@ -113,6 +116,24 @@ class AccentedBox extends Component {
             boxContent = <styles.BoxContent>
                     <styles.Tag>No Tags</styles.Tag>
                     <styles.EditButton onClick={() => this.props.callback()} colour={this.props.gradFrom}>Edit</styles.EditButton>
+                </styles.BoxContent>
+        } else if (typeOfBox === "onLoan") {
+            boxContent =
+                <styles.BoxContent>
+                    {this.props.data.loans.map((loan, index) => {
+                        return <UserItem key={index} bookName={loan.book.title} bookId={loan.book._id} />
+                    })}
+                </styles.BoxContent>
+        } else if (typeOfBox === "userHistory") {
+            boxContent =
+                <styles.BoxContent>
+                    {this.props.data.slice(0,5).map((loan, index) => {
+                        return <UserItem key={index} bookName={(loan.loan.returnDate ? "Return - " : "Withdraw - ") + loan.book.title} bookId={loan.book._id} />
+                    })}
+
+                    <Link to={'/book/' + this.props.bookId}>
+                        <styles.SidebarButton colour={this.props.gradFrom}>View All History</styles.SidebarButton>
+                    </Link>
                 </styles.BoxContent>
         } else if (typeOfBox === "latestBook") {
             boxContent =
