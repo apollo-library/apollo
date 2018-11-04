@@ -4,10 +4,8 @@ import React, { Component } from 'react';
 //Styles
 import * as styles from './userSearchStyles.js'
 
-import * as API from './../../../api';
 
 //Redux
-import { connect } from 'react-redux'
 import { actions } from './../../../store/actions.js'
 import store from './../../../store'
 
