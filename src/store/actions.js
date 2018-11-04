@@ -19,7 +19,8 @@ export const TYPES = {
     SET_SUCCESS_SCREEN: 'SET_SUCCESS_SCREEN',
     UNSET_SUCCESS_SCREEN: 'UNSET_SUCCESS_SCREEN',
 
-    PUSH_USERS: 'PUSH_USERS'
+    PUSH_USERS: 'PUSH_USERS',
+    RESET_FILTERED_USERS: 'RESET_FILTERED_USERS'
 }
 
 export const actions = {
@@ -43,5 +44,6 @@ export const actions = {
     setSuccessScreen: () => ({type: TYPES.SET_SUCCESS_SCREEN}),
     unsetSuccessScreen: () => ({type: TYPES.UNSET_SUCCESS_SCREEN}),
 
-    pushUsers: (users) => ({type: TYPES.PUSH_USERS, users})
+    pushUsers: (users) => ({type: TYPES.PUSH_USERS, users}),
+    resetFilteredUsers: () => ({type: TYPES.RESET_FILTERED_USERS})
 }

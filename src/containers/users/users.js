@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 //Component imports
-import {TagItem, UserSearch, BookTable} from './../../components';
+import {AccentedBox, TagItem, UserSearch, BookTable} from './../../components';
 
 import {CenterColumn, LeftColumn, RightColumn, PageTitle} from './../../globalStyles.js'
 
@@ -28,7 +28,8 @@ class Users extends Component {
             tagsToDisplay: 15,
             users: undefined,
             userInfo: {},
-            userHistory: {}
+            userHistory: {},
+            showInfo: false
         };
 
         this.displayUserInfo = this.displayUserInfo.bind(this);
@@ -40,13 +41,18 @@ class Users extends Component {
         this.setState({users: rawUsers.data})
     }
 
+    componentWillUnmount() {
+        store.dispatch(actions.resetFilteredUsers());
+    }
+
     async displayUserInfo(id) {
         let userInfo = await API.Users.getUser(id);
         let userHistory = await API.Users.getUserHistory(id);
-
+        //console.log(userInfo)
         this.setState({
             userInfo: userInfo.data,
-            userHistory: userHistory.data
+            userHistory: userHistory.data,
+            showInfo: true
         })
     }
 
@@ -57,11 +63,28 @@ class Users extends Component {
         return (
             <div>
                 <CenterColumn>
-                    <LeftColumn small>
+                    <LeftColumn>
                         <PageTitle>Users</PageTitle>
 
-                        <TagItem tagName={"Year 7"} active={false} />
+                        {this.state.showInfo ? <div>
+                            <AccentedBox
+                                title="Books on Loan"
+                                gradFrom="accent5"
+                                gradTo="accent4"
+                                data={this.state.userInfo}
 
+                                type="onLoan"
+                            />
+                            <AccentedBox
+                                title="History"
+                                gradFrom="accent1"
+                                gradTo="accent2"
+                                data={this.state.userHistory}
+
+                                type="userHistory"
+                            />
+                        </div>
+                        : null}
 
                     </LeftColumn>
 
@@ -78,7 +101,7 @@ class Users extends Component {
                                    "Name",
                                    "Year",
                                    "ID",
-                                   "Number of Loans",
+                                   "No. Loans",
                                    "Details"
                                ]}
                                buttonText="Details"

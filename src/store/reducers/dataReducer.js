@@ -260,6 +260,10 @@ export const data = (state = initialStates, action) => {
             return update(state, {
                 users: {$set: action.users}
             });
+        case TYPES.RESET_FILTERED_USERS:
+            return update(state, {
+                users: {$set: []}
+            })
         default:
             return state
     }
