@@ -23,6 +23,12 @@ async function getUser(id) {
     return json;
 }
 
+async function getUserHistory(id) {
+    let response = await fetch(serverPath + '/user/' + String(id) + '/history/loans');
+    let json = await Functions.Data.parseJSON(response);
+    return json;
+}
+
 async function deleteUser() {
 
 }
@@ -31,5 +37,6 @@ export {
     getAllUsers,
     addUser,
     getUser,
+    getUserHistory,
     deleteUser
 }

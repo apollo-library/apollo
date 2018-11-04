@@ -17,7 +17,9 @@ export const TYPES = {
     TOGGLE_ACCOUNT: 'TOGGLE_ACCOUNT',
     HIDE_ACCOUNT: 'HIDE_ACCOUNT',
     SET_SUCCESS_SCREEN: 'SET_SUCCESS_SCREEN',
-    UNSET_SUCCESS_SCREEN: 'UNSET_SUCCESS_SCREEN'
+    UNSET_SUCCESS_SCREEN: 'UNSET_SUCCESS_SCREEN',
+
+    PUSH_USERS: 'PUSH_USERS'
 }
 
 export const actions = {
@@ -39,5 +41,7 @@ export const actions = {
     toggleAccount: () => ({type: TYPES.TOGGLE_ACCOUNT}),
     hideAccount: () => ({type: TYPES.HIDE_ACCOUNT}),
     setSuccessScreen: () => ({type: TYPES.SET_SUCCESS_SCREEN}),
-    unsetSuccessScreen: () => ({type: TYPES.UNSET_SUCCESS_SCREEN})
+    unsetSuccessScreen: () => ({type: TYPES.UNSET_SUCCESS_SCREEN}),
+
+    pushUsers: (users) => ({type: TYPES.PUSH_USERS, users})
 }
