@@ -120,13 +120,9 @@ class BookTable extends Component {
                             <styles.TableText>{rowData.year + "-" + rowData.reg}</styles.TableText>
                             <styles.TableText>{rowData._id}</styles.TableText>
                             <styles.TableText>{rowData.loanIDs.length}</styles.TableText>
-                                <FlexGrow>
-                                    <Link to={'/book/' + rowData._id}>
-                                        <styles.TableButton>
-                                            <Button colour={this.props.colour}>{this.props.buttonText}</Button>
-                                        </styles.TableButton>
-                                    </Link>
-                                </FlexGrow>
+                            <styles.TableButton>
+                                <Button onClick={() => this.props.callback(rowData._id)} colour={this.props.colour}>{this.props.buttonText}</Button>
+                            </styles.TableButton>
                         </styles.TableRow>
                     )
                 )

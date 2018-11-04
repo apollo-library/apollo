@@ -11,12 +11,8 @@ import { connect } from 'react-redux'
 import { actions } from './../../../store/actions.js'
 import store from './../../../store'
 
-const mapStateToProps = (state) => ({
-    tags: state.data.catalogue.tags,
-    searchQuery: state.data.searchQuery
-})
 
-class BookSearch extends Component {
+class UserSearch extends Component {
     constructor() {
         super()
 
@@ -25,7 +21,7 @@ class BookSearch extends Component {
         };
 
         this.searchBarEvent = this.searchBarEvent.bind(this);
-        this.bookSearch = this.bookSearch.bind(this);
+        this.userSearch = this.userSearch.bind(this);
     }
 
     searchBarEvent(e) {
@@ -33,27 +29,27 @@ class BookSearch extends Component {
 
         //Did we press enter?
         if (e.keyCode === 13) {
-            this.bookSearch();
+            this.userSearch();
         }
     }
 
-    async bookSearch() {
-        await store.dispatch(actions.updateSearchTerm(this.state.searchTerm));
+    async userSearch() {
+        let users = this.props.users;
+        let query = new RegExp("(" + this.state.searchTerm + ")","gi")
 
-        let searchResponse = await API.Books.searchBooks(this.props.searchQuery);
-        if (searchResponse.message === "Success") {
-            //Update redux state with new books
-            store.dispatch(actions.pushCatalogueBooks(searchResponse.data));
-        } else {
-            store.dispatch(actions.pushCatalogueBooks([]));
-        }
+        let filteredUsers = users.filter(user =>
+            user.forename.match(query) || user.surname.match(query) || user._id.match(query)
+        );
+
+        store.dispatch(actions.pushUsers(filteredUsers));
+
     }
 
     render() {
         return (
-            <styles.Searchbar autoFocus onKeyUp={(e) => this.searchBarEvent(e)} placeholder="Search Books"/>
+            <styles.Searchbar autoFocus onKeyUp={(e) => this.searchBarEvent(e)} placeholder="Search Users"/>
         );
     }
 }
 
-export default connect(mapStateToProps)(BookSearch);
+export default UserSearch;

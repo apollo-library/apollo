@@ -18,7 +18,7 @@ import * as API from './../../api';
 import config from './../../config'
 
 const mapStateToProps = (state) => ({
-
+    filteredUsers: state.data.users
 })
 
 class Users extends Component {
@@ -26,14 +26,28 @@ class Users extends Component {
         super()
         this.state = {
             tagsToDisplay: 15,
-            users: undefined
+            users: undefined,
+            userInfo: {},
+            userHistory: {}
         };
+
+        this.displayUserInfo = this.displayUserInfo.bind(this);
     }
 
     async componentDidMount() {
         let rawUsers = await API.Users.getAllUsers();
 
         this.setState({users: rawUsers.data})
+    }
+
+    async displayUserInfo(id) {
+        let userInfo = await API.Users.getUser(id);
+        let userHistory = await API.Users.getUserHistory(id);
+
+        this.setState({
+            userInfo: userInfo.data,
+            userHistory: userHistory.data
+        })
     }
 
     render() {
@@ -46,27 +60,20 @@ class Users extends Component {
                     <LeftColumn small>
                         <PageTitle>Users</PageTitle>
 
-
-
                         <TagItem tagName={"Year 7"} active={false} />
-                        <TagItem tagName={"Year 8"} active={false} />
-                        <TagItem tagName={"Year 9"} active={false} />
-                        <TagItem tagName={"Year 10"} active={false} />
-                        <TagItem tagName={"Year 11"} active={false} />
-                        <TagItem tagName={"Year 12"} active={false} />
-                        <TagItem tagName={"Year 13"} active={false} />
+
 
                     </LeftColumn>
 
                     <RightColumn>
-                        <UserSearch />
+                        <UserSearch users={this.state.users} />
 
                         <div style={{marginTop: config.styles.boxSpacing}} />
 
                         <BookTable
                                type="users"
                                colour="accent1"
-                               data={this.state.users}
+                               data={this.props.filteredUsers}
                                titles={[
                                    "Name",
                                    "Year",
@@ -75,6 +82,7 @@ class Users extends Component {
                                    "Details"
                                ]}
                                buttonText="Details"
+                               callback={this.displayUserInfo}
                            />
                     </RightColumn>
                 </CenterColumn>

@@ -106,7 +106,8 @@ const initialStates = {
         books: []
     },
     filteredTags: [],
-    scannedBook: {}
+    scannedBook: {},
+    users: []
 }
 
 //Eventually this will all update from an API call within the component
@@ -255,6 +256,10 @@ export const data = (state = initialStates, action) => {
                     filters: []
                 }}
             })
+        case TYPES.PUSH_USERS:
+            return update(state, {
+                users: {$set: action.users}
+            });
         default:
             return state
     }
