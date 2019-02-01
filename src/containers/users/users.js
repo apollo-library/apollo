@@ -11,7 +11,6 @@ import { connect } from 'react-redux'
 import { actions } from './../../store/actions.js'
 import store from './../../store'
 
-
 import * as API from './../../api';
 
 //Config
@@ -81,7 +80,7 @@ class Users extends Component {
                                 gradFrom="accent2"
                                 gradTo="accent1"
                                 data={this.state.userHistory}
-                                
+
                                 type="userHistory"
                             />
                         </div>

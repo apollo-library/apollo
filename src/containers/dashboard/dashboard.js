@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 //Component imports
-import {AccentedBox, ContentTabs, DueSoon, Recommended, History} from './../../components';
+import {AccentedBox, ContentTabs, Fines} from './../../components';
 
 import {CenterColumn, LeftColumn, RightColumn, BottomLogo, PageTitle} from './../../globalStyles.js'
 
@@ -14,7 +14,6 @@ import { connect } from 'react-redux'
 const mapStateToProps = (state) => ({
     studentDetails: state.data.studentDetails
 })
-
 
 class Dashboard extends Component {
     render() {
@@ -55,22 +54,10 @@ class Dashboard extends Component {
                         <ContentTabs
                             tabs={[
                                 {
-                                    title: "Due Soon",
-                                    componentToShow: <DueSoon colour="accent3"/>,
+                                    title: "Fines",
+                                    componentToShow: <Fines colour="accent3"/>,
                                     colour: "accent3",
                                     active: true
-                                },
-                                {
-                                    title: "Recommended",
-                                    componentToShow: <Recommended colour="accent2"/>,
-                                    colour: "accent2",
-                                    active: false
-                                },
-                                {
-                                    title: "History",
-                                    componentToShow: <History colour="accent1"/>,
-                                    colour: "accent1",
-                                    active: false
                                 }
                             ]}
                          />
