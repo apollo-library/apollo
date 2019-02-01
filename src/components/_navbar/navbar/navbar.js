@@ -1,6 +1,6 @@
 //React imports
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 
 //Styles
 import * as styles from './navbarStyles.js'
@@ -51,7 +51,9 @@ class Navbar extends Component {
             <styles.Navbar>
                 <styles.Root>
                     <styles.Logo>
-                        <img src={logo} alt="Apollo Logo" />
+                        <Link to={'/'}>
+                            <img src={logo} alt="Apollo Logo" />
+                        </Link>
                     </styles.Logo>
 
                     {config.main.pages.map((page, index) =>

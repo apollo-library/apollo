@@ -53,7 +53,7 @@ async function getLoans() {
                 display: {
                     title: loan.book.title,
                     author: loan.book.author,
-                    name: loan.user.forname + ' ' + loan.user.surname,
+                    name: loan.user.forename + ' ' + loan.user.surname,
                     reg: loan.user.year + '-' + loan.user.reg,
                     due: loan.loan.dueDate
                 },
@@ -74,7 +74,7 @@ async function getOverdueLoans() {
                 display: {
                     title: loan.book.title,
                     author: loan.book.author,
-                    name: loan.user.forname + ' ' + loan.user.surname,
+                    name: loan.user.forename + ' ' + loan.user.surname,
                     reg: loan.user.year + '-' + loan.user.reg,
                     due: loan.loan.dueDate
                 },
@@ -95,7 +95,7 @@ async function getDueSoonLoans() {
                 display: {
                     title: loan.book.title,
                     author: loan.book.author,
-                    name: loan.user.forname + ' ' + loan.user.surname,
+                    name: loan.user.forename + ' ' + loan.user.surname,
                     reg: loan.user.year + '-' + loan.user.reg,
                     due: loan.loan.dueDate
                 },
