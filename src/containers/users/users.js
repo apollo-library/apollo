@@ -56,6 +56,10 @@ class Users extends Component {
         })
     }
 
+    callback = () => {
+        console.log('Triggered');
+    }
+
     render() {
         return (
             <div>
@@ -77,7 +81,7 @@ class Users extends Component {
                                 gradFrom="accent2"
                                 gradTo="accent1"
                                 data={this.state.userHistory}
-
+                                
                                 type="userHistory"
                             />
                         </div>
