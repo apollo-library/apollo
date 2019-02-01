@@ -19,7 +19,7 @@ class ReportTable extends Component {
     formatDueDate(date) {
         let dueDate = new Date(date);
 
-        dueDate = dueDate.getDate() + "/" + dueDate.getMonth() + "/" + dueDate.getFullYear();
+        dueDate = dueDate.getDate() + "/" + (dueDate.getMonth() + 1) + "/" + dueDate.getFullYear();
 
         return dueDate;
     }
@@ -35,6 +35,7 @@ class ReportTable extends Component {
                     <styles.TableText>{rowData.display.author}</styles.TableText>
                     <styles.TableText><b>{rowData.display.reg}</b> {': ' + rowData.display.name}</styles.TableText>
                     <styles.TableText>{this.formatDueDate(rowData.display.due)}</styles.TableText>
+                    <styles.TableText>{(rowData.display.due)}</styles.TableText>
                 </styles.TableRow>
             )
         )
