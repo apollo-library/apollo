@@ -26,7 +26,7 @@ class ReportTable extends Component {
 
     render() {
         let TableContent;
-
+        
         if (Array.isArray(this.props.data.data)) {
             TableContent = this.props.data.data.map((rowData, index) =>
             (
@@ -35,7 +35,6 @@ class ReportTable extends Component {
                     <styles.TableText>{rowData.display.author}</styles.TableText>
                     <styles.TableText><b>{rowData.display.reg}</b> {': ' + rowData.display.name}</styles.TableText>
                     <styles.TableText>{this.formatDueDate(rowData.display.due)}</styles.TableText>
-                    <styles.TableText>{(rowData.display.due)}</styles.TableText>
                 </styles.TableRow>
             )
         )
