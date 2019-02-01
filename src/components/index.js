@@ -16,9 +16,7 @@ import AccentedBox from './accentedBox/accentedBox';
 import ContentTabs from './contentTabs/contentTabs';
 import BookTable from './bookTable/bookTable';
 
-import DueSoon from './_dashboard/dueSoon/dueSoon';
-import Recommended from './_dashboard/recommended/recommended';
-import History from './_dashboard/history/history';
+import Fines from './_dashboard/fines/fines';
 
 import TagItem from './_catalogue/tagItem/tagItem';
 import TagSearch from './_catalogue/tagSearch/tagSearch';
@@ -47,9 +45,7 @@ export {
     ContentTabs,
     BookTable,
 
-    DueSoon,
-    Recommended,
-    History,
+    Fines,
 
     TagItem,
     TagSearch,

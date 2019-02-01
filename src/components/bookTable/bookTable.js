@@ -49,43 +49,12 @@ class BookTable extends Component {
             bookData = []
         }
         switch (this.props.type) {
-            case "dueSoon":
+            case "fines":
                 tableBody = bookData.map((rowData, index) =>
                     (
                         <styles.TableRow key={index} colour={this.props.colour}>
-                            <styles.TableText>{rowData.title}</styles.TableText>
-                            <styles.TableText>{rowData.author}</styles.TableText>
-                            <styles.TableText>{this.calculateStars(rowData.rating)}</styles.TableText>
-                            <styles.TableText>{this.formatDueDate(rowData.dueDate)}</styles.TableText>
-                            <styles.TableButton><Button colour={this.props.colour}>{this.props.buttonText}</Button></styles.TableButton>
-                        </styles.TableRow>
-                    )
-                )
-
-                break;
-
-            case "recommended":
-                tableBody = bookData.map((rowData, index) =>
-                    (
-                        <styles.TableRow key={index} colour={this.props.colour}>
-                            <styles.TableText>{rowData.title}</styles.TableText>
-                            <styles.TableText>{rowData.author}</styles.TableText>
-                            <styles.TableText>{this.calculateStars(rowData.rating)}</styles.TableText>
-                            <styles.TableButton><Button colour={this.props.colour}>{this.props.buttonText}</Button></styles.TableButton>
-                        </styles.TableRow>
-                    )
-                )
-
-                break;
-
-            case "history":
-                tableBody = bookData.map((rowData, index) =>
-                    (
-                        <styles.TableRow key={index} colour={this.props.colour}>
-                            <styles.TableText>{rowData.title}</styles.TableText>
-                            <styles.TableText>{rowData.author}</styles.TableText>
-                            <styles.TableText>{this.calculateStars(rowData.rating)}</styles.TableText>
-                            <styles.TableButton><Button colour={this.props.colour}>{this.props.buttonText}</Button></styles.TableButton>
+                            <styles.TableText>{rowData.forename + rowData.surname}</styles.TableText>
+                            <styles.TableText>£{(rowData.fine / 100).toFixed(2)}</styles.TableText>
                         </styles.TableRow>
                     )
                 )
