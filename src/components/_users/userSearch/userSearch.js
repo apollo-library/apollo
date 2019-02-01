@@ -36,7 +36,7 @@ class UserSearch extends Component {
         let query = new RegExp("(" + this.state.searchTerm + ")","gi")
 
         let filteredUsers = users.filter(user =>
-            user.forename.match(query) || user.surname.match(query) || user._id.match(query)
+            user.name_concat.match(query) || user._id.match(query)
         );
 
         store.dispatch(actions.pushUsers(filteredUsers));
