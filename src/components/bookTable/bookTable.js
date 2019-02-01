@@ -53,7 +53,7 @@ class BookTable extends Component {
                 tableBody = bookData.map((rowData, index) =>
                     (
                         <styles.TableRow key={index} colour={this.props.colour}>
-                            <styles.TableText>{rowData.forename + rowData.surname}</styles.TableText>
+                            <styles.TableText>{rowData.forename + " " + rowData.surname}</styles.TableText>
                             <styles.TableText>£{(rowData.fine / 100).toFixed(2)}</styles.TableText>
                         </styles.TableRow>
                     )
