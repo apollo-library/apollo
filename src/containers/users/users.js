@@ -1,5 +1,6 @@
 //React imports
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 
 //Component imports
 import {AccentedBox, UserSearch, BookTable} from './../../components';
@@ -28,7 +29,9 @@ class Users extends Component {
             users: undefined,
             userInfo: {},
             userHistory: {},
-            showInfo: false
+            showInfo: false,
+            currentUser: "",
+            searchTerm: ""
         };
 
         this.displayUserInfo = this.displayUserInfo.bind(this);
@@ -36,8 +39,25 @@ class Users extends Component {
 
     async componentDidMount() {
         let rawUsers = await API.Users.getAllUsers();
+        this.setState({users: rawUsers.data});
 
-        this.setState({users: rawUsers.data})
+        // Check URL to see if user already selected
+        let url = this.props.history.location.search.substring(1).split('&');
+        console.log(url)
+        url.map((item) => {
+            if (item.substring(0,2) === "id") if (item.split("=")[1]) this.setState({currentUser: item.split("=")[1]});
+            if (item.substring(0,4) === "term") if (item.split("=")[1]) this.setState({searchTerm: item.split("=")[1].replace(/%20/g, " ")});
+        });
+        if (this.state.currentUser !== "") this.displayUserInfo(this.state.currentUser);
+        if (this.state.searchTerm !== "") {
+            let query = new RegExp("(" + this.state.searchTerm + ")","gi")
+            
+            let filteredUsers = this.state.users.filter(user =>
+                user.name_concat.match(query) || user._id.match(query)
+            );
+    
+            store.dispatch(actions.pushUsers(filteredUsers));
+        }
     }
 
     componentWillUnmount() {
@@ -52,11 +72,30 @@ class Users extends Component {
             userInfo: userInfo.data,
             userHistory: userHistory.data,
             showInfo: true
-        })
+        });
+
+        // Push current user to url
+        this.setState({currentUser: userInfo.data._id});
+        this.pushURL();
+    }
+
+    searchCallback = async (term) => {
+        console.log(term)
+        // Push current user to url
+        await this.setState({searchTerm: term});
+        this.pushURL();
     }
 
     callback = () => {
         console.log('Triggered');
+    }
+
+    pushURL = () => {
+        let url = [];
+        if (this.state.currentUser !== "") url.push("id="+this.state.currentUser);
+        if (this.state.searchTerm !== "") url.push("term="+this.state.searchTerm.replace(/\s/g, "%20"));
+        let urlPush = "?" + url.join("&");
+        this.props.history.push("/users" + urlPush);
     }
 
     render() {
@@ -64,9 +103,11 @@ class Users extends Component {
             <div>
                 <CenterColumn>
                     <LeftColumn>
-                        <PageTitle>Users</PageTitle>
+                        
 
-                        {this.state.showInfo ? <div>
+                        {this.state.showInfo ? [
+                            <PageTitle>{"User: " + this.state.userInfo.name_concat}</PageTitle>,
+                            <div>
                             <AccentedBox
                                 title="Books on Loan"
                                 gradFrom="accent5"
@@ -80,16 +121,17 @@ class Users extends Component {
                                 gradFrom="accent2"
                                 gradTo="accent1"
                                 data={this.state.userHistory}
+                                user={this.state.userInfo._id}
 
                                 type="userHistory"
                             />
-                        </div>
-                        : null}
+                        </div>]
+                        : <PageTitle>Users</PageTitle>}
 
                     </LeftColumn>
 
                     <RightColumn>
-                        <UserSearch users={this.state.users} />
+                        <UserSearch users={this.state.users} searchCallback={this.searchCallback} />
 
                         <div style={{marginTop: config.styles.boxSpacing}} />
 

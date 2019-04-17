@@ -41,6 +41,7 @@ class UserSearch extends Component {
 
         store.dispatch(actions.pushUsers(filteredUsers));
 
+        this.props.searchCallback(this.state.searchTerm);
     }
 
     render() {
