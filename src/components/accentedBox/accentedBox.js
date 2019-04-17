@@ -131,7 +131,7 @@ class AccentedBox extends Component {
                         return <UserItem key={index} bookName={(loan.loan.returnDate ? "Return - " : "Withdraw - ") + loan.book.title} bookId={loan.book._id} />
                     })}
 
-                    <Link to={'/report/' + this.props.user + '/history'}>
+                    <Link to={'/report/user_history/' + this.props.user}>
                         <styles.SidebarButton colour={this.props.gradFrom}>View All History</styles.SidebarButton>
                     </Link>
                 </styles.BoxContent>
