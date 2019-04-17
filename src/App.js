@@ -41,8 +41,7 @@ class App extends Component {
     render() {
         return (
             <Router history={history}>
-                <div>
-                    
+                <div>    
                     <Navbar history={history} />
                     <Scan />
                     <div onClick={() => {this.hideAllPopups()}}>
