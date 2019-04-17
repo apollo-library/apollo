@@ -7,6 +7,12 @@ const TableLink = styled(Link)`
     font-weight: 600;
 `;
 
+const TableLinkWrapper = styled(Link)`
+    text-decoration: none;
+    color: inherit;
+`;
+
 export {
-    TableLink
+    TableLink,
+    TableLinkWrapper
 };
