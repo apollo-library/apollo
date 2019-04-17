@@ -28,12 +28,13 @@ class ReportTable extends Component {
         let TableContent;
         
         if (Array.isArray(this.props.data.data)) {
+            console.log(this.props.data.data)
             TableContent = this.props.data.data.map((rowData, index) =>
             (
                 <styles.TableRow key={index} colour={this.state.accent}>
                     <styles.TableText><reportStyles.TableLink to={'/book/' + rowData.raw.book._id}>{rowData.display.title}</reportStyles.TableLink></styles.TableText>
                     <styles.TableText>{rowData.display.author}</styles.TableText>
-                    <styles.TableText><b>{rowData.display.reg}</b> {': ' + rowData.display.name}</styles.TableText>
+                    <styles.TableText><reportStyles.TableLinkWrapper to={'/users?id=' + rowData.raw.user._id}><b>{rowData.display.reg}</b> {': ' + rowData.display.name}</reportStyles.TableLinkWrapper></styles.TableText>
                     <styles.TableText>{this.formatDueDate(rowData.display.due)}</styles.TableText>
                 </styles.TableRow>
             )
