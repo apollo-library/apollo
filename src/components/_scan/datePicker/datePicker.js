@@ -21,13 +21,13 @@ class DatePicker extends Component {
     render() {
         return (
             [
-                <styles.DueDatePicker
+                <styles.DueDatePicker key={0}
                     onChange={(e) => this.setState({dueDate: e.target.value})}
                     type="date"
                     min={new Date(new Date().getTime()+86400000).toISOString().substring(0, new Date(new Date().getTime()+86400000).toISOString().indexOf("T"))}
                     defaultValue={new Date(new Date().getTime()+86400000*config.main.defaultLoanLength).toISOString().substring(0, new Date(new Date().getTime()+86400000*config.main.defaultLoanLength).toISOString().indexOf("T"))}
                 />,
-                <Button colour="primary" onClick={() => this.props.callback(this.state.dueDate)}>{this.props.buttonText}</Button>
+                <Button key={1} colour="primary" onClick={() => this.props.callback(this.state.dueDate)}>{this.props.buttonText}</Button>
             ]
         );
     }

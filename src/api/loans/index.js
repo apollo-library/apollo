@@ -10,6 +10,7 @@ const serverPath = config.serverPath;
 async function returnBook(id) {
     let response = await fetch(serverPath + '/book/' + id + '/deposit');
     let json = await Functions.Data.parseJSON(response);
+    console.log(json)
     if (json.code === "000") { return {status: 'success'}; }
     return {status: json.message}
 }
