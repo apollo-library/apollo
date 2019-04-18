@@ -49,7 +49,10 @@ class App extends Component {
                             {config.main.pages.map((page, index) =>
                                 <Route exact path={page.path} component={page.componentName} key={index} />
                             )}
+                            {/* This done to allow multi level deep urls for reports */}
                             <Route exact path={'/report/:report'} component={Report}/>
+                            <Route exact path={'/report/:report/:subreport'} component={Report}/>
+                            
                             <Route exact path={'/book/:book'} component={Book}/>
                         </Switch>
                     </div>

@@ -43,7 +43,6 @@ class Users extends Component {
 
         // Check URL to see if user already selected
         let url = this.props.history.location.search.substring(1).split('&');
-        console.log(url)
         url.map((item) => {
             if (item.substring(0,2) === "id") if (item.split("=")[1]) this.setState({currentUser: item.split("=")[1]});
             if (item.substring(0,4) === "term") if (item.split("=")[1]) this.setState({searchTerm: item.split("=")[1].replace(/%20/g, " ")});
@@ -80,14 +79,10 @@ class Users extends Component {
     }
 
     searchCallback = async (term) => {
-        console.log(term)
         // Push current user to url
         await this.setState({searchTerm: term});
+        // There is a slight bug here: this triggers when the page laods for the first time so adds to the history twice when going directly to a user
         this.pushURL();
-    }
-
-    callback = () => {
-        console.log('Triggered');
     }
 
     pushURL = () => {

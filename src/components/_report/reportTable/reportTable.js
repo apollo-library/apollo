@@ -12,59 +12,46 @@ class ReportTable extends Component {
         this.state = {
             accent: 'accent3'
         };
-
-        this.formatDueDate = this.formatDueDate.bind(this);
     }
 
-    formatDueDate(date) {
-        let dueDate = new Date(date);
+    render = () => {
 
-        dueDate = dueDate.getDate() + "/" + (dueDate.getMonth() + 1) + "/" + dueDate.getFullYear();
-
-        return dueDate;
-    }
-
-    render() {
-        let TableContent;
-        
-        if (Array.isArray(this.props.data.data)) {
-            console.log(this.props.data.data)
-            TableContent = this.props.data.data.map((rowData, index) =>
-            (
-                <styles.TableRow key={index} colour={this.state.accent}>
-                    <styles.TableText><reportStyles.TableLink to={'/book/' + rowData.raw.book._id}>{rowData.display.title}</reportStyles.TableLink></styles.TableText>
-                    <styles.TableText>{rowData.display.author}</styles.TableText>
-                    <styles.TableText><reportStyles.TableLinkWrapper to={'/users?id=' + rowData.raw.user._id}><b>{rowData.display.reg}</b> {': ' + rowData.display.name}</reportStyles.TableLinkWrapper></styles.TableText>
-                    <styles.TableText>{this.formatDueDate(rowData.display.due)}</styles.TableText>
-                </styles.TableRow>
-            )
-        )
-        }
+        if (!this.props.body || !this.props.header) return null;
 
         return (
             <styles.Table>
                 <styles.TableHeader colour={this.state.accent}>
-                    {this.props.table.map((title, index) =>
-                        (
-                            <styles.TableHeading key={index} colour={this.state.accent}>{title.display}</styles.TableHeading>
-                        )
-                    )}
-                </styles.TableHeader>
+                     {this.props.header.map((item, index) =>
+                         (
+                             <styles.TableHeading key={index} colour={this.state.accent}>{item}</styles.TableHeading>
+                         )
+                     )}
+                 </styles.TableHeader>
+                    {this.props.body.map((item, index) => (
+                        <styles.TableRow key={index} colour={this.state.accent}>
+                            {
+                                item.map((cell, index) => {
+                                    if (cell.url) return (
+                                        <reportStyles.Cell cellStyle={cell.style} key={index}>
+                                            <reportStyles.TableLink to={cell.url}>
+                                                {cell.display}
+                                            </reportStyles.TableLink>
+                                        </reportStyles.Cell>
+                                    )
+                                    else return (
+                                        <reportStyles.Cell cellStyle={cell.style} key={index}>
+                                                {cell.display}
+                                        </reportStyles.Cell>
+                                    )
+                                })
+                            }
+                        </styles.TableRow>
+                    ))
 
-
-                {TableContent}
-
-            </styles.Table>
-        );
+                    }
+             </styles.Table>
+        )
     }
 }
 
 export default ReportTable;
-
-/*
-{this.props.titles.map((title, index) =>
-                        (
-                            <styles.TableHeading key={index} colour={this.props.colour}>{title}</styles.TableHeading>
-                        )
-                    )}
-                    */

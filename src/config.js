@@ -29,55 +29,6 @@ let config = {
 		defaultLoanLength: 14 // = 14 days
 	},
 
-	reports: {
-			loans: {
-				name: 'Books on Loan',
-				function: API.Loans.getLoans(),
-				path: 'loans',
-				table: [
-					{
-						key: 'title',
-						display: 'Title'
-					},
-					{
-						key: 'author',
-						display: 'Author'
-					},
-					{
-						key: 'name',
-						display: 'Loaned to'
-					},
-					{
-						key: 'due',
-						display: 'Due date'
-					}
-				]
-			},
-			overdue: {
-				name: 'Overdue Loans',
-				function: API.Loans.getOverdueLoans(),
-				path: 'overdue',
-				table: [
-					{
-						key: 'title',
-						display: 'Title'
-					},
-					{
-						key: 'author',
-						display: 'Author'
-					},
-					{
-						key: 'name',
-						display: 'Loaned to'
-					},
-					{
-						key: 'due',
-						display: 'Due date'
-					}
-				]
-			}
-		},
-
 	colours: {
 		primary: "#e44d95",
 		lightGrey: '#e8e8e8',

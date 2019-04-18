@@ -28,6 +28,9 @@ import DatePicker from './_scan/datePicker/datePicker';
 import Success from './_scan/success/success';
 import Input from './_scan/input/input';
 
+import Loan from './_report/loan/loan';
+import OverdueLoan from './_report/overdueLoan/overdueLoan';
+import UserHistory from './_report/userHistory/userHistory';
 import ReportTable from './_report/reportTable/reportTable';
 
 import BookHistoryTable from './_book/bookHistoryTable/bookHistoryTable';
@@ -57,6 +60,9 @@ export {
     Success,
     Input,
 
+    Loan,
+    OverdueLoan,
+    UserHistory,
     ReportTable,
 
     BookHistoryTable,
