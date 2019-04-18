@@ -62,6 +62,7 @@ class Users extends Component {
     componentWillUnmount() {
         store.dispatch(actions.resetFilteredUsers());
     }
+    
 
     async displayUserInfo(id) {
         let userInfo = await API.Users.getUser(id);
@@ -90,7 +91,9 @@ class Users extends Component {
         if (this.state.currentUser !== "") url.push("id="+this.state.currentUser);
         if (this.state.searchTerm !== "") url.push("term="+this.state.searchTerm.replace(/\s/g, "%20"));
         let urlPush = "?" + url.join("&");
-        this.props.history.push("/users" + urlPush);
+
+        let urlCurrent = this.props.history.location;
+        if (urlCurrent.search !== urlPush) this.props.history.push("/users" + urlPush);
     }
 
     render() {
