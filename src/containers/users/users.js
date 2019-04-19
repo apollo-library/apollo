@@ -82,7 +82,6 @@ class Users extends Component {
     searchCallback = async (term) => {
         // Push current user to url
         await this.setState({searchTerm: term});
-        // There is a slight bug here: this triggers when the page laods for the first time so adds to the history twice when going directly to a user
         this.pushURL();
     }
 

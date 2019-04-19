@@ -31,7 +31,7 @@ class BookHistoryTable extends Component {
                 <styles.TableRow key={index} colour={this.state.accent}>
                     <styles.TableText>{this.formatDueDate(rowData.date)}</styles.TableText>
                     <styles.TableText>{rowData.action.replace(/\b\w/g, l => l.toUpperCase())}</styles.TableText>
-                    <styles.TableText>{rowData.user}</styles.TableText>
+                    <styles.TableText><styles.TableLink to={'/users?id=' + rowData.id}>{rowData.user}</styles.TableLink></styles.TableText>
                     <styles.TableText>{rowData.id}</styles.TableText>
                 </styles.TableRow>
             )
@@ -57,11 +57,3 @@ class BookHistoryTable extends Component {
 }
 
 export default BookHistoryTable;
-
-/*
-{this.props.titles.map((title, index) =>
-                        (
-                            <styles.TableHeading key={index} colour={this.props.colour}>{title}</styles.TableHeading>
-                        )
-                    )}
-                    */
