@@ -36,10 +36,18 @@ async function deleteUser() {
 
 }
 
+async function getUserName(id) {
+    // Returns user's concatanated name. If user doesn't exist, return undefined.
+    let response = await fetch(serverPath + '/user/' + String(id));
+    let json = await Functions.Data.parseJSON(response);
+    if (json.code === "000") return json.data.name_concat;
+}
+
 export {
     getAllUsers,
     addUser,
     getUser,
     getUserHistory,
-    deleteUser
+    deleteUser,
+    getUserName
 }

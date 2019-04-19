@@ -46,8 +46,8 @@ class Scan extends Component {
                     let loans = 0;
                     if (loan.data.user.loanIDs) loans = loan.data.user.loanIDs.length;
                     this.setState({
-                        userData:   [<styles.BookInfoTitle>{loan.data.user.forename + ' ' + loan.data.user.surname + ' | ' + loan.data.user.year + '-' + loan.data.user.reg}</styles.BookInfoTitle>,
-                                    <styles.BookInfoAuthor>{'Books on loan: ' + loans}</styles.BookInfoAuthor>]
+                        userData:   [<styles.BookInfoTitle key={0}>{loan.data.user.forename + ' ' + loan.data.user.surname + ' | ' + loan.data.user.year + '-' + loan.data.user.reg}</styles.BookInfoTitle>,
+                                    <styles.BookInfoAuthor key={1}>{'Books on loan: ' + loans}</styles.BookInfoAuthor>]
                     });
                 }
                 if (data.message === 'Book not found') this.setError('Book not in system'); // Book not found in system
@@ -153,7 +153,7 @@ class Scan extends Component {
             case 'return-renew':
                 this.setState({
                     scanTitle: 'Return or Renew Book',
-                    scanBox: [<Button colour="primary" onClick={() => this.returnBook()}>Return</Button>,<DatePicker callback={this.renewBook} buttonText={"Renew"} />]
+                    scanBox: [<Button colour="primary" onClick={() => this.returnBook()} key={0}>Return</Button>,<DatePicker key={1} callback={this.renewBook} buttonText={"Renew"} />]
                 });
                 break;
             case 'success':

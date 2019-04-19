@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 import { rgba } from 'polished'
 
@@ -50,6 +51,12 @@ const TableText = styled.p`
     align-items: center;
 `;
 
+const TableLink = styled(Link)`
+    text-decoration: none;
+    color: inherit;
+    font-weight: 600;
+`;
+
 const Star = styled.svg`
     width: 1.5rem;
     padding-right: 0.25rem;
@@ -80,6 +87,7 @@ export {
     TableRow,
     TableText,
     Star,
+    TableLink,
     StarPath,
     TableButton
 };
