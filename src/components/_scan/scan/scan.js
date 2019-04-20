@@ -41,24 +41,20 @@ class Scan extends Component {
             // Run a reg-ex to check if the input to the scan box mathes the format of the Challoner's barcodes on the books
             if (this.state.scanInput.match(/[R|r]\d{4,5}[a-z|A-Z](0577|057)/g)) {
                 const data = await API.Books.getScanBookInfo(this.state.scanInput);
-                console.log(data)
                 if (data.loanID) {
                     const loan = await API.Loans.getLoanInformation(data.loanID);
-                    console.log(loan.data.loan.dueDate)
-                    // Check due date to see if overdue
-
-                    let now = new Date();
-                    let due = new Date(loan.data.loan.dueDate)
-                    now.setHours(0,0,0,0);
-                    console.log(due,now)
-                    if (due < now) console.log('overdue')
-                    else console.log('on time')
-
                     let loans = 0;
                     if (loan.data.user.loanIDs) loans = loan.data.user.loanIDs.length;
+                    console.log(loan.data.user)
+                    let user = await API.Users.getUser(loan.data.user._id);
+                    console.log(user)
+                    let userData = [
+                                <styles.BookInfoTitle key={0}>{loan.data.user.forename + ' ' + loan.data.user.surname + ' | ' + loan.data.user.year + '-' + loan.data.user.reg}</styles.BookInfoTitle>,
+                                <styles.BookInfoAuthor key={1}>{'Books on loan: ' + loans}</styles.BookInfoAuthor>
+                    ];
+                    if (user.data.fine !== 0) userData.push(<styles.BookInfoFine key={2}>{'Fine detected - please pay £' + (user.data.fine / 100).toFixed(2)}</styles.BookInfoFine>)
                     this.setState({
-                        userData:   [<styles.BookInfoTitle key={0}>{loan.data.user.forename + ' ' + loan.data.user.surname + ' | ' + loan.data.user.year + '-' + loan.data.user.reg}</styles.BookInfoTitle>,
-                                    <styles.BookInfoAuthor key={1}>{'Books on loan: ' + loans}</styles.BookInfoAuthor>]
+                        userData: userData
                     });
                 }
                 
@@ -82,8 +78,8 @@ class Scan extends Component {
                 let loans = 0;
                 if (data.data.loanIDs) loans = data.data.loanIDs.length;
                 this.setState({
-                    userData:   [<styles.BookInfoTitle>{data.data.forename + ' ' + data.data.surname + ' | ' + data.data.year + '-' + data.data.reg}</styles.BookInfoTitle>,
-                                <styles.BookInfoAuthor>{'Books on loan: ' + loans}</styles.BookInfoAuthor>],
+                    userData:   [<styles.BookInfoTitle key={0}>{data.data.forename + ' ' + data.data.surname + ' | ' + data.data.year + '-' + data.data.reg}</styles.BookInfoTitle>,
+                                <styles.BookInfoAuthor key={1}>{'Books on loan: ' + loans}</styles.BookInfoAuthor>],
                     studentId: data.data._id,
                     scanStage: 'withdraw-date',
                 });

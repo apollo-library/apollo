@@ -55,6 +55,11 @@ const BookInfoTitle = styled.p`
     font-weight: 600;
 `;
 
+const BookInfoFine = styled.p`
+    font-weight: 600;
+    color: ${props => props.theme.colours.accent6};
+`;
+
 const BookInfoAuthor = styled.p`
 
 `;
@@ -96,6 +101,7 @@ export {
     BottomInfo,
     ResetButton,
     BookInfo,
+    BookInfoFine,
     BookInfoTitle,
     BookInfoAuthor,
     SearchBar,
