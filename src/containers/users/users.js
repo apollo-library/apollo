@@ -50,11 +50,14 @@ class Users extends Component {
         if (this.state.currentUser !== "") this.displayUserInfo(this.state.currentUser);
         if (this.state.searchTerm !== "") {
             let query = new RegExp("(" + this.state.searchTerm + ")","gi")
-            
-            let filteredUsers = this.state.users.filter(user =>
-                user.name_concat.match(query) || user._id.match(query)
+
+            let filteredUsers = this.state.users.filter(user => {
+                    if (!user.name_concat) return false;
+                    if (user.name_concat.match(query) || user._id.match(query)) return true;
+                    return false;
+                }
             );
-    
+
             store.dispatch(actions.pushUsers(filteredUsers));
         }
     }
@@ -62,7 +65,7 @@ class Users extends Component {
     componentWillUnmount() {
         store.dispatch(actions.resetFilteredUsers());
     }
-    
+
 
     async displayUserInfo(id) {
         let userInfo = await API.Users.getUser(id);
@@ -100,7 +103,7 @@ class Users extends Component {
             <div>
                 <CenterColumn>
                     <LeftColumn>
-                        
+
 
                         {this.state.showInfo ? [
                             <PageTitle key={0}>{(this.state.userInfo.name_concat) ? "User: " + this.state.userInfo.name_concat : "User: (Removed)"}</PageTitle>,
