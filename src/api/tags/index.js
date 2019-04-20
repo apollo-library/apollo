@@ -27,13 +27,25 @@ async function addTag(name) {
     });
 
     let json = await Functions.Data.parseJSON(response);
+    console.log(json)
     if (json.code === "000") return true;
     return false;
 }
 
 async function editTag(id,name) {
-    // <- ?
-    // <- ?
+    let data = "name" + '=' + name;
+
+    let response = await fetch(serverPath + '/tag/' + id, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: data
+    });
+
+    let json = await Functions.Data.parseJSON(response);
+    console.log(json)
+    if (json.code === "000") return true;
     return false;
 }
 async function deleteTag(id) {
