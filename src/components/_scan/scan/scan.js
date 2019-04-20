@@ -41,8 +41,19 @@ class Scan extends Component {
             // Run a reg-ex to check if the input to the scan box mathes the format of the Challoner's barcodes on the books
             if (this.state.scanInput.match(/[R|r]\d{4,5}[a-z|A-Z](0577|057)/g)) {
                 const data = await API.Books.getScanBookInfo(this.state.scanInput);
+                console.log(data)
                 if (data.loanID) {
                     const loan = await API.Loans.getLoanInformation(data.loanID);
+                    console.log(loan.data.loan.dueDate)
+                    // Check due date to see if overdue
+
+                    let now = new Date();
+                    let due = new Date(loan.data.loan.dueDate)
+                    now.setHours(0,0,0,0);
+                    console.log(due,now)
+                    if (due < now) console.log('overdue')
+                    else console.log('on time')
+
                     let loans = 0;
                     if (loan.data.user.loanIDs) loans = loan.data.user.loanIDs.length;
                     this.setState({
@@ -50,6 +61,7 @@ class Scan extends Component {
                                     <styles.BookInfoAuthor key={1}>{'Books on loan: ' + loans}</styles.BookInfoAuthor>]
                     });
                 }
+                
                 if (data.message === 'Book not found') this.setError('Book not in system'); // Book not found in system
                 else {
                     this.setState({scannedBookData: data});
