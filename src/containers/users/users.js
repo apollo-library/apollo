@@ -51,7 +51,7 @@ class Users extends Component {
         if (this.state.searchTerm !== "") {
             let query = new RegExp("(" + this.state.searchTerm + ")","gi")
 
-            let filteredUsers = users.filter(user => {
+            let filteredUsers = this.state.users.filter(user => {
                     if (!user.name_concat) return false;
                     if (user.name_concat.match(query) || user._id.match(query)) return true;
                     return false;
