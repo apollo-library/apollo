@@ -39,11 +39,14 @@ class Report extends Component {
             const history = await API.History.getBookHistory(param);
             // console.log(history.data)
 
-            let historyParse = history.data.map((item , index) => {
+            let historyParse = history.data.map((item) => {
+                let user;
+                if (item.user.forename) user = item.user.forename + ' ' + item.user.surname + ' | ' + item.user.year + '-' + item.user.reg;
+                else user = '(Removed)';
                 return {
                     date: item.date,
                     action: item.action,
-                    user: item.user.forename + ' ' + item.user.surname + ' | ' + item.user.year + '-' + item.user.reg,
+                    user: user,
                     id: item.user._id
                 };
             });
