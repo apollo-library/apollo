@@ -1,5 +1,5 @@
 let config = {
-    serverPath: 'http://68.183.46.151'
+    serverPath: 'http://51.75.163.224'
 }
 
 export default config;
