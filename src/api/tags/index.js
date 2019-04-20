@@ -44,13 +44,16 @@ async function editTag(id,name) {
     });
 
     let json = await Functions.Data.parseJSON(response);
-    console.log(json)
     if (json.code === "000") return true;
     return false;
 }
 async function deleteTag(id) {
-    // <- ?
-    // <- ?
+    let response = await fetch(serverPath + '/tag/' + id, {
+        method: "DELETE"
+    });
+
+    let json = await Functions.Data.parseJSON(response);
+    if (json.code === "000") return true;
     return false;
 }
 
