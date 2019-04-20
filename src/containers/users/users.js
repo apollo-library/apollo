@@ -103,8 +103,8 @@ class Users extends Component {
                         
 
                         {this.state.showInfo ? [
-                            <PageTitle>{"User: " + this.state.userInfo.name_concat}</PageTitle>,
-                            <div>
+                            <PageTitle key={0}>{(this.state.userInfo.name_concat) ? "User: " + this.state.userInfo.name_concat : "User: (Removed)"}</PageTitle>,
+                            <div key={1}>
                             <AccentedBox
                                 title="Books on Loan"
                                 gradFrom="accent5"
