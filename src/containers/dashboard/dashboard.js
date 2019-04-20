@@ -21,7 +21,7 @@ class Dashboard extends Component {
             <div>
                 <CenterColumn>
                     <LeftColumn>
-                        <PageTitle>{this.props.studentDetails.concatName + "'s Dashboard"}</PageTitle>
+                        <PageTitle>Dashboard</PageTitle>
                         <AccentedBox
                             title="Generate Report"
                             gradFrom="accent5"
