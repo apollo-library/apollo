@@ -35,8 +35,11 @@ class UserSearch extends Component {
         let users = this.props.users;
         let query = new RegExp("(" + this.state.searchTerm + ")","gi")
 
-        let filteredUsers = users.filter(user =>
-            user.name_concat.match(query) || user._id.match(query)
+        let filteredUsers = users.filter(user => {
+                if (!user.name_concat) return false;
+                if (user.name_concat.match(query) || user._id.match(query)) return true;
+                return false;
+            }
         );
 
         store.dispatch(actions.pushUsers(filteredUsers));
