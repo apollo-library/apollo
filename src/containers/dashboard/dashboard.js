@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 //Component imports
-import {AccentedBox, ContentTabs, Fines} from './../../components';
+import {AccentedBox, ContentTabs, Fines, Tags} from './../../components';
 
 import {CenterColumn, LeftColumn, RightColumn, BottomLogo, PageTitle} from './../../globalStyles.js'
 
@@ -55,7 +55,13 @@ class Dashboard extends Component {
                             tabs={[
                                 {
                                     title: "Fines",
-                                    componentToShow: <Fines colour="accent3"/>,
+                                    componentToShow: <Fines colour="accent5"/>,
+                                    colour: "accent5",
+                                    active: false
+                                },
+                                {
+                                    title: "Tags",
+                                    componentToShow: <Tags colour="accent3"/>,
                                     colour: "accent3",
                                     active: true
                                 }

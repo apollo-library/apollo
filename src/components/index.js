@@ -17,6 +17,7 @@ import ContentTabs from './contentTabs/contentTabs';
 import BookTable from './bookTable/bookTable';
 
 import Fines from './_dashboard/fines/fines';
+import Tags from './_dashboard/tags/tags';
 
 import TagItem from './_catalogue/tagItem/tagItem';
 import TagSearch from './_catalogue/tagSearch/tagSearch';
@@ -49,6 +50,7 @@ export {
     BookTable,
 
     Fines,
+    Tags,
 
     TagItem,
     TagSearch,
