@@ -18,10 +18,24 @@ async function getAllTags() {
 async function addTag(data) {
     // <- ?
     // <- ?
+    return false;
+}
+
+async function editTag(data) {
+    // <- ?
+    // <- ?
+    return false;
+}
+async function deleteTag(data) {
+    // <- ?
+    // <- ?
+    return false;
 }
 
 
 export {
     getAllTags,
-    addTag
+    addTag,
+    editTag,
+    deleteTag
 }
