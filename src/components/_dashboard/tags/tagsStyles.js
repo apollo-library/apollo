@@ -19,12 +19,8 @@ const AddTagName = styled.input`
 `;
 
 const Tags = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-content: stretch;
+    display: block;
+
     margin-top: ${props => props.theme.styles.boxSpacing};
 `;
 
@@ -34,15 +30,18 @@ const Tag = styled.div`
     padding: 5px 15px;
     margin: 0 10px;
     color: #ffffff;
-    font-size: 0.8em;
     font-weight: 600;
+    display: inline-block;
+`;
+
+const TagContent = styled.div`
     display: flex;
     align-items: center;
 `;
 
 const DeleteIcon = styled.img`
-    width: 7%;
-    margin-left: 7px;
+    width: 1rem;
+    margin-left: 15px;
 `;
 
 export {
@@ -50,5 +49,6 @@ export {
     AddTagName,
     Tags,
     Tag,
+    TagContent,
     DeleteIcon
 };
