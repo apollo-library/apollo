@@ -27,7 +27,7 @@ const Logo = styled.li`
     overflow: visible;
 `;
 
-const Item = styled(Link)`
+const Item = styled.p`
     padding: 0.2rem 0.625rem;
     cursor: pointer;
     color: ${props => props.itemActive ? props.theme.colours.primary : props.theme.colours.darkGrey};
@@ -56,6 +56,10 @@ const Item = styled(Link)`
     &:hover:after {
         transform: scaleX(1);
     }
+`;
+
+const ItemLink = styled(Link)`
+    color: inherit;
 `;
 
 const Grow = styled.li`
@@ -214,5 +218,6 @@ export {
     NotificationMainTitle,
     viewAllNotifications,
     accountMenu,
-    menuItem
+    menuItem,
+    ItemLink
 };
