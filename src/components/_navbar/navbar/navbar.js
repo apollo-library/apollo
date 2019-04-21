@@ -58,11 +58,8 @@ class Navbar extends Component {
 
                     {config.main.pages.map((page, index) =>
                         (
-                            <styles.ItemLink to={page.path}>
-                                <styles.Item
-                                    key={index}
-                                    itemActive={page.path === this.props.currentPage}
-                                >
+                            <styles.ItemLink key={index} to={page.path}>
+                                <styles.Item itemActive={page.path === this.props.currentPage}>
                                     {page.text}
                                 </styles.Item>
                             </styles.ItemLink>
