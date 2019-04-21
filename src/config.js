@@ -1,6 +1,5 @@
 //Container imports
 import {Dashboard, Catalogue, Users} from './containers';
-import * as API from './api';
 
 let config = {
 	main: {

@@ -12,6 +12,7 @@ async function getAllUsers() {
     let json = await Functions.Data.parseJSON(response);
     json.data.map((user, index) => {
         if (json.data[index].loanIDs === undefined) json.data[index].loanIDs = [];
+        return null;
     });
     return json;
 }

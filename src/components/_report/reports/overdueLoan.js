@@ -1,12 +1,9 @@
 //React imports
 import React, { Component } from 'react';
 
-import * as API from './../../../api';
+import * as API from '../../../api';
 
-//Styles
-import * as styles from './overdueLoanStyles.js'
-
-import {ReportTable} from './../../';
+import {ReportTable} from '../..';
 
 class OverdueLoan extends Component {
     constructor() {

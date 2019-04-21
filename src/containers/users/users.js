@@ -1,6 +1,5 @@
 //React imports
 import React, { Component } from 'react';
-import { withRouter } from "react-router-dom";
 
 //Component imports
 import {AccentedBox, UserSearch, BookTable} from './../../components';
@@ -46,6 +45,7 @@ class Users extends Component {
         url.map((item) => {
             if (item.substring(0,2) === "id") if (item.split("=")[1]) this.setState({currentUser: item.split("=")[1]});
             if (item.substring(0,4) === "term") if (item.split("=")[1]) this.setState({searchTerm: item.split("=")[1].replace(/%20/g, " ")});
+            return null;
         });
         if (this.state.currentUser !== "") this.displayUserInfo(this.state.currentUser);
         if (this.state.searchTerm !== "") {
