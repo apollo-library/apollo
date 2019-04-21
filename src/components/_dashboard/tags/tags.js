@@ -26,7 +26,7 @@ class Tags extends Component {
     }
 
     componentWillUnmount = () => {
-        if (this.resetTimer) this.resetTimer.clearTimeout();
+       if (this.resetTimer) clearInterval(this.resetTimer);
     }
 
     addTagEvent(e) {
@@ -51,6 +51,7 @@ class Tags extends Component {
                 }
                 else this.setState({searchState: "error", errorMessage: "Tag already exists", successMessage: false});
             }
+            if (this.resetTimer) clearInterval(this.resetTimer);
             this.resetTimer = setTimeout(() => {
                 this.removeMessage();
             }, 3000);

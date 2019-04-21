@@ -28,6 +28,7 @@ import Error from './_scan/error/error';
 import DatePicker from './_scan/datePicker/datePicker';
 import Success from './_scan/success/success';
 import Input from './_scan/input/input';
+import MultiInput from './_scan/multiInput/multiInput';
 
 import Loan from './_report/reports/loan';
 import OverdueLoan from './_report/reports/overdueLoan';
@@ -61,6 +62,7 @@ export {
     DatePicker,
     Success,
     Input,
+    MultiInput,
 
     Loan,
     OverdueLoan,
