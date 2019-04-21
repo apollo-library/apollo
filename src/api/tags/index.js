@@ -35,7 +35,7 @@ async function addTag(name) {
 async function editTag(id,name) {
     let data = "name" + '=' + name;
 
-    let response = await fetch(serverPath + '/tag/' + id, {
+    let response = await fetch(serverPath + '/tag/' + String(id), {
         method: "POST",
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -48,8 +48,11 @@ async function editTag(id,name) {
     return false;
 }
 async function deleteTag(id) {
-    let response = await fetch(serverPath + '/tag/' + id, {
-        method: "DELETE"
+    let response = await fetch(serverPath + '/tag/' + String(id), {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
     });
 
     let json = await Functions.Data.parseJSON(response);
