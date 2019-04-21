@@ -27,7 +27,6 @@ async function addTag(name) {
     });
 
     let json = await Functions.Data.parseJSON(response);
-    console.log(json)
     if (json.code === "000") return true;
     return false;
 }
