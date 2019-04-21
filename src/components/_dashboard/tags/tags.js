@@ -58,7 +58,6 @@ class Tags extends Component {
 
     updateTags = async () => {
         let tags = await API.Tags.getAllTags();
-        console.log(tags)
         this.setState({tags: tags})
     }
 
@@ -71,7 +70,6 @@ class Tags extends Component {
     }
 
     removeTag = async (id) => {
-        console.log(id)
         let status = await API.Tags.deleteTag(id);
         this.updateTags();
     }
