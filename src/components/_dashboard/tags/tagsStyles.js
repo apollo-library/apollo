@@ -59,6 +59,15 @@ const SuccessMessage = styled.p`
     margin-top: 20px;
 `;
 
+const TagNameEditable = styled.input`
+    color: ${props => props.theme.colours.darkGrey};
+    background-color: #fff;
+    border: none;
+    font-weight: 600;
+    font-size: 1rem;
+    white-space:pre;
+`;
+
 export {
     AddTags,
     AddTagName,
@@ -67,5 +76,6 @@ export {
     TagContent,
     DeleteIcon,
     ErrorMessage,
-    SuccessMessage
+    SuccessMessage,
+    TagNameEditable
 };
