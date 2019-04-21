@@ -8,7 +8,7 @@ import {Button} from './../../../globalStyles.js';
 import * as API from './../../../api';
 
 //Components
-import {DatePicker, Success, Input, Error} from './../../';
+import {DatePicker, Success, Input, Error, MultiInput} from './../../';
 
 class Scan extends Component {
     constructor() {
@@ -23,7 +23,13 @@ class Scan extends Component {
             scanTitle: '',
             scanBox: [],
             error: [],
-            userData: []
+            userData: [],
+            newBookID: "",
+            newBookISBN10: "",
+            newBookISBN13: "",
+            newBookTitle: "",
+            newBookAuthor: "",
+            newBookPublisher: ""
         };
     }
 
@@ -32,7 +38,7 @@ class Scan extends Component {
     }
 
     componentWillUnmount = () => {
-        if (this.resetTimer) this.resetTimer.clearTimeout();
+        if (this.resetTimer)  clearInterval(this.resetTimer);
     }
 
     enterBookID = async (e) => {
@@ -58,16 +64,49 @@ class Scan extends Component {
                     });
                 }
                 
-                if (data.message === 'Book not found') this.setError('Book not in system'); // Book not found in system
+                if (data.message === 'Book not found') {
+                    // Book not found in system - give option to add book
+                    this.setState({newBookID: this.state.scanInput});
+                    await this.setState({scanStage: 'add-book-isbn'});
+                }
                 else {
                     this.setState({scannedBookData: data});
-                    if (data.loanID) this.setState({scanStage: 'return-renew'});    // Renew / Return
-                    else this.setState({scanStage: 'withdraw-id'});                 // Withdraw
-                    this.switchDisplay();
+                    if (data.loanID) await this.setState({scanStage: 'return-renew'});    // Renew / Return
+                    else await this.setState({scanStage: 'withdraw-id'});                 // Withdraw
                 }
-            } else this.setError('Book not in system'); // REGEX not compatible
+                this.switchDisplay();
+            } else this.setError('Not a barcode'); // REGEX not compatible
         }
     }
+
+    // Handlers for input boxes
+    updateBookISBN10 = e => this.setState({newBookISBN10: e.target.value});
+    updateBookISBN13 = e => this.setState({newBookISBN13: e.target.value});
+    updateBookTitle = e => this.setState({newBookTitle: e.target.value});
+    updateBookAuthor = e => this.setState({newBookAuthor: e.target.value});
+    updateBookPublisher = e => this.setState({newBookPublisher: e.target.value});
+
+    submitISBN = async () => {
+        await this.setState({scanStage: 'add-book-details'});
+        this.switchDisplay();
+    }
+
+    addBook = async () => {
+        let data = {
+            id: this.state.newBookID,
+            isbn10: this.state.newBookISBN10,
+            isbn13: this.state.newBookISBN13,
+            title: this.state.newBookTitle,
+            author: this.state.newBookAuthor,
+            publisher: this.state.newBookPublisher
+        }
+        let status = await API.Books.addBook(data);
+        if (status) {
+            await this.setState({scanStage: 'success', successMessage: 'Book successfully added to system'});
+            this.switchDisplay();
+        } else this.setError('Error adding book');
+    }
+
 
     enterCandidateNumber = async (e) => {
         this.setState({candidateNumber: e.target.value})
@@ -77,7 +116,7 @@ class Scan extends Component {
             else {
                 let loans = 0;
                 if (data.data.loanIDs) loans = data.data.loanIDs.length;
-                this.setState({
+                await this.setState({
                     userData:   [<styles.BookInfoTitle key={0}>{data.data.forename + ' ' + data.data.surname + ' | ' + data.data.year + '-' + data.data.reg}</styles.BookInfoTitle>,
                                 <styles.BookInfoAuthor key={1}>{'Books on loan: ' + loans}</styles.BookInfoAuthor>],
                     studentId: data.data._id,
@@ -91,7 +130,7 @@ class Scan extends Component {
     withdrawBook = async (dueDate) => {
         const withdrawResponse = await API.Loans.withdrawBook(this.state.scanInput, this.state.studentId, dueDate);
         if (withdrawResponse.status === 'success') {
-           this.setState({scanStage: 'success', successMessage: 'Book successfully withdrawn'});
+           await this.setState({scanStage: 'success', successMessage: 'Book successfully withdrawn'});
            this.switchDisplay();
         } else this.setError('Error withdrawing book');
     }
@@ -99,7 +138,7 @@ class Scan extends Component {
     renewBook = async(renewDate) => {
         const renewResponse = await API.Loans.renewBook(this.state.scanInput, renewDate);
         if (renewResponse.status === "success") {
-            this.setState({scanStage: 'success', successMessage: 'Book successfully renewed'});
+            await this.setState({scanStage: 'success', successMessage: 'Book successfully renewed'});
             this.switchDisplay();
         } else this.setError('Error renewing book');
     }
@@ -107,43 +146,55 @@ class Scan extends Component {
     returnBook = async () => {
         const returnResponse = await API.Loans.returnBook(this.state.scanInput);
         if (returnResponse.status === "success") {
-            this.setState({scanStage: 'success', successMessage: 'Book successfully returned'});
+            await this.setState({scanStage: 'success', successMessage: 'Book successfully returned'});
             this.switchDisplay();
         } else this.setError('Error returning book');
     }
 
-    resetScan = () => {
+    resetScan = async () => {
         // Clear data and reset scan box
-        this.setState({scanStage: 'start', scannedBookData: {}, successMessage: '', candidateNumber: '', userData: []});
-        this.switchDisplay(true);
+        await this.setState({scanStage: 'start', scannedBookData: {}, successMessage: '', candidateNumber: '', userData: []});
+        this.switchDisplay();
     }
 
     setError = (message) => {
         this.setState({error: <Error message={message} />});
     }
 
-    resetError = () => {
+    resetError = async () => {
         // Reset all error messages
-        this.setState({error: []});
+        await this.setState({error: []});
     }
 
-    switchDisplay = (override) => {
+    switchDisplay = () => {
         this.resetError(); // Presuming no errors are carried over
-
-        if (override) {
-            // This to get around a quirk of setState taking time
-            this.setState({
-                scanTitle: 'Scan Barcode',
-                scanBox: <Input callback={this.enterBookID} />
-            });
-            return;
-        }
 
         switch(this.state.scanStage) {
             case 'start':
                 this.setState({
                     scanTitle: 'Scan Barcode',
                     scanBox: <Input callback={this.enterBookID} />
+                });
+                break;
+            case 'add-book-isbn':
+                this.setState({
+                    scanTitle: 'Add ISBN 10 and ISBN13',
+                    scanBox: [
+                        <MultiInput title="ISBN10" val={this.state.newBookISBN10} changeCallback={this.updateBookISBN10} key={0}></MultiInput>,
+                        <MultiInput title="ISBN13" val={this.state.newBookISBN13} changeCallback={this.updateBookISBN13} key={1}></MultiInput>,
+                        <Button colour="primary" onClick={() => this.submitISBN()} key={2}>Submit</Button>
+                    ]
+                });
+                break;
+            case 'add-book-details':
+                this.setState({
+                    scanTitle: 'Add Book Details',
+                    scanBox: [
+                        <MultiInput title="Title" val={this.state.newBookTitle} changeCallback={this.updateBookTitle} key={3}></MultiInput>,
+                        <MultiInput title="Author" val={this.state.newBookAuthor} changeCallback={this.updateBookAuthor} key={4}></MultiInput>,
+                        <MultiInput title="Publisher" val={this.state.newBookPublisher} changeCallback={this.updateBookPublisher} key={5}></MultiInput>,
+                        <Button colour="primary" onClick={() => this.addBook()} key={6}>Add Book</Button>
+                    ]
                 });
                 break;
             case 'withdraw-id':

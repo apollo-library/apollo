@@ -44,8 +44,36 @@ export async function getBookInfo(id) {
 }
 
 export async function addBook(data) {
-    // <- give object
-    // <- ?
+    // Accepts data in the form of:
+    /* 
+    {   
+        id: "",
+        isbn10: "",
+        isbn13: "",
+        title: "",
+        author: "",
+        publisher: ""
+    }
+    */
+
+    let body = "id=" + data.id;
+
+    if (data.isbn10.length !== 0 && data.isbn10.trim()) body += ('&isbn10=' + data.isbn10);
+    if (data.isbn13.length !== 0 && data.isbn13.trim()) body += ('&isbn13=' + data.isbn13);
+    if (data.title.length !== 0 && data.title.trim()) body += ('&title=' + data.title);
+    if (data.author.length !== 0 && data.author.trim()) body += ('&author=' + data.author);
+    if (data.publisher.length !== 0 && data.publisher.trim()) body += ('&publisher=' + data.publisher);
+
+    let response = await fetch(serverPath + '/books', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: body
+    });
+    let json = await Functions.Data.parseJSON(response);
+    if (json.code === "000") return true;
+    else return false;
 }
 
 export async function editBook(book, type, val) {
