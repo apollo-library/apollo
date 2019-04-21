@@ -42,6 +42,7 @@ const TagContent = styled.div`
 const DeleteIcon = styled.img`
     width: 1rem;
     margin-left: 15px;
+    cursor: pointer;
 `;
 
 const ErrorMessage = styled.p`

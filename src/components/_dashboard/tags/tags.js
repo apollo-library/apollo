@@ -70,6 +70,12 @@ class Tags extends Component {
         return await API.Tags.addTag(tagName);
     }
 
+    removeTag = async (id) => {
+        console.log(id)
+        let status = await API.Tags.deleteTag(id);
+        this.updateTags();
+    }
+
     render() {
         return (
             <styles.AddTags>
@@ -81,7 +87,7 @@ class Tags extends Component {
                         return <styles.Tag>
                             <styles.TagContent>
                                 {tag.name}
-                                <styles.DeleteIcon src={cross} />
+                                <styles.DeleteIcon src={cross} onClick={() => this.removeTag(tag.id)} />
                             </styles.TagContent>
                         </styles.Tag>
                     })}
