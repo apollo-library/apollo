@@ -14,7 +14,7 @@ const AddTagName = styled.input`
     padding: 0.4rem 0.4rem;
 
     &:focus {
-        box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.primary};
+        box-shadow: inset 0px 0px 0px 2px ${props => (props.state) ? (props.state === "error") ? props.theme.colours.accent6 : props.theme.colours.accent5 : props.theme.colours.primary};
     }
 `;
 
@@ -28,7 +28,7 @@ const Tag = styled.div`
     background: ${props => props.theme.colours.accent3};
     border-radius: 100px;
     padding: 5px 15px;
-    margin: 0 10px;
+    margin: 5px 10px;
     color: #ffffff;
     font-weight: 600;
     display: inline-block;
@@ -44,11 +44,27 @@ const DeleteIcon = styled.img`
     margin-left: 15px;
 `;
 
+const ErrorMessage = styled.p`
+    color: ${props => props.theme.colours.accent6};
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-top: 20px;
+`;
+
+const SuccessMessage = styled.p`
+    color: ${props => props.theme.colours.accent5};
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-top: 20px;
+`;
+
 export {
     AddTags,
     AddTagName,
     Tags,
     Tag,
     TagContent,
-    DeleteIcon
+    DeleteIcon,
+    ErrorMessage,
+    SuccessMessage
 };
