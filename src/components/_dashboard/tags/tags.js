@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 
 import * as API from './../../../api';
 
-import cross from './../../../assets/images/circle-cross.svg'
+import cross from './../../../assets/images/circle-cross.svg';
+import tick from './../../../assets/images/circle-tick.svg';
 
 //Styles
-import * as styles from './tagsStyles.js'
+import * as styles from './tagsStyles.js';
 
 class Tags extends Component {
     constructor() {
@@ -16,6 +17,7 @@ class Tags extends Component {
             searchState: false,
             errorMessage: false,
             successMessage: false,
+            tagEditID: false
         };
     }
 
@@ -69,9 +71,28 @@ class Tags extends Component {
         return await API.Tags.addTag(tagName);
     }
 
-    removeTag = async (id) => {
-        let status = await API.Tags.deleteTag(id);
+    removeTag = async id => {
+        await API.Tags.deleteTag(id);
         this.updateTags();
+    }
+
+    makeTagEditable = (id,name) => {
+        this.setState({tagEditID: id, inputValue: name});
+    }
+
+    editTag = async (id) => {
+        let currentVal = await API.Tags.getTag(id);
+        if (this.state.inputValue !== currentVal && this.state.inputValue.replace(/[^A-Za-z]+/g, '') !== "") {
+            let status = await API.Tags.editTag(id,this.state.inputValue);
+            if (status) {
+                await this.updateTags();
+                this.setState({tagEditID: false});
+            }
+        }
+    }
+
+    updateInputValue = e => {
+        this.setState({inputValue: e.target.value});
     }
 
     render() {
@@ -81,12 +102,19 @@ class Tags extends Component {
                 {(this.state.errorMessage) ? <styles.ErrorMessage>{this.state.errorMessage}</styles.ErrorMessage> : null}
                 {(this.state.successMessage) ? <styles.SuccessMessage>{this.state.successMessage}</styles.SuccessMessage> : null}
                 <styles.Tags>
+                    
                     {this.state.tags.map((tag, index) => {
-                        return <styles.Tag>
-                            <styles.TagContent>
-                                {tag.name}
-                                <styles.DeleteIcon src={cross} onClick={() => this.removeTag(tag.id)} />
-                            </styles.TagContent>
+                        return <styles.Tag key={tag.id}>
+                                {(this.state.tagEditID === tag.id)
+                                ? <styles.TagContent>
+                                    <styles.TagNameEditable value={this.state.inputValue} onChange={e => this.updateInputValue(e)}></styles.TagNameEditable>
+                                    <styles.DeleteIcon src={tick} onClick={() => this.editTag(tag.id)} />
+                                </styles.TagContent>
+                                : <styles.TagContent>
+                                    <p onClick={() => this.makeTagEditable(tag.id, tag.name)}>{tag.name}</p>
+                                    <styles.DeleteIcon src={cross} onClick={() => this.removeTag(tag.id)} />
+                                </styles.TagContent>
+                                }                          
                         </styles.Tag>
                     })}
                 </styles.Tags>

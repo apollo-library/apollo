@@ -15,6 +15,13 @@ async function getAllTags() {
     return parse; // <- return an object with all the tags
 }
 
+async function getTag(id) {
+    let response = await fetch(serverPath + '/tag/' + id);
+    let json = await Functions.Data.parseJSON(response);
+    if (json.code === "000") return json.data.name;
+    else return false;
+}
+
 async function addTag(name) {
     let data = "name" + '=' + name;
 
@@ -62,6 +69,7 @@ async function deleteTag(id) {
 
 export {
     getAllTags,
+    getTag,
     addTag,
     editTag,
     deleteTag
