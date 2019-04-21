@@ -23,7 +23,7 @@ async function getTag(id) {
 }
 
 async function addTag(name) {
-    let data = "name" + '=' + name;
+    let data = "name=" + name;
 
     let response = await fetch(serverPath + '/tags', {
         method: "POST",
@@ -39,7 +39,7 @@ async function addTag(name) {
 }
 
 async function editTag(id,name) {
-    let data = "name" + '=' + name;
+    let data = "name=" + name;
 
     let response = await fetch(serverPath + '/tag/' + String(id), {
         method: "POST",

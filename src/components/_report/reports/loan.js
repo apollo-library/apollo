@@ -3,13 +3,9 @@ import React, { Component } from 'react';
 
 import * as API from './../../../api';
 
-//Styles
-import * as styles from './userHistoryStyles.js'
-
 import {ReportTable} from './../../';
-import Loan from '../loan/loan';
 
-class UserHistory extends Component {
+class Loan extends Component {
     constructor() {
         super()
 
@@ -20,17 +16,16 @@ class UserHistory extends Component {
     }
 
     componentDidMount = async () => {
-        let data = await API.Users.getUserHistory(this.props.user);
-        
+        let data = await API.Loans.getLoans();
         let tableData = data.data.map((item) => {
             return [
-                {style: "normal", url: null, display: item.loan.returnDate ? "Return" : "Withdraw"},
-                {style: "bold", url: "/book/" + item.book._id, display: item.book.title},
-                {style: "normal", url: null, display: item.book.author},
-                {style: "normal", url: null, display: this.formatDueDate(item.loan.dueDate)},
+                {style: "bold", url: "/book/" + item.raw.book._id, display: item.display.title},
+                {style: "normal", url: null, display: item.display.author},
+                {style: "bold", url: "/users?id=" + item.raw.user._id, display: item.display.name + ": " + item.display.reg},
+                {style: "normal", url: null, display: this.formatDueDate(item.display.due)},
             ]
         });
-        let header = ['Action','Book','Author','Due Date']
+        let header = ['Book','Author','User','Due Date']
         this.setState({body: tableData, header: header});
     }
 
@@ -46,4 +41,4 @@ class UserHistory extends Component {
     }
 }
 
-export default UserHistory;
+export default Loan;

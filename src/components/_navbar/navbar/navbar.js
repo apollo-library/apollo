@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 //Styles
 import * as styles from './navbarStyles.js'
-import {Button, FlexGrow} from './../../../globalStyles.js'
+import {FlexGrow} from './../../../globalStyles.js'
 
 //Images
 import logo from './../../../assets/images/logo.svg';
@@ -110,6 +110,8 @@ class Navbar extends Component {
                             //Select the notification colour
                             let notificationColour;
                             let notificationButtonText;
+                            // I don't think that notifications are going to happen, but leaving this here incase but stopping logging
+                            // eslint-disable-next-line
                             let notificationButtonFunction;
                             let notificationDaysLeftText;
                             if (notification.action === "withdraw") {

@@ -92,14 +92,14 @@ class Catalogue extends Component {
                             if (this.tagActive(tag.name)) {
                                 activeTags++;
                                 return <TagItem key={index} tagName={tag.name} active={true} />
-                            }
+                            } else return null;
                         })}
 
                         {this.props.filteredTags.map((tag, index) => {
                             if (!this.tagActive(tag.name) && tagsDisplayed < this.state.tagsToDisplay) {
                                 tagsDisplayed++;
                                 return <TagItem key={index} tagName={tag.name} active={false} />
-                            }
+                            } else return null;
                         })}
 
                         <p
