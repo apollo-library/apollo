@@ -26,24 +26,10 @@ class BookInfo extends Component {
             idISBN10Colour: 'primary',
             idISBN13Colour: 'primary',
 
-            bookTags: [],
             allTags: [],
             addTag: -1
         };
 
-    }
-
-    componentDidMount = () => {
-        console.log(this.props)
-        /*Really what I want to do is run
-
-            let bookTags = await API.Books.getBookInfo(this.props.data._id);
-            this.setState({bookTags: bookTags.data.tags})
-
-        however, at this points, props doesnt contain .data._id
-
-        This does work later on once they've 'loaded'?
-        */
     }
 
     displayInformationBox = () => {
@@ -103,21 +89,22 @@ class BookInfo extends Component {
         if (this.state.addTag === -1) {
             return;
         }
-        let bookTags = await API.Books.getBookInfo(this.props.data._id);
 
         let data;
-        let selected = bookTags.data.tags.find(x => x.id === this.state.addTag)
+        let selected = this.props.data.tags.find(x => {x.id === this.state.addTag});
+        //console.log(selected)
 
+        //TODO: Change this value to be what is actually returned form server
         if (selected === undefined) {
             console.log("Added tag")
             data = await API.Books.addBookTag(this.props.data._id, this.state.addTag);
         }
 
-        bookTags = await API.Books.getBookInfo(this.props.data._id);
-
-        if ((bookTags.message === 'Success') && data) {
-            this.setState({bookTags: bookTags.data.tags})
-            this.setState({tagsBox: true})
+        if (data) {
+            //Sucessfully added new tag
+            this.props.updateData();
+            this.setState({tagsBox: true});
+            this.setState({addTag: -1});
         }
     }
 
@@ -125,6 +112,19 @@ class BookInfo extends Component {
         let allTags = await API.Tags.getAllTags();
         this.setState({allTags: allTags})
         this.setState({tagsBox: false})
+    }
+
+
+    removeTag = async (id) => {
+        console.log("tag " + id);
+        let res = await API.Books.removeBookTag(this.props.data._id, id);
+
+        //TODO: Check this works with new data from server
+        if (res) {
+            //Sucessfully removed tag
+            console.log("Removed tag" + id)
+            this.props.updateData();
+        }
     }
 
     render = () => {
@@ -201,7 +201,7 @@ class BookInfo extends Component {
 
                 }
                 {(this.state.tagsBox) ?
-                    (this.state.bookTags.length) ?
+                    (this.props.data.tags.length) ?
                     <AccentedBox
                         title="Tags"
                         gradFrom="accent3"
@@ -209,7 +209,7 @@ class BookInfo extends Component {
                         data={ {
                             tags: this.props.data.tags
                         } }
-                        callback={() => this.displayTagBox()}
+                        removeTag={(id) => this.removeTag(id)}
                         type="tags"
                     /> :
                     <AccentedBox
