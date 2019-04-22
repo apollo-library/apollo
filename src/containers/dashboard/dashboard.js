@@ -57,13 +57,13 @@ class Dashboard extends Component {
                                     title: "Fines",
                                     componentToShow: <Fines colour="accent5"/>,
                                     colour: "accent5",
-                                    active: false
+                                    active: true
                                 },
                                 {
                                     title: "Tags",
                                     componentToShow: <Tags colour="accent3"/>,
                                     colour: "accent3",
-                                    active: true
+                                    active: false
                                 }
                             ]}
                          />

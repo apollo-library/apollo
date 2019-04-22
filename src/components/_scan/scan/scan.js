@@ -58,6 +58,15 @@ class Scan extends Component {
         if (this.resetTimer)  clearInterval(this.resetTimer);
     }
 
+    // Handlers for input boxes
+    updateBookISBN10 = e => this.setState({newBookISBN10: e.target.value});
+    updateBookISBN13 = e => this.setState({newBookISBN13: e.target.value});
+    updateBookTitle = e => this.setState({newBookTitle: e.target.value});
+    updateBookAuthor = e => this.setState({newBookAuthor: e.target.value});
+    updateBookPublisher = e => this.setState({newBookPublisher: e.target.value});
+    updateInputValue = e => this.setState({inputValue: e.target.value});
+    updateDatePicker = e => this.setState({datePickerValue: e.target.value});
+
     enterBookID = async (e) => {
         if (e.keyCode === 13) {  //Check for enter
             this.setState({newBookID: this.state.inputValue});
@@ -92,15 +101,6 @@ class Scan extends Component {
             } else this.setError('Not a barcode'); // REGEX not compatible
         }
     }
-
-    // Handlers for input boxes
-    updateBookISBN10 = e => this.setState({newBookISBN10: e.target.value});
-    updateBookISBN13 = e => this.setState({newBookISBN13: e.target.value});
-    updateBookTitle = e => this.setState({newBookTitle: e.target.value});
-    updateBookAuthor = e => this.setState({newBookAuthor: e.target.value});
-    updateBookPublisher = e => this.setState({newBookPublisher: e.target.value});
-    updateInputValue = e => this.setState({inputValue: e.target.value});
-    updateDatePicker = e => this.setState({datePickerValue: e.target.value});
 
     submitISBN = async () => {
         await this.setState({scanStage: 'add-book-details'});
