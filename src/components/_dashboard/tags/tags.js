@@ -92,9 +92,7 @@ class Tags extends Component {
         }
     }
 
-    updateInputValue = e => {
-        this.setState({inputValue: e.target.value});
-    }
+    updateInputValue = e => this.setState({inputValue: e.target.value});
 
     render() {
         return (
