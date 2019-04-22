@@ -82,8 +82,8 @@ class Tags extends Component {
     }
 
     editTag = async (id) => {
-        let currentVal = await API.Tags.getTag(id);
-        if (this.state.inputValue !== currentVal && this.state.inputValue.replace(/[^A-Za-z]+/g, '') !== "") {
+        //let currentVal = await API.Tags.getTag(id);
+        if (this.state.inputValue.replace(/[^A-Za-z]+/g, '') !== "") {
             let status = await API.Tags.editTag(id,this.state.inputValue);
             if (status) {
                 await this.updateTags();
@@ -103,7 +103,7 @@ class Tags extends Component {
                 {(this.state.errorMessage) ? <styles.ErrorMessage>{this.state.errorMessage}</styles.ErrorMessage> : null}
                 {(this.state.successMessage) ? <styles.SuccessMessage>{this.state.successMessage}</styles.SuccessMessage> : null}
                 <styles.Tags>
-                    
+
                     {this.state.tags.map((tag, index) => {
                         return <styles.Tag key={tag.id}>
                                 {(this.state.tagEditID === tag.id)
@@ -115,7 +115,7 @@ class Tags extends Component {
                                     <p onClick={() => this.makeTagEditable(tag.id, tag.name)}>{tag.name}</p>
                                     <styles.DeleteIcon src={cross} onClick={() => this.removeTag(tag.id)} />
                                 </styles.TagContent>
-                                }                          
+                                }
                         </styles.Tag>
                     })}
                 </styles.Tags>
