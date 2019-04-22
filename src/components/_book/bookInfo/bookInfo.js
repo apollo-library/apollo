@@ -24,9 +24,17 @@ class BookInfo extends Component {
             informationPublisherColour: 'primary',
 
             idISBN10Colour: 'primary',
-            idISBN13Colour: 'primary'
+            idISBN13Colour: 'primary',
+
+            bookTags: [],
+            allTags: [],
+            addTag: {}
         };
 
+    }
+
+    componentDidMount() {
+        this.setState({bookTags: this.props.data.tags});
     }
 
     displayInformationBox = () => {
@@ -44,10 +52,6 @@ class BookInfo extends Component {
             idISBN13Colour: 'primary',
             idBox: true
         });
-    }
-
-    displayTagsBox = () => {
-        console.log('placeholder')
     }
 
     formatDueDate = (date) => {
@@ -82,8 +86,32 @@ class BookInfo extends Component {
         if (box === "id") this.displayIDBox();
     }
 
-    editTags = () => {
-        console.log('tags')
+
+    updateSelectedTag = (e) => {
+        this.setState({addTag: e.target.value})
+    }
+
+    addTag = async (tag) => {
+        let bookTags = await API.Books.getBookInfo(this.props.data._id);
+
+        let data
+        if (!bookTags.data.tags.includes(tag)) {
+            console.log("Added tag")
+            data = await API.Books.addBookTag(this.props.data._id, tag.id);
+        }
+
+        bookTags = await API.Books.getBookInfo(this.props.data._id);
+
+        if ((bookTags.message === 'Success') && data) {
+            this.setState({bookTags: bookTags.data.tags})
+            this.setState({tagsBox: true})
+        }
+    }
+
+    displayTagBox = async () => {
+        let allTags = await API.Tags.getAllTags();
+        this.setState({allTags: allTags})
+        this.setState({tagsBox: false})
     }
 
     render = () => {
@@ -160,7 +188,7 @@ class BookInfo extends Component {
 
                 }
                 {(this.state.tagsBox) ?
-                    (this.props.data.tags.length) ?
+                    (this.state.bookTags.length) ?
                     <AccentedBox
                         title="Tags"
                         gradFrom="accent3"
@@ -168,19 +196,42 @@ class BookInfo extends Component {
                         data={ {
                             tags: this.props.data.tags
                         } }
-                        callback={this.editTags}
+                        callback={() => this.displayTagBox()}
                         type="tags"
                     /> :
                     <AccentedBox
                         title="Tags"
                         gradFrom="accent3"
                         gradTo="accent4"
-                        callback={this.editTags}
+                        callback={() => this.displayTagBox()}
                         type="noTags"
                     />
-                : []
+                : [
+                    <AccentedBox title="Tags" gradFrom="accent3" gradTo="accent4" />,
+                    <styles.InputWrapper>
+                        <styles.SearchWrapper>
+                            <styles.SearchLabel>Tag to add:  </styles.SearchLabel>
+                            <styles.Dropdown>
+                                {this.state.allTags.map((tag, index) =>
+                                    <option value={tag} key={index} onChange={(e) => this.updateSelectedTag(e)}>{tag.name}</option>
+                                )}
+                            </styles.Dropdown>
+                            <styles.SearchButton onClick={() => this.addTag('tag', this.state.addTag)} colour={this.state.idISBN10Colour}>Add</styles.SearchButton>
+                        </styles.SearchWrapper>
+                        <styles.SearchWrapper>
+                            <styles.SearchButton onClick={() => this.setState({tagsBox: true})} colour={'accent3'}>Done</styles.SearchButton>
+                        </styles.SearchWrapper>
+                    </styles.InputWrapper>
+                ]
                 }
             </styles.BookInfoContainer>
+
+
+            /* removeTag = async id => {
+                await API.Tags.deleteTag(id);
+                this.updateTags();
+            } */
+
         )
     }
 }

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { darken } from 'polished'
+
 import { WhiteButton } from './../../globalStyles.js';
 
 const AccentedBox = styled.div`
@@ -118,9 +120,31 @@ const BookInformation = styled.p`
     color: ${props => props.theme.colours.darkGrey};
 `;
 
-const Tag = styled.p`
+const Tag = styled.div`
+    background: ${props => props.theme.colours.accent3};
+    border-radius: 100px;
+    padding: 5px 15px;
+    margin: 5px 10px;
+    color: #ffffff;
+    font-weight: 600;
     display: inline-block;
-    padding: calc(${props => props.theme.styles.boxSpacing} / 2);
+    border-bottom: 2.5px solid ${props => darken(0.15, props.theme.colours.accent3)};
+`;
+
+const TagContent = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+const Icon = styled.img`
+    width: 1rem;
+    margin-left: 15px;
+    cursor: pointer;
+
+    &:hover ${Tag} {
+        background-color: #ff0000;
+        color: #000000;
+    }
 `;
 
 const EditButton = WhiteButton.extend`
@@ -148,5 +172,7 @@ export {
     StarPath,
     BookInformation,
     Tag,
+    TagContent,
+    Icon,
     EditButton
 };
