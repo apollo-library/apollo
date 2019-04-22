@@ -144,8 +144,8 @@ class BookInfo extends Component {
                         callback={() => this.setState({informationBox: false})}
                         type="bookTitleAuthorPublisher"
                     /> : [
-                    <AccentedBox title="Book Information" gradFrom="accent5" gradTo="accent4" />,
-                    <styles.InputWrapper>
+                    <AccentedBox key={0} title="Book Information" gradFrom="accent5" gradTo="accent4" />,
+                    <styles.InputWrapper key={1}>
                         <styles.SearchWrapper>
                             <styles.SearchLabel>Title:  </styles.SearchLabel>
                             <styles.SearchBar innerRef={(input) => { this.title = input }} ></styles.SearchBar>
@@ -181,8 +181,8 @@ class BookInfo extends Component {
                         callback={() => this.setState({idBox: false})}
                         type="bookIDs"
                     /> : [
-                        <AccentedBox title="ISBN and ID" gradFrom="accent1" gradTo="accent2" />,
-                        <styles.InputWrapper>
+                        <AccentedBox key={0} title="ISBN and ID" gradFrom="accent1" gradTo="accent2" />,
+                        <styles.InputWrapper key={1}>
                             <styles.SearchWrapper>
                                 <styles.SearchLabel>ISBN10:  </styles.SearchLabel>
                                 <styles.SearchBar innerRef={(input) => { this.isbn10 = input }} ></styles.SearchBar>
@@ -221,8 +221,8 @@ class BookInfo extends Component {
                         type="noTags"
                     />
                 : [
-                    <AccentedBox title="Tags" gradFrom="accent3" gradTo="accent4" />,
-                    <styles.InputWrapper>
+                    <AccentedBox key={0} title="Tags" gradFrom="accent3" gradTo="accent4" />,
+                    <styles.InputWrapper key={1}>
                         <styles.SearchWrapper>
                             <styles.SearchLabel>Tag to add:  </styles.SearchLabel>
                             <styles.Dropdown onChange={(e) => this.updateSelectedTag(e)} defaultValue="default">
