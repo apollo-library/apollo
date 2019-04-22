@@ -114,16 +114,16 @@ class AccentedBox extends Component {
                         return <styles.Tag key={index}>
                                 <styles.TagContent>
                                     <p>{tag}</p>
-                                    <styles.Icon src={cross} onClick={(tag) => this.props.callback()} />
+                                    <styles.Icon src={cross} onClick={(tag) => this.props.removeTag(tag.id)} />
                                 </styles.TagContent>
                             </styles.Tag>
                     })}
-                    <styles.EditButton onClick={() => this.props.callback()} colour={this.props.gradFrom}>Add Tag</styles.EditButton>
+                    <styles.EditButton onClick={() => this.props.callback("show", 0)} colour={this.props.gradFrom}>Add Tag</styles.EditButton>
                 </styles.BoxContent>
         } else if (typeOfBox === "noTags") {
             boxContent = <styles.BoxContent>
                     <styles.Tag>No Tags</styles.Tag>
-                    <styles.EditButton onClick={() => this.props.callback()} colour={this.props.gradFrom}>Add Tag</styles.EditButton>
+                    <styles.EditButton onClick={() => this.props.callback("show", 0)} colour={this.props.gradFrom}>Add Tag</styles.EditButton>
                 </styles.BoxContent>
         } else if (typeOfBox === "onLoan") {
             boxContent =
