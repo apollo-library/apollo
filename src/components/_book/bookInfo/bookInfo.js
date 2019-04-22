@@ -7,7 +7,7 @@ import * as styles from './bookInfoStyles.js'
 import * as API from './../../../api';
 
 //Componenets
-import {AccentedBox} from './../../';
+import {AccentedBox, BookEdit} from './../../';
 
 
 class BookInfo extends Component {
@@ -27,10 +27,23 @@ class BookInfo extends Component {
             idISBN13Colour: 'primary',
 
             allTags: [],
-            addTag: -1
+            addTag: -1,
+
+            inputTitle: '',
+            inputAuthor: '',
+            inputPublisher: '',
+            inputISBN10: '',
+            inputISBN13: ''
         };
 
     }
+
+    // Handlers for input boxes
+    updateInputTitle = e => this.setState({inputTitle: e.target.value});
+    updateInputAuthor = e => this.setState({inputAuthor: e.target.value});
+    updateInputPublisher = e => this.setState({inputPublisher: e.target.value});
+    updateInputISBN10 = e => this.setState({inputISBN10: e.target.value});
+    updateInputISBN13 = e => this.setState({inputISBN13: e.target.value});
 
     displayInformationBox = () => {
         this.setState({
@@ -54,25 +67,18 @@ class BookInfo extends Component {
         return dueDate.getDate() + "/" + dueDate.getMonth() + "/" + dueDate.getFullYear();
     }
 
-    updateData = async (type, val, ref, box) => {
+    updateData = async (type, val) => {
         let col = 'accent6';
         if (val) {
             let data = await API.Books.editBook(this.props.data._id, type, val);
-            if (data.message === 'Success') {
-                ref.value = '';
-                col = 'accent5';
-            }
+            if (data.message === 'Success') col = 'accent5';
         }
-        if (box === 'information') {
-            if (type === 'title') this.setState({informationTitleColour: col});
-            if (type === 'author') this.setState({informationAuthorColour: col});
-            if (type === 'publisher') this.setState({informationPublisherColour: col});
-            this.setState({informationBox: false});
-        } else if (box === 'id') {
-            if (type === 'ISBN10') this.setState({idISBN10Colour: col});
-            if (type === 'ISBN13') this.setState({idISBN13Colour: col});
-            this.setState({idBox: false});
-        }
+
+        if (type === 'title') this.setState({informationTitleColour: col, inputTitle: ''});
+        if (type === 'author') this.setState({informationAuthorColour: col, inputAuthor: ''});
+        if (type === 'publisher') this.setState({informationPublisherColour: col, inputPublisher: ''});
+        if (type === 'ISBN10') this.setState({idISBN10Colour: col, inputISBN10: ''});
+        if (type === 'ISBN13') this.setState({idISBN13Colour: col, inputISBN13: ''});
     }
 
     getData = async (box) => {
@@ -91,7 +97,7 @@ class BookInfo extends Component {
         }
 
         let data;
-        let selected = this.props.data.tags.find(x => {x.id === this.state.addTag});
+        let selected = this.props.data.tags.find(x => x.id === this.state.addTag);
         //console.log(selected)
 
         //TODO: Change this value to be what is actually returned form server
@@ -146,21 +152,30 @@ class BookInfo extends Component {
                     /> : [
                     <AccentedBox key={0} title="Book Information" gradFrom="accent5" gradTo="accent4" />,
                     <styles.InputWrapper key={1}>
-                        <styles.SearchWrapper>
-                            <styles.SearchLabel>Title:  </styles.SearchLabel>
-                            <styles.SearchBar innerRef={(input) => { this.title = input }} ></styles.SearchBar>
-                            <styles.SearchButton onClick={() => this.updateData('title', this.title.value, this.title, 'information')} colour={this.state.informationTitleColour}>Update</styles.SearchButton>
-                        </styles.SearchWrapper>
-                        <styles.SearchWrapper>
-                            <styles.SearchLabel>Author:  </styles.SearchLabel>
-                            <styles.SearchBar innerRef={(input) => { this.author = input }} ></styles.SearchBar>
-                            <styles.SearchButton onClick={() => this.updateData('author', this.author.value, this.author, 'information')} colour={this.state.informationAuthorColour}>Update</styles.SearchButton>
-                        </styles.SearchWrapper>
-                        <styles.SearchWrapper>
-                            <styles.SearchLabel>Publisher:  </styles.SearchLabel>
-                            <styles.SearchBar innerRef={(input) => { this.publisher = input }} ></styles.SearchBar>
-                            <styles.SearchButton onClick={() => this.updateData('publisher', this.publisher.value, this.publisher, 'information')} colour={this.state.informationPublisherColour}>Update</styles.SearchButton>
-                        </styles.SearchWrapper>
+                        <BookEdit
+                            title={'Title: '}
+                            val={this.state.inputTitle}
+                            changeCallback={this.updateInputTitle}
+                            updateData={() => this.updateData('title', this.state.inputTitle)}
+                            colour={this.state.informationTitleColour}
+                            searchID={'title'}
+                        />
+                        <BookEdit
+                            title={'Author: '}
+                            val={this.state.inputAuthor}
+                            changeCallback={this.updateInputAuthor}
+                            updateData={() => this.updateData('author', this.state.inputAuthor)}
+                            colour={this.state.informationAuthorColour}
+                            searchID={'author'}
+                        />
+                        <BookEdit
+                            title={'Publisher: '}
+                            val={this.state.inputPublisher}
+                            changeCallback={this.updateInputPublisher}
+                            updateData={() => this.updateData('publisher', this.state.inputPublisher)}
+                            colour={this.state.informationPublisherColour}
+                            searchID={'publisher'}
+                        />
                         <styles.SearchWrapper>
                             <styles.SearchButton onClick={() => this.getData('information')} colour={'accent3'}>Done</styles.SearchButton>
                         </styles.SearchWrapper>
@@ -183,16 +198,22 @@ class BookInfo extends Component {
                     /> : [
                         <AccentedBox key={0} title="ISBN and ID" gradFrom="accent1" gradTo="accent2" />,
                         <styles.InputWrapper key={1}>
-                            <styles.SearchWrapper>
-                                <styles.SearchLabel>ISBN10:  </styles.SearchLabel>
-                                <styles.SearchBar innerRef={(input) => { this.isbn10 = input }} ></styles.SearchBar>
-                                <styles.SearchButton onClick={() => this.updateData('ISBN10', this.isbn10.value, this.isbn10, 'id')} colour={this.state.idISBN10Colour}>Update</styles.SearchButton>
-                            </styles.SearchWrapper>
-                            <styles.SearchWrapper>
-                                <styles.SearchLabel>ISBN13:  </styles.SearchLabel>
-                                <styles.SearchBar innerRef={(input) => { this.isbn13 = input }} ></styles.SearchBar>
-                                <styles.SearchButton onClick={() => this.updateData('ISBN13', this.isbn13.value, this.isbn13, 'id')} colour={this.state.idISBN13Colour}>Update</styles.SearchButton>
-                            </styles.SearchWrapper>
+                            <BookEdit
+                                title={'ISBN10: '}
+                                val={this.state.inputISBN10}
+                                changeCallback={this.updateInputISBN10}
+                                updateData={() => this.updateData('ISBN10', this.state.inputISBN10)}
+                                colour={this.state.idISBN10Colour}
+                                searchID={'ISBN10'}
+                            />
+                            <BookEdit
+                                title={'ISBN13: '}
+                                val={this.state.inputISBN13}
+                                changeCallback={this.updateInputISBN13}
+                                updateData={() => this.updateData('ISBN13', this.state.inputISBN13)}
+                                colour={this.state.idISBN13Colour}
+                                searchID={'ISBN13'}
+                            />
                             <styles.SearchWrapper>
                                 <styles.SearchButton onClick={() => this.getData('id')} colour={'accent3'}>Done</styles.SearchButton>
                             </styles.SearchWrapper>

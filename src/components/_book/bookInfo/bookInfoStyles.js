@@ -12,20 +12,6 @@ const NoTags = styled.p`
     text-align: right;
 `;
 
-const SearchBar = styled.input`
-    border: none;
-    box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.lightGrey};
-    border-radius: ${props => props.theme.styles.borderRadius};
-    outline: none;
-    flex: 1;
-    font-size: 1.1rem;
-    padding: 0.4rem 0.4rem;
-
-    &:focus {
-        box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.primary};
-    }
-`;
-
 const Dropdown = styled.select`
     border: none;
     box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.lightGrey};
@@ -41,8 +27,9 @@ const Dropdown = styled.select`
     }
 `;
 
-const SearchLabel = styled.p`
-    display: inline-block;
+
+const InputWrapper = styled.div`
+    margin-bottom: calc(${props => props.theme.styles.boxSpacing});
 `;
 
 const SearchWrapper = styled.div`
@@ -56,22 +43,36 @@ const SearchWrapper = styled.div`
     }
 `;
 
+const SearchLabel = styled.p`
+    display: inline-block;
+`;
+
 const SearchButton = WhiteButton.extend`
     font-size: 1rem;
     display: inline-block;
 `;
 
-const InputWrapper = styled.div`
-    margin-bottom: calc(${props => props.theme.styles.boxSpacing});
+const SearchBar = styled.input`
+    border: none;
+    box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.lightGrey};
+    border-radius: ${props => props.theme.styles.borderRadius};
+    outline: none;
+    flex: 1;
+    font-size: 1.1rem;
+    padding: 0.4rem 0.4rem;
+
+    &:focus {
+        box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.primary};
+    }
 `;
 
 export {
     BookInfoContainer,
     NoTags,
-    SearchBar,
     Dropdown,
-    SearchLabel,
+    InputWrapper,
     SearchWrapper,
+    SearchLabel,
     SearchButton,
-    InputWrapper
+    SearchBar
 };

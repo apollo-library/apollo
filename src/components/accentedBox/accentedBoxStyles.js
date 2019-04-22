@@ -33,6 +33,7 @@ const BoxContent = styled.div`
     padding: 1.6rem;
     text-align: center;
     position: relative;
+    padding-bottom: ${props => props.tagSpacing ? "3.6rem" : "1.6rem"}
 `;
 
 const SidebarButton = WhiteButton.extend`

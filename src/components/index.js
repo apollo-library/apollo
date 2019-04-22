@@ -37,6 +37,7 @@ import ReportTable from './_report/reportTable/reportTable';
 
 import BookHistoryTable from './_book/bookHistoryTable/bookHistoryTable';
 import BookInfo from './_book/bookInfo/bookInfo';
+import BookEdit from './_book/bookEdit/bookEdit';
 
 import UserSearch from './_users/userSearch/userSearch';
 import UserItem from './_users/userItem/userItem';
@@ -71,6 +72,7 @@ export {
 
     BookHistoryTable,
     BookInfo,
+    BookEdit,
 
     UserSearch,
     UserItem
