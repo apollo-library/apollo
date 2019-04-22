@@ -28,13 +28,22 @@ class BookInfo extends Component {
 
             bookTags: [],
             allTags: [],
-            addTag: {}
+            addTag: -1
         };
 
     }
 
-    componentDidMount() {
-        this.setState({bookTags: this.props.data.tags});
+    componentDidMount = () => {
+        console.log(this.props)
+        /*Really what I want to do is run
+
+            let bookTags = await API.Books.getBookInfo(this.props.data._id);
+            this.setState({bookTags: bookTags.data.tags})
+
+        however, at this points, props doesnt contain .data._id
+
+        This does work later on once they've 'loaded'?
+        */
     }
 
     displayInformationBox = () => {
@@ -86,18 +95,22 @@ class BookInfo extends Component {
         if (box === "id") this.displayIDBox();
     }
 
-
     updateSelectedTag = (e) => {
         this.setState({addTag: e.target.value})
     }
 
-    addTag = async (tag) => {
+    addTag = async () => {
+        if (this.state.addTag === -1) {
+            return;
+        }
         let bookTags = await API.Books.getBookInfo(this.props.data._id);
 
-        let data
-        if (!bookTags.data.tags.includes(tag)) {
+        let data;
+        let selected = bookTags.data.tags.find(x => x.id === this.state.addTag)
+
+        if (selected === undefined) {
             console.log("Added tag")
-            data = await API.Books.addBookTag(this.props.data._id, tag.id);
+            data = await API.Books.addBookTag(this.props.data._id, this.state.addTag);
         }
 
         bookTags = await API.Books.getBookInfo(this.props.data._id);
@@ -211,9 +224,10 @@ class BookInfo extends Component {
                     <styles.InputWrapper>
                         <styles.SearchWrapper>
                             <styles.SearchLabel>Tag to add:  </styles.SearchLabel>
-                            <styles.Dropdown>
+                            <styles.Dropdown onChange={(e) => this.updateSelectedTag(e)} defaultValue="default">
+                                <option value="default" disabled hidden>Choose tag</option>
                                 {this.state.allTags.map((tag, index) =>
-                                    <option value={tag} key={index} onChange={(e) => this.updateSelectedTag(e)}>{tag.name}</option>
+                                    <option value={tag.id} key={tag.id}>{tag.name}</option>
                                 )}
                             </styles.Dropdown>
                             <styles.SearchButton onClick={() => this.addTag('tag', this.state.addTag)} colour={this.state.idISBN10Colour}>Add</styles.SearchButton>
@@ -225,13 +239,6 @@ class BookInfo extends Component {
                 ]
                 }
             </styles.BookInfoContainer>
-
-
-            /* removeTag = async id => {
-                await API.Tags.deleteTag(id);
-                this.updateTags();
-            } */
-
         )
     }
 }
