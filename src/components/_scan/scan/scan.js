@@ -151,7 +151,19 @@ class Scan extends Component {
 
     resetScan = async () => {
         // Clear data and reset scan box
-        await this.setState({scanStage: 'start', scannedBookData: {}, successMessage: '', candidateNumber: '', userData: []});
+        await this.setState({
+            scanStage: 'start',
+            scannedBookData: {},
+            successMessage: '',
+            candidateNumber: '',
+            userData: [],
+            newBookID: "",
+            newBookISBN10: "",
+            newBookISBN13: "",
+            newBookTitle: "",
+            newBookAuthor: "",
+            newBookPublisher: ""
+        });
         this.switchDisplay();
     }
 
