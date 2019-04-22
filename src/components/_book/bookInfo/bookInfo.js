@@ -209,6 +209,7 @@ class BookInfo extends Component {
                         data={ {
                             tags: this.props.data.tags
                         } }
+                        callback={() => this.displayTagBox()}
                         removeTag={(id) => this.removeTag(id)}
                         type="tags"
                     /> :
