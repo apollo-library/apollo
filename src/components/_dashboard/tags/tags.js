@@ -82,7 +82,6 @@ class Tags extends Component {
     }
 
     editTag = async (id) => {
-        //let currentVal = await API.Tags.getTag(id);
         if (this.state.inputValue.replace(/[^A-Za-z]+/g, '') !== "") {
             let status = await API.Tags.editTag(id,this.state.inputValue);
             if (status) {
@@ -92,8 +91,12 @@ class Tags extends Component {
         }
     }
 
-    updateInputValue = e => {
+    updateInputValue = (e, id) => {
         this.setState({inputValue: e.target.value});
+
+        if (e.keyCode === 13) {
+            this.editTag(id)
+        }
     }
 
     render() {
@@ -108,12 +111,12 @@ class Tags extends Component {
                         return <styles.Tag key={tag.id}>
                                 {(this.state.tagEditID === tag.id)
                                 ? <styles.TagContent>
-                                    <styles.TagNameEditable value={this.state.inputValue} onChange={e => this.updateInputValue(e)}></styles.TagNameEditable>
-                                    <styles.DeleteIcon src={tick} onClick={() => this.editTag(tag.id)} />
+                                    <styles.TagNameEditable value={this.state.inputValue} onChange={e => this.updateInputValue(e)} onKeyUp={e => this.updateInputValue(e, tag.id)}></styles.TagNameEditable>
+                                    <styles.Icon src={tick} onClick={() => this.editTag(tag.id)} />
                                 </styles.TagContent>
                                 : <styles.TagContent>
                                     <p onClick={() => this.makeTagEditable(tag.id, tag.name)}>{tag.name}</p>
-                                    <styles.DeleteIcon src={cross} onClick={() => this.removeTag(tag.id)} />
+                                    <styles.Icon src={cross} onClick={() => this.removeTag(tag.id)} />
                                 </styles.TagContent>
                                 }
                         </styles.Tag>

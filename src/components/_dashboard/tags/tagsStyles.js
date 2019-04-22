@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { darken } from 'polished'
+
 const AddTags = styled.div`
 `;
 
@@ -32,6 +34,7 @@ const Tag = styled.div`
     color: #ffffff;
     font-weight: 600;
     display: inline-block;
+    border-bottom: 2.5px solid ${props => darken(0.15, props.theme.colours.accent3)};
 `;
 
 const TagContent = styled.div`
@@ -39,7 +42,7 @@ const TagContent = styled.div`
     align-items: center;
 `;
 
-const DeleteIcon = styled.img`
+const Icon = styled.img`
     width: 1rem;
     margin-left: 15px;
     cursor: pointer;
@@ -60,12 +63,13 @@ const SuccessMessage = styled.p`
 `;
 
 const TagNameEditable = styled.input`
-    color: ${props => props.theme.colours.darkGrey};
-    background-color: #fff;
+    color: #ffffff
+    background-color: #a371f1;
     border: none;
     font-weight: 600;
     font-size: 1rem;
-    white-space:pre;
+    border-radius: ${props => props.theme.styles.borderRadius};
+    padding: 0 5px;
 `;
 
 export {
@@ -74,7 +78,7 @@ export {
     Tags,
     Tag,
     TagContent,
-    DeleteIcon,
+    Icon,
     ErrorMessage,
     SuccessMessage,
     TagNameEditable
