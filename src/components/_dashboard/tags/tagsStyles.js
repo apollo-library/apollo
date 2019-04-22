@@ -46,6 +46,11 @@ const Icon = styled.img`
     width: 1rem;
     margin-left: 15px;
     cursor: pointer;
+
+    &:hover ${Tag} {
+        background-color: #ff0000;
+        color: #000000;
+    }
 `;
 
 const ErrorMessage = styled.p`
@@ -63,8 +68,9 @@ const SuccessMessage = styled.p`
 `;
 
 const TagNameEditable = styled.input`
-    color: #ffffff
-    background-color: #a371f1;
+    color: #313131;
+    outline: none;
+    background-color: #c29ff7;
     border: none;
     font-weight: 600;
     font-size: 1rem;
