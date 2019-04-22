@@ -51,9 +51,7 @@ class Scan extends Component {
                     const loan = await API.Loans.getLoanInformation(data.loanID);
                     let loans = 0;
                     if (loan.data.user.loanIDs) loans = loan.data.user.loanIDs.length;
-                    console.log(loan.data.user)
                     let user = await API.Users.getUser(loan.data.user._id);
-                    console.log(user)
                     let userData = [
                                 <styles.BookInfoTitle key={0}>{loan.data.user.forename + ' ' + loan.data.user.surname + ' | ' + loan.data.user.year + '-' + loan.data.user.reg}</styles.BookInfoTitle>,
                                 <styles.BookInfoAuthor key={1}>{'Books on loan: ' + loans}</styles.BookInfoAuthor>
