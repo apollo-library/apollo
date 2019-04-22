@@ -99,13 +99,12 @@ export async function getBookHistory(id) {
 
 }
 
-/*
-export {
-    getScanBookInfo,
-    searchBooks,
-    getBookInfo,
-    addBook,
-    editBook,
-    deleteBook,
-    getBookHistory
-}*/
+export async function addBookTag(bookID,tagID) {
+    console.log('placeholder function addBookTag', bookID, tagID);
+    return true;
+}
+
+export async function removeBookTag(bookID,tagID) {
+    console.log('placeholder function removeBookTag', bookID, tagID);
+    return true;
+}
