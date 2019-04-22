@@ -10,8 +10,8 @@ import * as styles from './accentedBoxStyles.js';
 import {FlexGrow} from './../../globalStyles.js'
 
 //Images
-import openBook from './../../assets/images/open-book.svg';
-import moneyStack from './../../assets/images/money-stack.svg';
+// import openBook from './../../assets/images/open-book.svg';
+// import moneyStack from './../../assets/images/money-stack.svg';
 
 //Config
 import config from '../../config'
@@ -135,22 +135,22 @@ class AccentedBox extends Component {
                         <styles.SidebarButton colour={this.props.gradFrom}>View All History</styles.SidebarButton>
                     </Link>
                 </styles.BoxContent>
-        } else if (typeOfBox === "latestBook") {
-            boxContent =
-                <styles.BoxContent>
-                    <styles.BookTitle>{this.props.studentDetails.latestBook.title}</styles.BookTitle>
-                    <styles.BookAuthor>{this.props.studentDetails.latestBook.author}</styles.BookAuthor>
-                    <styles.SidebarButton colour={this.props.gradFrom}>View History</styles.SidebarButton>
-                    <styles.BackImage src={openBook} />
-                </styles.BoxContent>
-        } else if (typeOfBox === "fines") {
-            boxContent =
-                <styles.BoxContent>
-                    <styles.StudentFine>{this.props.studentDetails.currentFine}</styles.StudentFine>
-                    <styles.FineDetails>Fines occur at £{config.main.fineRate} per day</styles.FineDetails>
-                    <styles.SidebarButton colour={this.props.gradFrom}>View Fines</styles.SidebarButton>
-                    <styles.BackImage src={moneyStack} />
-                </styles.BoxContent>
+        // }else if (typeOfBox === "latestBook") {
+        //     boxContent =
+        //         <styles.BoxContent>
+        //             <styles.BookTitle>{this.props.studentDetails.latestBook.title}</styles.BookTitle>
+        //             <styles.BookAuthor>{this.props.studentDetails.latestBook.author}</styles.BookAuthor>
+        //             <styles.SidebarButton colour={this.props.gradFrom}>View History</styles.SidebarButton>
+        //             <styles.BackImage src={openBook} />
+        //         </styles.BoxContent>
+        // } else if (typeOfBox === "fines") {
+        //     boxContent =
+        //         <styles.BoxContent>
+        //             <styles.StudentFine>{this.props.studentDetails.currentFine}</styles.StudentFine>
+        //             <styles.FineDetails>Fines occur at £{config.main.fineRate} per day</styles.FineDetails>
+        //             <styles.SidebarButton colour={this.props.gradFrom}>View Fines</styles.SidebarButton>
+        //             <styles.BackImage src={moneyStack} />
+        //         </styles.BoxContent>
         } else if (typeOfBox === "rate") {
             boxContent =
                 <styles.BoxContent>
