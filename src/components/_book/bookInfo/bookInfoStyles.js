@@ -26,6 +26,21 @@ const SearchBar = styled.input`
     }
 `;
 
+const Dropdown = styled.select`
+    border: none;
+    box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.lightGrey};
+    border-radius: ${props => props.theme.styles.borderRadius};
+    outline: none;
+    flex: 1;
+    font-size: 1.1rem;
+    padding: 0.4rem 0.4rem;
+    outline: none;
+
+    &:focus {
+        box-shadow: inset 0px 0px 0px 2px ${props => props.theme.colours.primary};
+    }
+`;
+
 const SearchLabel = styled.p`
     display: inline-block;
 `;
@@ -37,7 +52,7 @@ const SearchWrapper = styled.div`
     justify-content: center;
     padding: 0 calc(${props => props.theme.styles.boxSpacing});
     & * {
-     margin: 5px;   
+     margin: 5px;
     }
 `;
 
@@ -54,6 +69,7 @@ export {
     BookInfoContainer,
     NoTags,
     SearchBar,
+    Dropdown,
     SearchLabel,
     SearchWrapper,
     SearchButton,
