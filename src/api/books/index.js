@@ -101,8 +101,10 @@ export async function getBookHistory(id) {
 
 export async function addBookTag(bookID,tagID) {
     console.log('placeholder function addBookTag', bookID, tagID);
+    return true;
 }
 
 export async function removeBookTag(bookID,tagID) {
     console.log('placeholder function removeBookTag', bookID, tagID);
+    return true;
 }
