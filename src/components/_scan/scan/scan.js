@@ -115,7 +115,6 @@ class Scan extends Component {
             if (data.code === "003") this.setError('User not found'); // Candidate number not found
             else {
                 let loans = 0;
-                console.log(data.data)
                 if (data.data.loans) loans = data.data.loans.length;
                 await this.setState({
                     userData:   [<styles.BookInfoTitle key={0}>{data.data.forename + ' ' + data.data.surname + ' | ' + data.data.year + '-' + data.data.reg}</styles.BookInfoTitle>,
