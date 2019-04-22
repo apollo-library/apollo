@@ -36,6 +36,7 @@ const Item = styled.p`
     display: flex;
     align-items: center;
     position: relative;
+    pointer-events: none;
 
     &::after {
         content: '';
@@ -60,6 +61,8 @@ const Item = styled.p`
 
 const ItemLink = styled(Link)`
     color: inherit;
+    display: block;
+    pointer-events: all;
 `;
 
 const Grow = styled.li`
