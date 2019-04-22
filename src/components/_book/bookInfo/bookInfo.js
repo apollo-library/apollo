@@ -24,7 +24,10 @@ class BookInfo extends Component {
             informationPublisherColour: 'primary',
 
             idISBN10Colour: 'primary',
-            idISBN13Colour: 'primary'
+            idISBN13Colour: 'primary',
+
+            allTags: [],
+            addTag: -1
         };
 
     }
@@ -44,10 +47,6 @@ class BookInfo extends Component {
             idISBN13Colour: 'primary',
             idBox: true
         });
-    }
-
-    displayTagsBox = () => {
-        console.log('placeholder')
     }
 
     formatDueDate = (date) => {
@@ -82,8 +81,50 @@ class BookInfo extends Component {
         if (box === "id") this.displayIDBox();
     }
 
-    editTags = () => {
-        console.log('tags')
+    updateSelectedTag = (e) => {
+        this.setState({addTag: e.target.value})
+    }
+
+    addTag = async () => {
+        if (this.state.addTag === -1) {
+            return;
+        }
+
+        let data;
+        let selected = this.props.data.tags.find(x => {x.id === this.state.addTag});
+        //console.log(selected)
+
+        //TODO: Change this value to be what is actually returned form server
+        if (selected === undefined) {
+            console.log("Added tag")
+            data = await API.Books.addBookTag(this.props.data._id, this.state.addTag);
+        }
+
+        if (data) {
+            //Sucessfully added new tag
+            this.props.updateData();
+            this.setState({tagsBox: true});
+            this.setState({addTag: -1});
+        }
+    }
+
+    displayTagBox = async () => {
+        let allTags = await API.Tags.getAllTags();
+        this.setState({allTags: allTags})
+        this.setState({tagsBox: false})
+    }
+
+
+    removeTag = async (id) => {
+        console.log("tag " + id);
+        let res = await API.Books.removeBookTag(this.props.data._id, id);
+
+        //TODO: Check this works with new data from server
+        if (res) {
+            //Sucessfully removed tag
+            console.log("Removed tag" + id)
+            this.props.updateData();
+        }
     }
 
     render = () => {
@@ -103,8 +144,8 @@ class BookInfo extends Component {
                         callback={() => this.setState({informationBox: false})}
                         type="bookTitleAuthorPublisher"
                     /> : [
-                    <AccentedBox title="Book Information" gradFrom="accent5" gradTo="accent4" />,
-                    <styles.InputWrapper>
+                    <AccentedBox key={0} title="Book Information" gradFrom="accent5" gradTo="accent4" />,
+                    <styles.InputWrapper key={1}>
                         <styles.SearchWrapper>
                             <styles.SearchLabel>Title:  </styles.SearchLabel>
                             <styles.SearchBar innerRef={(input) => { this.title = input }} ></styles.SearchBar>
@@ -140,8 +181,8 @@ class BookInfo extends Component {
                         callback={() => this.setState({idBox: false})}
                         type="bookIDs"
                     /> : [
-                        <AccentedBox title="ISBN and ID" gradFrom="accent1" gradTo="accent2" />,
-                        <styles.InputWrapper>
+                        <AccentedBox key={0} title="ISBN and ID" gradFrom="accent1" gradTo="accent2" />,
+                        <styles.InputWrapper key={1}>
                             <styles.SearchWrapper>
                                 <styles.SearchLabel>ISBN10:  </styles.SearchLabel>
                                 <styles.SearchBar innerRef={(input) => { this.isbn10 = input }} ></styles.SearchBar>
@@ -168,17 +209,35 @@ class BookInfo extends Component {
                         data={ {
                             tags: this.props.data.tags
                         } }
-                        callback={this.editTags}
+                        callback={() => this.displayTagBox()}
+                        removeTag={(id) => this.removeTag(id)}
                         type="tags"
                     /> :
                     <AccentedBox
                         title="Tags"
                         gradFrom="accent3"
                         gradTo="accent4"
-                        callback={this.editTags}
+                        callback={() => this.displayTagBox()}
                         type="noTags"
                     />
-                : []
+                : [
+                    <AccentedBox key={0} title="Tags" gradFrom="accent3" gradTo="accent4" />,
+                    <styles.InputWrapper key={1}>
+                        <styles.SearchWrapper>
+                            <styles.SearchLabel>Tag to add:  </styles.SearchLabel>
+                            <styles.Dropdown onChange={(e) => this.updateSelectedTag(e)} defaultValue="default">
+                                <option value="default" disabled hidden>Choose tag</option>
+                                {this.state.allTags.map((tag, index) =>
+                                    <option value={tag.id} key={tag.id}>{tag.name}</option>
+                                )}
+                            </styles.Dropdown>
+                            <styles.SearchButton onClick={() => this.addTag('tag', this.state.addTag)} colour={this.state.idISBN10Colour}>Add</styles.SearchButton>
+                        </styles.SearchWrapper>
+                        <styles.SearchWrapper>
+                            <styles.SearchButton onClick={() => this.setState({tagsBox: true})} colour={'accent3'}>Done</styles.SearchButton>
+                        </styles.SearchWrapper>
+                    </styles.InputWrapper>
+                ]
                 }
             </styles.BookInfoContainer>
         )

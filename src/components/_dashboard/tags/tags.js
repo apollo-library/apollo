@@ -103,7 +103,7 @@ class Tags extends Component {
                 {(this.state.successMessage) ? <styles.SuccessMessage>{this.state.successMessage}</styles.SuccessMessage> : null}
                 <styles.Tags>
 
-                    {this.state.tags.map((tag, index) => 
+                    {this.state.tags.map((tag, index) =>
                         <styles.Tag key={tag.id}>
                                 {(this.state.tagEditID === tag.id)
                                 ? <styles.TagContent>

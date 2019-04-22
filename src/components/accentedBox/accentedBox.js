@@ -16,6 +16,9 @@ import {FlexGrow} from './../../globalStyles.js'
 //Config
 import config from '../../config'
 
+import cross from './../../assets/images/circle-cross.svg';
+
+
 //Redux
 import { connect } from 'react-redux'
 import { actions } from './../../store/actions.js'
@@ -108,14 +111,19 @@ class AccentedBox extends Component {
             boxContent =
                 <styles.BoxContent>
                     {this.props.data.tags.map((tag, index) => {
-                        return <styles.Tag key={index}>{tag}</styles.Tag>
+                        return <styles.Tag key={index}>
+                                <styles.TagContent>
+                                    <p>{tag}</p>
+                                    <styles.Icon src={cross} onClick={(tag) => this.props.removeTag(tag.id)} />
+                                </styles.TagContent>
+                            </styles.Tag>
                     })}
-                    <styles.EditButton onClick={() => this.props.callback()} colour={this.props.gradFrom}>Edit</styles.EditButton>
+                    <styles.EditButton onClick={() => this.props.callback()} colour={this.props.gradFrom}>Add Tag</styles.EditButton>
                 </styles.BoxContent>
         } else if (typeOfBox === "noTags") {
             boxContent = <styles.BoxContent>
                     <styles.Tag>No Tags</styles.Tag>
-                    <styles.EditButton onClick={() => this.props.callback()} colour={this.props.gradFrom}>Edit</styles.EditButton>
+                    <styles.EditButton onClick={() => this.props.callback()} colour={this.props.gradFrom}>Add Tag</styles.EditButton>
                 </styles.BoxContent>
         } else if (typeOfBox === "onLoan") {
             boxContent =
