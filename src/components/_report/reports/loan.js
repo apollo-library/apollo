@@ -17,6 +17,7 @@ class Loan extends Component {
 
     componentDidMount = async () => {
         let data = await API.Loans.getLoans();
+        console.log(data)
         let tableData = data.data.map((item) => {
             return [
                 {style: "bold", url: "/book/" + item.raw.book._id, display: item.display.title},
