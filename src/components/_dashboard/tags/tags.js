@@ -1,6 +1,8 @@
 //React imports
 import React, { Component } from 'react';
 
+import { AlertBox } from './../../';
+
 import * as API from './../../../api';
 
 import cross from './../../../assets/images/circle-cross.svg';
@@ -17,7 +19,8 @@ class Tags extends Component {
             searchState: false,
             errorMessage: false,
             successMessage: false,
-            tagEditID: false
+            tagEditID: false,
+            tagPrompt: null
         };
     }
 
@@ -72,9 +75,24 @@ class Tags extends Component {
         return await API.Tags.addTag(tagName);
     }
 
+    removeTagPrompt = async (id,name) => {
+        this.setState({
+            tagPrompt: <AlertBox
+                text={"Deleting tag '" + name + "' is permanent. Continue?"}
+                id={id}
+                name={name}
+                successCallback={() => this.removeTag(id)}
+                failureCallback={() => this.setState({tagPrompt: null})}
+                successText='Delete'
+                failureText='Cancel'
+                />})
+        // this.removeTag(id)
+    }
+
     removeTag = async id => {
         await API.Tags.deleteTag(id);
         this.updateTags();
+        this.setState({tagPrompt: null});
     }
 
     makeTagEditable = (id,name) => {
@@ -96,8 +114,8 @@ class Tags extends Component {
     tagKeyUpHandler = (e, id) => (e.keyCode === 13) ? this.editTag(id) : null;
 
     render() {
-        return (
-            <styles.AddTags>
+        return ([
+            <styles.AddTags key={0}>
                 <styles.AddTagName state={this.state.searchState} onKeyUp={(e) => this.addTagEvent(e)} placeholder="New Tag Name" />
                 {(this.state.errorMessage) ? <styles.ErrorMessage>{this.state.errorMessage}</styles.ErrorMessage> : null}
                 {(this.state.successMessage) ? <styles.SuccessMessage>{this.state.successMessage}</styles.SuccessMessage> : null}
@@ -116,14 +134,15 @@ class Tags extends Component {
                                 </styles.TagContent>
                                 : <styles.TagContent>
                                     <p onClick={() => this.makeTagEditable(tag.id, tag.name)}>{tag.name}</p>
-                                    <styles.Icon src={cross} onClick={() => this.removeTag(tag.id)} />
+                                    <styles.Icon src={cross} onClick={() => this.removeTagPrompt(tag.id, tag.name)} />
                                 </styles.TagContent>
                                 }
                         </styles.Tag>
                     )}
                 </styles.Tags>
-            </styles.AddTags>
-        );
+            </styles.AddTags>,
+            this.state.tagPrompt
+        ]);
     }
 }
 

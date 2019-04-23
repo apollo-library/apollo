@@ -15,6 +15,7 @@ import NotificationBox from './_navbar/notificationBox/notificationBox';
 import AccentedBox from './accentedBox/accentedBox';
 import ContentTabs from './contentTabs/contentTabs';
 import BookTable from './bookTable/bookTable';
+import AlertBox from './alertBox/alertBox';
 
 import Fines from './_dashboard/fines/fines';
 import Tags from './_dashboard/tags/tags';
@@ -50,6 +51,7 @@ export {
     AccentedBox,
     ContentTabs,
     BookTable,
+    AlertBox,
 
     Fines,
     Tags,

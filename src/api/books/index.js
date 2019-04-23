@@ -17,6 +17,7 @@ export async function getScanBookInfo(id) {
 }
 
 export async function searchBooks(query) {
+    console.log(query)
     let filters = "";
 
     query.filters.forEach((tag, index) => {
