@@ -3,8 +3,6 @@ import React from 'react';
 
 import {WhiteButton, Button} from './../../globalStyles.js'
 
-import config from './../../config';
-
 //Styles
 import * as styles from './alertBoxStyles.js'
 
