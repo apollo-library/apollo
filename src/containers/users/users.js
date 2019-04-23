@@ -4,7 +4,9 @@ import React, { Component } from 'react';
 //Component imports
 import {AccentedBox, UserSearch, BookTable} from './../../components';
 
-import {CenterColumn, LeftColumn, RightColumn, PageTitle} from './../../globalStyles.js'
+import {CenterColumn, LeftColumn, RightColumn, BottomLogo, PageTitle} from './../../globalStyles.js'
+
+import logo from './../../assets/images/logo.svg'
 
 //Redux
 import { connect } from 'react-redux'
@@ -149,6 +151,7 @@ class Users extends Component {
                                buttonText="Details"
                                callback={this.displayUserInfo}
                            />
+                       <BottomLogo src={logo} />
                     </RightColumn>
                 </CenterColumn>
                 <div style={{marginTop: config.styles.boxSpacing}} />

@@ -4,13 +4,14 @@ import React, { Component } from 'react';
 //Component imports
 import {TagSearch, TagItem, BookSearch, BookTable} from './../../components';
 
-import {CenterColumn, LeftColumn, RightColumn, PageTitle} from './../../globalStyles.js'
+import {CenterColumn, LeftColumn, RightColumn, BottomLogo, PageTitle} from './../../globalStyles.js'
 
 //Redux
 import { connect } from 'react-redux'
 import { actions } from './../../store/actions.js'
 import store from './../../store'
 
+import logo from './../../assets/images/logo.svg'
 
 import * as API from './../../api';
 
@@ -135,6 +136,7 @@ class Catalogue extends Component {
                                ]}
                                buttonText="Details"
                            />
+                       <BottomLogo src={logo} />
                     </RightColumn>
                 </CenterColumn>
                 <div style={{marginTop: config.styles.boxSpacing}} />
