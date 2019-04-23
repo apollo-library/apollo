@@ -35,6 +35,11 @@ const Tag = styled.div`
     font-weight: 600;
     display: inline-block;
     border-bottom: 2.5px solid ${props => darken(0.15, props.theme.colours.accent3)};
+
+    &:hover {
+        box-shadow: 0px 3px 7px rgba(73,73,73,0.4);
+        transform: translateY(-1px);
+    }
 `;
 
 const TagContent = styled.div`

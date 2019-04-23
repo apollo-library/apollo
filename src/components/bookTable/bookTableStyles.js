@@ -77,7 +77,7 @@ const TableButton = styled.div`
     flex: 1;
     display: flex;
     align-items: center;
-    padding: 0.25rem;
+    padding: 0.5rem;
 `;
 
 export {

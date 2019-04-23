@@ -75,6 +75,13 @@ const DangerTitle = styled.p`
     border-bottom: ${props => props.theme.colours.accent6} 2px solid;
 `;
 
+const DeleteButton = styled.div`
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+`;
+
 export {
     BookInfoContainer,
     NoTags,
@@ -84,5 +91,6 @@ export {
     SearchLabel,
     SearchButton,
     SearchBar,
-    DangerTitle
+    DangerTitle,
+    DeleteButton
 };

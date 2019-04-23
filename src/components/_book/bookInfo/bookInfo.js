@@ -284,7 +284,9 @@ class BookInfo extends Component {
                 ]
                 }
                 <styles.DangerTitle>Danger Section:</styles.DangerTitle>
-                <Button colour="accent6" onClick={() => this.deleteBookPrompt()}>Delete Book</Button>
+                <styles.DeleteButton>
+                    <Button colour="accent6" onClick={() => this.deleteBookPrompt()}>Delete Book</Button>
+                </styles.DeleteButton>
                 {this.state.deletePrompt}
             </styles.BookInfoContainer>
         )
