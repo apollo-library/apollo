@@ -63,10 +63,10 @@ class Catalogue extends Component {
 
     tagActive(tagName) {
         let index = this.props.catalogueTags.findIndex(tag => tag.name === tagName)
-
-        if (this.props.catalogueTags[index].selected) {
+        
+        if (index !== -1 && this.props.catalogueTags[index].selected) {
             return true;
-        } else if (this.props.catalogueTags[index].selected === false) {
+        } else if (index !== -1 && this.props.catalogueTags[index].selected === false) {
             return false;
         }
     }
