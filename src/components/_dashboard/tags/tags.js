@@ -79,14 +79,12 @@ class Tags extends Component {
         this.setState({
             tagPrompt: <AlertBox
                 text={"Deleting tag '" + name + "' is permanent. Continue?"}
-                id={id}
-                name={name}
                 successCallback={() => this.removeTag(id)}
                 failureCallback={() => this.setState({tagPrompt: null})}
                 successText='Delete'
                 failureText='Cancel'
-                />})
-        // this.removeTag(id)
+            />
+        });
     }
 
     removeTag = async id => {

@@ -73,6 +73,7 @@ export async function addBook(data) {
         body: body
     });
     let json = await Functions.Data.parseJSON(response);
+    console.log(json)
     if (json.code === "000") return true;
     else return false;
 }
@@ -92,8 +93,16 @@ export async function editBook(book, type, val) {
 }
 
  export async function deleteBook(id) {
-    // <- id
-    // <- ?
+    let response = await fetch(serverPath + '/book/' + String(id), {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    });
+
+    let json = await Functions.Data.parseJSON(response);
+    if (json.code === "000") return true;
+    return false;
 }
 
 export async function getBookHistory(id) {

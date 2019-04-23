@@ -1,13 +1,16 @@
 //React imports
 import React, { Component } from 'react';
 
+import { Redirect } from 'react-router-dom';
+
 //Styles
-import * as styles from './bookInfoStyles.js'
+import * as styles from './bookInfoStyles.js';
+import {Button} from './../../../globalStyles';
 
 import * as API from './../../../api';
 
 //Componenets
-import {AccentedBox, BookEdit} from './../../';
+import {AccentedBox, BookEdit, AlertBox} from './../../';
 
 
 class BookInfo extends Component {
@@ -33,7 +36,9 @@ class BookInfo extends Component {
             inputAuthor: '',
             inputPublisher: '',
             inputISBN10: '',
-            inputISBN13: ''
+            inputISBN13: '',
+
+            deletePrompt: null
         };
 
     }
@@ -134,6 +139,24 @@ class BookInfo extends Component {
             console.log("Removed tag" + id)
             this.props.updateData();
         }
+    }
+
+    deleteBookPrompt = async () => {
+        console.log(this.props.data)
+        this.setState({
+            deletePrompt: <AlertBox
+                text={"Deleting book '" + this.props.data.title + "' is permanent. Continue?"}
+                successCallback={() => this.deleteBook(this.props.data._id)}
+                failureCallback={() => this.setState({deletePrompt: null})}
+                successText='Delete'
+                failureText='Cancel'
+            />
+        });
+    }
+
+    deleteBook = async (id) => {
+        let response = await API.Books.deleteBook(id);
+        if (response) this.setState({deletePrompt: <Redirect to='/catalogue' />});
     }
 
     render = () => {
@@ -264,6 +287,9 @@ class BookInfo extends Component {
                     </styles.InputWrapper>
                 ]
                 }
+                <styles.DangerTitle>Danger Section:</styles.DangerTitle>
+                <Button colour="accent6" onClick={() => this.deleteBookPrompt()}>Delete Book</Button>
+                {this.state.deletePrompt}
             </styles.BookInfoContainer>
         )
     }

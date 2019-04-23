@@ -11,8 +11,8 @@ import * as styles from './alertBoxStyles.js'
 export default function AlertBox(props) {
     return (
         [
-            <styles.AlertBoxHide></styles.AlertBoxHide>,
-            <styles.AlertBoxWrapper>
+            <styles.AlertBoxHide key={0}></styles.AlertBoxHide>,
+            <styles.AlertBoxWrapper key={1}>
                 <styles.BoxContent>
                     <styles.AlertTitle>{props.text}</styles.AlertTitle>
                     <styles.ButtonWrapper>

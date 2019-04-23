@@ -66,6 +66,15 @@ const SearchBar = styled.input`
     }
 `;
 
+const DangerTitle = styled.p`
+    color: ${props => props.theme.colours.darkGrey};
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border-bottom: ${props => props.theme.colours.accent6} 2px solid;
+`;
+
 export {
     BookInfoContainer,
     NoTags,
@@ -74,5 +83,6 @@ export {
     SearchWrapper,
     SearchLabel,
     SearchButton,
-    SearchBar
+    SearchBar,
+    DangerTitle
 };
