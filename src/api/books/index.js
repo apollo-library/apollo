@@ -17,7 +17,6 @@ export async function getScanBookInfo(id) {
 }
 
 export async function searchBooks(query) {
-    console.log(query)
     let filters = "";
 
     query.filters.forEach((tag, index) => {
@@ -46,8 +45,8 @@ export async function getBookInfo(id) {
 
 export async function addBook(data) {
     // Accepts data in the form of:
-    /* 
-    {   
+    /*
+    {
         id: "",
         isbn10: "",
         isbn13: "",
@@ -73,7 +72,7 @@ export async function addBook(data) {
         body: body
     });
     let json = await Functions.Data.parseJSON(response);
-    console.log(json)
+    
     if (json.code === "000") return true;
     else return false;
 }

@@ -72,7 +72,7 @@ class Users extends Component {
     async displayUserInfo(id) {
         let userInfo = await API.Users.getUser(id);
         let userHistory = await API.Users.getUserHistory(id);
-        //console.log(userInfo)
+        
         this.setState({
             userInfo: userInfo.data,
             userHistory: userHistory.data,

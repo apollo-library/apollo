@@ -49,8 +49,6 @@ class Catalogue extends Component {
             return tags;
         })
 
-        console.log(tags)
-
         store.dispatch(actions.pushAllTags(tags));
 
         //Update filteredTags so list isn't empty

@@ -14,7 +14,6 @@ class ContentTabs extends Component {
 
     static getDerivedStateFromProps(nextProps, prevState) {
         if (prevState.tabs !== nextProps.tabs) {
-            //console.log(nextProps.tabs)
             return {
                 tabs: nextProps.tabs
             }

@@ -110,7 +110,6 @@ class BookInfo extends Component {
         let selected = this.props.data.tags.find(x => x === this.state.addTag);
 
         if (!selected) {
-            console.log("Added tag")
             data = await API.Books.addBookTag(this.props.data._id, this.state.addTag);
         }
 
@@ -130,19 +129,16 @@ class BookInfo extends Component {
 
 
     removeTag = async (id) => {
-        console.log("tag " + id);
         let res = await API.Books.removeBookTag(this.props.data._id, id);
 
         //TODO: Check this works with new data from server
         if (res) {
             //Sucessfully removed tag
-            console.log("Removed tag" + id)
             this.props.updateData();
         }
     }
 
     deleteBookPrompt = async () => {
-        console.log(this.props.data)
         this.setState({
             deletePrompt: <AlertBox
                 text={"Deleting book '" + this.props.data.title + "' is permanent. Continue?"}

@@ -36,7 +36,6 @@ class Report extends Component {
         } else {
             this.setState({bookData: data});
             const history = await API.History.getBookHistory(param);
-            // console.log(history.data)
 
             let historyParse = history.data.map((item) => {
                 let user;
