@@ -130,6 +130,7 @@ const Tag = styled.div`
     font-weight: 600;
     display: inline-block;
     border-bottom: 2.5px solid ${props => darken(0.15, props.theme.colours.accent3)};
+    box-shadow: 0px 3px 3px rgba(73,73,73,0.20);
 
     &:hover {
         box-shadow: 0px 3px 7px rgba(73,73,73,0.4);
