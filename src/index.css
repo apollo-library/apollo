@@ -1,16 +1,16 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "proxima_novaregular", sans-serif;
+  font-family: "open_sansregular", sans-serif;
   box-sizing: border-box;
   overflow: hidden;
   text-decoration: none;
 }
 
 @font-face {
-    font-family: 'proxima_novaregular';
-    src: url('./fonts/proximanova-regular-webfont.woff2') format('woff2'),
-         url('./fonts/proximanova-regular-webfont.woff') format('woff');
+    font-family: 'open_sansregular';
+    src: url('./fonts/opensans-regular-webfont.woff2') format('woff2'),
+         url('./fonts/opensans-regular-webfont.woff') format('woff');
 }
 
 html {
