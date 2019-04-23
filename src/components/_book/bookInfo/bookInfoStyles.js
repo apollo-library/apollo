@@ -67,12 +67,12 @@ const SearchBar = styled.input`
 `;
 
 const DangerTitle = styled.p`
-    color: ${props => props.theme.colours.darkGrey};
+    color: ${props => props.theme.colours.accent6};
     font-weight: 600;
     font-size: 1.2rem;
     padding-bottom: 5px;
     margin-bottom: 10px;
-    border-bottom: ${props => props.theme.colours.accent6} 2px solid;
+    border-bottom: ${props => props.theme.colours.lightGrey} 2px solid;
 `;
 
 const DeleteButton = styled.div`

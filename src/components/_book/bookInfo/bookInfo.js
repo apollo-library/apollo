@@ -283,7 +283,7 @@ class BookInfo extends Component {
                     </styles.InputWrapper>
                 ]
                 }
-                <styles.DangerTitle>Danger Section:</styles.DangerTitle>
+                <styles.DangerTitle>⚠ Danger Zone ⚠</styles.DangerTitle>
                 <styles.DeleteButton>
                     <Button colour="accent6" onClick={() => this.deleteBookPrompt()}>Delete Book</Button>
                 </styles.DeleteButton>

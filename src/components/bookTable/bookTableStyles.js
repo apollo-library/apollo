@@ -80,6 +80,13 @@ const TableButton = styled.div`
     padding: 0.5rem;
 `;
 
+const DueDateTitle = styled.div`
+    color: ${props => props.theme.colours.darkGrey};
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-bottom: calc(${props => props.theme.styles.boxSpacing} / 2);
+`;
+
 export {
     Table,
     TableHeader,
@@ -89,5 +96,6 @@ export {
     Star,
     TableLink,
     StarPath,
-    TableButton
+    TableButton,
+    DueDateTitle
 };

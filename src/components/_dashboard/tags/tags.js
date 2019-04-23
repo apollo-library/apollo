@@ -85,7 +85,7 @@ class Tags extends Component {
 
     removeTagPrompt = async (id,name) => {
         this.setState({
-            tagPrompt: <AlertBox
+            tagPrompt: <AlertBox key={1}
                 text={"Deleting tag '" + name + "' is permanent. Continue?"}
                 successCallback={() => this.removeTag(id)}
                 failureCallback={() => this.setState({tagPrompt: null})}
@@ -106,7 +106,7 @@ class Tags extends Component {
     }
 
     editTag = async (id) => {
-        if (this.state.inputValue.replace(/[^A-Za-z]+/g, '') !== "") {
+        if (this.state.inputValue.replace(/[^A-Za-z0-9]+/g, '') !== "") {
             let status = await API.Tags.editTag(id,this.state.inputValue);
             if (status) {
                 await this.updateTags();

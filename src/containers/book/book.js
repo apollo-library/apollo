@@ -32,9 +32,13 @@ class Report extends Component {
         const param = this.props.match.params.book;
 
         const data = await API.Books.getBookInfo(param);
+        
+        let dueDate
+        if (data.data.loanID) {
+            const loanInfo = await API.Loans.getLoanInformation(data.data.loanID);
+            dueDate = loanInfo.data.loan.dueDate;
+        }
 
-        const loanInfo = await API.Loans.getLoanInformation(data.data.loanID);
-        const dueDate = loanInfo.data.loan.dueDate;
 
         this.setState({dueDate: dueDate})
 
