@@ -52,6 +52,8 @@ class AccentedBox extends Component {
             boxContent =
                 <styles.BoxContent tagSpacing>
                     {this.props.data.tags.map((tag, index) => {
+                        let tagFind = this.props.allTags.find((t) => t.id === tag);
+                        if (!tagFind) return null;
                         return <styles.Tag key={index}>
                                 <styles.TagContent>
                                     <p>{(this.props.allTags.find((t) => t.id === tag))
