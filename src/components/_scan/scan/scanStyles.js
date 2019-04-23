@@ -36,6 +36,10 @@ const ScanButton = styled.div`
 const ResetButton = styled.div`
     margin: ${props => props.theme.styles.boxSpacing};
     float: right;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 0.25rem;
 `;
 
 const BottomInfo = styled.div`
