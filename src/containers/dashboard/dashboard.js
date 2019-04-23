@@ -55,8 +55,8 @@ class Dashboard extends Component {
                             tabs={[
                                 {
                                     title: "Fines",
-                                    componentToShow: <Fines colour="accent5"/>,
-                                    colour: "accent5",
+                                    componentToShow: <Fines colour="accent2"/>,
+                                    colour: "accent2",
                                     active: true
                                 },
                                 {

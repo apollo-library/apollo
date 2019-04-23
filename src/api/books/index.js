@@ -4,6 +4,8 @@ import * as Functions from './../_functions/';
 //Config
 import config from './../config.js';
 
+import { Loans } from './../';
+
 //Not have to refer to config everytime
 const serverPath = config.serverPath;
 
@@ -92,6 +94,14 @@ export async function editBook(book, type, val) {
 }
 
  export async function deleteBook(id) {
+    const data = await getBookInfo(id);
+
+    if (data.data.loanID) {
+        // Detected the book is currently on loan - returning book
+        const rtn = await Loans.returnBook(id);
+        if (rtn.status !== "success") return false;
+    }
+
     let response = await fetch(serverPath + '/book/' + String(id), {
         method: "DELETE",
         headers: {
