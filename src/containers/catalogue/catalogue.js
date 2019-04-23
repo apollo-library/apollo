@@ -40,12 +40,15 @@ class Catalogue extends Component {
         rawTags.map(function(tag, i){
             let tagObj = {
                 name: tag.name,
+                id: tag.id,
                 selected: false
             }
 
             tags.push(tagObj);
             return tags;
         })
+
+        console.log(tags)
 
         store.dispatch(actions.pushAllTags(tags));
 
@@ -91,14 +94,14 @@ class Catalogue extends Component {
                         {this.props.catalogueTags.map((tag, index) => {
                             if (this.tagActive(tag.name)) {
                                 activeTags++;
-                                return <TagItem key={index} tagName={tag.name} active={true} />
+                                return <TagItem key={index} tagName={tag.name} tagID={tag.id} active={true} />
                             } else return null;
                         })}
 
                         {this.props.filteredTags.map((tag, index) => {
                             if (!this.tagActive(tag.name) && tagsDisplayed < this.state.tagsToDisplay) {
                                 tagsDisplayed++;
-                                return <TagItem key={index} tagName={tag.name} active={false} />
+                                return <TagItem key={index} tagName={tag.name} tagID={tag.id} active={false} />
                             } else return null;
                         })}
 

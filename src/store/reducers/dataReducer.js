@@ -171,7 +171,7 @@ function updateFilterTagsState(state, tagName) {
     //Check if the active filters contains the one we've clicked
     if (state.searchQuery.filters.includes(tagName)) { //For IE support in the future *.includes() can be changed to *.indexOf()
         //Remove tag from query
-        let index = state.catalogue.tags.findIndex(tag => tag.name === tagName)
+        let index = state.catalogue.tags.findIndex(tag => tag.id === tagName)
 
         return update(state, {
             catalogue: {
@@ -184,7 +184,7 @@ function updateFilterTagsState(state, tagName) {
         })
     } else {
         //Add the tag to the query
-        let index = state.catalogue.tags.findIndex(tag => tag.name === tagName)
+        let index = state.catalogue.tags.findIndex(tag => tag.id === tagName)
 
         return update(state, {
             catalogue: {

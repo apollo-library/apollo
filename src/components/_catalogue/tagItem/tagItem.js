@@ -22,12 +22,12 @@ class TagItem extends Component {
         this.toggleTagState = this.toggleTagState.bind(this);
     }
 
-    async toggleTagState(tagName) {
-        await store.dispatch(actions.updateFilterTags(tagName));
-        await store.dispatch(actions.updateFilterTagsState(tagName));
+    async toggleTagState(tagName, tagID) {
+        await store.dispatch(actions.updateFilterTags(tagID));
+        await store.dispatch(actions.updateFilterTagsState(tagID));
 
         let searchResponse = await API.Books.searchBooks(this.props.searchQuery);
-
+        console.log(this.props.searchQuery)
         if (searchResponse.message === "Success") {
             //Update redux state with new books
             store.dispatch(actions.pushCatalogueBooks(searchResponse.data));
@@ -39,7 +39,7 @@ class TagItem extends Component {
 
     render() {
         return (
-            <styles.FilterItem onClick={() => this.toggleTagState(this.props.tagName)} active={this.props.active}>
+            <styles.FilterItem onClick={() => this.toggleTagState(this.props.tagName, this.props.tagID)} active={this.props.active}>
                 <styles.Checkmark active={this.props.active}/>
                 {this.props.tagName}
             </styles.FilterItem>
