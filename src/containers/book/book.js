@@ -19,7 +19,8 @@ class Report extends Component {
                     tags: []
                 }
             },
-            history: null
+            history: null,
+            dueDate: ''
         };
     }
 
@@ -31,6 +32,12 @@ class Report extends Component {
         const param = this.props.match.params.book;
 
         const data = await API.Books.getBookInfo(param);
+
+        const loanInfo = await API.Loans.getLoanInformation(data.data.loanID);
+        const dueDate = loanInfo.data.loan.dueDate;
+
+        this.setState({dueDate: dueDate})
+
         if (data.message === "Book not found") {
             //throw a temper tantrum
         } else {
@@ -68,7 +75,7 @@ class Report extends Component {
 
                     <RightColumn>
                         <PageTitle>{"History"}</PageTitle>
-                        <BookHistoryTable data={this.state.history}></BookHistoryTable>
+                        <BookHistoryTable dueDate={this.state.dueDate} data={this.state.history}></BookHistoryTable>
                     </RightColumn>
                 </CenterColumn>
             </div>
