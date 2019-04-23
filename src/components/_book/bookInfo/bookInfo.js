@@ -38,6 +38,11 @@ class BookInfo extends Component {
 
     }
 
+    componentDidMount = async () => {
+        const tags = await API.Tags.getAllTags();
+        this.setState({allTags: tags});
+    }
+
     // Handlers for input boxes
     updateInputTitle = e => this.setState({inputTitle: e.target.value});
     updateInputAuthor = e => this.setState({inputAuthor: e.target.value});
@@ -97,11 +102,9 @@ class BookInfo extends Component {
         }
 
         let data;
-        let selected = this.props.data.tags.find(x => x.id === this.state.addTag);
-        //console.log(selected)
+        let selected = this.props.data.tags.find(x => x === this.state.addTag);
 
-        //TODO: Change this value to be what is actually returned form server
-        if (selected === undefined) {
+        if (!selected) {
             console.log("Added tag")
             data = await API.Books.addBookTag(this.props.data._id, this.state.addTag);
         }
@@ -230,8 +233,9 @@ class BookInfo extends Component {
                         data={ {
                             tags: this.props.data.tags
                         } }
+                        allTags={this.state.allTags}
                         callback={() => this.displayTagBox()}
-                        removeTag={(id) => this.removeTag(id)}
+                        removeTag={this.removeTag}
                         type="tags"
                     /> :
                     <AccentedBox

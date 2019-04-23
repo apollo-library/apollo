@@ -31,7 +31,6 @@ class Report extends Component {
         const param = this.props.match.params.book;
 
         const data = await API.Books.getBookInfo(param);
-
         if (data.message === "Book not found") {
             //throw a temper tantrum
         } else {

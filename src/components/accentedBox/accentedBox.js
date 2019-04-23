@@ -54,8 +54,10 @@ class AccentedBox extends Component {
                     {this.props.data.tags.map((tag, index) => {
                         return <styles.Tag key={index}>
                                 <styles.TagContent>
-                                    <p>{tag}</p>
-                                    <styles.Icon src={cross} onClick={(tag) => this.props.removeTag(tag.id)} />
+                                    <p>{(this.props.allTags.find((t) => t.id === tag))
+                                        ? this.props.allTags.find((t) => t.id === tag).name : null
+                                    }</p>
+                                    <styles.Icon src={cross} onClick={() => this.props.removeTag(tag)} />
                                 </styles.TagContent>
                             </styles.Tag>
                     })}

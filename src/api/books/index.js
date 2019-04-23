@@ -100,11 +100,58 @@ export async function getBookHistory(id) {
 }
 
 export async function addBookTag(bookID,tagID) {
-    console.log('placeholder function addBookTag', bookID, tagID);
+    // Get tags currently on the book
+    let currentData = await getBookInfo(bookID);
+    if (currentData.code !== "000") return false;
+
+    let overlapTags;
+
+    if (currentData.data.tags.length > 0) overlapTags = currentData.data.tags.find(t => t === tagID);
+    if (overlapTags) return false;
+
+    let newTags = 'tags[]=' + tagID;
+    currentData.data.tags.map(tag => newTags += '&tags[]=' + tag);
+
+    let response = await fetch(serverPath + '/book/' + bookID, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: newTags
+    });
+    let json = await Functions.Data.parseJSON(response);
+
+    if (json.code !== "000") return false;
     return true;
 }
 
 export async function removeBookTag(bookID,tagID) {
-    console.log('placeholder function removeBookTag', bookID, tagID);
+    // Get tags currently on the book
+    let currentData = await getBookInfo(bookID);
+    if (currentData.code !== "000") return false;
+
+    let tagIndex;
+
+    if (currentData.data.tags.length > 0) tagIndex = currentData.data.tags.indexOf(tagID);
+    if (tagIndex === undefined) return false; // Tag not foumd
+
+    let newTags;
+    let tagsPush = '';
+
+    newTags = currentData.data.tags.filter(t => t !== tagID); // Remove tag from array
+
+    if (newTags.length === 0) tagsPush = 'tags[]=';
+    else newTags.map(tag => tagsPush += '&tags[]=' + tag);
+
+    let response = await fetch(serverPath + '/book/' + bookID, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: tagsPush
+    });
+    let json = await Functions.Data.parseJSON(response);
+
+    if (json.code !== "000") return false;
     return true;
 }
