@@ -77,31 +77,3 @@ class Dashboard extends Component {
 }
 
 export default connect(mapStateToProps)(Dashboard);
-
-
-/*
-Old dashboard elements:
-
-<AccentedBox
-    title="Latest Book"
-    gradFrom="accent5"
-    gradTo="accent4"
-
-    type="latestBook"
-/>
-<AccentedBox
-    title="Fines"
-    gradFrom="accent2"
-    gradTo="accent1"
-
-    type="fines"
-/>
-<AccentedBox
-    title="Rate"
-    gradFrom="accent3"
-    gradTo="accent4"
-
-    type="rate"
-/>
-
-*/

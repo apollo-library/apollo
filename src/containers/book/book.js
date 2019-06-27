@@ -25,29 +25,28 @@ class Report extends Component {
     }
 
     componentDidMount = async () => {
+        // Fetch the data from the server initially
         this.updateData();
     }
 
     updateData = async () => {
-        const param = this.props.match.params.book;
+        const param = this.props.match.params.book; // from URL
 
         const data = await API.Books.getBookInfo(param);
         
-        let dueDate
-        if (data.data.loanID) {
+        let dueDate;
+        if (data.data.loanID) { // Get loan information if applicalbe
             const loanInfo = await API.Loans.getLoanInformation(data.data.loanID);
             dueDate = loanInfo.data.loan.dueDate;
         }
-
-
         this.setState({dueDate: dueDate})
 
-        if (data.message === "Book not found") {
-            //throw a temper tantrum
-        } else {
+        if (data.message !== "Book not found") { // Catch if book does not exists
+            // Get the history for the book
             this.setState({bookData: data});
             const history = await API.History.getBookHistory(param);
 
+            // Parse history data to pass into table
             let historyParse = history.data.map((item) => {
                 let user;
                 if (item.user.forename) user = item.user.forename + ' ' + item.user.surname + ' | ' + item.user.year + '-' + item.user.reg;
@@ -59,12 +58,10 @@ class Report extends Component {
                     id: item.user._id
                 };
             });
-
             this.setState({history: historyParse});
-
         }
 
-        this.setState({ path: param});
+        this.setState({path: param});
     }
 
 

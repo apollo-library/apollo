@@ -62,6 +62,7 @@ class Catalogue extends Component {
     }
 
     tagActive(tagName) {
+        // Handle selecting + deselecting tags for search
         let index = this.props.catalogueTags.findIndex(tag => tag.name === tagName)
         
         if (index !== -1 && this.props.catalogueTags[index].selected) {
