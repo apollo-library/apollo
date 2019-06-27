@@ -18,13 +18,10 @@ class AccentedBox extends Component {
     }
 
     render() {
-
-        //Get the type of sidebox we want to show
         let typeOfBox = this.props.type;
-
-        //Store of the content that we want to show inside the box
         let boxContent;
 
+        //Returns different variations of the boxContent based on it's type
         if (typeOfBox === "custom") {
             boxContent =
                 <styles.BoxContent>
@@ -52,6 +49,7 @@ class AccentedBox extends Component {
             boxContent =
                 <styles.BoxContent tagSpacing>
                     {this.props.data.tags.map((tag, index) => {
+                        //Ensures a tag exists before displaying the name
                         let tagFind = this.props.allTags.find((t) => t.id === tag);
                         if (!tagFind) return null;
                         return <styles.Tag key={index}>
@@ -81,6 +79,7 @@ class AccentedBox extends Component {
             boxContent =
                 <styles.BoxContent>
                     {this.props.data.slice(0,5).map((loan, index) => {
+                        //Display the first 6 history items
                         return <UserItem key={index} bookName={(loan.loan.returnDate ? "Return - " : "Withdraw - ") + loan.book.title} bookId={loan.book._id} />
                     })}
 

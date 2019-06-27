@@ -11,7 +11,6 @@ class ContentTabs extends Component {
         };
     }
 
-
     static getDerivedStateFromProps(nextProps, prevState) {
         if (prevState.tabs !== nextProps.tabs) {
             return {
@@ -21,15 +20,16 @@ class ContentTabs extends Component {
         return null;
     }
 
-
     changeActiveTab(tab) {
         let tabIndex = this.state.tabs.indexOf(tab);
         let updatedTabs = this.state.tabs;
 
+        //Set every tab to be inactive
         for (let i = 0; i < updatedTabs.length; i++) {
             updatedTabs[i].active = false;
         }
 
+        //Set the tab we clicked to be active
         updatedTabs[tabIndex].active = true;
         this.setState({tabs: updatedTabs});
     }
