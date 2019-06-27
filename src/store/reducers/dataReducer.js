@@ -148,17 +148,19 @@ function pushFilteredTags(state, filteredTags) {
 
 //Toggles the tags being in the serach query or not
 function updateFilterTags(state, tagName) {
-    //Check if the active filters contains the one we've clicked
+    //Check if the active filters list contains the one we've clicked
     if (state.searchQuery.filters.includes(tagName)) { //For IE support in the future *.includes() can be changed to *.indexOf()
         //Remove tag from query
         let queryIndex = state.searchQuery.filters.indexOf(tagName);
 
+        //Remove the tag we clicked from the active filters list
         return update(state, {
             searchQuery: {
                 filters: {$splice: [[queryIndex, 1]]}
             }
         })
     } else {
+        //The list doesn't contain the tag so we add it
         return update(state, {
             searchQuery: {
                 filters: {$push: [tagName]}
@@ -167,12 +169,14 @@ function updateFilterTags(state, tagName) {
     }
 }
 
+//Changes the 'active' property of a tag so we can keep track of if it's selected or not
 function updateFilterTagsState(state, tagName) {
     //Check if the active filters contains the one we've clicked
     if (state.searchQuery.filters.includes(tagName)) { //For IE support in the future *.includes() can be changed to *.indexOf()
         //Remove tag from query
         let index = state.catalogue.tags.findIndex(tag => tag.id === tagName)
 
+        //Update the state to be active
         return update(state, {
             catalogue: {
                 tags: {
@@ -186,6 +190,7 @@ function updateFilterTagsState(state, tagName) {
         //Add the tag to the query
         let index = state.catalogue.tags.findIndex(tag => tag.id === tagName)
 
+        //Update state to be inactive
         return update(state, {
             catalogue: {
                 tags: {
@@ -206,8 +211,6 @@ function updateSearchTerm(state, searchTerm) {
         }
     })
 }
-
-
 
 export const data = (state = initialStates, action) => {
     switch (action.type) {
