@@ -36,7 +36,7 @@ class Loan extends Component {
     //Format date
     formatDueDate = (date) => {
         let dueDate = new Date(date);
-        return dueDate.getDate() + "/" + (dueDate.getMonth() + 1) + "/" + dueDate.getFullYear();
+        return dueDate.getDate() + "/" + dueDate.getMonth() + "/" + dueDate.getFullYear();
     }
 
     render = () => {
