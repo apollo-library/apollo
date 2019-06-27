@@ -36,12 +36,12 @@ class UserSearch extends Component {
         let query = new RegExp("(" + this.state.searchTerm + ")","gi")
 
         let filteredUsers = users.filter(user => {
-                if (!user.name_concat) return false;
-                if (user.name_concat.match(query) || user._id.match(query)) return true;
-                return false;
-            }
-        );
+            if (!user.name_concat) return false;
+            if (user.name_concat.match(query) || user._id.match(query)) return true;
+            return false;
+        });
 
+        //Push the list of users filtered by the search term to Redux
         store.dispatch(actions.pushUsers(filteredUsers));
 
         this.props.searchCallback(this.state.searchTerm);
