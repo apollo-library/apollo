@@ -5,6 +5,7 @@ import React from 'react';
 import * as styles from './datePickerStyles.js'
 
 export default function DatePicker(props) {
+    // +86400000 adds on a day by rounding so that books can't be taken out to days before tomorrow
     return (
         <styles.DueDatePicker
             value={props.date}

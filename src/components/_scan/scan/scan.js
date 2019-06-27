@@ -18,11 +18,9 @@ class Scan extends Component {
         super()
 
         this.state = {
-            showPopup: false,
-            scannedBookData: {},
-            scanOptions: null,
-            scanInput: "",
-            inputValue: "",
+            showPopup: false, // Toggle for showing scan box
+            scannedBookData: {}, // Data store for book that has been scanned
+            inputValue: "", // Value in input box
             datePickerValue: new Date(
                 new Date()
                 .getTime()+86400000*config.main.defaultLoanLength)
@@ -35,12 +33,12 @@ class Scan extends Component {
                     )
                     .toISOString()
                     .indexOf("T")
-                ),
-            scanStage: 'start',
-            scanTitle: '',
-            scanBox: [],
-            error: [],
-            userData: [],
+                ), // Default value for date picker - 86400000ms is 24 hours so adds the number of days on from config
+            scanStage: 'start', // Keeps track of what is currently displayed in the scan box
+            error: [], // Stores error jsx when error present, if not displays empty
+            userData: [], // Data about the user who has taken book out
+            
+            // Store for data for a new book
             newBookID: "",
             newBookISBN10: "",
             newBookISBN13: "",
@@ -51,10 +49,12 @@ class Scan extends Component {
     }
 
     componentDidMount = () => {
+        // Display initial screen
         this.switchDisplay();
     }
 
     componentWillUnmount = () => {
+        // clear timer when scan object unloaded to avoid memory overflows
         if (this.resetTimer)  clearInterval(this.resetTimer);
     }
 

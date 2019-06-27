@@ -14,8 +14,6 @@ const DueDatePicker = styled.input`
     }
 `;
 
-
-
 export {
     DueDatePicker
 };
