@@ -1,3 +1,20 @@
+/*
+
+    This was a feature that we were going to add at the beginning but decided
+    that with a lack of user data, wouldn't be useful to have.
+
+
+*/
+
+
+//========================================================================================
+//        UNUSED                UNUSED                UNUSED                UNUSED
+//========================================================================================
+
+
+
+
+
 //React imports
 import React, { Component } from 'react';
 
