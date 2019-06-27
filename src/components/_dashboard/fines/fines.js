@@ -8,6 +8,7 @@ import * as API from './../../../api';
 //Redux
 import { connect } from 'react-redux'
 
+//Connect Redux state to local props
 const mapStateToProps = (state) => ({
     booksDueSoon: state.data.studentDetails.booksDueSoon
 })
@@ -24,6 +25,8 @@ class Fines extends Component {
         let rawUsers = await API.Users.getAllUsers();
 
         let usersWithFines = []
+
+        //Add the users with a fine to 'usersWithFines'
         for (var i = 0; i < rawUsers.data.length; i++) {
             if (rawUsers.data[i].fine !== 0) {
                 usersWithFines.push(rawUsers.data[i]);
