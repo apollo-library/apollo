@@ -17,7 +17,9 @@ class UserHistory extends Component {
 
     componentDidMount = async () => {
         let data = await API.Users.getUserHistory(this.props.user);
-        
+
+        let header = ['Action','Book','Author','Due Date']
+
         let tableData = data.data.map((item) => {
             return [
                 {style: "normal", url: null, display: item.loan.returnDate ? "Return" : "Withdraw"},
@@ -26,10 +28,12 @@ class UserHistory extends Component {
                 {style: "normal", url: null, display: this.formatDueDate(item.loan.dueDate)},
             ]
         });
-        let header = ['Action','Book','Author','Due Date']
+
+        //Push the headings and the table body to the state
         this.setState({body: tableData, header: header});
     }
 
+    //Format date
     formatDueDate = (date) => {
         let dueDate = new Date(date);
         return dueDate.getDate() + "/" + (dueDate.getMonth() + 1) + "/" + dueDate.getFullYear();

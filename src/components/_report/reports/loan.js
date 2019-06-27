@@ -17,6 +17,9 @@ class Loan extends Component {
 
     componentDidMount = async () => {
         let data = await API.Loans.getLoans();
+
+        let header = ['Book','Author','User','Due Date']
+
         let tableData = data.data.map((item) => {
             return [
                 {style: "bold", url: "/book/" + item.raw.book._id, display: item.display.title},
@@ -25,10 +28,12 @@ class Loan extends Component {
                 {style: "normal", url: null, display: this.formatDueDate(item.display.due)},
             ]
         });
-        let header = ['Book','Author','User','Due Date']
+
+        //Push the headings and the table body to the state
         this.setState({body: tableData, header: header});
     }
 
+    //Format date
     formatDueDate = (date) => {
         let dueDate = new Date(date);
         return dueDate.getDate() + "/" + (dueDate.getMonth() + 1) + "/" + dueDate.getFullYear();
