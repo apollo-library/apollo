@@ -18,32 +18,36 @@ class BookInfo extends Component {
         super()
         this.state = {
             accent: 'accent3',
+
+            // true / false for showing or hiding
             informationBox: true,
             idBox: true,
             tagsBox: true,
 
+            // Colours are the drop shadows of the submit box - primary intially, red for error, green for success
             informationTitleColour: 'primary',
             informationAuthorColour: 'primary',
             informationPublisherColour: 'primary',
-
             idISBN10Colour: 'primary',
             idISBN13Colour: 'primary',
-
+            
             allTags: [],
-            addTag: -1,
+            addTag: -1, // This is the default value which is caught to prevent errors
 
+            // State stores for what is currently in the input boxes
             inputTitle: '',
             inputAuthor: '',
             inputPublisher: '',
             inputISBN10: '',
             inputISBN13: '',
 
-            deletePrompt: null
+            deletePrompt: null // Delete box starts minimised
         };
 
     }
 
     componentDidMount = async () => {
+        // Fetch all the tags from the server
         const tags = await API.Tags.getAllTags();
         this.setState({allTags: tags});
     }
@@ -55,6 +59,12 @@ class BookInfo extends Component {
     updateInputISBN10 = e => this.setState({inputISBN10: e.target.value});
     updateInputISBN13 = e => this.setState({inputISBN13: e.target.value});
 
+    formatDueDate = (date) => {
+        let dueDate = new Date(date);
+        return dueDate.getDate() + "/" + dueDate.getMonth() + "/" + dueDate.getFullYear();
+    }
+
+    // Toggles the information boxes
     displayInformationBox = () => {
         this.setState({
             informationTitleColour: 'primary',
@@ -63,7 +73,6 @@ class BookInfo extends Component {
             informationBox: true
         });
     }
-
     displayIDBox = () => {
         this.setState({
             idISBN10Colour: 'primary',
@@ -71,19 +80,30 @@ class BookInfo extends Component {
             idBox: true
         });
     }
-
-    formatDueDate = (date) => {
-        let dueDate = new Date(date);
-        return dueDate.getDate() + "/" + dueDate.getMonth() + "/" + dueDate.getFullYear();
+    displayTagBox = async () => {
+        let allTags = await API.Tags.getAllTags();
+        this.setState({allTags: allTags})
+        this.setState({tagsBox: false})
     }
 
+    // Editing data
+    getData = async (box) => {
+        // Gets new data from the server for the book (through callback function)
+        await this.props.updateData()
+        
+        // Redisplays the specified box
+        if (box === "information") this.displayInformationBox();
+        if (box === "id") this.displayIDBox();
+    }
     updateData = async (type, val) => {
+        // Pushes data to server
         let col = 'accent6';
         if (val) {
             let data = await API.Books.editBook(this.props.data._id, type, val);
             if (data.message === 'Success') col = 'accent5';
         }
 
+        // Sets the colour of the button dropdown: red for failure, green for success
         if (type === 'title') this.setState({informationTitleColour: col, inputTitle: ''});
         if (type === 'author') this.setState({informationAuthorColour: col, inputAuthor: ''});
         if (type === 'publisher') this.setState({informationPublisherColour: col, inputPublisher: ''});
@@ -91,25 +111,22 @@ class BookInfo extends Component {
         if (type === 'ISBN13') this.setState({idISBN13Colour: col, inputISBN13: ''});
     }
 
-    getData = async (box) => {
-        await this.props.updateData()
-        if (box === "information") this.displayInformationBox();
-        if (box === "id") this.displayIDBox();
-    }
 
+    // Tag management
     updateSelectedTag = (e) => {
+        // Handler for changing dropdown selected
         this.setState({addTag: e.target.value})
     }
-
     addTag = async () => {
+        // Adds a tag to the book
         if (this.state.addTag === -1) {
             return;
         }
 
         let data;
-        let selected = this.props.data.tags.find(x => x === this.state.addTag);
+        let selected = this.props.data.tags.find(x => x === this.state.addTag); // See if tag is already applied
 
-        if (!selected) {
+        if (!selected) { // add tag
             data = await API.Books.addBookTag(this.props.data._id, this.state.addTag);
         }
 
@@ -117,28 +134,23 @@ class BookInfo extends Component {
             //Sucessfully added new tag
             this.props.updateData();
             this.setState({tagsBox: true});
-            this.setState({addTag: -1});
+            this.setState({addTag: -1}); // Reset dropdown
         }
     }
-
-    displayTagBox = async () => {
-        let allTags = await API.Tags.getAllTags();
-        this.setState({allTags: allTags})
-        this.setState({tagsBox: false})
-    }
-
-
     removeTag = async (id) => {
         let res = await API.Books.removeBookTag(this.props.data._id, id);
 
-        //TODO: Check this works with new data from server
+        // res returns true on success and false on failure
         if (res) {
             //Sucessfully removed tag
             this.props.updateData();
         }
     }
 
+
+    // Deleteing book management
     deleteBookPrompt = async () => {
+        // Displays prompt box to confirm book deletion
         this.setState({
             deletePrompt: <AlertBox
                 text={"Deleting book '" + this.props.data.title + "' is permanent. Continue?"}
@@ -149,13 +161,14 @@ class BookInfo extends Component {
             />
         });
     }
-
     deleteBook = async (id) => {
+        // Deletes book from system - response returns true on success and false on failure
         let response = await API.Books.deleteBook(id);
-        if (response) this.setState({deletePrompt: <Redirect to='/catalogue' />});
+        if (response) this.setState({deletePrompt: <Redirect to='/catalogue' />}); // Redirect tag redirects the page to /catalogue
     }
 
     render = () => {
+        // Returns the three containers for the information - each checks for displaying information box or editing box
         return (
             <styles.BookInfoContainer>
                 {
