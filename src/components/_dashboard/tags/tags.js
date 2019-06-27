@@ -5,6 +5,7 @@ import { AlertBox } from './../../';
 
 import * as API from './../../../api';
 
+//Import icons
 import cross from './../../../assets/images/circle-cross.svg';
 import tick from './../../../assets/images/circle-tick.svg';
 
@@ -44,20 +45,28 @@ class Tags extends Component {
                     if (tag.name.toLowerCase() === tagName.toLowerCase()) return true; // Ignores case
                     return false;
                 });
+
                 if (tagFilter.length === 0) {
+                    //Tag doesn't exist
+
                     let status = this.addTag(tagName);
                     if (status) {
                         this.setState({searchState: "success", errorMessage: false, successMessage: "Tag successfully added"});
                         this.updateTags();
                     }
                     else this.setState({searchState: "error", errorMessage: "Error adding tag", successMessage: false});
+                } else {
+                    //Tag does exist
+                    this.setState({searchState: "error", errorMessage: "Tag already exists", successMessage: false});
                 }
-                else this.setState({searchState: "error", errorMessage: "Tag already exists", successMessage: false});
             }
+
+            //Timer to display the sucess or error message for 3 seconds
             if (this.resetTimer) clearInterval(this.resetTimer);
             this.resetTimer = setTimeout(() => {
                 this.removeMessage();
             }, 3000);
+
             e.target.value = "";
         }
     }
@@ -65,16 +74,23 @@ class Tags extends Component {
     updateTags = async () => {
         let tags = await API.Tags.getAllTags();
 
-        tags.sort( function( a, b ) {
+        tags.sort(function(a, b) {
             a = a.name.toLowerCase();
             b = b.name.toLowerCase();
 
             return a < b ? -1 : a > b ? 1 : 0;
+            /*
+                Sorting algorithm
+                a < b -> -1
+                a > b -> 1
+                a = b -> 0
+            */
         })
 
         this.setState({tags: tags})
     }
 
+    //Resets all message states
     removeMessage = () => {
         this.setState({searchState: false, errorMessage: false, successMessage: false});
     }
@@ -83,6 +99,7 @@ class Tags extends Component {
         return await API.Tags.addTag(tagName);
     }
 
+    //Show 'Are you sure?' prompt
     removeTagPrompt = async (id,name) => {
         this.setState({
             tagPrompt: <AlertBox key={1}
@@ -101,11 +118,13 @@ class Tags extends Component {
         this.setState({tagPrompt: null});
     }
 
+    //Store the values of the tag we clicked in the state
     makeTagEditable = (id,name) => {
         this.setState({tagEditID: id, inputValue: name});
     }
 
     editTag = async (id) => {
+        //Sanitize input to be alphanumeric characters
         if (this.state.inputValue.replace(/[^A-Za-z0-9]+/g, '') !== "") {
             let status = await API.Tags.editTag(id,this.state.inputValue);
             if (status) {
@@ -125,24 +144,25 @@ class Tags extends Component {
                 <styles.AddTagName state={this.state.searchState} onKeyUp={(e) => this.addTagEvent(e)} placeholder="New Tag Name" />
                 {(this.state.errorMessage) ? <styles.ErrorMessage>{this.state.errorMessage}</styles.ErrorMessage> : null}
                 {(this.state.successMessage) ? <styles.SuccessMessage>{this.state.successMessage}</styles.SuccessMessage> : null}
-                <styles.Tags>
 
+                <styles.Tags>
                     {this.state.tags.map((tag, index) =>
                         <styles.Tag key={tag.id}>
-                                {(this.state.tagEditID === tag.id)
-                                ? <styles.TagContent>
-                                    <styles.TagNameEditable
-                                        value={this.state.inputValue}
-                                        onChange={e => this.updateInputValue(e)}
-                                        onKeyUp={e => this.tagKeyUpHandler(e, tag.id)}>
-                                    </styles.TagNameEditable>
-                                    <styles.Icon src={tick} onClick={() => this.editTag(tag.id)} />
-                                </styles.TagContent>
-                                : <styles.TagContent>
-                                    <p onClick={() => this.makeTagEditable(tag.id, tag.name)}>{tag.name}</p>
-                                    <styles.Icon src={cross} onClick={() => this.removeTagPrompt(tag.id, tag.name)} />
-                                </styles.TagContent>
-                                }
+
+                            {(this.state.tagEditID === tag.id)
+                            ? <styles.TagContent>
+                                <styles.TagNameEditable
+                                    value={this.state.inputValue}
+                                    onChange={e => this.updateInputValue(e)}
+                                    onKeyUp={e => this.tagKeyUpHandler(e, tag.id)}>
+                                </styles.TagNameEditable>
+                                <styles.Icon src={tick} onClick={() => this.editTag(tag.id)} />
+                            </styles.TagContent>
+
+                            : <styles.TagContent>
+                                <p onClick={() => this.makeTagEditable(tag.id, tag.name)}>{tag.name}</p>
+                                <styles.Icon src={cross} onClick={() => this.removeTagPrompt(tag.id, tag.name)} />
+                            </styles.TagContent>}
                         </styles.Tag>
                     )}
                 </styles.Tags>

@@ -12,9 +12,9 @@ class BookHistoryTable extends Component {
             accent: 'accent3',
             showDueDate: false,
         };
-
     }
 
+    //Takes in ISO Date and returns it as a a string in UK format (DD/MM/YYYY)
     formatDueDate = (date) => {
         let dueDate = new Date(date);
 
@@ -23,7 +23,6 @@ class BookHistoryTable extends Component {
         } catch(ex) {
             return false;
         }
-
 
         dueDate = dueDate.getDate() + "/" + dueDate.getMonth() + "/" + dueDate.getFullYear();
 
@@ -34,19 +33,18 @@ class BookHistoryTable extends Component {
         let TableContent;
 
         if (Array.isArray(this.props.data)) {
-            TableContent = this.props.data.map((rowData, index) =>
-            (
-                <styles.TableRow key={index} colour={this.state.accent}>
-                    <styles.TableText>{this.formatDueDate(rowData.date)}</styles.TableText>
-                    <styles.TableText>{rowData.action.replace(/\b\w/g, l => l.toUpperCase())}</styles.TableText>
-                    <styles.TableText><styles.TableLink to={'/users?id=' + rowData.id}>{rowData.user}</styles.TableLink></styles.TableText>
-                    <styles.TableText>{rowData.id}</styles.TableText>
-                </styles.TableRow>
+            TableContent = this.props.data.map((rowData, index) => (
+                    <styles.TableRow key={index} colour={this.state.accent}>
+                        <styles.TableText>{this.formatDueDate(rowData.date)}</styles.TableText>
+                        <styles.TableText>{rowData.action.replace(/\b\w/g, l => l.toUpperCase())}</styles.TableText> {/* Capitalize first letter */}
+                        <styles.TableText><styles.TableLink to={'/users?id=' + rowData.id}>{rowData.user}</styles.TableLink></styles.TableText>
+                        <styles.TableText>{rowData.id}</styles.TableText>
+                    </styles.TableRow>
+                )
             )
-        )
         }
 
-
+        //Checks if a book has a due date. If true, show the due date, if false, ignore the first line
         return ([
             (this.formatDueDate(this.props.dueDate)) ? <styles.DueDateTitle key={0}>Due Date: {this.formatDueDate(this.props.dueDate)}</styles.DueDateTitle> : null,
             <styles.Table key={1}>
@@ -56,7 +54,6 @@ class BookHistoryTable extends Component {
                     <styles.TableHeading colour={this.state.accent}>User</styles.TableHeading>
                     <styles.TableHeading colour={this.state.accent}>ID</styles.TableHeading>
                 </styles.TableHeader>
-
 
                 {TableContent}
 

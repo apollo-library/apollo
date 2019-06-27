@@ -24,12 +24,13 @@ class TagSearch extends Component {
         let filterTerm = e.target.value.toLowerCase()
 
         let filteredTags = []
+        //Check if a tag with the search term exists and adds to an array 'filteredTags'
         filteredTags = this.props.tags.filter((tag) => {
             return (tag.name.toLowerCase().indexOf(filterTerm) > -1);
         });
 
+        //Send the list of tags that full under the search term to Redux
         store.dispatch(actions.pushFilteredTags(filteredTags));
-
     }
 
     render() {

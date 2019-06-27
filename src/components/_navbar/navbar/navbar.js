@@ -15,17 +15,12 @@ import config from '../../../config'
 //Redux
 import { connect } from 'react-redux'
 
-
+//Connect Redux state to local props
 const mapStateToProps = (state) => ({
     currentPage: state.data.currentPage
 })
 
 class Navbar extends Component {
-    constructor() {
-        super()
-        this.state = {}
-    }
-
     render() {
         return (
             <styles.Navbar>
@@ -36,15 +31,14 @@ class Navbar extends Component {
                         </Link>
                     </styles.Logo>
 
-                    {config.main.pages.map((page, index) =>
-                        (
-                            <styles.Item  key={index}itemActive={page.path === this.props.currentPage}>
-                                <styles.ItemLink to={page.path}>
-                                    {page.text}
-                                </styles.ItemLink>
-                            </styles.Item>
-                        )
-                    )}
+                    {/* Maps over pages defined in the config file and adds a link to that container */}
+                    {config.main.pages.map((page, index) => (
+                        <styles.Item  key={index}itemActive={page.path === this.props.currentPage}>
+                            <styles.ItemLink to={page.path}>
+                                {page.text}
+                            </styles.ItemLink>
+                        </styles.Item>
+                    ))}
                     <FlexGrow />
                 </styles.Root>
             </styles.Navbar>
