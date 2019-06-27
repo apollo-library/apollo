@@ -1,5 +1,5 @@
 let config = {
-    serverPath: ''
+    serverPath: '' // Server path of API
 }
 
 export default config;

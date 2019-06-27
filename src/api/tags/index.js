@@ -7,7 +7,9 @@ import config from './../config.js';
 //Not have to refer to config everytime
 const serverPath = config.serverPath;
 
-async function getAllTags() {
+export async function getAllTags() {
+    // Get all the current tags
+
     let response = await fetch(serverPath + '/tags');
     let json = await Functions.Data.parseJSON(response);
     if (json.code === "001") return [];
@@ -15,14 +17,18 @@ async function getAllTags() {
     return parse; // <- return an object with all the tags
 }
 
-async function getTag(id) {
+export async function getTag(id) {
+    // Get a tag's name from id
+
     let response = await fetch(serverPath + '/tag/' + id);
     let json = await Functions.Data.parseJSON(response);
     if (json.code === "000") return json.data.name;
     else return false;
 }
 
-async function addTag(name) {
+export async function addTag(name) {
+    // Add a new tag
+
     let data = "name=" + name;
 
     let response = await fetch(serverPath + '/tags', {
@@ -38,7 +44,12 @@ async function addTag(name) {
     return false;
 }
 
-async function editTag(id,name) {
+export async function editTag(id,name) {
+    /* Edit the name of a tag
+        - id: ID of the tag
+        - name: name to change tag to
+    */
+
     let data = "name=" + name;
 
     let response = await fetch(serverPath + '/tag/' + String(id), {
@@ -53,7 +64,10 @@ async function editTag(id,name) {
     if (json.code === "000") return true;
     return false;
 }
-async function deleteTag(id) {
+
+export async function deleteTag(id) {
+    // Delete a particular tag by id
+
     let response = await fetch(serverPath + '/tag/' + String(id), {
         method: "DELETE",
         headers: {
@@ -64,13 +78,4 @@ async function deleteTag(id) {
     let json = await Functions.Data.parseJSON(response);
     if (json.code === "000") return true;
     return false;
-}
-
-
-export {
-    getAllTags,
-    getTag,
-    addTag,
-    editTag,
-    deleteTag
 }

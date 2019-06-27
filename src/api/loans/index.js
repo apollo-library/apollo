@@ -7,14 +7,20 @@ import config from './../config.js';
 //Not have to refer to config everytime
 const serverPath = config.serverPath;
 
-async function returnBook(id) {
+export async function returnBook(id) {
+    // Return a book that is currently out by id
     let response = await fetch(serverPath + '/book/' + id + '/deposit');
     let json = await Functions.Data.parseJSON(response);
     if (json.code === "000") { return {status: 'success'}; }
     return {status: json.message}
 }
 
-async function renewBook(id,date) {
+export async function renewBook(id,date) {
+    /* Renew a book that is currently out:
+        - id: ID of the book
+        - date: isostring of date to return
+    */
+
     let data = "due=" + date;   // <- construct data into POST format
     let response = await fetch(serverPath + '/book/' + id + '/renew', {
         method: "POST",
@@ -28,7 +34,13 @@ async function renewBook(id,date) {
     return {status: json.message};
 }
 
-async function withdrawBook(id, userID, date) {
+export async function withdrawBook(id, userID, date) {
+    /* Withdraw a book:
+        - id: ID of the book
+        - userID: ID of the user
+        - date: isostring of date to return
+    */
+
     let data = "due=" + date + "&userID=" + userID;   // <- construct data into POST format
     let response = await fetch(serverPath + '/book/' + id + '/withdraw', {
         method: "POST",
@@ -42,10 +54,14 @@ async function withdrawBook(id, userID, date) {
     return {status: json.message};
 }
 
-async function getLoans() {
+export async function getLoans() {
+    // Get all the books currently on loan
+
     let response = await fetch(serverPath + '/loans');
     let json = await Functions.Data.parseJSON(response);
     if (json.code !== "000") return {status: json.message, code: json.code};
+
+    // Filter needed data
     let rtn = {
         count: json.count,
         data: json.data.map((loan) => {
@@ -64,9 +80,13 @@ async function getLoans() {
     return rtn;
 }
 
-async function getOverdueLoans() {
+export async function getOverdueLoans() {
+    // Get all loans that are overdue
+
     let response = await fetch(serverPath + '/loans/overdue');
     let json = await Functions.Data.parseJSON(response);
+
+    // Filter needed data
     let rtn = {
         count: json.count,
         data: json.data.map((loan) => {
@@ -85,9 +105,13 @@ async function getOverdueLoans() {
     return rtn;
 }
 
-async function getDueSoonLoans() {
+export async function getDueSoonLoans() {
+    // Get all loans within 3 days of being due back
+
     let response = await fetch(serverPath + '/loans/due');
     let json = await Functions.Data.parseJSON(response);
+
+    // Filter needed data
     let rtn = {
         count: json.count,
         data: json.data.map((loan) => {
@@ -106,33 +130,10 @@ async function getDueSoonLoans() {
     return rtn;
 }
 
-async function getLoanInformation(id) {
+export async function getLoanInformation(id) {
+    // Get information about a particular loan from loan id
+    
     let response = await fetch(serverPath + '/loan/' +id);
     let json = await Functions.Data.parseJSON(response);
     return json;
-}
-
-async function reserveBook(id) {
-
-}
-
-async function getBookReservation(id) {
-
-}
-
-async function deleteReservation(id) {
-
-}
-
-export {
-    returnBook,
-    renewBook,
-    withdrawBook,
-    getLoans,
-    getOverdueLoans,
-    getDueSoonLoans,
-    getLoanInformation,
-    reserveBook,
-    getBookReservation,
-    deleteReservation
 }
