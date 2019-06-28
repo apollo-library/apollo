@@ -29,6 +29,12 @@ class AccentedBox extends Component {
                     <styles.BookAuthor>{this.props.data.subtitle}</styles.BookAuthor>
                     <Link to={this.props.data.url}><styles.SidebarButton colour={this.props.gradFrom}>{this.props.data.buttonText}</styles.SidebarButton></Link>
                 </styles.BoxContent>
+        } else if (typeOfBox === "custom-no-button") {
+            boxContent =
+                <styles.BoxContent>
+                    <styles.BookTitle>{this.props.data.title}</styles.BookTitle>
+                    <styles.BookAuthor>{this.props.data.subtitle}</styles.BookAuthor>
+                </styles.BoxContent>
         } else if (typeOfBox === "bookTitleAuthorPublisher") {
             boxContent =
                 <styles.BoxContent>

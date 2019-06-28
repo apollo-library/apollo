@@ -48,6 +48,17 @@ class Dashboard extends Component {
 
                             type="custom"
                         />
+                        <AccentedBox
+                            title="Copyright"
+                            gradFrom="accent3"
+                            gradTo="accent4"
+                            data={ {
+                                title: 'Created by',
+                                subtitle: "Henry Franks, Max O'Brien and Cameron Robey"
+                            } }
+
+                            type="custom-no-button"
+                        />
                     </LeftColumn>
 
                     <RightColumn>
